@@ -1,0 +1,109 @@
+\documentclass[a4paper, 12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage[english]{babel}
+
+\usepackage{blindtext}
+\usepackage{enumitem}
+ 
+\usepackage[backend=biber,style=numeric,citestyle=numeric]{biblatex}
+\addbibresource{references.bib}
+% The following makes latex use nicer postscript fonts.
+\usepackage{times}
+ 
+% get clickable links
+% http://stackoverflow.com/questions/3244803/latex-add-clickable-links-to-a-section-subsection-with-a-pdf-document
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks   = true,    % Colours links instead of ugly boxes
+  urlcolor     = blue,    % Colour for external hyperlinks
+  linkcolor    = black,    % Colour of internal links
+  citecolor    = black      % Colour of citations
+}
+ 
+ 
+%\usepackage[backend=biber,style=numeric,citestyle=authoryear]{biblatex}
+%\usepackage{biblatex}
+\makeatletter
+% http://tex.stackexchange.com/questions/61204/autocomplete-in-texniccenter-does-not-work-when-biblatex-is-used
+% "Since TeXnicCenter does not check for if clauses, it just assumes \bibliography has been used and binds it into the GUI."
+%\@ifpackageloaded{biblatex}{\addbibresource{references.bib}}{\bibliography{references}}
+\makeatother
+       
+\usepackage{vubtitlepage}
+ 
+\usepackage{listings}
+\hyphenation{mul-ti-di-rec-tio-na-li-ty}
+ 
+\author{Valentijn Spruyt}
+\title{Expressing and checking application-specific, user-specified security policies}
+\promotor{Prof. Dr. Coen De Roover}
+\advisors{Jens Nicolay\\
+         Quentin Stievenart}
+\degree{Master of Science in Applied Sciences and Engineering: Computer Science}
+\faculty{Faculty of Science and Bio-Engineering Sciences}
+\advisortitle{Advisors}
+\department{Department of Computer Science\\ and Applied Computer Science}
+\reason{Graduation thesis submitted in partial fulfillment of the
+requirements for the degree of} 
+
+\date{JUNE 2016}
+ 
+\begin{document}
+
+\maketitlepage
+ 
+\advisortitle{Begeleiders}
+\faculty{Faculteit Wetenschappen en Bio-\\Ingenieurswetenschappen}
+\department{Departement Computerwetenschappen\\en Toegepaste Informatica}
+ 
+\reason{Proefschrift ingediend met het oog op het behalen van de graad
+van} %\\
+%Master of Science in de Ingenieurswetenschappen: Computerwetenschappen}
+\date{JUNI 2016}
+ 
+\maketitlepage
+ 
+\chapter*{Abstract}
+ %Security & policies
+%Detecting security violations in source code can be tedious, especially when done manually. These violations can usually be split up into several categories, depending on the type of violation.
+%daarom is het makkelijk om security policies te gebruiken
+ 
+ %Important because/Not a lot of static JS checkers
+ 
+ %This dissertation ..
+ 
+\chapter*{Acknowledgements}
+ 
+\tableofcontents
+ 
+\chapter{Introduction}
+\input{chapters/introduction}
+ 
+\chapter{Background}
+\input{chapters/background}
+ 
+\chapter{Context}
+\input{chapters/Context}
+ 
+\chapter{The JS-QL query language}
+\label{ch:QueryLanguage}
+\input{chapters/QueryLanguage}
+
+\chapter{The query engine}
+\label{ch:QueryEngine}
+\input{chapters/QueryEngine}
+ 
+\chapter{Implementation}
+\label{ch:Implementation}
+\input{chapters/implementation}
+ 
+\chapter{Evaluation}
+\input{chapters/evaluation}
+ 
+\chapter{Conclusion and future work}
+\input{chapters/conclusion-and-future-work}
+ 
+\printbibliography
+\end{document}

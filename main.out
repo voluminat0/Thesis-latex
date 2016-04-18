@@ -1,0 +1,42 @@
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Context}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{Motivation}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.3}{Objective}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.4}{Overview}{chapter.1}% 5
+\BOOKMARK [0][-]{chapter.2}{Background}{}% 6
+\BOOKMARK [1][-]{section.2.1}{Program representations and querying mechanisms}{chapter.2}% 7
+\BOOKMARK [2][-]{subsection.2.1.1}{Exploring and Enforcing Security Guarantees via Program Dependence Graphs}{section.2.1}% 8
+\BOOKMARK [2][-]{subsection.2.1.2}{GATEKEEPER: Mostly Static Enforcement of Security and Reliability Policies for JavaScript Code}{section.2.1}% 9
+\BOOKMARK [2][-]{subsection.2.1.3}{Parametric regular path queries}{section.2.1}% 10
+\BOOKMARK [1][-]{section.2.2}{Expressing policies using a domain-specific language}{chapter.2}% 11
+\BOOKMARK [2][-]{subsection.2.2.1}{Fluent Interfaces to a Java-Based Internal Domain-Specific Languages for Graph Generation and Analysis}{section.2.2}% 12
+\BOOKMARK [2][-]{subsection.2.2.2}{A Little Language for Surveys: Constructing an Internal DSL in Ruby}{section.2.2}% 13
+\BOOKMARK [2][-]{subsection.2.2.3}{Dagoba: an in-memory graph database}{section.2.2}% 14
+\BOOKMARK [1][-]{section.2.3}{Conclusion}{chapter.2}% 15
+\BOOKMARK [0][-]{chapter.3}{Context}{}% 16
+\BOOKMARK [1][-]{section.3.1}{Static analysis}{chapter.3}% 17
+\BOOKMARK [1][-]{section.3.2}{Conclusion}{chapter.3}% 18
+\BOOKMARK [0][-]{chapter.4}{The JS-QL query language}{}% 19
+\BOOKMARK [1][-]{section.4.1}{The query language}{chapter.4}% 20
+\BOOKMARK [2][-]{subsection.4.1.1}{Motivation}{section.4.1}% 21
+\BOOKMARK [2][-]{subsection.4.1.2}{Syntax and structure}{section.4.1}% 22
+\BOOKMARK [2][-]{subsection.4.1.3}{Defining policies}{section.4.1}% 23
+\BOOKMARK [1][-]{section.4.2}{Conclusion}{chapter.4}% 24
+\BOOKMARK [0][-]{chapter.5}{The query engine}{}% 25
+\BOOKMARK [1][-]{section.5.1}{Architecture}{chapter.5}% 26
+\BOOKMARK [1][-]{section.5.2}{Types of queries}{chapter.5}% 27
+\BOOKMARK [1][-]{section.5.3}{Recursion}{chapter.5}% 28
+\BOOKMARK [1][-]{section.5.4}{Conclusion}{chapter.5}% 29
+\BOOKMARK [0][-]{chapter.6}{Implementation}{}% 30
+\BOOKMARK [1][-]{section.6.1}{Used technologies}{chapter.6}% 31
+\BOOKMARK [1][-]{section.6.2}{Design of the query system}{chapter.6}% 32
+\BOOKMARK [1][-]{section.6.3}{Conclusion}{chapter.6}% 33
+\BOOKMARK [0][-]{chapter.7}{Evaluation}{}% 34
+\BOOKMARK [1][-]{section.7.1}{Expressing policies}{chapter.7}% 35
+\BOOKMARK [2][-]{subsection.7.1.1}{The PidginQL language}{section.7.1}% 36
+\BOOKMARK [2][-]{subsection.7.1.2}{the GateKeeper language}{section.7.1}% 37
+\BOOKMARK [2][-]{subsection.7.1.3}{The Conscript language}{section.7.1}% 38
+\BOOKMARK [1][-]{section.7.2}{Evaluation}{chapter.7}% 39
+\BOOKMARK [0][-]{chapter.8}{Conclusion and future work}{}% 40
+\BOOKMARK [1][-]{section.8.1}{Summary}{chapter.8}% 41
+\BOOKMARK [1][-]{section.8.2}{Future work}{chapter.8}% 42

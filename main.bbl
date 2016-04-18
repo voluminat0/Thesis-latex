@@ -1,0 +1,160 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.5 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist{nty}{nty}
+    \entry{RubyFlexibleSupport}{online}{}
+      \name{author}{1}{}{%
+        {{hash=8ded4583ad04efd19ba336044a7d2749}{Buck}{B\bibinitperiod}{Jamis}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{8ded4583ad04efd19ba336044a7d2749}
+      \strng{fullhash}{8ded4583ad04efd19ba336044a7d2749}
+      \field{sortinit}{B}
+      \field{sortinithash}{4ecbea03efd0532989d3836d1a048c32}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Writing Domain Specific Languages}
+      \field{urlday}{16}
+      \field{urlmonth}{04}
+      \field{urlyear}{2016}
+      \field{year}{2006}
+      \verb{url}
+      \verb http://weblog.jamisbuck.org/2006/4/20/writing-domain-specific-languages.html
+      \endverb
+    \endentry
+    \entry{RubyDSL}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=20a64ffbb8851d485e35070c6a412220}{Cunningham}{C\bibinitperiod}{H.\bibnamedelimi Conrad}{H\bibinitperiod\bibinitdelim C\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Auburn, Alabama}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{20a64ffbb8851d485e35070c6a412220}
+      \strng{fullhash}{20a64ffbb8851d485e35070c6a412220}
+      \field{sortinit}{C}
+      \field{sortinithash}{59f25d509f3381b07695554a9f35ecb2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{Using a problem domain motivated by Bentley's "Little Languages" column [1], this paper explores the use of the Ruby programming language's flexible syntax, dynamic nature, and reflexive metaprogramming facilities to implement an internal domain-specific language (DSL) for surveys.}}
+      \field{booktitle}{Proceedings of the 46th Annual Southeast Regional Conference on XX}
+      \field{isbn}{978-1-60558-105-7}
+      \field{series}{ACM-SE 46}
+      \field{title}{{A little language for surveys: constructing an internal DSL in Ruby}}
+      \field{year}{2008}
+      \field{pages}{282\bibrangedash 287}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1145/1593105.1593181
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1145/1593105.1593181
+      \endverb
+      \keyw{dsl,edsl,ruby}
+    \endentry
+    \entry{DSLFowler}{book}{}
+      \name{author}{1}{}{%
+        {{hash=312ac886938a9b2be4f8eb607567fe4c}{Fowler}{F\bibinitperiod}{Martin}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {Addison-Wesley Professional}%
+      }
+      \strng{namehash}{312ac886938a9b2be4f8eb607567fe4c}
+      \strng{fullhash}{312ac886938a9b2be4f8eb607567fe4c}
+      \field{sortinit}{F}
+      \field{sortinithash}{c6a7d9913bbd7b20ea954441c0460b78}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1st}
+      \field{isbn}{0321712943, 9780321712943}
+      \field{title}{Domain Specific Languages}
+      \field{year}{2010}
+    \endentry
+    \entry{RubyBlockSupport}{online}{}
+      \name{author}{1}{}{%
+        {{hash=3d1e961eacd848cc56a5a129d8a67486}{Freeze}{F\bibinitperiod}{Jim}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{3d1e961eacd848cc56a5a129d8a67486}
+      \strng{fullhash}{3d1e961eacd848cc56a5a129d8a67486}
+      \field{sortinit}{F}
+      \field{sortinithash}{c6a7d9913bbd7b20ea954441c0460b78}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Creating DSLs with Ruby}
+      \field{urlday}{16}
+      \field{urlmonth}{04}
+      \field{urlyear}{2016}
+      \field{year}{2006}
+      \verb{url}
+      \verb http://www.artima.com/rubycs/articles/ruby_as_dsl2.html
+      \endverb
+    \endentry
+    \entry{FluentInterfacesJava}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=37e72bff1629a9ab0eaa2e5983b84d75}{Hawick}{H\bibinitperiod}{K.\bibnamedelimi A.}{K\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
+      }
+      \list{institution}{1}{%
+        {Computer Science, Massey University}%
+      }
+      \list{location}{1}{%
+        {Innsbruck, Austria}%
+      }
+      \list{publisher}{1}{%
+        {IASTED}%
+      }
+      \strng{namehash}{37e72bff1629a9ab0eaa2e5983b84d75}
+      \strng{fullhash}{37e72bff1629a9ab0eaa2e5983b84d75}
+      \field{sortinit}{H}
+      \field{sortinithash}{82012198d5dfa657b8c4a168793268a6}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the International Confonference on Software Engineering (SE?13)}
+      \field{month}{11-13 February}
+      \field{title}{Fluent Interfaces and Domain-Specific Languages for Graph Generation and Network Analysis Calculations}
+      \field{year}{2013}
+      \field{pages}{752\bibrangedash 759}
+      \range{pages}{8}
+      \keyw{domain-specific language; fluent interface; graph generation; graph computations; programming tools and languages}
+    \endentry
+    \entry{Ecma6}{online}{}
+      \name{author}{1}{}{%
+        {{hash=e83578898872635ef15c7690819d9c96}{International}{I\bibinitperiod}{Ecma}{E\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{e83578898872635ef15c7690819d9c96}
+      \strng{fullhash}{e83578898872635ef15c7690819d9c96}
+      \field{sortinit}{I}
+      \field{sortinithash}{25e99d37ba90f7c4fb20baf4e310faf3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{ECMAScript� 2015 Language Specification}
+      \field{urlday}{16}
+      \field{urlmonth}{04}
+      \field{urlyear}{2016}
+      \field{year}{2015}
+      \verb{url}
+      \verb http://www.ecma-international.org/ecma-262/6.0/index.html
+      \endverb
+    \endentry
+  \endsortlist
+  \missing{latexcompanion}
+\endrefsection
+\endinput
+

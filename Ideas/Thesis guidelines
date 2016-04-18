@@ -1,0 +1,12 @@
+easier to extend if know javascript
+waarom algorithme kiezen (uit paper)
+algoritme toelichten
+manier waarop thesis in JS aangepakt 
+
+Related work rename -> background
+Uitleggen wat statische analyse is (bvb voor set van adressen in store)
+Duidelijk maken in schrift dat not hoogste prioriteit heeft (bvb .not().state().star())
+Argumenteren waarom not() voor een state staat, en niet er na
+Hoofdstuk over taal (DSL embedded in host language, DSL uitleggen adh van implementation patterns, vgl met '500 lines or less', waarom internal DSL ipv external DSL) (Paper zoeken over DSL in JavaScript)
+Tabel maken voor thesis om te vergelijken (expressiveness/LOC voor queries/Type of graph, ...)
+Validatie: bij voorbeeldje 9, indien geen data-flow, zouden we false positives hebben (ook in andere papers!)

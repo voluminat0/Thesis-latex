@@ -1,0 +1,65 @@
+Problem statement/motivation
+
+Trachten op een statische manier user-defined security policies te verifiëren.
+Doen in JavaScript, een higher-order programming language met prototype-based inheritance.
+Trachten om ons uit te drukken met een uitbreiding in JavaScript zelf, op een domein-specifieke manier.
+(Library van RPE maken eventueel).
+
+Approach
+
+Dus, je wilt user-defined security policies afchecken als een programmeur, statisch at compile time. Welke karakteristieken wil je dan aanbieden om dit te doen? 
+Ingrediënten: 
+1. Voorstelling van een programma (control flow en data flow).
+2. Hoe uitdrukken van policies op leesbare en gemakkelijke manier door gebruikers.
+3. Eenmaal uitgedrukt, hoe kan je ze matchen?
+Ik heb eerst onderzocht welke technieken er mogelijk waren om programma's te queryen (datalog, temporal logic, aspecten, ...). Lastiger dan gedacht want vooral veel literatuur over dynamische kant. Daarna gezocht naar een interessante datastructuur om een programma in voor te stellen. JIPDA leent zich hier perfect voor, omdat JIPDA o.a. erg veel store characteristics aanbiedt. De gegevens die JIPDA bevat lenen zich tot het opvragen van enerzijds control flow, anderzijds data flow. Aangezien we JavaScript programma's gaan analyseren, is de keuze gemaakt geweest om in JavaScript zelf de queries uit te gaan drukken, als een domein specifieke uitbreiding. 
+
+Waarom RPE: Security policies uitdrukken als constraints in control flow en data flow (= beperking waarin instructies geevalueerd mogen worden).
+
+Driehoek afbleeding! + voorbeeld van taal.
+
+Current work
+
+Voorbeeldje of 2 geven
+RECURSIE IN DE VERF ZETTEN
+
+Future work
+
+Dig deeper in data flow policies
+Write more library functions
+Writing
+
+Evaluation
+Security policies uitdrukken, of breder bekijken? Oorspronkelijk was security policies een heel goede motivatie, maar de tool kan meer dan dat alleen. Ik heb een taal gemaakt waarin je allerlei flow constraints kan uitdrukken plus een tool die die constraints ook kan afchecken. Evaluatie kan zijn dat we allerlei control flow en data flow constraints gaan uitdrukken in de taal, en kijken hoe expressief ze is.
+
+-----------------------------------------------------------------------------------------------------------------------
+
+evaluatie
+nadenken of nog wel echt security policies wil afchecken, ik heb taal waarin je allerlei flow constraints kan uitdrukken + tool die afcheckt. Voor valuatie allerlei vormen van CF en DF constraints uitdrukken en kijken hoe expressief die is. Security was heel goede motivatie.
+
+presentatie: stel je wilt udsp afchecken (als user), dan moeten we wat voor soorten characteristics aanbieden,
+cf is één, dataflow is ander, eigenschappen die JIPDA berekent uittrekbaar maken (store characteristics). Domein specifieke uitbreiding aan JS.
+
+vertrokken van JS en opzoek naar manier om door om gebruikers zelf policies definiëren en ik kan statisch at compile time afchecken
+ingredients:
+cf en df berekenen
+uitdrukken door gebruikers
+eens uitgedrukt matchen
+
+
+op statische manier udsp verifiëren
+javascript (higher order progllang) (prototype based inheritance)
+zorgen dat je kan uitdrukken in uitbreiding JS (domein specifiek) (RPE als library).
+
+er zijn al anderen die geprobeerd hebben, 
+waarom RPE: security policiess om af te checken bestaat uit control flow en dataflow constraints ( = beperkingen waarin instructies geevaluteerd worden)
+zegegn ok we hebben met JIPDA ASG (precies opeenvolging van staten), leent zich om cf-properties af te checken. Checken is niet specificeren (RPE zeer geschikt).
+
+recursie uitbuiten voor dataflow characteristics 
+
+motivatie
+info in jipda graph (abstracte info)
+
+//object is adres, op dat adres staat product van propertynames naar sets van adressen/waarden.
+
+recursie in de verf zetten.
