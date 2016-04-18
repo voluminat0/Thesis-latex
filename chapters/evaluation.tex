@@ -4,20 +4,98 @@ The concept and approach for creating a new, domain-specific language for securi
 We start this chapter by expressing 9 security policies distilled from 3 papers in sections \ref{sec:ValidationPidginQL}, \ref{sec:ValidationGK} and \ref{sec:ValidationConscript} respectively. Every JS-QL policy will be evaluated by comparing how well it matches the policy expressed in the original paper. Finally, in section \ref{sec:ValidationEvaluation}, we evaluate the query framework by specifying its advantages, disadvantages and limitations. We will also briefly compare the query languages presented in this chapter in terms of expressiveness, verbosity and conciseness (\textit{LOC}).
 %TODO: wat gaan we nog comparen?
 
+\section{the GateKeeper language}
+\label{sec:ValidationGK}
+
 \section{The PidginQL language}
 \label{sec:ValidationPidginQL}
 
 In this chapter we attempt to express 3 policies originally presented in \cite{PidginQLTechReport}.
+%TODO uitleggen hoe zij hun graph voorstellen (verwijzen naar RW).
 
-\subsection{}
-\subsection{}
-\subsection{}
+\subsection{Only CMS administrators can send a message to all CMS users}
+%Context uitleg
+Imagine a situation where not only administrators can send broadcast messages. A regular user with bad intentions could easily take advantage of this situation to cause harm to the system. A CMS application for instance with a decent size of users could be exploited by sending a message to all users, asking them to reply with their password. When the attacker provides a reason to the victims convincing them to send their password, he could possibly compromise the contents of the victim's account. An example of such a reason could be that the 'administrator' needs to have the password of a user account in order to update the software of that user to the latest version. This behaviour is undesirable, thus we need a policy which prevents regular users from sending such messages.
 
-\section{the GateKeeper language}
-\label{sec:ValidationGK}
+The policy listed in \cite{PidginQLTechReport} that addresses this issue can be found in listing \ref{lst:Policy4PidginQL}. First, all nodes that are entries of the \texttt{addNotice} method are searched for and stored in a variable. \texttt{addNotice} is the method that sends messages to all users, and has the same behaviour as the broadcast method in the explanation above. Next, all points in the PDG are found that match a return node of the \texttt{isCMSAdmin} method with a return value which is truthy. In order to know if there exists some path in the graph where \texttt{addNotice} is called when the return value of \texttt{isCMSAdmin} is false, all paths between the nodes in \texttt{addNotice} and \texttt{isAdmin} are removed from the graph for all paths where \texttt{isAdmin} is true. Finally, the intersection of the nodes in this 'unsanitized' graph and the nodes in the \texttt{sensitiveOps} argument is taken. When this intersection is not empty, we can assume that there is a violation of the policy in the remainder of the graph. This last part is exactly what the \texttt{accessControlled} method does.
+
+%AccessControlled = let accessControlled(G, checks, sensitiveOps) = G.removeControlDeps(checks) ∩ sensitiveOps is empty
+\begin{lstlisting}[label={lst:Policy4PidginQL},language=JavaScript,caption=Policy 4 in PidginQL,mathescape=true]  % float=t?
+
+let accessControlled(G, checks, sensitiveOps) = 
+    G.removeControlDeps(checks) $\cap$ sensitiveOps is empty
+
+let addNotice = pgm.entriesOf("addNotice") in
+let isAdmin   = pgm.returnsOf("isCMSAdmin") in 
+                pgm.accessControlled(isAdmin, addNotice)
+\end{lstlisting}
+
+When attempting to write a similar query in JS-QL, we need to define the problem in terms of control flow: "There must be no path between the returns of the \texttt{isCMSAdmin}, when the return value is false, and a call of the \texttt{addNotice} method." We must note that with abstract interpretation, it is not trivial to specify whether a value is truthy or falsy. When looking at a conditional (like an \texttt{if-statement}), we can determine whether the true- of false-branch has been taken by comparing the first node of the branches with the alternate/consequent of the conditional. However, for values with the value of \textit{\{Bool\}}, we cannot decide on which branch is the true-branch and which one is the false-branch. We can solve this in two ways: We can assume that the condition in the conditional is a direct call to \texttt{isCMSAdmin}, which enables us to find the false-branch. From there on we can search for all calls to \texttt{addNotice} to find violations. The JS-QL policy for this case is defined in listing \ref{lst:Policy4JSQL}. We skip all states untill we reach the beginning of a false branch of a conditional. We bind the condition \textit{test} to the metavariable \textit{?cond}, the context \textit{kont} to \textit{?kont} and the stack \textit{lkont} to \textit{?lkont}. We further restrict condition \textit{?cond} to contain the 'callee' property, of which we take the name and match it to the 'isCMSAdmin' literal. Next, we skip some states until we find a call to the \texttt{addNotice} method. Since we only want to detect these calls within the false-branch, we end the policy with an \texttt{endIf} predicate with matching stack and context metavariables.
+
+Another option is to find all calls to the \texttt{addNotice} method that follow a return of \texttt{isCMSAdmin}. Since we only know that the return value of \texttt{isCMSAdmin} returns a value of \textit{\{Bool\}}, we are unable to rule out any of the branching options. This will result in false-positives. Listing \ref{lst:Policy4JSQL} gives an implementation of the policy. We again match the stack and context to metavariables \textit{?lkont} and \textit{?kont}, but this time to indicate the start of a function application. Next we specify that we want to find all return statements within that function application. This is done by indicating that these return statements must follow a node which is not the end of the function application, parametrized with the same metavariables for stack and context. Finally, some states can be skipped before finding a function call to \texttt{addNotice}.
+
+\begin{lstlisting}[label={lst:Policy4JSQL},language=JavaScript,caption=Policy 4 in JS-QL]  % float=t?
+
+//First solution
+G.skipZeroOrMore()
+.beginIfFalse({test: '?cond', kont: '?kont', lkont:'?lkont', 
+               properties:{
+                 'isCMSAdmin' : '?cond.callee.name'
+               }})
+.skipZeroOrMore()
+.fCall({name:'addNotice'})
+.skipZeroOrMore()
+.endIf({kont: '?kont', lkont:'?lkont'})
+
+//Second solution
+G.skipZeroOrMore()
+.beginApply({name:'isCMSAdmin',kont:'?kont',lkont:'?lkont'})
+.not()
+    .endApply({ kont:'?kont',lkont:'?lkont'})
+    .star()
+.returnStatement()
+.skipZeroOrMore()
+.fCall({name:'addNotice'})
+
+\end{lstlisting}
+
+%Vergelijken
+%Ook al vinden we bij eentje false positives, de andere matcht in principe alle calls naar addNotice als er geen isAdmin aangeroepen wordt. (Bij mij is het enkel indien gewenst [surrounden door braces en star toevoegen])
+%Bij de andere is de restriction eerder JIPDA-related (statische analyse), want het framework en de taal laten wel toe om te filteren op value bijvoorbeeld
+%Zij zeggen enkel of de set leeg is of niet, wij geven resultaten
+
+\subsection{A database is opened only after the master password
+is checked or when creating a new database}
+%TODO
+
+\begin{lstlisting}[label={lst:Policy5PidginQL},language=JavaScript,caption=Policy 5 in PidginQL,mathescape=true]  % float=t?
+
+let passwords = pgm.returnsOf("getPassword") in 
+let outputs   = pgm.formalsOf("writeToStorage") $\cup$
+                pgm.formalsOf("print") in
+let hashFormals = pgm.formalsOf("computeHash") in
+pgm.declassifies(hashFormals, passwords, outputs)
+\end{lstlisting}
+
+\subsection{Public outputs do not depend on a users's password, unless it has been cryptographically hashed}
+%TODO
+
+\begin{lstlisting}[label={lst:Policy6PidginQL},language=JavaScript,caption=Policy 6 in PidginQL,mathescape=true]  % float=t?
+
+let passwords = pgm.returnsOf("getPassword") in 
+let outputs   = pgm.formalsOf("writeToStorage") $\cup$
+                pgm.formalsOf("print") in
+let hashFormals = pgm.formalsOf("computeHash") in
+pgm.declassifies(hashFormals, passwords, outputs)
+\end{lstlisting}
+
+
+
+\subsection{conclusion}
 
 \section{The Conscript language}
 \label{sec:ValidationConscript}
 
 \section{Evaluation}
 \label{sec:ValidationEvaluation}
+%Nadeel bvb eerste policy van PidginQL: we kunnen niet naar concrete waarden kijken , bvb user.isAdmin zal {bool zijn}, maar weet niet of dit true of false is

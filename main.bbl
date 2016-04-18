@@ -126,7 +126,7 @@
       \field{sortinithash}{82012198d5dfa657b8c4a168793268a6}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{booktitle}{Proceedings of the International Confonference on Software Engineering (SE?13)}
+      \field{booktitle}{Proceedings of the International Conference on Software Engineering (SE'13)}
       \field{month}{11-13 February}
       \field{title}{Fluent Interfaces and Domain-Specific Languages for Graph Generation and Network Analysis Calculations}
       \field{year}{2013}
@@ -144,7 +144,7 @@
       \field{sortinithash}{25e99d37ba90f7c4fb20baf4e310faf3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{title}{ECMAScript� 2015 Language Specification}
+      \field{title}{ECMAScript 2015 Language Specification}
       \field{urlday}{16}
       \field{urlmonth}{04}
       \field{urlyear}{2016}
@@ -153,8 +153,28 @@
       \verb http://www.ecma-international.org/ecma-262/6.0/index.html
       \endverb
     \endentry
+    \entry{PidginQLTechReport}{report}{}
+      \name{author}{4}{}{%
+        {{hash=d0ce54a4d6edc172f98e94fb457af967}{Johnson}{J\bibinitperiod}{Andrew}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=761cb2e8c9d3437484c367367d64d94c}{Waye}{W\bibinitperiod}{Lucas}{L\bibinitperiod}{}{}{}{}}%
+        {{hash=f1e09cc6d3055a8367280fac3f037eda}{Moore}{M\bibinitperiod}{Scott}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=bdb41de68e48d58bdaeb35d428b1b7ca}{Chong}{C\bibinitperiod}{Stephen}{S\bibinitperiod}{}{}{}{}}%
+      }
+      \list{institution}{1}{%
+        {Harvard University}%
+      }
+      \strng{namehash}{56511a315deea9b2408a79dd232d9ab8}
+      \strng{fullhash}{3e6ea80d3704911efe88eb6dbb9273f7}
+      \field{sortinit}{J}
+      \field{sortinithash}{ec3950a647c092421b9fcca6d819504a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{TR-04-14}
+      \field{title}{Exploring and Enforcing Application Security Guarantees via Program Dependence Graphs}
+      \field{type}{techreport}
+      \field{year}{2014}
+    \endentry
   \endsortlist
-  \missing{latexcompanion}
 \endrefsection
 \endinput
 
