@@ -3,9 +3,54 @@ The concept and approach for creating a new, domain-specific language for securi
 
 We start this chapter by expressing 9 security policies distilled from 3 papers in sections \ref{sec:ValidationPidginQL}, \ref{sec:ValidationGK} and \ref{sec:ValidationConscript} respectively. Every JS-QL policy will be evaluated by comparing how well it matches the policy expressed in the original paper. Finally, in section \ref{sec:ValidationEvaluation}, we evaluate the query framework by specifying its advantages, disadvantages and limitations. We will also briefly compare the query languages presented in this chapter in terms of expressiveness, verbosity and conciseness (\textit{LOC}).
 %TODO: wat gaan we nog comparen?
-
+%TODO: JAVASCRIPT SOURCE CODE ADDEN
 \section{the GateKeeper language}
 \label{sec:ValidationGK}
+
+\subsection{Writes to frozen objects}
+%TODO: freeze() is eigelijk correcter
+
+\begin{lstlisting}[label={lst:Policy1GK},language=Prolog,caption=Policy 1 in GateKeeper,mathescape=true]  % float=t?
+
+Reaches(h1,h2) :- HeapPtsTo(h1,_,h2).
+Reaches(h1,h2) :- HeapPtsTo(h1,_,h3),
+                  Reaches(h3,h2).
+
+FrozenViolation(v) :- Store(v,_,_),
+                      PtsTo(v,h2),
+                      BuiltInObject(h1),
+                      Reaches(h1,h2).
+
+% Specify all built in objects
+BuiltInObject(h) :- GlobalSym("Boolean", h).
+BuiltInObject(h) :- GlobalSym("Array", h).
+% ...
+
+GlobalSym(m,h) :- PtsTo("global", g),
+                  HeapPtsTo(g,m,h).
+
+\end{lstlisting}
+
+\subsection{Script inclusions}
+
+\begin{lstlisting}[label={lst:Policy2GK},language=Prolog,caption=Policy 2 in GateKeeper,mathescape=true]  % float=t?
+
+DocumentWrite(i) :- GlobalSym("document",d),
+                    HeapPtsTo(d,"write",m),
+                    Calls(i,m).
+
+DocumentWrite(i) :- GlobalSym("document",d),
+                    HeapPtsTo(d,"writeln",m),
+                    Calls(i,m).
+\end{lstlisting}
+
+\subsection{Global namespace pollution}
+
+\begin{lstlisting}[label={lst:Policy3GK},language=Prolog,caption=Policy 3 in GateKeeper,mathescape=true]  % float=t?
+
+GlobalStore(h) :- PtsTo("global",g),
+                  HeapPtsTo(g,_,h).
+\end{lstlisting}
 
 \section{The PidginQL language}
 \label{sec:ValidationPidginQL}
@@ -63,6 +108,7 @@ G.skipZeroOrMore()
 %Ook al vinden we bij eentje false positives, de andere matcht in principe alle calls naar addNotice als er geen isAdmin aangeroepen wordt. (Bij mij is het enkel indien gewenst [surrounden door braces en star toevoegen])
 %Bij de andere is de restriction eerder JIPDA-related (statische analyse), want het framework en de taal laten wel toe om te filteren op value bijvoorbeeld
 %Zij zeggen enkel of de set leeg is of niet, wij geven resultaten
+%Kunnen zij velden checken?
 
 \subsection{A database is opened only after the master password
 is checked or when creating a new database}
@@ -70,11 +116,7 @@ is checked or when creating a new database}
 
 \begin{lstlisting}[label={lst:Policy5PidginQL},language=JavaScript,caption=Policy 5 in PidginQL,mathescape=true]  % float=t?
 
-let passwords = pgm.returnsOf("getPassword") in 
-let outputs   = pgm.formalsOf("writeToStorage") $\cup$
-                pgm.formalsOf("print") in
-let hashFormals = pgm.formalsOf("computeHash") in
-pgm.declassifies(hashFormals, passwords, outputs)
+TODO
 \end{lstlisting}
 
 \subsection{Public outputs do not depend on a users's password, unless it has been cryptographically hashed}
@@ -89,13 +131,63 @@ let hashFormals = pgm.formalsOf("computeHash") in
 pgm.declassifies(hashFormals, passwords, outputs)
 \end{lstlisting}
 
-
-
 \subsection{conclusion}
 
 \section{The Conscript language}
 \label{sec:ValidationConscript}
 
+\subsection{No string arguments to setInterval, setTimeout}
+
+\begin{lstlisting}[label={lst:Policy7Conscript},language=JavaScript,caption=Policy 7 in ConScript,mathescape=true]  % float=t?
+
+let onlyFnc : K x U x U -> K =
+function (setWhen : K, fn : U, time : U) {
+    if ((typeof fn) != "function") {
+        curse();
+        throw "The time API requires functions as inputs.";
+    } else {
+        return setWhen(fn, time);
+    }
+};
+around(setInterval, onlyFnc); 
+around(setTimeout, onlyFnc);
+\end{lstlisting}
+
+\subsection{HTTP-cookies only}
+
+\begin{lstlisting}[label={lst:Policy8Conscript},language=JavaScript,caption=Policy 8 in ConScript,mathescape=true]  % float=t?
+
+let httpOnly:K->K=function(_:K){ 
+    curse(); 
+    throw "HTTP-only cookies"; 
+};
+around(getField(document, "cookie"), httpOnly); 
+around(setField(document, "cookie"), httpOnly);
+\end{lstlisting}
+
+\subsection{Prevent resource abuse}
+
+\begin{lstlisting}[label={lst:Policy9Conscript},language=JavaScript,caption=Policy 9 in ConScript,mathescape=true]  % float=t?
+
+let err : K -> K = function () { 
+    curse(); 
+    throw 'err'; 
+}); 
+around(prompt, err); 
+around(alert, err);
+\end{lstlisting}
+
 \section{Evaluation}
 \label{sec:ValidationEvaluation}
 %Nadeel bvb eerste policy van PidginQL: we kunnen niet naar concrete waarden kijken , bvb user.isAdmin zal {bool zijn}, maar weet niet of dit true of false is
+
+\begin{center}
+    \begin{tabular}{ | l || l | l | l |}
+    \hline
+    Language & Prop1 & Prop2 & Prop3 \\ \hline
+    JS-QL &  &  & \\ \hline
+    GateKeeper &  &  & \\ \hline
+    PidginQL &  &  & \\ \hline
+    Conscript &  &  & \\ \hline
+    \end{tabular}
+\end{center}
