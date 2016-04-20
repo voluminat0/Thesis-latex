@@ -80,7 +80,7 @@ This example JS-QL policy only detects writes to the \texttt{String} object. We 
 
 Working in a JavaScript environment often involves the inclusion of multiple (third-party) scripts. These scripts offer instant access to functionality which would be tiresome to implement for every project yourself. Some of these scripts are written by other parties, so one can't be sure that they follow the same coding guidelines as he does. Inexperienced programmers might not be aware of the JavaScript namespacing patterns \cite{JSNamespacing}. This leaves an open window for a phenomenon called "global namespace pollution". Defining variables in the global scope in JavaScript can lead to unanticipated behaviour of the program when another script defines a global variable with the same name.
 
-Preventing stores to the global object (i.e. in the global scope) can be enforced through a simple two-lined GateKeeper policy. GateKeeper handles the global object explicitly by defining a variable \texttt{global}. Global variables can then be simulated as fields of this object. Note that JIPDA does this in a similar way. A policy to detect global stores can then be defined as in \ref{lst:Policy3GK}: The global object variable is located on address \texttt{g}. Every field store \texttt{h} that points to a field of \texttt{g} will then be detected by the \texttt{GLobalStore}.
+Preventing stores to the global object (i.e. in the global scope) can be enforced through a simple two-lined GateKeeper policy. GateKeeper handles the global object explicitly by defining a variable \texttt{global}. Global variables can then be simulated as fields of this object. Note that JIPDA does this in a similar way. A policy to detect global stores can then be defined as in \ref{lst:Policy3GK}: The global object variable is located on address \texttt{g}. Every field store \texttt{h} that points to a field of \texttt{g} will then be detected by the \texttt{GlobalStore} policy.
 
 \begin{lstlisting}[label={lst:Policy3GK},language=Prolog,caption=Policy 3 in GateKeeper,mathescape=true]  % float=t?
 
@@ -88,6 +88,26 @@ GlobalStore(h) :- PtsTo("global",g),
                   HeapPtsTo(g,_,h).
 \end{lstlisting}
 
+We could write a similar policy in JS-QL that would also look if the address of the variable points to the global object. However, this is more difficult in our system. Not because of any language restrictions, but because of the nature of JIPDA. When a variable or function gets declared or when a variable is assigned to, the right-hand side first has to be evaluated. This is also reflected in the JIPDA graph. Only when the expression is evaluated, the store and environment are modified to contain the recently evaluated information. What this means is that the allocation address for newly created variables isn't yet available in the states we query on lines 3,5 and 7 in listing \ref{lst:Policy3JSQL}. We remedy this by looking a bit further down the graph, more specifically in the states where this information \textit{IS} available. The policy goes as follows: After skipping to an assignment or a declaration of a function or variable, we bind the name the variable's or function's name to metavariable \texttt{?name}. We then again skip some nodes until we find a state where the address of \texttt{?name} is available and bind it to \texttt{?nameAddress}. Finally, we search for the variable or function with the same name in the global object and also bind it to \texttt{?nameAddr}, which filters the resulting substitutions to only contain information about globally declared objects.
+
+\begin{lstlisting}[label={lst:Policy3JSQL},language=JavaScript,caption=Policy 3 in JS-QL,mathescape=true]  % float=t?
+
+G.skipZeroOrMore()
+.lBrace()
+  .assign({leftName:'?name'})
+  .or()
+  .variableDeclaration({leftName:'?name'})
+  .or()
+  .functionDeclaration({name:'?name'})
+.rBrace()
+.skipZeroOrMore()
+.state({lookup:{
+      '?name': '?nameAddr',
+      '_global.?name' : '?nameAddr'
+    }})
+\end{lstlisting}
+
+ This is demonstrated in listing 
 
 \subsection{Script inclusions}
 
