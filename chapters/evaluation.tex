@@ -7,8 +7,28 @@ We start this chapter by expressing 9 security policies distilled from 3 papers 
 \section{the GateKeeper language}
 \label{sec:ValidationGK}
 
-\subsection{Writes to frozen objects}
-%TODO: freeze() is eigelijk correcter
+In this chapter we attempt to express 3 policies originally presented in \cite{GateKeeper}.
+
+\subsection{Writes to prototype objects}
+
+Many websites use bookmarklets to store user information to automate the login process, for example \cite{PrototypePoisoning}. This is a common strategy used to reduce the amount of information the user has enter every time he visits the website. An attacker website however, can alter the JavaScript environment in such a way that he can steal all of this information from the user. Imagine a simple login function, which checks the current location of the webpage to verify that it is on the correct webpage. The current location can be compromised by overwriting the \texttt{toString} function of the \texttt{String} object, as depicted in \ref{lst:PrototypePoisoning}. This function can be configured to always return a "good" location. In this way, the login function will be called in the environment of a malicious website, possibly leaking sensitive information.
+
+\begin{lstlisting}[label={lst:PrototypePoisoning},language=JavaScript,caption=Prototype poisoning example,mathescape=true]  % float=t?
+
+String.prototype.toString = function(){
+    //Always return "spoofed" url
+    return "www.goodwebsite.com";
+}
+
+var login = function(){
+  if(document.location.toString() === "www.goodwebsite.com"){
+    //leak information on untrusted website
+  }
+}
+\end{lstlisting}
+
+%gatekeeper doet het zo
+Gatekeeper expresses policies by defining a set of rules in datalog. In order to detect writes to prototypes of frozen objects, they define the \texttt{FrozenViolation(v)} predicade, as shown in listing \ref{lst:Policy1GK}. This predicate first looks for all stores of field \texttt{v}. This field points to location \texttt{h2}, which represents the points-to address for variables. Only writes to builtin objects are infringements of the policy, which implies that \texttt{h2} has to point to a field of of one of these objects. This is expressed as follows: In \texttt{BuiltInObjects(h)}, \texttt{h} points to the heap location of a builtin object. The \texttt{Reaches(h1,h2)} predicate makes sure that the field that was stored reaches the builtin object directly or indirectly, by recursively checking if one of the properties of the builtin object has a field pointing to the stored field.
 
 \begin{lstlisting}[label={lst:Policy1GK},language=Prolog,caption=Policy 1 in GateKeeper,mathescape=true]  % float=t?
 
@@ -22,7 +42,7 @@ FrozenViolation(v) :- Store(v,_,_),
                       Reaches(h1,h2).
 
 % Specify all built in objects
-BuiltInObject(h) :- GlobalSym("Boolean", h).
+BuiltInObject(h) :- GlobalSym("String", h).
 BuiltInObject(h) :- GlobalSym("Array", h).
 % ...
 
@@ -31,7 +51,64 @@ GlobalSym(m,h) :- PtsTo("global", g),
 
 \end{lstlisting}
 
+%ik doe het zo (geef voorbeeld voor ééntje, zeggen dat we een compound query hebben gemaakt voor om te bundelen)
+Writing this policy in JS-QL is easy. To ease the work for the programmer, we augmented the Jipda-nodes corresponding with \texttt{MemberExpression}s two extra fields: \texttt{mainObjectName} and \texttt{properties}, representing the root object and the property-chain array that was accessed respectively. An example: for \texttt{o.x.y.z}, \texttt{o} would be the \texttt{mainObjectName}, and \texttt{[x,y,z]} would be the array \texttt{properties} which represents the properties that were chained. Listing \ref{lst:Policy1JSQL} depicts the JS-QL query to efficiently express this policy. Note that the filter on lines 10-12 can be omitted. This filter simply indicates that we only want to detect writes to the \texttt{prototype} property of the \texttt{String} object. When this is omitted, we will detect all writes to this object.
+
+\begin{lstlisting}[label={lst:Policy1JSQL},language=JavaScript,caption=Policy 1 in JS-QL,mathescape=true]  % float=t?
+
+G.skipZeroOrMore()
+.state({
+  node:{
+    expression:{
+      left:{
+        properties: '?props',
+        mainObjectName: 'String'
+      }
+    }
+  },
+  filters:[
+    cond('contains', '?props', 'prototype')
+  ]
+})
+
+\end{lstlisting}
+
+This example JS-QL policy only detects writes to the \texttt{String} object. We wrote a compound policy \texttt{writeToBuiltinObjectPrototype} to detect writes to all builtin objects' prototype property. The code for this policy can be found in listing \ref{lst:WriteToBuiltinObjectPrototype} in the appendix. This policy is just the disjunction of states similar to the state in listing \ref{lst:Policy1JSQL}, with the only difference in the \texttt{mainObjectName} property, which corresponds to a different builtin object name.
+%TODO: bespreken
+
+\subsection{Global namespace pollution}
+
+Working in a JavaScript environment often involves the inclusion of multiple (third-party) scripts. These scripts offer instant access to functionality which would be tiresome to implement for every project yourself. Some of these scripts are written by other parties, so one can't be sure that they follow the same coding guidelines as he does. Inexperienced programmers might not be aware of the JavaScript namespacing patterns \cite{JSNamespacing}. This leaves an open window for a phenomenon called "global namespace pollution". Defining variables in the global scope in JavaScript can lead to unanticipated behaviour of the program when another script defines a global variable with the same name.
+
+Preventing stores to the global object (i.e. in the global scope) can be enforced through a simple two-lined GateKeeper policy. GateKeeper handles the global object explicitly by defining a variable \texttt{global}. Global variables can then be simulated as fields of this object. Note that JIPDA does this in a similar way. A policy to detect global stores can then be defined as in \ref{lst:Policy3GK}: The global object variable is located on address \texttt{g}. Every field store \texttt{h} that points to a field of \texttt{g} will then be detected by the \texttt{GLobalStore}.
+
+\begin{lstlisting}[label={lst:Policy3GK},language=Prolog,caption=Policy 3 in GateKeeper,mathescape=true]  % float=t?
+
+GlobalStore(h) :- PtsTo("global",g),
+                  HeapPtsTo(g,_,h).
+\end{lstlisting}
+
+
 \subsection{Script inclusions}
+
+A well known exploit in JavaScript environments is \textit{heap spraying}. This is an attacking technique that can eventually even compromise a user's system. In short, it arranges the layout of the heap by allocating a vast amount of carefully-chosen strings, installing a certain sequence of bytes at a predetermined location in the memory of a target. When this is achieved, the exploit is triggered. This trigger depends on the user's operating system and browser. Such an agressive attack can be instantiated on the victim's computer by simply including a malicious script. This could be a reason to write a policy which detects all script inclusions. Regular script inclusions through \texttt{<script></script>} tags can be detected by hand. Javascript however also allows programmers to write arbitrary HTML code by using the \texttt{document.write} and \texttt{document.writeln} functions. Listing \ref{lst:ScriptInclusion} gives an example of malicious script inclusions.
+
+\begin{lstlisting}[label={lst:Policy2GK},language=JavaScript,caption=Script inclusion example,mathescape=true]  % float=t?
+
+var evilScript;
+var scripts = ["<script>bad1</script>","<script>bad2</script>"];
+
+for(var i = 0; i < scripts.length; i++){
+  evilScript = scripts[i];
+  document.write(evilScript); //violation
+}
+
+var o = {};
+o.f = document.writeln;
+o.f("<script>bad3</script>"); //Violation
+\end{lstlisting}
+
+This policy can be written with only a few lines of datalog in GateKeeper. What needs to be detected are the calls to \texttt{document.write/document.writeln}, even when they are aliased. This is important to note because scripts used for attacks are often obfuscated. The policy in listing \ref{lst:Policy2GK} does just that. \texttt{DocumentWrite(i)} first looks for the address \texttt{d} on the heap which points to the global \texttt{document} object. Next, the location of the property \texttt{write/writeln} of that object is reified in variable \texttt{m}. This is also an address on the heap. The last step is to find all call sites \texttt{i} that point to that same address on the heap. 
 
 \begin{lstlisting}[label={lst:Policy2GK},language=Prolog,caption=Policy 2 in GateKeeper,mathescape=true]  % float=t?
 
@@ -44,13 +121,35 @@ DocumentWrite(i) :- GlobalSym("document",d),
                     Calls(i,m).
 \end{lstlisting}
 
-\subsection{Global namespace pollution}
+JS-QL also proves to be suitable to express such a policy in listing \ref{lst:Policy2JSQL}. The approach we take first skips zero or more states in the JIPDA graph. We specify that we then want to find a function call with the name of the function bound to metavariable \texttt{?name}. In order to know to which address the called function points in the store, we look it up and bind the address to \texttt{?addr} in the lookup-clause of the \texttt{fCall} predicate. Finally we also match the address of \texttt{document.write/document.writeln} to the same \texttt{?addr} metavariable, filtering out all function calls that do not point to this address.
 
-\begin{lstlisting}[label={lst:Policy3GK},language=Prolog,caption=Policy 3 in GateKeeper,mathescape=true]  % float=t?
+The analysis that we use is context-sensitive and Javascript is lexically scoped. This implies that we need to explicitly specify that we are looking for the address of the \textit{global} \texttt{document.write/document.writeln} object. If we didn't do this and the user has defined an object with the name "document" and a property "write" or "writeln" inside the scope of the current node in the graph, we would get the address of that object instead of the global object. That is why JS-QL provides a \texttt{\_global} keyword which indicates that we need to search for the address in the global namespace. 
 
-GlobalStore(h) :- PtsTo("global",g),
-                  HeapPtsTo(g,_,h).
+\begin{lstlisting}[label={lst:Policy2JSQL},language=JavaScript,caption=Policy 2 in JS-QL,mathescape=true]  % float=t?
+
+G.skipZeroOrMore()
+.lBrace()
+.fCall({
+  name: '?name',
+  lookup:{
+    '?name'   : '?addr',
+    '$\_$global.document.write': '?addr',
+    }
+})
+.or()
+.fCall({
+  name: '?name',
+  lookup:{
+    '?name'   : '?addr',
+    '$\_$global.document.writeln': '?addr',
+    }
+})
+.rBrace()
 \end{lstlisting}
+
+%GK is flow insensitive, mijn vb gaat meer vinden
+
+\subsection{Conclusion}
 
 \section{The PidginQL language}
 \label{sec:ValidationPidginQL}

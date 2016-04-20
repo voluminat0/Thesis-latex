@@ -2241,8 +2241,10 @@
     <bcf:citekey order="4">RubyBlockSupport</bcf:citekey>
     <bcf:citekey order="5">Ecma6</bcf:citekey>
     <bcf:citekey order="6">DSLFowler</bcf:citekey>
-    <bcf:citekey order="7">PidginQLTechReport</bcf:citekey>
-    <bcf:citekey order="8">PidginQLTechReport</bcf:citekey>
+    <bcf:citekey order="7">GateKeeper</bcf:citekey>
+    <bcf:citekey order="8">PrototypePoisoning</bcf:citekey>
+    <bcf:citekey order="9">PidginQLTechReport</bcf:citekey>
+    <bcf:citekey order="10">PidginQLTechReport</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="nty" type="entry" sortscheme="nty">
   <bcf:sorting>
