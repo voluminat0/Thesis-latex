@@ -2243,8 +2243,11 @@
     <bcf:citekey order="6">DSLFowler</bcf:citekey>
     <bcf:citekey order="7">GateKeeper</bcf:citekey>
     <bcf:citekey order="8">PrototypePoisoning</bcf:citekey>
-    <bcf:citekey order="9">PidginQLTechReport</bcf:citekey>
-    <bcf:citekey order="10">PidginQLTechReport</bcf:citekey>
+    <bcf:citekey order="9">JSNamespacing</bcf:citekey>
+    <bcf:citekey order="10">HeapSpraying</bcf:citekey>
+    <bcf:citekey order="11">PidginQLTechReport</bcf:citekey>
+    <bcf:citekey order="12">PidginQLTechReport</bcf:citekey>
+    <bcf:citekey order="13">ConScript</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="nty" type="entry" sortscheme="nty">
   <bcf:sorting>

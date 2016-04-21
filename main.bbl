@@ -43,9 +43,6 @@
       \field{year}{2009}
       \field{pages}{4\bibrangedash 4}
       \range{pages}{1}
-      \verb{url}
-      \verb http://dl.acm.org/citation.cfm?id=1855876.1855880
-      \endverb
     \endentry
     \entry{RubyFlexibleSupport}{online}{}
       \name{author}{1}{}{%
@@ -65,6 +62,33 @@
       \verb{url}
       \verb http://weblog.jamisbuck.org/2006/4/20/writing-domain-specific-languages.html
       \endverb
+    \endentry
+    \entry{HeapSpraying}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=58cf26235722042ea9cafbaba4ff75e7}{Cova}{C\bibinitperiod}{Marco}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=d9ce444a06db69e6182a92eb6319fda8}{Kruegel}{K\bibinitperiod}{Christopher}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=4a1c8af0d630f0ef331649aa8bbb3fbd}{Vigna}{V\bibinitperiod}{Giovanni}{G\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Raleigh, North Carolina, USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{c19439e7d5ed4a99c89b6e9c7830b3a1}
+      \strng{fullhash}{c19439e7d5ed4a99c89b6e9c7830b3a1}
+      \field{sortinit}{C}
+      \field{sortinithash}{59f25d509f3381b07695554a9f35ecb2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 19th International Conference on World Wide Web}
+      \field{isbn}{978-1-60558-799-8}
+      \field{series}{WWW '10}
+      \field{title}{Detection and Analysis of Drive-by-download Attacks and Malicious JavaScript Code}
+      \field{year}{2010}
+      \field{pages}{281\bibrangedash 290}
+      \range{pages}{10}
+      \keyw{anomaly detection,drive-by-download attacks,web client exploits}
     \endentry
     \entry{RubyDSL}{inproceedings}{}
       \name{author}{1}{}{%
@@ -90,12 +114,6 @@
       \field{year}{2008}
       \field{pages}{282\bibrangedash 287}
       \range{pages}{6}
-      \verb{doi}
-      \verb 10.1145/1593105.1593181
-      \endverb
-      \verb{url}
-      \verb http://dx.doi.org/10.1145/1593105.1593181
-      \endverb
       \keyw{dsl,edsl,ruby}
     \endentry
     \entry{DSLFowler}{book}{}
@@ -158,9 +176,6 @@
       \field{year}{2009}
       \field{pages}{151\bibrangedash 168}
       \range{pages}{18}
-      \verb{url}
-      \verb http://dl.acm.org/citation.cfm?id=1855768.1855778
-      \endverb
     \endentry
     \entry{FluentInterfacesJava}{inproceedings}{}
       \name{author}{1}{}{%
@@ -228,6 +243,51 @@
       \field{title}{Exploring and Enforcing Application Security Guarantees via Program Dependence Graphs}
       \field{type}{techreport}
       \field{year}{2014}
+    \endentry
+    \entry{ConScript}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=e0f24edf86fed83ada0008415ac6c51f}{Meyerovich}{M\bibinitperiod}{Leo\bibnamedelima A.}{L\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
+        {{hash=1ee39a41b6cb1b0caca41c1712b99eee}{Livshits}{L\bibinitperiod}{Benjamin}{B\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Washington, DC, USA}%
+      }
+      \list{publisher}{1}{%
+        {IEEE Computer Society}%
+      }
+      \strng{namehash}{b697ff05095cb4174fd0e114a523c914}
+      \strng{fullhash}{b697ff05095cb4174fd0e114a523c914}
+      \field{sortinit}{M}
+      \field{sortinithash}{2684bec41e9697b92699b46491061da2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 2010 IEEE Symposium on Security and Privacy}
+      \field{isbn}{978-0-7695-4035-1}
+      \field{series}{SP '10}
+      \field{title}{ConScript: Specifying and Enforcing Fine-Grained Security Policies for JavaScript in the Browser}
+      \field{year}{2010}
+      \field{pages}{481\bibrangedash 496}
+      \range{pages}{16}
+      \keyw{JavaScript,Web and client-side programming,aspects,browsers,language security,security policies}
+    \endentry
+    \entry{JSNamespacing}{online}{}
+      \name{author}{1}{}{%
+        {{hash=d44fced3055604fd09c4e99476a58f00}{Osmani}{O\bibinitperiod}{Addy}{A\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{d44fced3055604fd09c4e99476a58f00}
+      \strng{fullhash}{d44fced3055604fd09c4e99476a58f00}
+      \field{sortinit}{O}
+      \field{sortinithash}{7803d2715d5e795e70382b084ab8d00e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Essential JavaScript Namespacing Patterns}
+      \field{urlday}{20}
+      \field{urlmonth}{04}
+      \field{urlyear}{2016}
+      \field{year}{2011}
+      \verb{url}
+      \verb https://addyosmani.com/blog/essential-js-namespacing
+      \endverb
     \endentry
   \endsortlist
 \endrefsection

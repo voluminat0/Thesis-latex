@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.26)  19 APR 2016 18:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.26)  21 APR 2016 15:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -731,11 +731,7 @@ Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 
 \@quotelevel=\count281
 \@quotereset=\count282
-(./main.aux
-
-LaTeX Warning: Label `lst:Policy2GK' multiply defined.
-
-)
+(./main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 96.
@@ -817,7 +813,7 @@ LaTeX Info: Redefining \nameref on input line 96.
 \openout4 = `main.out'.
 
 
-<images/VUB_logo.pdf, id=221, 758.835pt x 153.57375pt>
+<images/VUB_logo.pdf, id=225, 758.835pt x 153.57375pt>
 File: images/VUB_logo.pdf Graphic file (type pdf)
 
 <use images/VUB_logo.pdf>
@@ -834,7 +830,7 @@ Underfull \hbox (badness 1275) in paragraph at lines 98--98
 []\OT1/ptm/m/n/24.88 Expressing and check-ing application-
  []
 
-<images/VUB_schild.pdf, id=222, 260.975pt x 259.97125pt>
+<images/VUB_schild.pdf, id=226, 260.975pt x 259.97125pt>
 File: images/VUB_schild.pdf Graphic file (type pdf)
 
 <use images/VUB_schild.pdf>
@@ -946,28 +942,28 @@ LaTeX Font Info:    Try loading font information for OT1+pcr on input line 25.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-<images/DataStructuresJava.png, id=329, 377.41pt x 388.45125pt>
+<images/DataStructuresJava.png, id=334, 377.41pt x 388.45125pt>
 File: images/DataStructuresJava.png Graphic file (type png)
 
 <use images/DataStructuresJava.png>
 Package pdftex.def Info: images/DataStructuresJava.png used on input line 29.
 (pdftex.def)             Requested size: 195.0pt x 200.70366pt.
  [7 <./images/DataStructuresJava.png>]
-<images/MethodChainingJava.png, id=340, 386.44376pt x 344.28625pt>
+<images/MethodChainingJava.png, id=345, 386.44376pt x 344.28625pt>
 File: images/MethodChainingJava.png Graphic file (type png)
 
 <use images/MethodChainingJava.png>
 Package pdftex.def Info: images/MethodChainingJava.png used on input line 40.
 (pdftex.def)             Requested size: 195.0pt x 173.72922pt.
 
-<images/RubySyntax.png, id=346, 347.2975pt x 105.39375pt>
+<images/RubySyntax.png, id=351, 347.2975pt x 105.39375pt>
 File: images/RubySyntax.png Graphic file (type png)
 
 <use images/RubySyntax.png>
 Package pdftex.def Info: images/RubySyntax.png used on input line 51.
 (pdftex.def)             Requested size: 292.5pt x 88.76814pt.
  [8 <./images/MethodChainingJava.png>] [9 <./images/RubySyntax.png>]
-<images/RubyDSLArchitecture.png, id=368, 143.53625pt x 277.035pt>
+<images/RubyDSLArchitecture.png, id=373, 143.53625pt x 277.035pt>
 File: images/RubyDSLArchitecture.png Graphic file (type png)
 
 <use images/RubyDSLArchitecture.png>
@@ -1013,130 +1009,124 @@ Overfull \hbox (6.93253pt too wide) in paragraph at lines 76--78
 if-fer-ence in the \OT1/pcr/m/n/12 mainObjectName
  []
 
-
-LaTeX Warning: Reference `lst:ScriptInclusion' on page 17 undefined on input li
-ne 81.
-
-[17]
-Overfull \hbox (31.32986pt too wide) in paragraph at lines 98--99
+[17] [18]
+Overfull \hbox (31.32986pt too wide) in paragraph at lines 131--132
 \OT1/ptm/m/n/12 What needs to be de-tected are the calls to \OT1/pcr/m/n/12 doc
 ument.write/document.writeln\OT1/ptm/m/n/12 ,
  []
 
 
-Overfull \hbox (37.07695pt too wide) in paragraph at lines 98--99
-\OT1/ptm/m/n/12 tacks are of-ten ob-fus-cated. The pol-icy in list-ing [][]7.5[
+Overfull \hbox (37.07695pt too wide) in paragraph at lines 131--132
+\OT1/ptm/m/n/12 tacks are of-ten ob-fus-cated. The pol-icy in list-ing [][]7.7[
 ][] does just that. \OT1/pcr/m/n/12 DocumentWrite(i)
  []
 
-
-Overfull \hbox (56.92548pt too wide) in paragraph at lines 112--113
-\OT1/ptm/m/n/12 pred-i-cate. Fi-nally we also match the ad-dress of \OT1/pcr/m/
-n/12 document.write/document.writeln
- []
-
-[18]
+[19]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 125.
+(Font)              <7> on input line 156.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 125.
- [19]
-Overfull \hbox (3.77676pt too wide) in paragraph at lines 161--162
-\OT1/ptm/m/n/12 Next, all points in the PDG are found that match a re-turn node
- of the \OT1/pcr/m/n/12 isCMSAdmin
- []
+(Font)              <5> on input line 156.
+ [20]
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 197.
 
-
-Overfull \hbox (2.60196pt too wide) in paragraph at lines 161--162
-\OT1/pcr/m/n/12 isCMSAdmin \OT1/ptm/m/n/12 is false, all paths be-tween the nod
-es in \OT1/pcr/m/n/12 addNotice \OT1/ptm/m/n/12 and \OT1/pcr/m/n/12 isAdmin
- []
-
-
-Overfull \hbox (25.98895pt too wide) in paragraph at lines 161--162
-\OT1/ptm/m/n/12 ter-sec-tion of the nodes in this 'un-san-i-tized' graph and th
-e nodes in the \OT1/pcr/m/n/12 sensitiveOps
- []
-
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 174.
-
-(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omsptm.fd
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/it' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 174.
- [20]
-Overfull \hbox (0.25027pt too wide) in paragraph at lines 176--177
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 197.
+
+[21]
+Overfull \hbox (0.25027pt too wide) in paragraph at lines 199--200
 \OT1/ptm/m/n/12 turn of \OT1/pcr/m/n/12 isCMSAdmin\OT1/ptm/m/n/12 . Since we on
 ly know that the re-turn value of \OT1/pcr/m/n/12 isCMSAdmin
  []
 
-[21] [22]) [23]
-Chapter 8.
-(./chapters/conclusion-and-future-work.tex) [24
+[22] [23] [24]
 
-] [25
+LaTeX Warning: Reference `Policy8Conscript' on page 25 undefined on input line 
+321.
+
+
+Overfull \hbox (5.40962pt too wide) in paragraph at lines 333--334
+\OT1/ptm/m/n/12 the \OT1/pcr/m/n/12 ?name \OT1/ptm/m/n/12 vari-able which point
+s to the ad-dress of the global \OT1/pcr/m/n/12 document.cookie
+ []
+
+[25] [26]) [27]
+Chapter 8.
+(./chapters/conclusion-and-future-work.tex) [28
+
+] [29
 
 
 ]
 Appendix A.
-[26
+[30
 
 ]
-Overfull \hbox (5.30264pt too wide) in paragraph at lines 185--185
-\OT1/ptm/m/n/12 pp. 4{4. \OT1/ptm/m/sc/12 url\OT1/ptm/m/n/12 : [][]$\OT1/pcr/m/
-n/12 http : / / dl . acm . org / citation . cfm ? id = 1855876 .
+Overfull \hbox (1.96597pt too wide) in paragraph at lines 185--185
+\OT1/ptm/m/n/12 WWW '10. Raleigh, North Car-olina, USA: ACM, 2010, pp. 281{290.
+ \OT1/ptm/m/sc/12 isbn\OT1/ptm/m/n/12 :
  []
 
 
-Overfull \hbox (3.79602pt too wide) in paragraph at lines 185--185
+Overfull \hbox (9.79602pt too wide) in paragraph at lines 185--185
 []\OT1/ptm/m/n/12 Jim Freeze. \OT1/ptm/m/it/12 Cre-at-ing DSLs with Ruby\OT1/pt
 m/m/n/12 . 2006. \OT1/ptm/m/sc/12 url\OT1/ptm/m/n/12 : [][]$\OT1/pcr/m/n/12 htt
 p : / / www . artima .
  []
 
 
-Overfull \hbox (18.64886pt too wide) in paragraph at lines 185--185
+Overfull \hbox (24.64886pt too wide) in paragraph at lines 185--185
 \OT1/pcr/m/n/12 com / rubycs / articles / ruby _ as _ dsl2 . html$[][] \OT1/ptm
 /m/n/12 (vis-ited on 04/16/2016). 
  []
 
 
-Overfull \hbox (17.90715pt too wide) in paragraph at lines 185--185
+Overfull \hbox (23.90715pt too wide) in paragraph at lines 185--185
 \OT1/ptm/m/it/12 Pro-ceed-ings of the 18th Con-fer-ence on USENIX Se-cu-rity Sy
 m-po-sium\OT1/ptm/m/n/12 . SSYM'09.
  []
 
-[27
+
+Overfull \hbox (3.53706pt too wide) in paragraph at lines 185--185
+[]\OT1/ptm/m/n/12 K. A. Haw-ick. ``Flu-ent In-ter-faces and Domain-Specific Lan
+-guages for Graph
+ []
+
+[31
 
 ]
+Overfull \hbox (24.4472pt too wide) in paragraph at lines 185--185
+[]\OT1/ptm/m/n/12 Addy Os-mani. \OT1/ptm/m/it/12 Es-sen-tial JavaScript Names-p
+ac-ing Pat-terns\OT1/ptm/m/n/12 . 2011. \OT1/ptm/m/sc/12 url\OT1/ptm/m/n/12 : [
+][]$\OT1/pcr/m/n/12 https :
+ []
+
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 185.
- [28]
+[32]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 185.
  (./main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 185.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 185.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 7D5F92B864B307D3D6CD96DF3B9E75FD;3971.
+(rerunfilecheck)             Checksum: 77CD1857B29564C0A7F09CB6BE64AEB3;4035.
 
 
 LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were multiply-defined labels.
 
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 14998 strings out of 493089
- 240029 string characters out of 6134842
- 758903 words of memory out of 5000000
- 17989 multiletter control sequences out of 15000+600000
+ 15110 strings out of 493089
+ 241930 string characters out of 6134842
+ 759279 words of memory out of 5000000
+ 18026 multiletter control sequences out of 15000+600000
  26772 words of font info for 53 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 44i,16n,49p,1804b,1799s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,16n,49p,1804b,1904s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texlive/20
@@ -1144,10 +1134,10 @@ xlive/2015/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texlive/20
 -dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/font
 s/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/ur
 w/times/utmri8a.pfb>
-Output written on main.pdf (30 pages, 460170 bytes).
+Output written on main.pdf (34 pages, 473440 bytes).
 PDF statistics:
- 745 PDF objects out of 1000 (max. 8388607)
- 690 compressed objects within 7 object streams
- 272 named destinations out of 1000 (max. 500000)
- 463 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 863 PDF objects out of 1000 (max. 8388607)
+ 802 compressed objects within 9 object streams
+ 347 named destinations out of 1000 (max. 500000)
+ 471 words of extra memory for PDF output out of 10000 (max. 10000000)
 

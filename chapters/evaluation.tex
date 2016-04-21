@@ -4,7 +4,7 @@ The concept and approach for creating a new, domain-specific language for securi
 We start this chapter by expressing 9 security policies distilled from 3 papers in sections \ref{sec:ValidationPidginQL}, \ref{sec:ValidationGK} and \ref{sec:ValidationConscript} respectively. Every JS-QL policy will be evaluated by comparing how well it matches the policy expressed in the original paper. Finally, in section \ref{sec:ValidationEvaluation}, we evaluate the query framework by specifying its advantages, disadvantages and limitations. We will also briefly compare the query languages presented in this chapter in terms of expressiveness, verbosity and conciseness (\textit{LOC}).
 %TODO: wat gaan we nog comparen?
 %TODO: JAVASCRIPT SOURCE CODE ADDEN
-\section{the GateKeeper language}
+\section{The GateKeeper language}
 \label{sec:ValidationGK}
 
 In this chapter we attempt to express 3 policies originally presented in \cite{GateKeeper}.
@@ -80,17 +80,17 @@ This example JS-QL policy only detects writes to the \texttt{String} object. We 
 
 Working in a JavaScript environment often involves the inclusion of multiple (third-party) scripts. These scripts offer instant access to functionality which would be tiresome to implement for every project yourself. Some of these scripts are written by other parties, so one can't be sure that they follow the same coding guidelines as he does. Inexperienced programmers might not be aware of the JavaScript namespacing patterns \cite{JSNamespacing}. This leaves an open window for a phenomenon called "global namespace pollution". Defining variables in the global scope in JavaScript can lead to unanticipated behaviour of the program when another script defines a global variable with the same name.
 
-Preventing stores to the global object (i.e. in the global scope) can be enforced through a simple two-lined GateKeeper policy. GateKeeper handles the global object explicitly by defining a variable \texttt{global}. Global variables can then be simulated as fields of this object. Note that JIPDA does this in a similar way. A policy to detect global stores can then be defined as in \ref{lst:Policy3GK}: The global object variable is located on address \texttt{g}. Every field store \texttt{h} that points to a field of \texttt{g} will then be detected by the \texttt{GlobalStore} policy.
+Preventing stores to the global object (i.e. in the global scope) can be enforced through a simple two-lined GateKeeper policy. GateKeeper handles the global object explicitly by defining a variable \texttt{global}. Global variables can then be simulated as fields of this object. Note that JIPDA does this in a similar way. A policy to detect global stores can then be defined as in \ref{lst:Policy2GK}: The global object variable is located on address \texttt{g}. Every field store \texttt{h} that points to a field of \texttt{g} will then be detected by the \texttt{GlobalStore} policy.
 
-\begin{lstlisting}[label={lst:Policy3GK},language=Prolog,caption=Policy 3 in GateKeeper,mathescape=true]  % float=t?
+\begin{lstlisting}[label={lst:Policy2GK},language=Prolog,caption=Policy 2 in GateKeeper,mathescape=true]  % float=t?
 
 GlobalStore(h) :- PtsTo("global",g),
                   HeapPtsTo(g,_,h).
 \end{lstlisting}
 
-We could write a similar policy in JS-QL that would also look if the address of the variable points to the global object. However, this is more difficult in our system. Not because of any language restrictions, but because of the nature of JIPDA. When a variable or function gets declared or when a variable is assigned to, the right-hand side first has to be evaluated. This is also reflected in the JIPDA graph. Only when the expression is evaluated, the store and environment are modified to contain the recently evaluated information. What this means is that the allocation address for newly created variables isn't yet available in the states we query on lines 3,5 and 7 in listing \ref{lst:Policy3JSQL}. We remedy this by looking a bit further down the graph, more specifically in the states where this information \textit{IS} available. The policy goes as follows: After skipping to an assignment or a declaration of a function or variable, we bind the name the variable's or function's name to metavariable \texttt{?name}. We then again skip some nodes until we find a state where the address of \texttt{?name} is available and bind it to \texttt{?nameAddress}. Finally, we search for the variable or function with the same name in the global object and also bind it to \texttt{?nameAddr}, which filters the resulting substitutions to only contain information about globally declared objects.
+We could write a similar policy in JS-QL that would also look if the address of the variable points to the global object. However, this is more difficult in our system. Not because of any language restrictions, but because of the nature of JIPDA. When a variable or function gets declared or when a variable is assigned to, the right-hand side first has to be evaluated. This is also reflected in the JIPDA graph. Only when the expression is evaluated, the store and environment are modified to contain the recently evaluated information. What this means is that the allocation address for newly created variables isn't yet available in the states we query on lines 3,5 and 7 in listing \ref{lst:Policy2JSQL}. We remedy this by looking a bit further down the graph, more specifically in the states where this information \textit{IS} available. The policy goes as follows: After skipping to an assignment or a declaration of a function or variable, we bind the name the variable's or function's name to metavariable \texttt{?name}. We then again skip some nodes until we find a state where the address of \texttt{?name} is available and bind it to \texttt{?nameAddress}. Finally, we search for the variable or function with the same name in the global object and also bind it to \texttt{?nameAddr}, which filters the resulting substitutions to only contain information about globally declared objects.
 
-\begin{lstlisting}[label={lst:Policy3JSQL},language=JavaScript,caption=Policy 3 in JS-QL,mathescape=true]  % float=t?
+\begin{lstlisting}[label={lst:Policy2JSQL},language=JavaScript,caption=Policy 2 in JS-QL,mathescape=true]  % float=t?
 
 G.skipZeroOrMore()
 .lBrace()
@@ -111,9 +111,9 @@ G.skipZeroOrMore()
 
 \subsection{Script inclusions}
 
-A well known exploit in JavaScript environments is \textit{heap spraying}. This is an attacking technique that can eventually even compromise a user's system. In short, it arranges the layout of the heap by allocating a vast amount of carefully-chosen strings, installing a certain sequence of bytes at a predetermined location in the memory of a target. When this is achieved, the exploit is triggered. This trigger depends on the user's operating system and browser. Such an agressive attack can be instantiated on the victim's computer by simply including a malicious script. This could be a reason to write a policy which detects all script inclusions. Regular script inclusions through \texttt{<script></script>} tags can be detected by hand. Javascript however also allows programmers to write arbitrary HTML code by using the \texttt{document.write} and \texttt{document.writeln} functions. Listing \ref{lst:ScriptInclusion} gives an example of malicious script inclusions.
+A well known exploit in JavaScript environments is \textit{heap spraying}\cite{HeapSpraying}. This is an attacking technique that can eventually even compromise a user's system. In short, it arranges the layout of the heap by allocating a vast amount of carefully-chosen strings, installing a certain sequence of bytes at a predetermined location in the memory of a target. When this is achieved, the exploit is triggered. This trigger depends on the user's operating system and browser. Such an agressive attack can be instantiated on the victim's computer by simply including a malicious script. This could be a reason to write a policy which detects all script inclusions. Regular script inclusions through \texttt{<script></script>} tags can be detected by hand. Javascript however also allows programmers to write arbitrary HTML code by using the \texttt{document.write} and \texttt{document.writeln} functions. Listing \ref{lst:ScriptInclusion} gives an example of malicious script inclusions.
 
-\begin{lstlisting}[label={lst:Policy2GK},language=JavaScript,caption=Script inclusion example,mathescape=true]  % float=t?
+\begin{lstlisting}[label={lst:ScriptInclusion},language=JavaScript,caption=Script inclusion example,mathescape=true]  % float=t?
 
 var evilScript;
 var scripts = ["<script>bad1</script>","<script>bad2</script>"];
@@ -128,9 +128,9 @@ o.f = document.writeln;
 o.f("<script>bad3</script>"); //Violation
 \end{lstlisting}
 
-This policy can be written with only a few lines of datalog in GateKeeper. What needs to be detected are the calls to \texttt{document.write/document.writeln}, even when they are aliased. This is important to note because scripts used for attacks are often obfuscated. The policy in listing \ref{lst:Policy2GK} does just that. \texttt{DocumentWrite(i)} first looks for the address \texttt{d} on the heap which points to the global \texttt{document} object. Next, the location of the property \texttt{write/writeln} of that object is reified in variable \texttt{m}. This is also an address on the heap. The last step is to find all call sites \texttt{i} that point to that same address on the heap. 
+This policy can be written with only a few lines of datalog in GateKeeper. What needs to be detected are the calls to \texttt{document.write/document.writeln}, even when they are aliased. This is important to note because scripts used for attacks are often obfuscated. The policy in listing \ref{lst:Policy3GK} does just that. \texttt{DocumentWrite(i)} first looks for the address \texttt{d} on the heap which points to the global \texttt{document} object. Next, the location of the property \texttt{write/writeln} of that object is reified in variable \texttt{m}. This is also an address on the heap. The last step is to find all call sites \texttt{i} that point to that same address on the heap. 
 
-\begin{lstlisting}[label={lst:Policy2GK},language=Prolog,caption=Policy 2 in GateKeeper,mathescape=true]  % float=t?
+\begin{lstlisting}[label={lst:Policy3GK},language=Prolog,caption=Policy 3 in GateKeeper,mathescape=true]  % float=t?
 
 DocumentWrite(i) :- GlobalSym("document",d),
                     HeapPtsTo(d,"write",m),
@@ -141,11 +141,11 @@ DocumentWrite(i) :- GlobalSym("document",d),
                     Calls(i,m).
 \end{lstlisting}
 
-JS-QL also proves to be suitable to express such a policy in listing \ref{lst:Policy2JSQL}. The approach we take first skips zero or more states in the JIPDA graph. We specify that we then want to find a function call with the name of the function bound to metavariable \texttt{?name}. In order to know to which address the called function points in the store, we look it up and bind the address to \texttt{?addr} in the lookup-clause of the \texttt{fCall} predicate. Finally we also match the address of \texttt{document.write/document.writeln} to the same \texttt{?addr} metavariable, filtering out all function calls that do not point to this address.
+JS-QL also proves to be suitable to express such a policy in listing \ref{lst:Policy3JSQL}. The approach we take first skips zero or more states in the JIPDA graph. We specify that we then want to find a function call with the name of the function bound to metavariable \texttt{?name}. In order to know to which address the called function points in the store, we look it up and bind the address to \texttt{?addr} in the lookup-clause of the \texttt{fCall} predicate. Finally we also match the address of \texttt{document.write/document.writeln} to the same \texttt{?addr} metavariable, filtering out all function calls that do not point to this address.
 
 The analysis that we use is context-sensitive and Javascript is lexically scoped. This implies that we need to explicitly specify that we are looking for the address of the \textit{global} \texttt{document.write/document.writeln} object. If we didn't do this and the user has defined an object with the name "document" and a property "write" or "writeln" inside the scope of the current node in the graph, we would get the address of that object instead of the global object. That is why JS-QL provides a \texttt{\_global} keyword which indicates that we need to search for the address in the global namespace. 
 
-\begin{lstlisting}[label={lst:Policy2JSQL},language=JavaScript,caption=Policy 2 in JS-QL,mathescape=true]  % float=t?
+\begin{lstlisting}[label={lst:Policy3JSQL},language=JavaScript,caption=Policy 3 in JS-QL,mathescape=true]  % float=t?
 
 G.skipZeroOrMore()
 .lBrace()
@@ -252,10 +252,16 @@ pgm.declassifies(hashFormals, passwords, outputs)
 
 \subsection{conclusion}
 
-\section{The Conscript language}
+\section{The ConScript language}
 \label{sec:ValidationConscript}
 
+In this chapter we attempt to express 3 policies originally presented in \cite{ConScript}.
+
 \subsection{No string arguments to setInterval, setTimeout}
+
+\texttt{setInterval} and \texttt{setTimeout} take a callback function as a first argument. This function is fired after a certain interal or timeout. Surprisingly, a string argument can also be passed as the first argument. This is good news for possible attackers, because the string gets evaluated as if it were a regular, good-behaving piece of JavaScript code. Malicious code can then be passed as a string argument to \texttt{setInterval/setTimeout}, which can lead to a security threat.
+
+ConScript is an aspect-oriented advice language that deals with security violations just like this. The aspects are written in JavaScript, which enables the programmer to make full use of the language. They also provide a typesystem which assures that the policies are written correctly, as can be seen in listing \ref{lst:Policy7Conscript} on line 1. Lines 10-11 depict the actual registration of the advice on the \texttt{setInterval} and \texttt{setTimeout} functions. When called, the \texttt{onlyFnc} function will be triggered instead, which checks if the type of the argument is indeed of type "function". \texttt{curse()} has to be called within the advice function, disabling the advice in order to prevent an infinite loop. We consider this as a small hack, since it has no semantic additional value for the policy itself.
 
 \begin{lstlisting}[label={lst:Policy7Conscript},language=JavaScript,caption=Policy 7 in ConScript,mathescape=true]  % float=t?
 
@@ -272,7 +278,62 @@ around(setInterval, onlyFnc);
 around(setTimeout, onlyFnc);
 \end{lstlisting}
 
+%Policy in JS-QL
+Since we can't reason about concrete values in abstract interpretation, writing a policy that only allows strings might seem a little more tricky. This is not the case because the lattice we use gives us information about the type of the value of variables. A string for example is indicated by the lattice value \texttt{\{String\}}. We can then define an \texttt{isString} helper function which checks whether a variable is of type String or not. The JS-QL policy in listing \ref{lst:Policy7JSQL} uses this function to determine whether the looked up value of the \texttt{?name} variable is a String or not. In the policy we first look for a function call of 
+
+\begin{lstlisting}[label={lst:Policy7JSQL},language=JavaScript,caption=Policy 7 in JS-QL,mathescape=true]  % float=t?
+
+G.skipZeroOrMore()
+.fCall({
+  procedure:'?callee',
+  arguments:'?args',
+  properties:{
+    '?arg' : prop('memberOf', '?args'),
+    '?name': '?arg.name'
+  },
+  lookup:{'?name': '?lookedUp'},
+  filters:[
+    cond('isString', '?lookedUp')
+  ]
+})
+\end{lstlisting}
+
+%Bespreken
+
+
+
+
+
+
+
+
+
+
+
+
+
 \subsection{HTTP-cookies only}
+\label{subsec:HTTPOnly}
+
+Servers often store state information on the client in the form of cookies. They do this to avoid the cost of maintaining session state between calls to the server. Cookies may therefor contain sensitive information that may only be accessed by the server, so it might be a good idea to prohibit reads and writes to the client's cookies. These are stored in the global \texttt{document.cookie} object. Listing \ref{lst:HTTPCookiesOnly} gives an example of possible violations.
+
+\begin{lstlisting}[label={lst:HTTPCookiesOnly},language=JavaScript,caption=HTTP-cookies only example,mathescape=true]  % float=t?
+
+var doc, cookie1, cookie2, cookie3, badFunc;
+badFunc = function(){
+  var bad;
+  bad = document.cookie;        //Violation (read)
+  return bad;
+}
+
+cookie1 = document.cookie;      //Violation (read)
+doc = document;
+cookie2 = doc.cookie;           //Violation (read)
+cookie3 = badFunc();            //Violation (read)
+document.cookie = {value:"bad"} //Violation (write)
+\end{lstlisting}
+
+Registering advices around functions is easy. In conscript, the above policy can be enforced with only a few lines of code. Listing \ref{Policy8Conscript} wraps reads and writes of the "cookie" field of \texttt{document} in the \texttt{httpOnly} advice. An error is thrown when a violation against this policy is encountered.
 
 \begin{lstlisting}[label={lst:Policy8Conscript},language=JavaScript,caption=Policy 8 in ConScript,mathescape=true]  % float=t?
 
@@ -284,7 +345,46 @@ around(getField(document, "cookie"), httpOnly);
 around(setField(document, "cookie"), httpOnly);
 \end{lstlisting}
 
+Writing an equivalent JS-QL policy proves to be a little more verbose. The reason for this is that we only work with our own embedded DSL to query the information in the JIPDA graph. While the \texttt{getField} and \texttt{setField} in \ref{lst:Policy8Conscript} handle the lookup of the address of \texttt{document.cookie}, we have to manually specify that we want to store the address in metavariable \texttt{?cookieAddr} and try to match it with the address of the \texttt{?name} metavariable, which we assign to the same metavariable \texttt{?cookieAddr} to filter out variables with a different address. The JS-QL policy in \ref{lst:Policy8JSQL} specifies that it will only detect writes (the first \texttt{assign} predicate) and reads (the \texttt{procedureExit} and second \texttt{assign} predicate) of the \texttt{?name} variable which points to the address of the global \texttt{document.cookie} object. It is easy to see what the \texttt{assign} predicate does: In this case, it matches the left or right name of the assignment and looks it up. The \texttt{procedureExit} is an extra predicate which marks all returns of functions that return a value that again points to the address of the global \texttt{document.cookie} address.
+
+
+\begin{lstlisting}[label={lst:Policy8JSQL},language=JavaScript,caption=Policy 8 in JS-QL,mathescape=true]  % float=t?
+
+G.skipZeroOrMore()
+.lBrace()
+  .assign({leftName:'?name',
+           lookup:
+           {
+               '_global.document.cookie' : '?cookieAddr',
+               '?name'                   : '?cookieAddr' 
+           }
+          })
+  .or()
+  .assign({rightName:'?name',
+           lookup:
+           {
+               '_global.document.cookie' : '?cookieAddr',
+               '?name'                   : '?cookieAddr' 
+           }
+          })
+  .or()
+  .procedureExit({returnName:'?name',
+                  lookup:
+                  {
+                      '_global.document.cookie' : '?cookieAddr',
+                      '?name'                   : '?cookieAddr'  
+                  }
+                })
+.rBrace()
+\end{lstlisting}
+
+
+%Wat als in functie, geeft dan conscript geen false positives?
+%We kunnen dit uiteraard inkorten naar een httpOnly predikaat, maar dan konden we niet laten zien hoe je het doet in JS-QL
+
 \subsection{Prevent resource abuse}
+
+Malicious scripts can prevent parts of a program to be accessible by users. Think of a website you want to access, but every time you scroll or click a mouse button, a popup appears. This is a form of resource abuse, namely the abuse of modal dialogs. This can be prevented by prohibiting calls to functions that create these resources. The ConScript policy is similar to the policy discussed in section \ref{subsec:HTTPOnly}. Calls to \texttt{prompt} and \texttt{alert} are wrapped in an advice which throws an error. Listing \ref{lst:Policy9Conscript} shows the source code of the policy.
 
 \begin{lstlisting}[label={lst:Policy9Conscript},language=JavaScript,caption=Policy 9 in ConScript,mathescape=true]  % float=t?
 
@@ -296,9 +396,30 @@ around(prompt, err);
 around(alert, err);
 \end{lstlisting}
 
+Wrapping an advice around a function to detect calls to that function is a way to prohibit the invocation of that function. To find function invocations in JS-QL, one just has to write a policy consisting of a \texttt{fCall} predicate. This predicate has to be configured to return all relevant information we need about the function call. In listing \ref{lst:Policy9JSQL} we can see that a function call (AST) node contains fields for its \texttt{procedure} and its \texttt{arguments}. We bind these to \texttt{?proc} and \texttt{?args} respectively. We then further define an extra metavariable \texttt{?name} in the \texttt{properties} clause of the predicate, which maps to the name of the earlier defined \texttt{?proc}. Once we have the information about the function that is invoked, we can look up its address and compare it to the address of the global \texttt{alert} (or \texttt{prompt}) function. When these are equal, the substitutions for the detected function call will be added to the results.
+
+\begin{lstlisting}[label={lst:Policy9JSQL},language=JavaScript,caption=Policy 9 in JS-QL,mathescape=true]  % float=t?
+
+G.skipZeroOrMore()
+.fCall({
+  procedure:'?proc',
+  arguments:'?args',
+  properties:{
+    '?name' : '?proc.name'
+  },
+  lookup:{'?name': '?alertAddress',
+          '_global.alert': '?alertAddress'}
+})
+\end{lstlisting}
+
+\subsection{Conclusion}
+%hack van cures() maakt meer verbose
+%Zij kunnen enkel function calls onderscheppen
+
 \section{Evaluation}
 \label{sec:ValidationEvaluation}
-%Nadeel bvb eerste policy van PidginQL: we kunnen niet naar concrete waarden kijken , bvb user.isAdmin zal {bool zijn}, maar weet niet of dit true of false is
+%Nadeel bvb eerste policy van PidginQL: we kunnen niet naar concrete waarden kijken , bvb user.isAdmin zal {bool} zijn, maar weet niet of dit true of false is
+%WIJ KUNNEN NOT UITDRUKKEN ALSOOK RECURSIE
 
 \begin{center}
     \begin{tabular}{ | l || l | l | l |}
