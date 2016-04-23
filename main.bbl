@@ -116,6 +116,34 @@
       \range{pages}{6}
       \keyw{dsl,edsl,ruby}
     \endentry
+    \entry{PDG}{article}{}
+      \name{author}{3}{}{%
+        {{hash=a825af87e6c4e5560a8dad0db67120a9}{Ferrante}{F\bibinitperiod}{Jeanne}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=6af63bea46307323eeac7a34f935bb0c}{Ottenstein}{O\bibinitperiod}{Karl\bibnamedelima J.}{K\bibinitperiod\bibinitdelim J\bibinitperiod}{}{}{}{}}%
+        {{hash=ccb46f0230eb3cd22b02413b41497520}{Warren}{W\bibinitperiod}{Joe\bibnamedelima D.}{J\bibinitperiod\bibinitdelim D\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{6ed8c547f45a37ae06367904a31e4d2d}
+      \strng{fullhash}{6ed8c547f45a37ae06367904a31e4d2d}
+      \field{sortinit}{F}
+      \field{sortinithash}{c6a7d9913bbd7b20ea954441c0460b78}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0164-0925}
+      \field{journaltitle}{ACM Trans. Program. Lang. Syst.}
+      \field{month}{07}
+      \field{number}{3}
+      \field{title}{The Program Dependence Graph and Its Use in Optimization}
+      \field{volume}{9}
+      \field{year}{1987}
+      \field{pages}{319\bibrangedash 349}
+      \range{pages}{31}
+    \endentry
     \entry{DSLFowler}{book}{}
       \name{author}{1}{}{%
         {{hash=312ac886938a9b2be4f8eb607567fe4c}{Fowler}{F\bibinitperiod}{Martin}{M\bibinitperiod}{}{}{}{}}%
@@ -288,6 +316,28 @@
       \verb{url}
       \verb https://addyosmani.com/blog/essential-js-namespacing
       \endverb
+    \endentry
+    \entry{MaintainableSoftware}{book}{}
+      \name{author}{5}{}{%
+        {{hash=911dc764b805261ce617fe06d80754e3}{Visser}{V\bibinitperiod}{Joost}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=29d23ade067c9a6bff0d4e11d41d73fe}{Rigal}{R\bibinitperiod}{Sylvan}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=7ecd12df02d27725faf26f0c97483891}{Leek}{L\bibinitperiod}{Rob}{R\bibinitperiod}{van\bibnamedelima der}{v\bibinitperiod\bibinitdelim d\bibinitperiod}{}{}}%
+        {{hash=d8fe59ff7003c3280de51ab33a8596e2}{Eck}{E\bibinitperiod}{Pascal}{P\bibinitperiod}{van}{v\bibinitperiod}{}{}}%
+        {{hash=12bd589e36e98a8fe2e69e107c45aaec}{Wijnholds}{W\bibinitperiod}{Gijs}{G\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {O'Reilly Media}%
+      }
+      \strng{namehash}{66c666e407ee225720f9316a01d09ab8}
+      \strng{fullhash}{e26c1e2f904f2d54a9fdf7ff7340f9e6}
+      \field{sortinit}{V}
+      \field{sortinithash}{d18f5ce25ce0b5ca7f924e3f6c04870e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1st}
+      \field{isbn}{1491953527, 9781491953525}
+      \field{title}{Building Maintainable Software, Java Edition}
+      \field{year}{2016}
     \endentry
   \endsortlist
 \endrefsection

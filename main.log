@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.26)  21 APR 2016 15:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.26)  23 APR 2016 15:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -340,6 +340,29 @@ Package caption3 Info: TeX engine: e-TeX on input line 57.
 \c@ContinuedFloat=\count101
 Package caption Info: listings package is loaded.
 )
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks18
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/pifont.sty
+Package: pifont 2005/04/12 PSNFSS-v9.2a Pi font support (SPQR) 
+LaTeX Font Info:    Try loading font information for U+pzd on input line 63.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/upzd.fd
+File: upzd.fd 2001/06/04 font definitions for U/pzd.
+)
+LaTeX Font Info:    Try loading font information for U+psy on input line 64.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/upsy.fd
+File: upsy.fd 2001/06/04 font definitions for U/psy.
+))
 (/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2014/10/28 v1.1a Standard LaTeX Color (DPC)
 
@@ -377,7 +400,7 @@ Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \labelindent=\skip43
 \enit@outerparindent=\dimen117
-\enit@toks=\toks18
+\enit@toks=\toks19
 \enit@inbox=\box28
 \enitdp@description=\count120
 )
@@ -716,7 +739,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip58
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 66.
+Package hyperref Info: Option `colorlinks' set `true' on input line 71.
 
 (./vubtitlepage.sty)
 Package biblatex Info: Trying to load language 'english'...
@@ -734,21 +757,22 @@ Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 96.
-LaTeX Font Info:    ... okay on input line 96.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 96.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 101.
+
  (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
@@ -759,12 +783,12 @@ File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 \scratchbox=\box29
 \nofMPsegments=\count284
 \nofMParguments=\count285
-\everyMPshowfont=\toks19
+\everyMPshowfont=\toks20
 \MPscratchCnt=\count286
 \MPscratchDim=\dimen123
 \MPnumerator=\count287
 \makeMPintoPDFobject=\count288
-\everyMPtoPDFconversion=\toks20
+\everyMPtoPDFconversion=\toks21
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -793,10 +817,10 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
 
 (./main.bbl)
-Package biblatex Info: Reference section=0 on input line 96.
-Package biblatex Info: Reference segment=0 on input line 96.
+Package biblatex Info: Reference section=0 on input line 101.
+Package biblatex Info: Reference segment=0 on input line 101.
 \AtBeginShipoutBox=\box30
-Package hyperref Info: Link coloring ON on input line 96.
+Package hyperref Info: Link coloring ON on input line 101.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -804,9 +828,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count290
 )
-LaTeX Info: Redefining \ref on input line 96.
-LaTeX Info: Redefining \pageref on input line 96.
-LaTeX Info: Redefining \nameref on input line 96.
+LaTeX Info: Redefining \ref on input line 101.
+LaTeX Info: Redefining \pageref on input line 101.
+LaTeX Info: Redefining \nameref on input line 101.
 
 (./main.out) (./main.out)
 \@outlinefile=\write4
@@ -817,16 +841,19 @@ LaTeX Info: Redefining \nameref on input line 96.
 File: images/VUB_logo.pdf Graphic file (type pdf)
 
 <use images/VUB_logo.pdf>
-Package pdftex.def Info: images/VUB_logo.pdf used on input line 98.
+Package pdftex.def Info: images/VUB_logo.pdf used on input line 103.
 (pdftex.def)             Requested size: 214.81128pt x 43.38934pt.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 98.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 98.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 98.
+LaTeX Font Info:    Try loading font information for U+msa on input line 103.
 
-Underfull \hbox (badness 1275) in paragraph at lines 98--98
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 103.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Underfull \hbox (badness 1275) in paragraph at lines 103--103
 []\OT1/ptm/m/n/24.88 Expressing and check-ing application-
  []
 
@@ -834,15 +861,15 @@ Underfull \hbox (badness 1275) in paragraph at lines 98--98
 File: images/VUB_schild.pdf Graphic file (type pdf)
 
 <use images/VUB_schild.pdf>
-Package pdftex.def Info: images/VUB_schild.pdf used on input line 98.
+Package pdftex.def Info: images/VUB_schild.pdf used on input line 103.
 (pdftex.def)             Requested size: 122.34766pt x 122.34517pt.
 
-Overfull \hbox (92.69315pt too wide) in paragraph at lines 98--98
+Overfull \hbox (92.69315pt too wide) in paragraph at lines 103--103
 []|  []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 98--98
+Underfull \hbox (badness 10000) in paragraph at lines 103--103
 
  []
 
@@ -852,24 +879,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 98--98
 s/VUB_logo.pdf> <./images/VUB_schild.pdf>]
 File: images/VUB_logo.pdf Graphic file (type pdf)
  <use images/VUB_logo.pdf>
-Package pdftex.def Info: images/VUB_logo.pdf used on input line 109.
+Package pdftex.def Info: images/VUB_logo.pdf used on input line 114.
 (pdftex.def)             Requested size: 214.81128pt x 43.38934pt.
 
-Underfull \hbox (badness 1275) in paragraph at lines 109--109
+Underfull \hbox (badness 1275) in paragraph at lines 114--114
 []\OT1/ptm/m/n/24.88 Expressing and check-ing application-
  []
 
 File: images/VUB_schild.pdf Graphic file (type pdf)
 <use images/VUB_schild.pdf>
-Package pdftex.def Info: images/VUB_schild.pdf used on input line 109.
+Package pdftex.def Info: images/VUB_schild.pdf used on input line 114.
 (pdftex.def)             Requested size: 122.34766pt x 122.34517pt.
 
-Overfull \hbox (89.64902pt too wide) in paragraph at lines 109--109
+Overfull \hbox (89.64902pt too wide) in paragraph at lines 114--114
 []|  []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 109--109
+Underfull \hbox (badness 10000) in paragraph at lines 114--114
 
  []
 
@@ -877,15 +904,15 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.109 \maketitlepage
+l.114 \maketitlepage
                      [1]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24.88> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 111.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 116.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.120 \chapter
+l.125 \chapter
               *{Acknowledgements} [1
 
 ] [2
@@ -987,15 +1014,15 @@ Chapter 6.
 
 ]
 Chapter 7.
-(./chapters/evaluation.tex [15
+(./chapters/evaluation.tex
+LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <10> not available
+(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 16.
+ [15
 
 ]
-LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 18.
-
-Overfull \hbox (22.64133pt too wide) in paragraph at lines 31--32
-\OT1/ptm/m/n/12 de-tect writes to pro-to-types of frozen ob-jects, they de-fine
- the \OT1/pcr/m/n/12 FrozenViolation(v)
+Overfull \hbox (23.09712pt too wide) in paragraph at lines 29--30
+\OT1/ptm/m/n/12 de-tect writes to pro-to-types of builtin ob-jects, they de-fin
+e the \OT1/pcr/m/n/12 FrozenViolation(v)
  []
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/listings/lstlang1.sty
@@ -1004,113 +1031,108 @@ File: lstlang1.sty 2014/09/06 1.5e listings language file
 (/usr/local/texlive/2015/texmf-dist/tex/latex/listings/lstlang2.sty
 File: lstlang2.sty 2014/09/06 1.5e listings language file
 ) [16]
-Overfull \hbox (6.93253pt too wide) in paragraph at lines 76--78
+Overfull \hbox (6.93253pt too wide) in paragraph at lines 74--76
 \OT1/ptm/m/n/12 sim-i-lar to the state in list-ing [][]7.3[][], with the only d
 if-fer-ence in the \OT1/pcr/m/n/12 mainObjectName
  []
 
 [17] [18]
-Overfull \hbox (31.32986pt too wide) in paragraph at lines 131--132
+Overfull \hbox (31.32986pt too wide) in paragraph at lines 128--129
 \OT1/ptm/m/n/12 What needs to be de-tected are the calls to \OT1/pcr/m/n/12 doc
 ument.write/document.writeln\OT1/ptm/m/n/12 ,
  []
 
 
-Overfull \hbox (37.07695pt too wide) in paragraph at lines 131--132
+Overfull \hbox (37.07695pt too wide) in paragraph at lines 128--129
 \OT1/ptm/m/n/12 tacks are of-ten ob-fus-cated. The pol-icy in list-ing [][]7.7[
 ][] does just that. \OT1/pcr/m/n/12 DocumentWrite(i)
  []
 
-[19]
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 156.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 156.
- [20]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 197.
+[19] [20]
+LaTeX Font Info:    Try loading font information for OMS+pcr on input line 188.
 
- (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omsptm.fd
-File: omsptm.fd 
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omspcr.fd
+File: omspcr.fd 
 )
-LaTeX Font Info:    Font shape `OMS/ptm/m/it' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 197.
+LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 188.
 
-[21]
-Overfull \hbox (0.25027pt too wide) in paragraph at lines 199--200
-\OT1/ptm/m/n/12 turn of \OT1/pcr/m/n/12 isCMSAdmin\OT1/ptm/m/n/12 . Since we on
-ly know that the re-turn value of \OT1/pcr/m/n/12 isCMSAdmin
- []
+[21] [22] [23] [24] [25] [26] [27] [28] [29]
 
-[22] [23] [24]
-
-LaTeX Warning: Reference `Policy8Conscript' on page 25 undefined on input line 
-321.
+LaTeX Warning: Reference `Policy8Conscript' on page 30 undefined on input line 
+454.
 
 
-Overfull \hbox (5.40962pt too wide) in paragraph at lines 333--334
+Overfull \hbox (5.40962pt too wide) in paragraph at lines 466--467
 \OT1/ptm/m/n/12 the \OT1/pcr/m/n/12 ?name \OT1/ptm/m/n/12 vari-able which point
 s to the ad-dress of the global \OT1/pcr/m/n/12 document.cookie
  []
 
-[25] [26]) [27]
+[30] [31]) [32] [33]
 Chapter 8.
-(./chapters/conclusion-and-future-work.tex) [28
+(./chapters/conclusion-and-future-work.tex) [34
 
-] [29
+] [35
 
 
 ]
 Appendix A.
-[30
+[36
 
 ]
-Overfull \hbox (1.96597pt too wide) in paragraph at lines 185--185
+Overfull \hbox (1.96597pt too wide) in paragraph at lines 190--190
 \OT1/ptm/m/n/12 WWW '10. Raleigh, North Car-olina, USA: ACM, 2010, pp. 281{290.
  \OT1/ptm/m/sc/12 isbn\OT1/ptm/m/n/12 :
  []
 
 
-Overfull \hbox (9.79602pt too wide) in paragraph at lines 185--185
+Overfull \hbox (9.79602pt too wide) in paragraph at lines 190--190
 []\OT1/ptm/m/n/12 Jim Freeze. \OT1/ptm/m/it/12 Cre-at-ing DSLs with Ruby\OT1/pt
 m/m/n/12 . 2006. \OT1/ptm/m/sc/12 url\OT1/ptm/m/n/12 : [][]$\OT1/pcr/m/n/12 htt
 p : / / www . artima .
  []
 
 
-Overfull \hbox (24.64886pt too wide) in paragraph at lines 185--185
+Overfull \hbox (24.64886pt too wide) in paragraph at lines 190--190
 \OT1/pcr/m/n/12 com / rubycs / articles / ruby _ as _ dsl2 . html$[][] \OT1/ptm
 /m/n/12 (vis-ited on 04/16/2016). 
  []
 
 
-Overfull \hbox (23.90715pt too wide) in paragraph at lines 185--185
+Overfull \hbox (23.90715pt too wide) in paragraph at lines 190--190
 \OT1/ptm/m/it/12 Pro-ceed-ings of the 18th Con-fer-ence on USENIX Se-cu-rity Sy
 m-po-sium\OT1/ptm/m/n/12 . SSYM'09.
  []
 
 
-Overfull \hbox (3.53706pt too wide) in paragraph at lines 185--185
+Overfull \hbox (3.53706pt too wide) in paragraph at lines 190--190
 []\OT1/ptm/m/n/12 K. A. Haw-ick. ``Flu-ent In-ter-faces and Domain-Specific Lan
 -guages for Graph
  []
 
-[31
+[37
 
 ]
-Overfull \hbox (24.4472pt too wide) in paragraph at lines 185--185
+Overfull \hbox (24.4472pt too wide) in paragraph at lines 190--190
 []\OT1/ptm/m/n/12 Addy Os-mani. \OT1/ptm/m/it/12 Es-sen-tial JavaScript Names-p
 ac-ing Pat-terns\OT1/ptm/m/n/12 . 2011. \OT1/ptm/m/sc/12 url\OT1/ptm/m/n/12 : [
 ][]$\OT1/pcr/m/n/12 https :
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 185.
-[32]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 185.
+
+Overfull \hbox (10.18898pt too wide) in paragraph at lines 190--190
+[]\OT1/ptm/m/n/12 Joost Visser et al. \OT1/ptm/m/it/12 Build-ing Main-tain-able
+ Soft-ware, Java Edi-tion\OT1/ptm/m/n/12 . 1st. O'Reilly
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 190.
+[38]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 190.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 185.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 185.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 190.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 190.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 77CD1857B29564C0A7F09CB6BE64AEB3;4035.
+(rerunfilecheck)             Checksum: 2D62BFDE69C0DBF95871939D78408505;4035.
 
 
 LaTeX Warning: There were undefined references.
@@ -1120,24 +1142,25 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 15110 strings out of 493089
- 241930 string characters out of 6134842
- 759279 words of memory out of 5000000
- 18026 multiletter control sequences out of 15000+600000
- 26772 words of font info for 53 fonts, out of 8000000 for 9000
+ 15575 strings out of 493089
+ 247778 string characters out of 6134842
+ 760867 words of memory out of 5000000
+ 18375 multiletter control sequences out of 15000+600000
+ 31070 words of font info for 72 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 44i,16n,49p,1804b,1904s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,16n,49p,2322b,1936s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texlive/20
 15/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf
 -dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/font
 s/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/ur
-w/times/utmri8a.pfb>
-Output written on main.pdf (34 pages, 473440 bytes).
+w/times/utmri8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/zapfdin
+g/uzdr.pfb>
+Output written on main.pdf (40 pages, 493474 bytes).
 PDF statistics:
- 863 PDF objects out of 1000 (max. 8388607)
- 802 compressed objects within 9 object streams
- 347 named destinations out of 1000 (max. 500000)
+ 998 PDF objects out of 1000 (max. 8388607)
+ 929 compressed objects within 10 object streams
+ 431 named destinations out of 1000 (max. 500000)
  471 words of extra memory for PDF output out of 10000 (max. 10000000)
 
