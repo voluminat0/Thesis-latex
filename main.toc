@@ -76,13 +76,13 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.1.2}Global namespace pollution}{17}{subsection.7.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.1.3}Script inclusions}{19}{subsection.7.1.3}
+\contentsline {subsection}{\numberline {7.1.3}Script inclusions}{18}{subsection.7.1.3}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.1.4}Conclusion}{20}{subsection.7.1.4}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {7.2}The PidginQL language}{21}{section.7.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2.1}Only CMS administrators can send a message to all CMS users}{22}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.1}Only CMS administrators can send a message to all CMS users}{21}{subsection.7.2.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.2.2}Public outputs do not depend on a user's password, unless it has been cryptographically hashed}{23}{subsection.7.2.2}
 \defcounter {refsection}{0}\relax 
@@ -94,13 +94,13 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.3.1}No string arguments to setInterval, setTimeout}{28}{subsection.7.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.3.2}HTTP-cookies only}{30}{subsection.7.3.2}
+\contentsline {subsection}{\numberline {7.3.2}HTTP-cookies only}{29}{subsection.7.3.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.3.3}Prevent resource abuse}{31}{subsection.7.3.3}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.3.4}Conclusion}{32}{subsection.7.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.4}Evaluation}{32}{section.7.4}
+\contentsline {section}{\numberline {7.4}Evaluation}{33}{section.7.4}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {8}Conclusion and future work}{34}{chapter.8}
 \defcounter {refsection}{0}\relax 

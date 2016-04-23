@@ -1,11 +1,11 @@
-In this chapter we validate and evaluate the expressiveness of the JS-QL query language by expressing some existing security policies, described in other related work. We will then compare these policies in terms of expressiveness and flexibility. %TODO: Vergelijken op welke manier
-We start this chapter by expressing 9 security policies distilled from 3 papers in sections \ref{sec:ValidationPidginQL}, \ref{sec:ValidationGK} and \ref{sec:ValidationConscript} respectively. Every JS-QL policy will be evaluated by comparing how well it matches the policy expressed in the original paper. Finally, in section \ref{sec:ValidationEvaluation}, we evaluate the query framework by specifying its advantages, disadvantages and limitations. We will also briefly compare the query languages presented in this chapter in terms of expressiveness, verbosity and conciseness.
+In this chapter we validate and evaluate the expressiveness of the JS-QL query language by expressing some existing security policies, described in other related work. 
+We start this chapter by expressing 9 security policies distilled from 3 papers in sections \ref{sec:ValidationPidginQL}, \ref{sec:ValidationGK} and \ref{sec:ValidationConscript} respectively. Every JS-QL policy will be evaluated by comparing how well it matches the policy expressed in the original paper. Finally, in section \ref{sec:ValidationEvaluation}, we evaluate the query framework by specifying its advantages and limitations. We will also briefly compare the query languages presented in this chapter in terms of expressiveness, verbosity and conciseness.
 %TODO: wat gaan we nog comparen?
 %TODO: JAVASCRIPT SOURCE CODE ADDEN
 \section{The GateKeeper language}
 \label{sec:ValidationGK}
 
-In this chapter we attempt to express 3 policies originally presented in \cite{GateKeeper}.
+In this section we attempt to express 3 policies originally presented in \cite{GateKeeper}.
 
 \subsection{Writes to prototype objects}
 
@@ -191,7 +191,7 @@ G.skipZeroOrMore()
 \section{The PidginQL language}
 \label{sec:ValidationPidginQL}
 
-In this chapter we attempt to express 3 policies originally presented in \cite{PidginQLTechReport}.
+In this section we attempt to express 3 policies originally presented in \cite{PidginQLTechReport}.
 
 \subsection{Only CMS administrators can send a message to all CMS users}
 %Context uitleg
@@ -361,7 +361,7 @@ We can conclude that both languages are equally expressive in their own way. Whi
 \section{The ConScript language}
 \label{sec:ValidationConscript}
 
-In this chapter we attempt to express 3 policies originally presented in \cite{ConScript}.
+In this section we attempt to express 3 policies originally presented in \cite{ConScript}.
 
 \subsection{No string arguments to setInterval, setTimeout}
 
@@ -441,7 +441,7 @@ cookie3 = badFunc();            //Violation (read)
 document.cookie = {value:"bad"} //Violation (write)
 \end{lstlisting}
 
-Registering advices around functions is easy. In conscript, the above policy can be enforced with only a few lines of code. Listing \ref{Policy8Conscript} wraps reads and writes of the "cookie" field of \texttt{document} in the \texttt{httpOnly} advice. An error is thrown when a violation against this policy is encountered.
+Registering advices around functions is easy. In conscript, the above policy can be enforced with only a few lines of code. Listing \ref{lst:Policy8Conscript} wraps reads and writes of the "cookie" field of \texttt{document} in the \texttt{httpOnly} advice. An error is thrown when a violation against this policy is encountered.
 
 \begin{lstlisting}[label={lst:Policy8Conscript},language=JavaScript,caption=Policy 8 in ConScript,mathescape=true]  % float=t?
 
@@ -486,10 +486,6 @@ G.skipZeroOrMore()
 .rBrace()
 \end{lstlisting}
 
-
-%Wat als in functie, geeft dan conscript geen false positives?
-%We kunnen dit uiteraard inkorten naar een httpOnly predikaat, maar dan konden we niet laten zien hoe je het doet in JS-QL
-
 \subsection{Prevent resource abuse}
 
 Malicious scripts can prevent parts of a program to be accessible by users. Think of a website you want to access, but every time you scroll or click a mouse button, a popup appears. This is a form of resource abuse, namely the abuse of modal dialogs. This can be prevented by prohibiting calls to functions that create these resources. The ConScript policy is similar to the policy discussed in section \ref{subsec:HTTPOnly}. Calls to \texttt{prompt} and \texttt{alert} are wrapped in an advice which throws an error. Listing \ref{lst:Policy9Conscript} shows the source code of the policy.
@@ -520,31 +516,12 @@ G.skipZeroOrMore()
 })
 \end{lstlisting}
 
-
-
-
-
-
-
-
-
-
-
 \subsection{Conclusion}
-TODO
-%hack van cures() maakt meer verbose
-%Zij kunnen enkel function calls policies op toepassen
-%Uitdrukken van sequences van nodes enkel via declaren van variabelen (No redirection after reading cookie)
-%Kunnen ook filteren en properties uitdrukken (door JS te gebruiken)
-%Zij kunnen wel andere acties ondernemen als violation, wij enkel detecten
-%Wij kunnen veel meer detecten omdat zij niet op graph werken, zij kunnen enkel aspects op functies wrappen
 
-In this section we expressed 3 policies in the ConScript language and JS-QL.
-
- %In this section we expressed 3 policies in the GateKeeper language and JS-QL. As table \ref{tab:GKJSQL} indicates, all policies expressed in GateKeeper were also expressible in JS-QL. Gatekeeper excels in writing concise policies to detect certain individual properties of a program. It is however difficult, if not impossible, to express a policy which finds a sequence of properties in a program. JS-QL does not have this problem. The language is designed to match states along an abstract state graph. While it can also express individual properties of a program such as calls of a certain method, it is also capable of finding complex patterns. Two other features that JS-QL offers and GateKeeper lacks is filtering and defining extra properties. It would be very cumbersome to write a policy in GateKeeper to find all function calls to methods that take more than four arguments (This is a bad code smell according to \cite{MaintainableSoftware}). JS-QL provides the \texttt{properties} and \texttt{filters} constructs to express this.
- %Since the analysis used by GateKeeper is flow insensitive, it won't detect some violations of policies. Control flow statements like \texttt{forStatement} aren't considered, so everything that happens inside these statements isn't checked for violations. This means that in code listing \ref{lst:ScriptInclusion}, the function call on line 6 won't be marked as a violation. JS-QL does detect this violation.
-
- \begin{table}[!htb]
+In this section we expressed 3 policies in the ConScript language and JS-QL. Since ConScript is the only approach that checks for policy violations using dynamic analysis, we can't really compare approaches. We can however compare the expressiveness of the policies written in each language. Table \ref{tab:CSJSQL} shows that we were able to express all 3 ConScript policies in the JS-QL language as well. 
+The ConScript language applies advices around function calls, changing the behavior of the program if the function call was prohibited. The aspect-oriented approach allows ConScript to specify what actions that need to be taken when a violation is detected. We can not express this in JS-QL, but this is also not necessary since we detect violations at compile-time, rather than at runtime. Field accesses can also be expressed as function calls (\texttt{getField} and \texttt{setField} in listing \ref{lst:Policy8Conscript}), so they can reason about getting and setting values as well. JS-QL can also reason about these things, but it has access to a lot more information thanks to the abstract state graph.
+ 
+\begin{table}[!htb]
   
   \begin{center}
   
@@ -555,40 +532,51 @@ In this section we expressed 3 policies in the ConScript language and JS-QL.
     JS-QL & \cmark & \cmark & \cmark \\ \hline
     \end{tabular}
     \caption*{Legend: \cmark: Fully expressible}
-    \caption{Expressiveness in JS-QL and ConScript}\label{tab:GKJSQL}
+    \caption{Expressiveness in JS-QL and ConScript}\label{tab:CSJSQL}
   \end{center}
 \end{table}
 
- %We conclude that our language is more expressive since we are able to express sequences and extra properties/filters for example, increasing the flexibility of policies. GateKeeper on the other hand is less verbose in most situations. This is because we have to express everything we want to detect inside the constructs of JS-QL (like \texttt{state(\{\dots\})}). Data flow analysis for example happens behind the scenes in GateKeeper, whereas JS-QL has to do the checks for aliasing in the language itself. An example can be seen in \ref{subsec:ScriptInclusion}, where we have to explicitly match the address of the called function to the address of \texttt{document.write/writeln}. This matching happens internally in Gatekeeper.
+The advice functions written in ConScript have full access to the JavaScript language, making them very flexible in behaviour. By using JavaScript instead of a DSL, the policies themselves are also quite verbose, since for each policy a JavaScript function has to be created. This does allow them to define properties and filters, as in JS-QL. However, their approach limits them to detect only function calls, which certainly is a limitation and thus reduces expressiveness. Querying for multiple one sequential lines of code is also tricky in ConScript. Where a JS-QL policy could easily be written to detect a function call to method \texttt{X} after reading variable \texttt{Y}, Conscript has to define variables that function as a "bit". The variable will be set to true when \texttt{Y} is read. The advice around \texttt{X} then has to check the value of \texttt{Y} before deciding what action to perform.
 
-
-
-
-
-
-
-
-
+We conclude that JS-QL queries are more expressive when it comes down to the detection of different kinds of program states. The language also proves flexible in terms of specifying properties and filters, but isn't as flexible as ConScript because the latter has full access to the JavaScript language once an advice is triggered. Both languages are quite verbose because of the expressiveness they provide.
 
 
 \section{Evaluation}
 \label{sec:ValidationEvaluation}
-TODO
-%Nadeel bvb eerste policy van PidginQL: we kunnen niet naar concrete waarden kijken , bvb user.isAdmin zal {bool} zijn, maar weet niet of dit true of false is
-%WIJ KUNNEN NOT UITDRUKKEN ALSOOK RECURSIE
-%Wij niet enkel node info maar state info
-%tradeoff tussen expressiveness en flexibility & verbosity en conciseness
+%INTRO
+% We hebben 9 policies besproken, nu gaan we onze taal evalueren adhv Advantages en limitations
+We evaluated the JS-QL language by expressing 9 different policies originating from 3 different papers. This section evaluates the framework presented in the dissertation by discussing the advantages and limitations of the query language.
+
+\subsection{Advantages}
+
+%ADVANTAGES
+% Very flexible policies (user defined and can pass different arguments to predicates)
+% tradeoff tussen expressiveness en flexibility & verbosity en conciseness
+% Not uitdrukken, recursie ook
+% Geven exacte informatie bij elke violation/query
+
+\subsection{Limitations}
+%LIMITATIONS
+% Limited to information of JIPDA graph
+% Current implementation support for only 1 negated node at the time
+% No means to combine results or take exclusive disjunction
 
 
-  \begin{table}\begin{center}
-    \begin{tabular}{ | l || l | l | l |}
-    \hline
-    Language & Prop1 & Prop2 & Prop3 \\ \hline
-    JS-QL &  &  & \\ \hline
-    GateKeeper &  &  & \\ \hline
-    PidginQL &  &  & \\ \hline
-    Conscript &  &  & \\ \hline
-    \end{tabular}
-    \caption*{Test}\end{center}
-  \end{table}
+\subsection{Conclusion}
+%OUTRO
+
+The combination of abstract state graphs and regular path expressions prove to be an effective means to obtain program information and define security policies. We validated our framework by expressing a wide range of different security policies in the JS-QL language and discussing the advantages and limitations of our approach.
+  
+
+%  \begin{table}\begin{center}
+%    \begin{tabular}{ | l || l | l | l |}
+%    \hline
+%    Language   & Expressiveness & Flexibility & Verbosity \\ \hline
+%    JS-QL      &      ++        &     +++     &    +++    \\ \hline
+%    GateKeeper &      ++        &     ++      &    ++     \\ \hline
+%    PidginQL   &      ++        &     +       &    +      \\ \hline
+%    ConScript  &      +         &     +++     &    +++    \\ \hline
+%    \end{tabular}
+%    \caption{Evaluating properties of the query languages}\end{center}
+%  \end{table}
 
