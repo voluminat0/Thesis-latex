@@ -26,9 +26,9 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.2}Flow graphs for JavaScript programs}{4}{section.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}Internal and external DSLs for querying graphs}{6}{section.3.3}
+\contentsline {section}{\numberline {3.3}Internal and external DSLs for querying graphs}{5}{section.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Design of an internal DSL for querying flow graphs}{6}{section.3.4}
+\contentsline {section}{\numberline {3.4}Design of an internal DSL for querying flow graphs}{5}{section.3.4}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {4}JS-QL: an internal DSL approach for querying flow graphs}{7}{chapter.4}
 \defcounter {refsection}{0}\relax 

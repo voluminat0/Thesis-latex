@@ -19,9 +19,31 @@ The actual architecture of the JS-QL framework is depicted in figure \ref{fig:ar
 \section{Flow graphs for JavaScript programs}
 
 The need for detailed control- and data flow information in our program representation graph limits the types of graphs that can be used for our framework. Program dependence graphs\cite{PDG} for example can be very useful to track the flow of information between certain points in a program but often lack more general information about program states, making them less qualified to use as our main program representation. In contrast, the JIPDA\cite{} abstract state graph contains all the information needed to precisely express patterns to be detected in a program. This section takes an in-depth look at the JIPDA abstract state graph and the information it holds in its states. Figure \ref{fig:JipdaGraph} shows part of a typical graph produced by JIPDA for a program containing a check for whether a number is equal to zero or not.
+As can be observed, the graph depicts all possible paths a program can take. Since the analysis in JIPDA is flow-sensitive, it is guaranteed that a state \texttt{a} on some path in the graph occurs before a state \texttt{b} on the same path if state \texttt{a} occurs first before state \texttt{b} on the path. This makes reasoning about patterns in a program much easier, since no false positives can occur with regards to the order of execution of states. 
+%TODO uitleggen flow graph value flow en control flow -> in JIPDA
 
-The abstract state graph can contain four different types of states. JIPDA internally uses Esprima\cite{Esprima} to parse JavaScript code and set up an abstract syntax tree (AST). This AST is the starting point for the analysis that JIPDA performs, hence information about the nodes from the AST is also contained in certain states in the resulting graph. These states are  marked in red and are so-called \textit{evaluation states}. 
 
+
+%control flow (zie jens thesis)
+%value flow (idem)
+
+%We want to know what values an expression may evaluate to (value flow) and which procedures can be applied at call sites (control flow). Consider for example expression (f x). The actual procedure that is invoked depends on variable f. But the value of f may depend on a procedure invocation itself. Traditional first-order flow analysis techniques for imperative Algol-class languages do not work for Scheme because the operator in a function call can be any kind of expression that evaluates to a procedure [29].
+
+The abstract state graph can contain four different types of states. JIPDA internally uses Esprima\cite{Esprima} to parse JavaScript code and set up an abstract syntax tree (AST). This AST is the starting point for the analysis that JIPDA performs, hence information about the nodes from the AST is also contained in certain states in the resulting graph. These states are marked in red and are so-called \textit{evaluation states}. Other states are \textit{continuation states} (green), \textit{return states} (blue) and \textit{result states} (yellow).
+
+TODO uitleggen wat welke state doet
+
+Each state in the graph contains detailed information about the point in the execution of a program that it represents.
+
+%Kont, Lkont, Node, Benv, Store, Value
+\begin{description}[labelwidth=2cm,labelindent=11pt,leftmargin=2.6cm,align=left]
+\item [Node] dome detail some detail some detail some detail some detail some detail some detail some detail some detail some detail some detail some detail %Node van esprima tonen
+\item [Kont] some detail
+\item [Lkont]some detail
+\item [Benv] some detail
+\item [Store]some detail
+\item [Value]some detail
+\end{description}
 
 \begin{figure}
     \centering

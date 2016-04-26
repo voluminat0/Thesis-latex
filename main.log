@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.26)  26 APR 2016 16:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.26)  26 APR 2016 20:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -953,19 +953,19 @@ File: images/Architecture.pdf Graphic file (type pdf)
 <use images/Architecture.pdf>
 Package pdftex.def Info: images/Architecture.pdf used on input line 15.
 (pdftex.def)             Requested size: 350.99762pt x 148.23138pt.
-
-<images/JipdaGraph.png, id=316, 273.02pt x 304.13625pt>
+ [4 <./images/Architecture.pdf>]
+<images/JipdaGraph.png, id=328, 273.02pt x 304.13625pt>
 File: images/JipdaGraph.png Graphic file (type png)
 
 <use images/JipdaGraph.png>
-Package pdftex.def Info: images/JipdaGraph.png used on input line 28.
+Package pdftex.def Info: images/JipdaGraph.png used on input line 50.
 (pdftex.def)             Requested size: 263.00023pt x 292.97452pt.
 
-Overfull \hbox (18.94424pt too wide) in paragraph at lines 40--40
+Overfull \hbox (18.94424pt too wide) in paragraph at lines 62--62
 []\OT1/ptm/b/n/17.28 Design of an in-ter-nal DSL for query-ing flow graphs 
  []
 
-) [4 <./images/Architecture.pdf>] [5 <./images/JipdaGraph.png>] [6]
+) [5] [6 <./images/JipdaGraph.png>]
 Chapter 4.
 (./chapters/JSQL.tex) [7
 
@@ -1077,10 +1077,10 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 15546 strings out of 493089
- 246993 string characters out of 6134842
+ 15559 strings out of 493089
+ 247332 string characters out of 6134842
  761024 words of memory out of 5000000
- 18361 multiletter control sequences out of 15000+600000
+ 18374 multiletter control sequences out of 15000+600000
  31070 words of font info for 72 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
  44i,16n,49p,2322b,1936s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1092,7 +1092,7 @@ xlive/2015/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texlive/20
 s/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/ur
 w/times/utmri8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/zapfdin
 g/uzdr.pfb>
-Output written on main.pdf (39 pages, 238990 bytes).
+Output written on main.pdf (39 pages, 240083 bytes).
 PDF statistics:
  951 PDF objects out of 1000 (max. 8388607)
  889 compressed objects within 9 object streams
