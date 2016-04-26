@@ -2235,21 +2235,21 @@
     <bcf:datasource type="file" datatype="bibtex">references.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">FluentInterfacesJava</bcf:citekey>
-    <bcf:citekey order="2">RubyDSL</bcf:citekey>
-    <bcf:citekey order="3">RubyFlexibleSupport</bcf:citekey>
-    <bcf:citekey order="4">RubyBlockSupport</bcf:citekey>
-    <bcf:citekey order="5">Ecma6</bcf:citekey>
-    <bcf:citekey order="6">DSLFowler</bcf:citekey>
-    <bcf:citekey order="7">GateKeeper</bcf:citekey>
-    <bcf:citekey order="8">PrototypePoisoning</bcf:citekey>
-    <bcf:citekey order="9">JSNamespacing</bcf:citekey>
-    <bcf:citekey order="10">HeapSpraying</bcf:citekey>
-    <bcf:citekey order="11">MaintainableSoftware</bcf:citekey>
-    <bcf:citekey order="12">PidginQLTechReport</bcf:citekey>
+    <bcf:citekey order="1">Reps1995</bcf:citekey>
+    <bcf:citekey order="2">DatalogDBQueries</bcf:citekey>
+    <bcf:citekey order="3">bddbddb</bcf:citekey>
+    <bcf:citekey order="4">algoEngine</bcf:citekey>
+    <bcf:citekey order="5">PDG</bcf:citekey>
+    <bcf:citekey order="7">Esprima</bcf:citekey>
+    <bcf:citekey order="8">GateKeeper</bcf:citekey>
+    <bcf:citekey order="9">PrototypePoisoning</bcf:citekey>
+    <bcf:citekey order="10">JSNamespacing</bcf:citekey>
+    <bcf:citekey order="11">HeapSpraying</bcf:citekey>
+    <bcf:citekey order="12">MaintainableSoftware</bcf:citekey>
     <bcf:citekey order="13">PidginQLTechReport</bcf:citekey>
-    <bcf:citekey order="14">PDG</bcf:citekey>
-    <bcf:citekey order="15">ConScript</bcf:citekey>
+    <bcf:citekey order="14">PidginQLTechReport</bcf:citekey>
+    <bcf:citekey order="15">PDG</bcf:citekey>
+    <bcf:citekey order="16">ConScript</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="nty" type="entry" sortscheme="nty">
   <bcf:sorting>

@@ -7,7 +7,6 @@
 \usepackage{listings}
 \usepackage{setspace}
 \usepackage{caption}
-
 \usepackage{amssymb}% http://ctan.org/pkg/amssymb
 \usepackage{pifont}% http://ctan.org/pkg/pifont
 \newcommand{\cmark}{\ding{51}}%
@@ -112,7 +111,9 @@ van} %\\
 \date{JUNI 2016}
  
 \maketitlepage
- 
+
+
+\pagenumbering{roman} % Start roman numbering
 \chapter*{Abstract}
  %Security & policies
 %Detecting security violations in source code can be tedious, especially when done manually. These violations can usually be split up into several categories, depending on the type of violation.
@@ -125,23 +126,22 @@ van} %\\
 \chapter*{Acknowledgements}
  
 \tableofcontents
- 
+
+
+
+%\setcounter{page}{1}
 \chapter{Introduction}
 \input{chapters/introduction}
- 
-\chapter{Background}
+\pagenumbering{arabic} % Start roman numbering 
+
+\chapter{Detecting security vulnerabilities}
 \input{chapters/background}
  
-\chapter{Context}
-\input{chapters/Context}
- 
-\chapter{The JS-QL query language}
-\label{ch:QueryLanguage}
-\input{chapters/QueryLanguage}
+\chapter{Overview of the approach}
+\input{chapters/overview}
 
-\chapter{The query engine}
-\label{ch:QueryEngine}
-\input{chapters/QueryEngine}
+\chapter{JS-QL: an internal DSL approach for querying flow graphs}
+\input{chapters/JSQL}
  
 \chapter{Implementation}
 \label{ch:Implementation}

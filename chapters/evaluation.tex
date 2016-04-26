@@ -168,7 +168,6 @@ G.skipZeroOrMore()
 
 \subsection{Conclusion}
  In this section we expressed 3 policies in the GateKeeper language and JS-QL. As table \ref{tab:GKJSQL} indicates, all policies expressed in GateKeeper were also expressible in JS-QL. Gatekeeper excels in writing concise policies to detect certain individual properties of a program. It is however difficult, if not impossible, to express a policy which finds a sequence of properties in a program. JS-QL does not have this problem. The language is designed to match states along an abstract state graph. While it can also express individual properties of a program such as calls of a certain method, it is also capable of finding complex patterns. Two other features that JS-QL offers and GateKeeper lacks is filtering and defining extra properties. It would be very cumbersome to write a policy in GateKeeper to find all function calls to methods that take more than four arguments (This is a bad code smell according to \cite{MaintainableSoftware}). JS-QL provides the \texttt{properties} and \texttt{filters} constructs to express this.
- Since the analysis used by GateKeeper is flow insensitive, it won't detect some violations of policies. Control flow statements like \texttt{forStatement} aren't considered, so everything that happens inside these statements isn't checked for violations. This means that in code listing \ref{lst:ScriptInclusion}, the function call on line 6 won't be marked as a violation. JS-QL does detect this violation.
 
  \begin{table}[!htb]
   
@@ -194,6 +193,7 @@ G.skipZeroOrMore()
 In this section we attempt to express 3 policies originally presented in \cite{PidginQLTechReport}.
 
 \subsection{Only CMS administrators can send a message to all CMS users}
+\label{subsec:CMSAdmin}
 %Context uitleg
 Imagine a situation where not only administrators can send broadcast messages. A regular user with bad intentions could easily take advantage of this situation to cause harm to the system. A CMS application for instance with a decent size of users could be exploited by sending a message to all users, asking them to reply with their password. When the attacker provides a reason to the victims convincing them to send their password, he could possibly compromise the contents of the victim's account. An example of such a reason could be that the 'administrator' needs to have the password of a user account in order to update the software of that user to the latest version. This behaviour is undesirable, thus we need a policy which prevents regular users from sending such messages.
 
@@ -297,6 +297,7 @@ G.skipZeroOrMore()
 
 \subsection{A database is opened only after the master password
 is checked or when creating a new database}
+\label{subsec:DBOpen}
 
 A database can contain a lot of sensitive information, so it is important that only authorized people can access this information. It might thus be a good idea to restrict access to the database entirely, unless upon creation or when the correct credentials can be presented. 
 
@@ -549,23 +550,21 @@ We evaluated the JS-QL language by expressing 9 different policies originating f
 
 \subsection{Advantages}
 
-%ADVANTAGES
-% Very flexible policies (user defined and can pass different arguments to predicates)
-% tradeoff tussen expressiveness en flexibility & verbosity en conciseness
-% Not uitdrukken, recursie ook
-% Geven exacte informatie bij elke violation/query
+A key advantage of the framework is the ability for programmers to define queries and policies as general or specific as they want. Starting from the \texttt{state} predicate, one can express complex patterns that fit their needs and wrap them in a self-named predicate. Flexibility is key in these predicates since the user himself can specify which properties he exposes through the predicate. These properties can then be queried by passing metavariables as arguments, which will later be bound when a match is found. Literals and metavariables that are already bound act as filters for the predicates, as in any declarative language.
+Negation can be useful when expressing actions that should not happen at a certain moment in a query. This was illustrated in section \ref{subsec:CMSAdmin}, where a function call needed to be detected before the end of a conditional branch. JS-QL, in contrast to many other query languages, offers this expressiveness, albeit in a limited way. 
+The JIPDA graph contains states with information of arbitrary depth. Therefor, the framework had to provide access to these levels of information. This flexibility again opens up opportunities because we aren't bound to one particular graph type. Hypothetically, all types of graphs that contain information in its edges and nodes can be used in the framework with only little to no modification of the framework itself. Only a reification layer of the new graph should be provided, mapping the states of the graph to the format our framework uses.
+Another non-trivial feature of the framework is the possibility to recursively define queries. This type of queries can be of special use when one wants to follow a trace of information starting at a certain point for example. A particularly interesting use for recursive queries is to trace all aliases of a certain variable. The result then shows all states in the graph where the original variable is aliased. Along with the marked nodes in the graph, a table containing all substituted metavariables is also displayed. We believe this representation of the results makes them well legible.
 
 \subsection{Limitations}
-%LIMITATIONS
-% Limited to information of JIPDA graph
-% Current implementation support for only 1 negated node at the time
-% No means to combine results or take exclusive disjunction
+
+Other approaches might modify the graph by deleting states and edges to obtain a new graph. This new graph then only consists of information they want to reason about. Our framework currently does not provide this functionality. Another feature that would amplify the expressive power of the framework would be some means to combine results of multiple queries, such as the use of logical arithmetics. Expressing the disjunction or conjunction of two queries would greatly improve the expressiveness of JS-QL. An example of this was given in subsections \ref{subsec:CMSAdmin} and \ref{subsec:DBOpen}. 
+Although negation is already supported, it only works for single \texttt{state}s. We would also add to the expressiveness of the language if we were unrestricted while expressing negation. This is a topic of intended future research.
 
 
 \subsection{Conclusion}
 %OUTRO
 
-The combination of abstract state graphs and regular path expressions prove to be an effective means to obtain program information and define security policies. We validated our framework by expressing a wide range of different security policies in the JS-QL language and discussing the advantages and limitations of our approach.
+The combination of abstract state graphs and regular path expressions prove to be an effective means to obtain program information and define security policies. We validated our framework by expressing a range of different security policies in the JS-QL language and discussing the advantages and limitations of our approach.
   
 
 %  \begin{table}\begin{center}

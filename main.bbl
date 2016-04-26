@@ -44,25 +44,6 @@
       \field{pages}{4\bibrangedash 4}
       \range{pages}{1}
     \endentry
-    \entry{RubyFlexibleSupport}{online}{}
-      \name{author}{1}{}{%
-        {{hash=8ded4583ad04efd19ba336044a7d2749}{Buck}{B\bibinitperiod}{Jamis}{J\bibinitperiod}{}{}{}{}}%
-      }
-      \strng{namehash}{8ded4583ad04efd19ba336044a7d2749}
-      \strng{fullhash}{8ded4583ad04efd19ba336044a7d2749}
-      \field{sortinit}{B}
-      \field{sortinithash}{4ecbea03efd0532989d3836d1a048c32}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Writing Domain Specific Languages}
-      \field{urlday}{16}
-      \field{urlmonth}{04}
-      \field{urlyear}{2016}
-      \field{year}{2006}
-      \verb{url}
-      \verb http://weblog.jamisbuck.org/2006/4/20/writing-domain-specific-languages.html
-      \endverb
-    \endentry
     \entry{HeapSpraying}{inproceedings}{}
       \name{author}{3}{}{%
         {{hash=58cf26235722042ea9cafbaba4ff75e7}{Cova}{C\bibinitperiod}{Marco}{M\bibinitperiod}{}{}{}{}}%
@@ -89,32 +70,6 @@
       \field{pages}{281\bibrangedash 290}
       \range{pages}{10}
       \keyw{anomaly detection,drive-by-download attacks,web client exploits}
-    \endentry
-    \entry{RubyDSL}{inproceedings}{}
-      \name{author}{1}{}{%
-        {{hash=20a64ffbb8851d485e35070c6a412220}{Cunningham}{C\bibinitperiod}{H.\bibnamedelimi Conrad}{H\bibinitperiod\bibinitdelim C\bibinitperiod}{}{}{}{}}%
-      }
-      \list{location}{1}{%
-        {Auburn, Alabama}%
-      }
-      \list{publisher}{1}{%
-        {ACM}%
-      }
-      \strng{namehash}{20a64ffbb8851d485e35070c6a412220}
-      \strng{fullhash}{20a64ffbb8851d485e35070c6a412220}
-      \field{sortinit}{C}
-      \field{sortinithash}{59f25d509f3381b07695554a9f35ecb2}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{{Using a problem domain motivated by Bentley's "Little Languages" column [1], this paper explores the use of the Ruby programming language's flexible syntax, dynamic nature, and reflexive metaprogramming facilities to implement an internal domain-specific language (DSL) for surveys.}}
-      \field{booktitle}{Proceedings of the 46th Annual Southeast Regional Conference on XX}
-      \field{isbn}{978-1-60558-105-7}
-      \field{series}{ACM-SE 46}
-      \field{title}{{A little language for surveys: constructing an internal DSL in Ruby}}
-      \field{year}{2008}
-      \field{pages}{282\bibrangedash 287}
-      \range{pages}{6}
-      \keyw{dsl,edsl,ruby}
     \endentry
     \entry{PDG}{article}{}
       \name{author}{3}{}{%
@@ -144,43 +99,6 @@
       \field{pages}{319\bibrangedash 349}
       \range{pages}{31}
     \endentry
-    \entry{DSLFowler}{book}{}
-      \name{author}{1}{}{%
-        {{hash=312ac886938a9b2be4f8eb607567fe4c}{Fowler}{F\bibinitperiod}{Martin}{M\bibinitperiod}{}{}{}{}}%
-      }
-      \list{publisher}{1}{%
-        {Addison-Wesley Professional}%
-      }
-      \strng{namehash}{312ac886938a9b2be4f8eb607567fe4c}
-      \strng{fullhash}{312ac886938a9b2be4f8eb607567fe4c}
-      \field{sortinit}{F}
-      \field{sortinithash}{c6a7d9913bbd7b20ea954441c0460b78}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{edition}{1st}
-      \field{isbn}{0321712943, 9780321712943}
-      \field{title}{Domain Specific Languages}
-      \field{year}{2010}
-    \endentry
-    \entry{RubyBlockSupport}{online}{}
-      \name{author}{1}{}{%
-        {{hash=3d1e961eacd848cc56a5a129d8a67486}{Freeze}{F\bibinitperiod}{Jim}{J\bibinitperiod}{}{}{}{}}%
-      }
-      \strng{namehash}{3d1e961eacd848cc56a5a129d8a67486}
-      \strng{fullhash}{3d1e961eacd848cc56a5a129d8a67486}
-      \field{sortinit}{F}
-      \field{sortinithash}{c6a7d9913bbd7b20ea954441c0460b78}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Creating DSLs with Ruby}
-      \field{urlday}{16}
-      \field{urlmonth}{04}
-      \field{urlyear}{2016}
-      \field{year}{2006}
-      \verb{url}
-      \verb http://www.artima.com/rubycs/articles/ruby_as_dsl2.html
-      \endverb
-    \endentry
     \entry{GateKeeper}{inproceedings}{}
       \name{author}{2}{}{%
         {{hash=b5a6716057fca01b6949fc57277e7e2d}{Guarnieri}{G\bibinitperiod}{Salvatore}{S\bibinitperiod}{}{}{}{}}%
@@ -205,50 +123,23 @@
       \field{pages}{151\bibrangedash 168}
       \range{pages}{18}
     \endentry
-    \entry{FluentInterfacesJava}{inproceedings}{}
+    \entry{Esprima}{online}{}
       \name{author}{1}{}{%
-        {{hash=37e72bff1629a9ab0eaa2e5983b84d75}{Hawick}{H\bibinitperiod}{K.\bibnamedelimi A.}{K\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
+        {{hash=d5255361d7ef170ab64a72470f967f30}{Hidayat}{H\bibinitperiod}{Ariya}{A\bibinitperiod}{}{}{}{}}%
       }
-      \list{institution}{1}{%
-        {Computer Science, Massey University}%
-      }
-      \list{location}{1}{%
-        {Innsbruck, Austria}%
-      }
-      \list{publisher}{1}{%
-        {IASTED}%
-      }
-      \strng{namehash}{37e72bff1629a9ab0eaa2e5983b84d75}
-      \strng{fullhash}{37e72bff1629a9ab0eaa2e5983b84d75}
+      \strng{namehash}{d5255361d7ef170ab64a72470f967f30}
+      \strng{fullhash}{d5255361d7ef170ab64a72470f967f30}
       \field{sortinit}{H}
       \field{sortinithash}{82012198d5dfa657b8c4a168793268a6}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{booktitle}{Proceedings of the International Conference on Software Engineering (SE'13)}
-      \field{month}{11-13 February}
-      \field{title}{Fluent Interfaces and Domain-Specific Languages for Graph Generation and Network Analysis Calculations}
-      \field{year}{2013}
-      \field{pages}{752\bibrangedash 759}
-      \range{pages}{8}
-      \keyw{domain-specific language; fluent interface; graph generation; graph computations; programming tools and languages}
-    \endentry
-    \entry{Ecma6}{online}{}
-      \name{author}{1}{}{%
-        {{hash=e83578898872635ef15c7690819d9c96}{International}{I\bibinitperiod}{Ecma}{E\bibinitperiod}{}{}{}{}}%
-      }
-      \strng{namehash}{e83578898872635ef15c7690819d9c96}
-      \strng{fullhash}{e83578898872635ef15c7690819d9c96}
-      \field{sortinit}{I}
-      \field{sortinithash}{25e99d37ba90f7c4fb20baf4e310faf3}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{ECMAScript 2015 Language Specification}
-      \field{urlday}{16}
+      \field{title}{ECMAScript parsing infrastructure for multipurpose analysis}
+      \field{urlday}{26}
       \field{urlmonth}{04}
       \field{urlyear}{2016}
-      \field{year}{2015}
+      \field{year}{2016}
       \verb{url}
-      \verb http://www.ecma-international.org/ecma-262/6.0/index.html
+      \verb http://esprima.org
       \endverb
     \endentry
     \entry{PidginQLTechReport}{report}{}
@@ -271,6 +162,67 @@
       \field{title}{Exploring and Enforcing Application Security Guarantees via Program Dependence Graphs}
       \field{type}{techreport}
       \field{year}{2014}
+    \endentry
+    \entry{DatalogDBQueries}{inproceedings}{}
+      \name{author}{7}{}{%
+        {{hash=c6e8ad520de884393c2780a9a26c7d31}{Lam}{L\bibinitperiod}{Monica\bibnamedelima S.}{M\bibinitperiod\bibinitdelim S\bibinitperiod}{}{}{}{}}%
+        {{hash=6500acb1f517721335bd92d24e2bb33a}{Whaley}{W\bibinitperiod}{John}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=53fe0ebc1847a6da604b475a75d87572}{Livshits}{L\bibinitperiod}{V.\bibnamedelimi Benjamin}{V\bibinitperiod\bibinitdelim B\bibinitperiod}{}{}{}{}}%
+        {{hash=ddf036077394ddd8d3d40104d9513e75}{Martin}{M\bibinitperiod}{Michael\bibnamedelima C.}{M\bibinitperiod\bibinitdelim C\bibinitperiod}{}{}{}{}}%
+        {{hash=4b2df6b58ae0434f7c3f864c5706aef0}{Avots}{A\bibinitperiod}{Dzintars}{D\bibinitperiod}{}{}{}{}}%
+        {{hash=7cc7d0487fdba682edd06e917656b031}{Carbin}{C\bibinitperiod}{Michael}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=5219233fa1a85507baf1d434ffb986dc}{Unkel}{U\bibinitperiod}{Christopher}{C\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Baltimore, Maryland}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{67879c6554ca3f82c8a6184294276a52}
+      \strng{fullhash}{1736a60895e1aaf2d2bba30372066779}
+      \field{sortinit}{L}
+      \field{sortinithash}{872351f18d0f736066eda0bf18bfa4f7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the Twenty-fourth ACM SIGMOD-SIGACT-SIGART Symposium on Principles of Database Systems}
+      \field{isbn}{1-59593-062-0}
+      \field{series}{PODS '05}
+      \field{title}{Context-sensitive Program Analysis As Database Queries}
+      \field{year}{2005}
+      \field{pages}{1\bibrangedash 12}
+      \range{pages}{12}
+    \endentry
+    \entry{algoEngine}{article}{}
+      \name{author}{5}{}{%
+        {{hash=8eac9bf3f8c4d2dc93f189329ea3803d}{Liu}{L\bibinitperiod}{Yanhong\bibnamedelima A.}{Y\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
+        {{hash=f595926d0e78c6d347d5595c800b800f}{Rothamel}{R\bibinitperiod}{Tom}{T\bibinitperiod}{}{}{}{}}%
+        {{hash=1915e8d4dcba910e45504f5ccb68b9c9}{Yu}{Y\bibinitperiod}{Fuxiang}{F\bibinitperiod}{}{}{}{}}%
+        {{hash=531e32a58507e60e2974e27d4251f0ab}{Stoller}{S\bibinitperiod}{Scott\bibnamedelima D.}{S\bibinitperiod\bibinitdelim D\bibinitperiod}{}{}{}{}}%
+        {{hash=3afa75e90de454e6a1c3d0b1950682aa}{Hu}{H\bibinitperiod}{Nanjun}{N\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{8db7c9fa1ecab6f9b62f380bc06079b2}
+      \strng{fullhash}{54b08f027e7c0feadd8392452c68b369}
+      \field{sortinit}{L}
+      \field{sortinithash}{872351f18d0f736066eda0bf18bfa4f7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0362-1340}
+      \field{journaltitle}{SIGPLAN Not.}
+      \field{month}{06}
+      \field{number}{6}
+      \field{title}{Parametric Regular Path Queries}
+      \field{volume}{39}
+      \field{year}{2004}
+      \field{pages}{219\bibrangedash 230}
+      \range{pages}{12}
+      \keyw{algorithms,data tructures,graph query languages,memoization,model checking,optimization,precomputation,program analysis,regular expressions,regular path queries}
     \endentry
     \entry{ConScript}{inproceedings}{}
       \name{author}{2}{}{%
@@ -317,6 +269,32 @@
       \verb https://addyosmani.com/blog/essential-js-namespacing
       \endverb
     \endentry
+    \entry{Reps1995}{inbook}{}
+      \name{author}{1}{}{%
+        {{hash=c2ff67335f7a60309a50e4475926590d}{Reps}{R\bibinitperiod}{Thomas\bibnamedelima W.}{T\bibinitperiod\bibinitdelim W\bibinitperiod}{}{}{}{}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=5fd2a1e92f74585d94de45092d5794a5}{Ramakrishnan}{R\bibinitperiod}{Raghu}{R\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Boston, MA}%
+      }
+      \list{publisher}{1}{%
+        {Springer US}%
+      }
+      \strng{namehash}{c2ff67335f7a60309a50e4475926590d}
+      \strng{fullhash}{c2ff67335f7a60309a50e4475926590d}
+      \field{sortinit}{R}
+      \field{sortinithash}{c7387613477035a752d935acfc3e3ea2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{chapter}{Demand Interprocedural Program Analysis Using Logic Databases}
+      \field{isbn}{978-1-4615-2207-2}
+      \field{title}{Applications of Logic Databases}
+      \field{year}{1995}
+      \field{pages}{163\bibrangedash 196}
+      \range{pages}{34}
+    \endentry
     \entry{MaintainableSoftware}{book}{}
       \name{author}{5}{}{%
         {{hash=911dc764b805261ce617fe06d80754e3}{Visser}{V\bibinitperiod}{Joost}{J\bibinitperiod}{}{}{}{}}%
@@ -338,6 +316,33 @@
       \field{isbn}{1491953527, 9781491953525}
       \field{title}{Building Maintainable Software, Java Edition}
       \field{year}{2016}
+    \endentry
+    \entry{bddbddb}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=6500acb1f517721335bd92d24e2bb33a}{Whaley}{W\bibinitperiod}{John}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=4b2df6b58ae0434f7c3f864c5706aef0}{Avots}{A\bibinitperiod}{Dzintars}{D\bibinitperiod}{}{}{}{}}%
+        {{hash=7cc7d0487fdba682edd06e917656b031}{Carbin}{C\bibinitperiod}{Michael}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=c6e8ad520de884393c2780a9a26c7d31}{Lam}{L\bibinitperiod}{Monica\bibnamedelima S.}{M\bibinitperiod\bibinitdelim S\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Tsukuba, Japan}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag}%
+      }
+      \strng{namehash}{77298f3a4dbd774d85314c7b35a6025c}
+      \strng{fullhash}{558670b57f237e8d67f1a3901c61105e}
+      \field{sortinit}{W}
+      \field{sortinithash}{99e3ba1b3f78bb6f073e7fa7ac11636b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the Third Asian Conference on Programming Languages and Systems}
+      \field{isbn}{3-540-29735-9, 978-3-540-29735-2}
+      \field{series}{APLAS'05}
+      \field{title}{Using Datalog with Binary Decision Diagrams for Program Analysis}
+      \field{year}{2005}
+      \field{pages}{97\bibrangedash 118}
+      \range{pages}{22}
     \endentry
   \endsortlist
 \endrefsection

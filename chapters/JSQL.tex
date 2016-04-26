@@ -1,15 +1,20 @@
-\section{The query language}
+\section{Syntax and structure}
+%state
+%props -> motiveren waarom andere kant
+%filters
+%lookup
+%compound
+%not
+%wildcard
+%star
+\section{Types of queries}
 % Waarom parsen naar een lijst ipv naar een AST? 
 % Geen nut om AST te maken en elk van de node's apart te processen.
 % We werken met reguliere expressies die omgezet moeten worden naar automaten.
 % Het is nutteloos om naar een AST te parsen als we later voor het algoritme toch opnieuw een lijst van karakters nodig hebben
 % Een soort stack wordt WEL gebruikt bij het opstellen van de NFA, om te weten welke branches er nog moeten ingevuld worden van bepaalde stukken NFA.
-
-%https://msdn.microsoft.com/en-us/magazine/ee291514.aspx
-%but the mechanics of creating an internal DSL are simpler because you are not employing compilers or parsers external to your code.
-
-%https://idl.cs.washington.edu/files/2014-Ellipsis-EuroVis.pdf --> Zij doen wel element van fluent API als argument
-\subsection{Motivation}
-\subsection{Syntax and structure}
-\subsection{Defining policies}
-\section{Conclusion}
+\section{Defining policies}
+%recursie!
+\section{The matching engine} 
+\label{subsec:matchingEngine} %algo uitleggen
+% Paper uitleggen met automaton enzovoort enzoverder

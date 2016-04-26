@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.26)  23 APR 2016 17:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.26)  26 APR 2016 16:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -739,7 +739,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip58
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 71.
+Package hyperref Info: Option `colorlinks' set `true' on input line 70.
 
 (./vubtitlepage.sty)
 Package biblatex Info: Trying to load language 'english'...
@@ -757,21 +757,21 @@ Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 101.
-LaTeX Font Info:    ... okay on input line 101.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 101.
-LaTeX Font Info:    ... okay on input line 101.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 101.
-LaTeX Font Info:    ... okay on input line 101.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 101.
-LaTeX Font Info:    ... okay on input line 101.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 101.
-LaTeX Font Info:    ... okay on input line 101.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 101.
-LaTeX Font Info:    ... okay on input line 101.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 101.
-LaTeX Font Info:    ... okay on input line 101.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 101.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 100.
 
  (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
@@ -817,10 +817,10 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
 
 (./main.bbl)
-Package biblatex Info: Reference section=0 on input line 101.
-Package biblatex Info: Reference segment=0 on input line 101.
+Package biblatex Info: Reference section=0 on input line 100.
+Package biblatex Info: Reference segment=0 on input line 100.
 \AtBeginShipoutBox=\box30
-Package hyperref Info: Link coloring ON on input line 101.
+Package hyperref Info: Link coloring ON on input line 100.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -828,48 +828,48 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count290
 )
-LaTeX Info: Redefining \ref on input line 101.
-LaTeX Info: Redefining \pageref on input line 101.
-LaTeX Info: Redefining \nameref on input line 101.
+LaTeX Info: Redefining \ref on input line 100.
+LaTeX Info: Redefining \pageref on input line 100.
+LaTeX Info: Redefining \nameref on input line 100.
 
 (./main.out) (./main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
 
-<images/VUB_logo.pdf, id=225, 758.835pt x 153.57375pt>
+<images/VUB_logo.pdf, id=200, 758.835pt x 153.57375pt>
 File: images/VUB_logo.pdf Graphic file (type pdf)
 
 <use images/VUB_logo.pdf>
-Package pdftex.def Info: images/VUB_logo.pdf used on input line 103.
+Package pdftex.def Info: images/VUB_logo.pdf used on input line 102.
 (pdftex.def)             Requested size: 214.81128pt x 43.38934pt.
-LaTeX Font Info:    Try loading font information for U+msa on input line 103.
+LaTeX Font Info:    Try loading font information for U+msa on input line 102.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 103.
+LaTeX Font Info:    Try loading font information for U+msb on input line 102.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 1275) in paragraph at lines 103--103
+Underfull \hbox (badness 1275) in paragraph at lines 102--102
 []\OT1/ptm/m/n/24.88 Expressing and check-ing application-
  []
 
-<images/VUB_schild.pdf, id=226, 260.975pt x 259.97125pt>
+<images/VUB_schild.pdf, id=201, 260.975pt x 259.97125pt>
 File: images/VUB_schild.pdf Graphic file (type pdf)
 
 <use images/VUB_schild.pdf>
-Package pdftex.def Info: images/VUB_schild.pdf used on input line 103.
+Package pdftex.def Info: images/VUB_schild.pdf used on input line 102.
 (pdftex.def)             Requested size: 122.34766pt x 122.34517pt.
 
-Overfull \hbox (92.69315pt too wide) in paragraph at lines 103--103
+Overfull \hbox (92.69315pt too wide) in paragraph at lines 102--102
 []|  []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 103--103
+Underfull \hbox (badness 10000) in paragraph at lines 102--102
 
  []
 
@@ -879,24 +879,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 103--103
 s/VUB_logo.pdf> <./images/VUB_schild.pdf>]
 File: images/VUB_logo.pdf Graphic file (type pdf)
  <use images/VUB_logo.pdf>
-Package pdftex.def Info: images/VUB_logo.pdf used on input line 114.
+Package pdftex.def Info: images/VUB_logo.pdf used on input line 113.
 (pdftex.def)             Requested size: 214.81128pt x 43.38934pt.
 
-Underfull \hbox (badness 1275) in paragraph at lines 114--114
+Underfull \hbox (badness 1275) in paragraph at lines 113--113
 []\OT1/ptm/m/n/24.88 Expressing and check-ing application-
  []
 
 File: images/VUB_schild.pdf Graphic file (type pdf)
 <use images/VUB_schild.pdf>
-Package pdftex.def Info: images/VUB_schild.pdf used on input line 114.
+Package pdftex.def Info: images/VUB_schild.pdf used on input line 113.
 (pdftex.def)             Requested size: 122.34766pt x 122.34517pt.
 
-Overfull \hbox (89.64902pt too wide) in paragraph at lines 114--114
+Overfull \hbox (89.64902pt too wide) in paragraph at lines 113--113
 []|  []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 114--114
+Underfull \hbox (badness 10000) in paragraph at lines 113--113
 
  []
 
@@ -904,35 +904,18 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.114 \maketitlepage
+l.113 \maketitlepage
                      [1]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24.88> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 116.
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.125 \chapter
-              *{Acknowledgements} [1
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 117.
+ [1
 
 ] [2
 
 ] (./main.toc
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 5.
-
-Overfull \hbox (1.55783pt too wide) in paragraph at lines 19--19
- [][] [][][]\OT1/ptm/m/n/12 Exploring and En-forc-ing Se-cu-rity Guar-an-tees v
-ia Pro-gram 
- []
-
-
-Overfull \hbox (3.54895pt too wide) in paragraph at lines 27--27
- [][] [][][]\OT1/ptm/m/n/12 Fluent In-ter-faces to a Java-Based In-ter-nal Doma
-in-Specific 
- []
-
-[3
+ [3
 
 ])
 \tf@toc=\write5
@@ -943,81 +926,61 @@ Chapter 1.
 (./chapters/introduction.tex
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
-) [5
+)pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.137 \chapter
+              {Detecting security vulnerabilities} [1
 
 ]
 Chapter 2.
-(./chapters/background.tex
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 5.
-
-Overfull \hbox (4.37558pt too wide) in paragraph at lines 17--18
-\OT1/ptm/m/n/12 This sec-tion de-scribes three in-ter-nal domain-specific lan-g
-uages (\OT1/ptm/m/it/12 DSL\OT1/ptm/m/n/12 s). We present
- []
-
-
-Overfull \hbox (11.05087pt too wide) in paragraph at lines 19--19
-[]\OT1/ptm/b/n/14.4 Fluent In-ter-faces to a Java-Based In-ter-nal Domain-Speci
-fic
- []
-
-[6
+(./chapters/background.tex) [2
 
 ]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 25.
- (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pcr.fd
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
-<images/DataStructuresJava.png, id=334, 377.41pt x 388.45125pt>
-File: images/DataStructuresJava.png Graphic file (type png)
-
-<use images/DataStructuresJava.png>
-Package pdftex.def Info: images/DataStructuresJava.png used on input line 29.
-(pdftex.def)             Requested size: 195.0pt x 200.70366pt.
- [7 <./images/DataStructuresJava.png>]
-<images/MethodChainingJava.png, id=345, 386.44376pt x 344.28625pt>
-File: images/MethodChainingJava.png Graphic file (type png)
-
-<use images/MethodChainingJava.png>
-Package pdftex.def Info: images/MethodChainingJava.png used on input line 40.
-(pdftex.def)             Requested size: 195.0pt x 173.72922pt.
-
-<images/RubySyntax.png, id=351, 347.2975pt x 105.39375pt>
-File: images/RubySyntax.png Graphic file (type png)
-
-<use images/RubySyntax.png>
-Package pdftex.def Info: images/RubySyntax.png used on input line 51.
-(pdftex.def)             Requested size: 292.5pt x 88.76814pt.
- [8 <./images/MethodChainingJava.png>] [9 <./images/RubySyntax.png>]
-<images/RubyDSLArchitecture.png, id=373, 143.53625pt x 277.035pt>
-File: images/RubyDSLArchitecture.png Graphic file (type png)
-
-<use images/RubyDSLArchitecture.png>
-Package pdftex.def Info: images/RubyDSLArchitecture.png used on input line 76.
-(pdftex.def)             Requested size: 77.99881pt x 150.54779pt.
-) [10 <./images/RubyDSLArchitecture.png>]
 Chapter 3.
-(./chapters/Context.tex) [11
+(./chapters/overview.tex
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 11.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+) [3
 
 ]
+<images/Architecture.pdf, id=312, 503.8825pt x 212.795pt>
+File: images/Architecture.pdf Graphic file (type pdf)
+
+<use images/Architecture.pdf>
+Package pdftex.def Info: images/Architecture.pdf used on input line 15.
+(pdftex.def)             Requested size: 350.99762pt x 148.23138pt.
+
+<images/JipdaGraph.png, id=316, 273.02pt x 304.13625pt>
+File: images/JipdaGraph.png Graphic file (type png)
+
+<use images/JipdaGraph.png>
+Package pdftex.def Info: images/JipdaGraph.png used on input line 28.
+(pdftex.def)             Requested size: 263.00023pt x 292.97452pt.
+
+Overfull \hbox (18.94424pt too wide) in paragraph at lines 40--40
+[]\OT1/ptm/b/n/17.28 Design of an in-ter-nal DSL for query-ing flow graphs 
+ []
+
+) [4 <./images/Architecture.pdf>] [5 <./images/JipdaGraph.png>] [6]
 Chapter 4.
-(./chapters/QueryLanguage.tex) [12
+(./chapters/JSQL.tex) [7
 
 ]
 Chapter 5.
-(./chapters/QueryEngine.tex) [13
+(./chapters/implementation.tex) [8
 
 ]
 Chapter 6.
-(./chapters/implementation.tex) [14
-
-]
-Chapter 7.
 (./chapters/evaluation.tex
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 10.
 LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <10> not available
 (Font)              Font shape `OT1/pcr/b/n' tried instead on input line 16.
- [15
+ [9
 
 ]
 Overfull \hbox (23.09712pt too wide) in paragraph at lines 29--30
@@ -1030,13 +993,13 @@ File: lstlang1.sty 2014/09/06 1.5e listings language file
 )
 (/usr/local/texlive/2015/texmf-dist/tex/latex/listings/lstlang2.sty
 File: lstlang2.sty 2014/09/06 1.5e listings language file
-) [16]
+) [10]
 Overfull \hbox (6.93253pt too wide) in paragraph at lines 74--76
-\OT1/ptm/m/n/12 sim-i-lar to the state in list-ing [][]7.3[][], with the only d
+\OT1/ptm/m/n/12 sim-i-lar to the state in list-ing [][]6.3[][], with the only d
 if-fer-ence in the \OT1/pcr/m/n/12 mainObjectName
  []
 
-[17] [18]
+[11] [12]
 Overfull \hbox (31.32986pt too wide) in paragraph at lines 128--129
 \OT1/ptm/m/n/12 What needs to be de-tected are the calls to \OT1/pcr/m/n/12 doc
 ument.write/document.writeln\OT1/ptm/m/n/12 ,
@@ -1044,35 +1007,35 @@ ument.write/document.writeln\OT1/ptm/m/n/12 ,
 
 
 Overfull \hbox (37.07695pt too wide) in paragraph at lines 128--129
-\OT1/ptm/m/n/12 tacks are of-ten ob-fus-cated. The pol-icy in list-ing [][]7.7[
+\OT1/ptm/m/n/12 tacks are of-ten ob-fus-cated. The pol-icy in list-ing [][]6.7[
 ][] does just that. \OT1/pcr/m/n/12 DocumentWrite(i)
  []
 
-[19] [20]
-LaTeX Font Info:    Try loading font information for OMS+pcr on input line 188.
+[13] [14]
+LaTeX Font Info:    Try loading font information for OMS+pcr on input line 187.
 
  (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omspcr.fd
 File: omspcr.fd 
 )
 LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 188.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 187.
 
-[21] [22] [23] [24] [25] [26] [27] [28] [29]
-Overfull \hbox (5.40962pt too wide) in paragraph at lines 456--457
+[15] [16] [17] [18] [19] [20] [21] [22] [23]
+Overfull \hbox (5.40962pt too wide) in paragraph at lines 457--458
 \OT1/ptm/m/n/12 the \OT1/pcr/m/n/12 ?name \OT1/ptm/m/n/12 vari-able which point
 s to the ad-dress of the global \OT1/pcr/m/n/12 document.cookie
  []
 
-[30] [31] [32]) [33]
-Chapter 8.
-(./chapters/conclusion-and-future-work.tex) [34
+[24] [25] [26] [27]) [28]
+Chapter 7.
+(./chapters/conclusion-and-future-work.tex) [29
 
-] [35
+] [30
 
 
 ]
 Appendix A.
-[36
+[31
 
 ]
 Overfull \hbox (1.96597pt too wide) in paragraph at lines 190--190
@@ -1081,31 +1044,12 @@ Overfull \hbox (1.96597pt too wide) in paragraph at lines 190--190
  []
 
 
-Overfull \hbox (9.79602pt too wide) in paragraph at lines 190--190
-[]\OT1/ptm/m/n/12 Jim Freeze. \OT1/ptm/m/it/12 Cre-at-ing DSLs with Ruby\OT1/pt
-m/m/n/12 . 2006. \OT1/ptm/m/sc/12 url\OT1/ptm/m/n/12 : [][]$\OT1/pcr/m/n/12 htt
-p : / / www . artima .
- []
-
-
-Overfull \hbox (24.64886pt too wide) in paragraph at lines 190--190
-\OT1/pcr/m/n/12 com / rubycs / articles / ruby _ as _ dsl2 . html$[][] \OT1/ptm
-/m/n/12 (vis-ited on 04/16/2016). 
- []
-
-
 Overfull \hbox (23.90715pt too wide) in paragraph at lines 190--190
 \OT1/ptm/m/it/12 Pro-ceed-ings of the 18th Con-fer-ence on USENIX Se-cu-rity Sy
 m-po-sium\OT1/ptm/m/n/12 . SSYM'09.
  []
 
-
-Overfull \hbox (3.53706pt too wide) in paragraph at lines 190--190
-[]\OT1/ptm/m/n/12 K. A. Haw-ick. ``Flu-ent In-ter-faces and Domain-Specific Lan
--guages for Graph
- []
-
-[37
+[32
 
 ]
 Overfull \hbox (24.4472pt too wide) in paragraph at lines 190--190
@@ -1121,22 +1065,22 @@ Overfull \hbox (10.18898pt too wide) in paragraph at lines 190--190
  []
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 190.
-[38]
+[33]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 190.
  (./main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 190.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 190.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 2D62BFDE69C0DBF95871939D78408505;4035.
+(rerunfilecheck)             Checksum: 89C3B5F36F92DF50B37406CAB337F4F5;3514.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 15575 strings out of 493089
- 247772 string characters out of 6134842
- 760938 words of memory out of 5000000
- 18375 multiletter control sequences out of 15000+600000
+ 15546 strings out of 493089
+ 246993 string characters out of 6134842
+ 761024 words of memory out of 5000000
+ 18361 multiletter control sequences out of 15000+600000
  31070 words of font info for 72 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
  44i,16n,49p,2322b,1936s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1148,10 +1092,10 @@ xlive/2015/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texlive/20
 s/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/ur
 w/times/utmri8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/zapfdin
 g/uzdr.pfb>
-Output written on main.pdf (40 pages, 495813 bytes).
+Output written on main.pdf (39 pages, 238990 bytes).
 PDF statistics:
- 1001 PDF objects out of 1200 (max. 8388607)
- 932 compressed objects within 10 object streams
- 431 named destinations out of 1000 (max. 500000)
- 471 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 951 PDF objects out of 1000 (max. 8388607)
+ 889 compressed objects within 9 object streams
+ 421 named destinations out of 1000 (max. 500000)
+ 413 words of extra memory for PDF output out of 10000 (max. 10000000)
 
