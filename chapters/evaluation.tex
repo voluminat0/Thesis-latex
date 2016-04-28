@@ -230,7 +230,7 @@ G.skipZeroOrMore()
 
 \subsection{Public outputs do not depend on a user's password, unless it has been cryptographically hashed}
 
-Password information is something most people want to keep to themselves. It is therefor not desirable that sensitive information about this password is leaked in any way to public outputs. This leak of information doesn't have to be explicit however. Imagine a situation where a malicious piece of code checks if the length of the password is larger than 5. If the condition is true the output will display 1, otherwise the output is 0. This also reveals information about the password, and thus should be treated as a violation. The name for this kind of information flow is \textit{implicit flow}.
+Password information is something most people want to keep to themselves. It is therefore not desirable that sensitive information about this password is leaked in any way to public outputs. This leak of information doesn't have to be explicit however. Imagine a situation where a malicious piece of code checks if the length of the password is larger than 5. If the condition is true the output will display 1, otherwise the output is 0. This also reveals information about the password, and thus should be treated as a violation. The name for this kind of information flow is \textit{implicit flow}.
 
 \begin{lstlisting}[label={lst:PWDepends},language=JavaScript,caption=The output depends on the password example,mathescape=true]  % float=t?
 
@@ -424,7 +424,7 @@ G.skipZeroOrMore()
 \subsection{HTTP-cookies only}
 \label{subsec:HTTPOnly}
 
-Servers often store state information on the client in the form of cookies. They do this to avoid the cost of maintaining session state between calls to the server. Cookies may therefor contain sensitive information that may only be accessed by the server, so it might be a good idea to prohibit reads and writes to the client's cookies. These are stored in the global \texttt{document.cookie} object. Listing \ref{lst:HTTPCookiesOnly} gives an example of possible violations.
+Servers often store state information on the client in the form of cookies. They do this to avoid the cost of maintaining session state between calls to the server. Cookies may therefore contain sensitive information that may only be accessed by the server, so it might be a good idea to prohibit reads and writes to the client's cookies. These are stored in the global \texttt{document.cookie} object. Listing \ref{lst:HTTPCookiesOnly} gives an example of possible violations.
 
 \begin{lstlisting}[label={lst:HTTPCookiesOnly},language=JavaScript,caption=HTTP-cookies only example,mathescape=true]  % float=t?
 
@@ -519,7 +519,7 @@ G.skipZeroOrMore()
 
 \subsection{Conclusion}
 
-In this section we expressed 3 policies in the ConScript language and JS-QL. Since ConScript is the only approach that checks for policy violations using dynamic analysis, we can't really compare approaches. We can however compare the expressiveness of the policies written in each language. Table \ref{tab:CSJSQL} shows that we were able to express all 3 ConScript policies in the JS-QL language as well. 
+In this section we expressed 3 policies in the ConScript language and JS-QL. As ConScript is the only approach that checks for policy violations using dynamic analysis, we can't really compare approaches. We can however compare the expressiveness of the policies written in each language. Table \ref{tab:CSJSQL} shows that we were able to express all 3 ConScript policies in the JS-QL language as well. 
 The ConScript language applies advices around function calls, changing the behavior of the program if the function call was prohibited. The aspect-oriented approach allows ConScript to specify what actions that need to be taken when a violation is detected. We can not express this in JS-QL, but this is also not necessary since we detect violations at compile-time, rather than at runtime. Field accesses can also be expressed as function calls (\texttt{getField} and \texttt{setField} in listing \ref{lst:Policy8Conscript}), so they can reason about getting and setting values as well. JS-QL can also reason about these things, but it has access to a lot more information thanks to the abstract state graph.
  
 \begin{table}[!htb]
@@ -552,7 +552,7 @@ We evaluated the JS-QL language by expressing 9 different policies originating f
 
 A key advantage of the framework is the ability for programmers to define queries and policies as general or specific as they want. Starting from the \texttt{state} predicate, one can express complex patterns that fit their needs and wrap them in a self-named predicate. Flexibility is key in these predicates since the user himself can specify which properties he exposes through the predicate. These properties can then be queried by passing metavariables as arguments, which will later be bound when a match is found. Literals and metavariables that are already bound act as filters for the predicates, as in any declarative language.
 Negation can be useful when expressing actions that should not happen at a certain moment in a query. This was illustrated in section \ref{subsec:CMSAdmin}, where a function call needed to be detected before the end of a conditional branch. JS-QL, in contrast to many other query languages, offers this expressiveness, albeit in a limited way. 
-The JIPDA graph contains states with information of arbitrary depth. Therefor, the framework had to provide access to these levels of information. This flexibility again opens up opportunities because we aren't bound to one particular graph type. Hypothetically, all types of graphs that contain information in its edges and nodes can be used in the framework with only little to no modification of the framework itself. Only a reification layer of the new graph should be provided, mapping the states of the graph to the format our framework uses.
+The JIPDA graph contains states with information of arbitrary depth. Therefore, the framework had to provide access to these levels of information. This flexibility again opens up opportunities because we aren't bound to one particular graph type. Hypothetically, all types of graphs that contain information in its edges and nodes can be used in the framework with only little to no modification of the framework itself. Only a reification layer of the new graph should be provided, mapping the states of the graph to the format our framework uses.
 Another non-trivial feature of the framework is the possibility to recursively define queries. This type of queries can be of special use when one wants to follow a trace of information starting at a certain point for example. A particularly interesting use for recursive queries is to trace all aliases of a certain variable. The result then shows all states in the graph where the original variable is aliased. Along with the marked nodes in the graph, a table containing all substituted metavariables is also displayed. We believe this representation of the results makes them well legible.
 
 \subsection{Limitations}
