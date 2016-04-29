@@ -134,29 +134,97 @@ Some text about the stack.
 
 
 
+
 \section{External DSLs for querying graphs}
 %Intro http://www.st.ewi.tudelft.nl/~arie/papers/dslbib.pdf
 
-\subsection{Domain-specific language vs general purpose language}
+For almost any branch of science and engineering we can distinguish between two types of approaches. One type of approach is the \textit{generic} approach, which offers solutions to a wide range of problems within a certain domain. However, these solutions are often suboptimal. When we reduce the set of problems we want to solve, an often better approach to solving these problems would be the \textit{specific} approach.
+In software engineering terms these two approaches translate to two types of languages: General purpose languages (GPLs) and domain-specific languages (DSLs) respectively. 
+\textit{Domain-specific language} is no new concept. Many programming languages that are now considered general purpose language started out as domain-specific languages. Cobol, Fortran and Lisp for example all came into existence as dedicated languages for solving problems in a certain area\cite{vanDeursen:2000}, but gradually evolved into the full fledged languages they are today. The rest of this section is devoted to the comparison of GPLs and DSLs, in which we advocate that DSLs are the best approach for the instantiation of the JS-QL framework. We further give an overview of related work about DSLs for querying graphs and DSLs in general.
+
+
+\subsection{Domain-specific language vs. general purpose language}
 %Wat is een DSL & wat is een GPL
+%Over GPL wat FLuent-interfaces zegt! 'divide en conquer limited ...;'
 
-%A domain-specific language (DSL) is a programming language or executable specification language that offers, through appropriate notations and abstractions, expressive power focused on, and usually restricted to, a particular problem domain. 
-%Key is focussed expressive power
+Before we start this comparison, we give a formal definition of domain-specific languages and general purpose languages:
+\begin{definition}
+    A \textit{domain-specific language} (DSL) is a programming language of executable specification language that offers, through approproate notations and abstractions, expressive power focused on, and usually restricted to, a particular problem domain.
+\end{definition}
 
-%  Many DSLs are supported by a DSL compiler which generates applications from DSL programs. In this case, the DSL compiler is referred to as application generator in the literature [17], and the DSL as application-specific language. Other DSLs, such as YACC [7] or ASDL [77], are not aimed at programming (specifying) complete applications, but rather at generating libraries or components. Also, DSLs exist for which execution consists in generating documents (TEX), or pictures (PIC [7]). A common term for DSLs geared towards building business data processing systems is 4th Generation Language (4GL). Related to domain-specific programming is end-user programming, which happens when end-users perform simple programming tasks using a macro or scripting language. A typical example is spreadsheet programming using the Excel macro-language.
-%Why a DSL 	-> Bentley1986 
-%			-> reusability : http://www.biglever.com/papers/Krueger_AcmReuseSurvey.pdf
-%advantages/disadvantages DSL -> http://www.st.ewi.tudelft.nl/~arie/papers/dslbib.pdf
+\begin{definition}
+    A \textit{general purpose language} (GPL) is a programming language that is broadly applicable across application domains, and lacks specialized features for a particular domain.
+\end{definition}
 
-%https://pdfs.semanticscholar.org/72ec/5c5000ee860d1ed28a4a91100ac91a3c7afe.pdf
+The key focus for DSLs are its focussed expressive power. The expressiveness of DSLs comes from the fact that they were created to solve a small set of problems. They offer a high-level set of mechanisms for the programmer to express his ideas for a particular application domain. A DSLs aim is to have the language focus specifically on those aspects and concepts that are relevant to a particular problem domain, hiding all boilerplate code that comes along with GPLs. Designers of general purpose programming languages also try to help the programmers express their ideas concisely and clear, but even with the most elegant programming language difficulties arise when programs get bigger and more complex. To this extent, extra features were developed for GPLs to further abstract code and reduce complexity. Amongst these features are functions, subroutines, packages, objects \dots  Even though these features are useful for general applications, the languages that implement them often have a set of operational baggage associated with them which makes a program unneccesarily complex to develop\cite{FluentInterfacesJava}. 
 
-%\subsection{Internal DSLs} -> MOET DIT?
+In contrast to the generic approach, the domain-specific approach to language design makes it possible to allow low-level system requirements to guide the design of the required high-level language features one wishes to incorporate into his language, instead of being required to use existing general-purpose designs.
+We therefore believe that a domain-specific language is the best pick for our query language.
+Benefits of domain-specific languages include:
+
+\begin{itemize}
+\item DSLs are application-specific. This allows users to express their ideas at the level of abstraction of the problem domain.
+\item DSL programs are concise, self-documenting and highly reusable\cite{Bentley:1986}
+\item DSLs enhance productivity, maintainability, portability and reliability
+\item DSLs can shift the development of systems from typical system developers to domain experts with deeper knowledge of the domain.
+\item DSLs contain domain knowledge which can be reused
+\item DSLs significantly reduce programming errors
+\end{itemize}
+
+\noindent Some counterarguments for using a DSL are:
+\begin{itemize}
+\item The cost of designing, implementing and maintaining a DSL
+\item The cost of educating DSL users
+\item A DSL has limited applicability
+\item The difficulty of finding the correct scope for a DSL
+\end{itemize}
+
+We argue that the costs for setting up a DSL do not weigh up against the benefits of a DSL. The high reusability alone makes up for the one-time investment of designing and implementing the language. When developing a language for a certain domain, naturally its applicability will be limited to that domain only, as this is the purpose of a domain-specific language. Finding the correct scope for a DSL might be cumbersome, but there is a great amount of literature about specifying the domain of a problem\cite{Simos:1995} and the domain for DSLs\cite{karsai2014design}\cite{gunther2010agile}. 
+
+\subsection{External DSLs}
+
+Many DSLs come along with a compiler which translates DSL programs into applications. These kinds of DSLs are called \textit{external} DSLs. the compiler is also called an application generator\cite{Cleaveland:1988}, whereas the DSL is the application-specific language. The main advantage external DSLs is that the implementation of the compiler can completely be tailored to the DSL. The DSL in turn is restricted in no way with regards to notation, primitives and the like because its syntax is independent of the underlying language (since there is none). The remainder of this section discusses existing work about external DSLs used for graph traversal and graph querying.
+
+\subsection*{StruQL}
+
+StruQL is the query language behind the Strudel system\cite{Fernandez97aquery}. The language is built to support the retrieval and construction of data for web sites. This data is represented as \textit{data graphs} and originates from external sources, the integrated view and the web site itself. These data graphs depict web sites as nodes, representing web pages or atomic values, interconnected with directed, labelled edges. These edges then represent the links or attribute values that connect two nodes. The language enables users to create and query data graphs, but the real power of StruQL lies in their ability to express regular path expressions. This allows for very flexible queries describing the paths about which information needs to be accessed in great detail.
+It also allows to compute the transitive closure of an \textit{arbitrary 2n-ary} relation, meaning that it can compute all reachable nodes from a certain node for any input graph. Buneman et al\cite{Buneman:1996} have formally proven that this is not a trivial computation.
+
+\subsection*{GraphQL}
+%http://sites.fas.harvard.edu/~cs265/papers/he-2008.pdf -> GraphQL
+
+GraphQL\cite{He:2008} is a query language which allows to query graph databases. The language uses a graph pattern as a basic operational unit. These graph patterns consist of a graph structure and a predicate on attributes of the graph. They introduced the notion of formal languages for graphs. This is useful for composing and manipulating graph structures and is used as a basis of the graph query language.
+The core of the language is a graph algebra in which the selection operator is generalized to graph pattern matching and a composition operator is introduced for rewriting matched graphs. In terms of expressive power, the language is contained in Datalog. This means that every query in GraphQL can be converted to a Datalog query. The language allows users to express concatenation, disjunction and recursion, allowing users to write dynamic queries. They address the NP-completeness of subgraph isomorphism by using neighborhood subgraphs and profiles, joint reduction of the search space, and optimization of the search order.
+
+\subsection*{ASTLOG}
+%http://www.cs.nyu.edu/~lharris/papers/crew.pdf
+
+\subsection*{Lorel}
+%http://infolab.stanford.edu/lore/pubs/lorel96.pdf -> Semistructured data
+
+%-----------------------------
+%RW over EDSL los van graphs:
+%http://graphics.stanford.edu/hackliszt/liszt_sc2011.pdf
+%http://homepages.cwi.nl/~jurgenv/papers/SCAM-2009.pdf
+%https://www.researchgate.net/publication/220071161_BDL_A_Specialized_Language_for_Per-Object_Reactive_Control
+%Chandra1999
+%-----------------------------
+
+
+\subsection{Internal DSLs}
+%It was coined by Hudak\cite{Hudak:1996}
 %eerste keer door Hudak -> http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.49.6020&rep=rep1&type=pdf
 % Embedded kan GPL gebruiken. -> Sometimes, however, they contain an entire general-purpose language (GPL) as a sublanguage, thus offering domain-specific expressive power in addition to the expressive power of the GPL. This situation occurs when DSLs are implemented as embedded languages
 %Waarom internal
 %----------------
 %RW over DSEL graph traversal:
+\subsection*{Gremlin}
 %http://arxiv.org/pdf/1508.03843.pdf -> Graph traversal
+\subsection*{Dagoba}
+%Dagoba
+\subsection*{A little language for surveys}
+%Survey language -> illustrates flexibility of embedded dsl + design patterns
+%
 %-----------------------------
 %RW over DSEL los van graphs:
 %https://www.usenix.org/events/dsl99/full_papers/jennings/jennings.ps
@@ -171,41 +239,25 @@ Some text about the stack.
 %https://idl.cs.washington.edu/files/2014-Ellipsis-EuroVis.pdf --> Zij doen wel element van fluent API als argument -> Overwegen of gebruiken of niet
 % MISSCHIEN http://www.cs.um.edu.mt/gordon.pace/Research/Papers/wict2009-01.pdf
 
-
-
-\subsection{External DSLs}
-
-%Waarom external
-%RW over EDSL graph traversal:
-%StruQL -> downloads file35
-%http://infolab.stanford.edu/lore/pubs/lorel96.pdf -> Semistructured data
-%http://www.cs.nyu.edu/~lharris/papers/crew.pdf -> Trees
-%http://sites.fas.harvard.edu/~cs265/papers/he-2008.pdf -> GraphQL
-%-----------------------------
-%RW over EDSL los van graphs:
-%http://graphics.stanford.edu/hackliszt/liszt_sc2011.pdf
-%http://homepages.cwi.nl/~jurgenv/papers/SCAM-2009.pdf
-%https://www.researchgate.net/publication/220071161_BDL_A_Specialized_Language_for_Per-Object_Reactive_Control
-%Chandra1999
-%http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.29.9540&rep=rep1&type=pdf -> saaiste shit ever
-%-----------------------------
+%HIER NOG ZETTEN WAAROM INTERNAL GEKOZEN (overhead van compiler enz..., out of scope van dissertation)
 
 
 \section{Design of an internal DSL for querying flow graphs}
 
 %zie Domain-specific languages: An annotated Bibliography
-
-%Waarom internal (als niet besproken in section hiervoor)
+%-> DSL sometimes contains entire GPL as sublanguage ...
 
 \subsection{internal DSL design constraints}
 
 %CONSTRAINTS:
 % What is the problem domain? -> Domein afbakenen kan via http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.49.9877&rep=rep1&type=pdf
+%-> daarom ook voor DSL gekozen
 %Flow graphs beperken predikaten, Extensibility, JavaScript, no REPL
 %https://idl.cs.washington.edu/files/2014-Ellipsis-EuroVis.pdf --> Zij doen wel element van fluent API als argument -> Overwegen of gebruiken of niet
 \subsection{DSL implementation techniques}
 %Welke bestaan er, welke hebben wij genomen
+%3 delen beschreven in agile engineering
 
 \subsection{DSL design patterns}
-%Papers!
+%Papers! http://martinfowler.com/dslCatalog/ (deferred evaluation enzo)
 

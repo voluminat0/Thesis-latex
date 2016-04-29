@@ -44,6 +44,94 @@
       \field{pages}{4\bibrangedash 4}
       \range{pages}{1}
     \endentry
+    \entry{Bentley:1986}{article}{}
+      \name{author}{1}{}{%
+        {{hash=a2ea6a4e7fe1b839acb38db376905df8}{Bentley}{B\bibinitperiod}{Jon}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{a2ea6a4e7fe1b839acb38db376905df8}
+      \strng{fullhash}{a2ea6a4e7fe1b839acb38db376905df8}
+      \field{sortinit}{B}
+      \field{sortinithash}{4ecbea03efd0532989d3836d1a048c32}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0001-0782}
+      \field{journaltitle}{Commun. ACM}
+      \field{month}{08}
+      \field{number}{8}
+      \field{title}{Programming Pearls: Little Languages}
+      \field{volume}{29}
+      \field{year}{1986}
+      \field{pages}{711\bibrangedash 721}
+      \range{pages}{11}
+    \endentry
+    \entry{Buneman:1996}{article}{}
+      \name{author}{4}{}{%
+        {{hash=0e2b444d9d3a80f70ca5eb50e7596a60}{Buneman}{B\bibinitperiod}{Peter}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=2e8b3098624fa0217809d4ed9e007b55}{Davidson}{D\bibinitperiod}{Susan}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=e8ecfd9c957ed5769073c484d8a11d47}{Hillebrand}{H\bibinitperiod}{Gerd}{G\bibinitperiod}{}{}{}{}}%
+        {{hash=dad05536948804793c3e454acd5ecb8f}{Suciu}{S\bibinitperiod}{Dan}{D\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{918e91c222657e7c9fd6ce11c7ba089c}
+      \strng{fullhash}{ed91c5376a17047bb870b4186f2e4118}
+      \field{sortinit}{B}
+      \field{sortinithash}{4ecbea03efd0532989d3836d1a048c32}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0163-5808}
+      \field{journaltitle}{SIGMOD Rec.}
+      \field{month}{06}
+      \field{number}{2}
+      \field{title}{A Query Language and Optimization Techniques for Unstructured Data}
+      \field{volume}{25}
+      \field{year}{1996}
+      \field{pages}{505\bibrangedash 516}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1145/235968.233368
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/235968.233368
+      \endverb
+    \endentry
+    \entry{Cleaveland:1988}{article}{}
+      \name{author}{1}{}{%
+        {{hash=1b6c391ab4560c6d4134eb7ceecbe674}{Cleaveland}{C\bibinitperiod}{J.\bibnamedelimi Craig}{J\bibinitperiod\bibinitdelim C\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Los Alamitos, CA, USA}%
+      }
+      \list{publisher}{1}{%
+        {IEEE Computer Society Press}%
+      }
+      \strng{namehash}{1b6c391ab4560c6d4134eb7ceecbe674}
+      \strng{fullhash}{1b6c391ab4560c6d4134eb7ceecbe674}
+      \field{sortinit}{C}
+      \field{sortinithash}{59f25d509f3381b07695554a9f35ecb2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0740-7459}
+      \field{journaltitle}{IEEE Softw.}
+      \field{month}{07}
+      \field{number}{4}
+      \field{title}{Building Application Generators}
+      \field{volume}{5}
+      \field{year}{1988}
+      \field{pages}{25\bibrangedash 33}
+      \range{pages}{9}
+      \keyw{Unix tools,application generators,dialogue-code generation system,reusable software,software tools}
+    \endentry
     \entry{HeapSpraying}{inproceedings}{}
       \name{author}{3}{}{%
         {{hash=58cf26235722042ea9cafbaba4ff75e7}{Cova}{C\bibinitperiod}{Marco}{M\bibinitperiod}{}{}{}{}}%
@@ -70,6 +158,54 @@
       \field{pages}{281\bibrangedash 290}
       \range{pages}{10}
       \keyw{anomaly detection,drive-by-download attacks,web client exploits}
+    \endentry
+    \entry{vanDeursen:2000}{article}{}
+      \name{author}{3}{}{%
+        {{hash=65e990ff404c92f18a3795137504d7d1}{Deursen}{D\bibinitperiod}{Arie}{A\bibinitperiod}{van}{v\bibinitperiod}{}{}}%
+        {{hash=0ed67bd3f5d2cb711e86d750cb0d3bec}{Klint}{K\bibinitperiod}{Paul}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=911dc764b805261ce617fe06d80754e3}{Visser}{V\bibinitperiod}{Joost}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{41935fa83c5277bec8a5d397b4e46dfc}
+      \strng{fullhash}{41935fa83c5277bec8a5d397b4e46dfc}
+      \field{sortinit}{D}
+      \field{sortinithash}{78f7c4753a2004675f316a80bdb31742}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0362-1340}
+      \field{journaltitle}{SIGPLAN Not.}
+      \field{month}{06}
+      \field{number}{6}
+      \field{title}{Domain-specific Languages: An Annotated Bibliography}
+      \field{volume}{35}
+      \field{year}{2000}
+      \field{pages}{26\bibrangedash 36}
+      \range{pages}{11}
+    \endentry
+    \entry{Fernandez97aquery}{article}{}
+      \name{author}{4}{}{%
+        {{hash=990c9d37c6ee79c6bca5d6dbdd7e70f3}{Fernandez}{F\bibinitperiod}{Mary}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=f406343d1881c3cdb945ef53fcf0f4fe}{Florescu}{F\bibinitperiod}{Daniela}{D\bibinitperiod}{}{}{}{}}%
+        {{hash=f4d8937381b917c05fd8290fdbd0bbea}{Levy}{L\bibinitperiod}{Alon}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=dad05536948804793c3e454acd5ecb8f}{Suciu}{S\bibinitperiod}{Dan}{D\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{2e0ea13c6229a7d0699f2b44067eb158}
+      \strng{fullhash}{d2174139bf0d47d6dd7076af4cc8f8ab}
+      \field{sortinit}{F}
+      \field{sortinithash}{c6a7d9913bbd7b20ea954441c0460b78}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{SIGMOD Record}
+      \field{title}{A Query Language for a Web-Site Management System}
+      \field{volume}{26}
+      \field{year}{1997}
+      \field{pages}{4\bibrangedash 11}
+      \range{pages}{8}
     \endentry
     \entry{PDG}{article}{}
       \name{author}{3}{}{%
@@ -123,6 +259,86 @@
       \field{pages}{151\bibrangedash 168}
       \range{pages}{18}
     \endentry
+    \entry{gunther2010agile}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=f59704f09063d5acf22d50aaec819918}{Günther}{G\bibinitperiod}{Sebastian}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=da8a7616730ea4b9596ecb4004eb9567}{Haupt}{H\bibinitperiod}{Maximilian}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=4e74933c7feaab1c947dc69c4e58e30f}{Splieth}{S\bibinitperiod}{Matthias}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{38596ef4636700063990ee568aadd129}
+      \strng{fullhash}{38596ef4636700063990ee568aadd129}
+      \field{sortinit}{G}
+      \field{sortinithash}{1c854ef9177a91bf894e66485bdbd3ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Software Engineering Advances (ICSEA), 2010 Fifth International Conference on}
+      \field{title}{Agile engineering of internal domain-specific languages with dynamic programming languages}
+      \field{year}{2010}
+      \field{pages}{162\bibrangedash 168}
+      \range{pages}{7}
+    \endentry
+    \entry{FluentInterfacesJava}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=37e72bff1629a9ab0eaa2e5983b84d75}{Hawick}{H\bibinitperiod}{K.\bibnamedelimi A.}{K\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
+      }
+      \list{institution}{1}{%
+        {Computer Science, Massey University}%
+      }
+      \list{location}{1}{%
+        {Innsbruck, Austria}%
+      }
+      \list{publisher}{1}{%
+        {IASTED}%
+      }
+      \strng{namehash}{37e72bff1629a9ab0eaa2e5983b84d75}
+      \strng{fullhash}{37e72bff1629a9ab0eaa2e5983b84d75}
+      \field{sortinit}{H}
+      \field{sortinithash}{82012198d5dfa657b8c4a168793268a6}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the International Conference on Software Engineering (SE'13)}
+      \field{month}{11-13 February}
+      \field{title}{Fluent Interfaces and Domain-Specific Languages for Graph Generation and Network Analysis Calculations}
+      \field{year}{2013}
+      \field{pages}{752\bibrangedash 759}
+      \range{pages}{8}
+      \keyw{domain-specific language; fluent interface; graph generation; graph computations; programming tools and languages}
+    \endentry
+    \entry{He:2008}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=30eb4220cde9ac15205333e7348569e0}{He}{H\bibinitperiod}{Huahai}{H\bibinitperiod}{}{}{}{}}%
+        {{hash=07699089d00d6d87bc87c10bb7bd480a}{Singh}{S\bibinitperiod}{Ambuj\bibnamedelima K.}{A\bibinitperiod\bibinitdelim K\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Vancouver, Canada}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{24550f01495260d4e4addf26abe9e007}
+      \strng{fullhash}{24550f01495260d4e4addf26abe9e007}
+      \field{sortinit}{H}
+      \field{sortinithash}{82012198d5dfa657b8c4a168793268a6}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 2008 ACM SIGMOD International Conference on Management of Data}
+      \field{isbn}{978-1-60558-102-6}
+      \field{series}{SIGMOD '08}
+      \field{title}{Graphs-at-a-time: Query Language and Access Methods for Graph Databases}
+      \field{year}{2008}
+      \field{pages}{405\bibrangedash 418}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1145/1376616.1376660
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/1376616.1376660
+      \endverb
+      \keyw{graph algebra,graph query language,query optimization}
+    \endentry
     \entry{Esprima}{online}{}
       \name{author}{1}{}{%
         {{hash=d5255361d7ef170ab64a72470f967f30}{Hidayat}{H\bibinitperiod}{Ariya}{A\bibinitperiod}{}{}{}{}}%
@@ -161,6 +377,25 @@
       \field{number}{TR-04-14}
       \field{title}{Exploring and Enforcing Application Security Guarantees via Program Dependence Graphs}
       \field{type}{techreport}
+      \field{year}{2014}
+    \endentry
+    \entry{karsai2014design}{article}{}
+      \name{author}{6}{}{%
+        {{hash=8346d95a6c30bf73c4c963c85af7eac2}{Karsai}{K\bibinitperiod}{Gabor}{G\bibinitperiod}{}{}{}{}}%
+        {{hash=474291134a31153f95e1daecd9c0e6f1}{Krahn}{K\bibinitperiod}{Holger}{H\bibinitperiod}{}{}{}{}}%
+        {{hash=f92c997ed8a357f57e1ffe63bdf4b673}{Pinkernell}{P\bibinitperiod}{Claas}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=c2b5a72fd30b6844022c3e1189390301}{Rumpe}{R\bibinitperiod}{Bernhard}{B\bibinitperiod}{}{}{}{}}%
+        {{hash=e0761eb679ede7880568039a817e758b}{Schindler}{S\bibinitperiod}{Martin}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=063084950196b6a3ddc094626c22bd49}{Völkel}{V\bibinitperiod}{Steven}{S\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{c4ce44d235fa99760cc9e5c6ab972d07}
+      \strng{fullhash}{324cd812234c82e313f7594de97f9794}
+      \field{sortinit}{K}
+      \field{sortinithash}{a7d5b3aec5a0890aae7baf85a209abfc}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1409.2378}
+      \field{title}{Design guidelines for domain specific languages}
       \field{year}{2014}
     \endentry
     \entry{DatalogDBQueries}{inproceedings}{}
@@ -294,6 +529,37 @@
       \field{year}{1995}
       \field{pages}{163\bibrangedash 196}
       \range{pages}{34}
+    \endentry
+    \entry{Simos:1995}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=0d0f7aad0ae45fc7f63b4a26440fcc86}{Simos}{S\bibinitperiod}{Mark\bibnamedelima A.}{M\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Seattle, Washington, USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{0d0f7aad0ae45fc7f63b4a26440fcc86}
+      \strng{fullhash}{0d0f7aad0ae45fc7f63b4a26440fcc86}
+      \field{sortinit}{S}
+      \field{sortinithash}{fd1e7c5ab79596b13dbbb67f8d70fb5a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 1995 Symposium on Software Reusability}
+      \field{isbn}{0-89791-739-1}
+      \field{series}{SSR '95}
+      \field{title}{Organization Domain Modeling (ODM): Formalizing the Core Domain Modeling Life Cycle}
+      \field{year}{1995}
+      \field{pages}{196\bibrangedash 205}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1145/211782.211845
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/211782.211845
+      \endverb
+      \keyw{domain analysis,domain engineering,domain modeling,feature model,organization domain,stakeholder model,variability modeling}
     \endentry
     \entry{MaintainableSoftware}{book}{}
       \name{author}{5}{}{%
