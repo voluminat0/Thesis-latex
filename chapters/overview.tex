@@ -136,16 +136,14 @@ Some text about the stack.
 
 
 \section{External DSLs for querying graphs}
-%Intro http://www.st.ewi.tudelft.nl/~arie/papers/dslbib.pdf
 
 For almost any branch of science and engineering we can distinguish between two types of approaches. One type of approach is the \textit{generic} approach, which offers solutions to a wide range of problems within a certain domain. However, these solutions are often suboptimal. When we reduce the set of problems we want to solve, an often better approach to solving these problems would be the \textit{specific} approach.
 In software engineering terms these two approaches translate to two types of languages: General purpose languages (GPLs) and domain-specific languages (DSLs) respectively. 
-\textit{Domain-specific language} is no new concept. Many programming languages that are now considered general purpose language started out as domain-specific languages. Cobol, Fortran and Lisp for example all came into existence as dedicated languages for solving problems in a certain area\cite{vanDeursen:2000}, but gradually evolved into the full fledged languages they are today. The rest of this section is devoted to the comparison of GPLs and DSLs, in which we advocate that DSLs are the best approach for the instantiation of the JS-QL framework. We further give an overview of related work about DSLs for querying graphs and DSLs in general.
+\textit{Domain-specific language} is no new concept. Many programming languages that are now considered general purpose language started out as domain-specific languages. Cobol, Fortran and Lisp for example all came into existence as dedicated languages for solving problems in a certain area\cite{vanDeursen:2000}, but gradually evolved into the full fledged languages they are today. The rest of this section is devoted to the comparison of GPLs and DSLs, in which we advocate that DSLs are the best approach for the instantiation of the JS-QL framework. We further give an overview of related work about DSLs for querying graphs.
 
 
 \subsection{Domain-specific language vs. general purpose language}
-%Wat is een DSL & wat is een GPL
-%Over GPL wat FLuent-interfaces zegt! 'divide en conquer limited ...;'
+\label{subsec:DSLvsGPL}
 
 Before we start this comparison, we give a formal definition of domain-specific languages and general purpose languages:
 \begin{definition}
@@ -162,6 +160,7 @@ In contrast to the generic approach, the domain-specific approach to language de
 We therefore believe that a domain-specific language is the best pick for our query language.
 Benefits of domain-specific languages include:
 
+%TODO: http://voelter.de/data/books/markusvoelter-dslengineering-1.0.pdf
 \begin{itemize}
 \item DSLs are application-specific. This allows users to express their ideas at the level of abstraction of the problem domain.
 \item DSL programs are concise, self-documenting and highly reusable\cite{Bentley:1986}
@@ -185,21 +184,23 @@ We argue that the costs for setting up a DSL do not weigh up against the benefit
 
 Many DSLs come along with a compiler which translates DSL programs into applications. These kinds of DSLs are called \textit{external} DSLs. the compiler is also called an application generator\cite{Cleaveland:1988}, whereas the DSL is the application-specific language. The main advantage external DSLs is that the implementation of the compiler can completely be tailored to the DSL. The DSL in turn is restricted in no way with regards to notation, primitives and the like because its syntax is independent of the underlying language (since there is none). The remainder of this section discusses existing work about external DSLs used for graph traversal and graph querying.
 
-\subsection*{StruQL}
+\subsubsection*{StruQL}
 
 StruQL is the query language behind the Strudel system\cite{Fernandez97aquery}. The language is built to support the retrieval and construction of data for web sites. This data is represented as \textit{data graphs} and originates from external sources, the integrated view and the web site itself. These data graphs depict web sites as nodes, representing web pages or atomic values, interconnected with directed, labelled edges. These edges then represent the links or attribute values that connect two nodes. The language enables users to create and query data graphs, but the real power of StruQL lies in their ability to express regular path expressions. This allows for very flexible queries describing the paths about which information needs to be accessed in great detail.
 It also allows to compute the transitive closure of an \textit{arbitrary 2n-ary} relation, meaning that it can compute all reachable nodes from a certain node for any input graph. Buneman et al\cite{Buneman:1996} have formally proven that this is not a trivial computation.
 
-\subsection*{GraphQL}
+\subsubsection*{GraphQL}
 %http://sites.fas.harvard.edu/~cs265/papers/he-2008.pdf -> GraphQL
 
 GraphQL\cite{He:2008} is a query language which allows to query graph databases. The language uses a graph pattern as a basic operational unit. These graph patterns consist of a graph structure and a predicate on attributes of the graph. They introduced the notion of formal languages for graphs. This is useful for composing and manipulating graph structures and is used as a basis of the graph query language.
 The core of the language is a graph algebra in which the selection operator is generalized to graph pattern matching and a composition operator is introduced for rewriting matched graphs. In terms of expressive power, the language is contained in Datalog. This means that every query in GraphQL can be converted to a Datalog query. The language allows users to express concatenation, disjunction and recursion, allowing users to write dynamic queries. They address the NP-completeness of subgraph isomorphism by using neighborhood subgraphs and profiles, joint reduction of the search space, and optimization of the search order.
 
-\subsection*{ASTLOG}
+\subsubsection*{ASTLOG}
 %http://www.cs.nyu.edu/~lharris/papers/crew.pdf
+ASTLOG\cite{Crew:1997} is a query language for syntax-level C/C++ program analysis and is well suited to construct anchored patterns to match tree-like structures. The language is built as a Prolog variant syntax-wise, but instead of transforming an entire program into a database of Prolog rules, it is able to match \textit{objects} to queries directly. These objects are being made available through a C/C++ compiler frontend which provides an interface to the syntactic/semantic data structures build during the parse of a program. Among the available objects are the AST nodes of a program. These nodes can then be examined and queried by user-defined predicates in a similar fashion as one would do in Prolog. This allows for application-specific composable predicates. 
 
-\subsection*{Lorel}
+\subsubsection*{Lorel}
+The Lorel language\cite{abiteboul1997lorel} was designed to query semistructured data. This kind of data can be seen as a graph with complex values at internal nodes, labeled edges and atomic leaves. The language's syntax resembles that of OQL (\textit{Object Query Language}), but has two two additional features: (i) A coercion mechanism for value/object comparisons and (ii) powerful path expressions. Coercion is needed for semistructured data, as two objects may represent the same data in different ways. Lorel introduces \textit{general path expressions}, a way to define label completion and regular expressions in paths. Regular expressions are supported through \texttt{.},\texttt{+},\texttt{?},\texttt{*},\texttt{()} and \texttt{|}, label completion is done as in SQL, namely with the \texttt{\%} symbol.
 %http://infolab.stanford.edu/lore/pubs/lorel96.pdf -> Semistructured data
 
 %-----------------------------
@@ -212,17 +213,24 @@ The core of the language is a graph algebra in which the selection operator is g
 
 
 \subsection{Internal DSLs}
-%It was coined by Hudak\cite{Hudak:1996}
-%eerste keer door Hudak -> http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.49.6020&rep=rep1&type=pdf
-% Embedded kan GPL gebruiken. -> Sometimes, however, they contain an entire general-purpose language (GPL) as a sublanguage, thus offering domain-specific expressive power in addition to the expressive power of the GPL. This situation occurs when DSLs are implemented as embedded languages
+
+In contrast to external DSLs, \textit{internal} (or \textit{embedded}\cite{Hudak:1996}) DSLs don't require a custom compiler. These languages inherit the infrastructure of some other (general purpose) language, and tailor it towards the domain of interest. In this way the language can be interpreted by its host language, saving the developer a lot of work. Although internal DSLs are restricted by the syntax of their host language, they can make full use of the host language as a sublanguage, thus offering the expressive power of the host language in addition to domain-specific expressive power of the DSL. This expressive power along with not having to build a fully fledged compiler for our DSL are the main reasons we prefer the internal DSL approach above the external DSL one. The rest of this section describes three internal DSLs, two for graph traversal and one that illustrates the flexibility and expressiveness of embedded DSLs. The terms internal DSL and embedded DSL both have the same meaning in the rest of this dissertation and both refer to the type of DSL that is embedded in a host language.
+
 %Waarom internal
 %----------------
 %RW over DSEL graph traversal:
-\subsection*{Gremlin}
+\subsubsection*{Gremlin}
 %http://arxiv.org/pdf/1508.03843.pdf -> Graph traversal
-\subsection*{Dagoba}
-%Dagoba
-\subsection*{A little language for surveys}
+
+
+\subsubsection*{Dagoba}
+
+Dagoba is an in-memory graph database system written in JavaScript. The chapter about Dagoba in the \textit{500 Lines or Less}\footnote{http://aosabook.org/en/500L} book provides an elaborate explanation on how to create a flexible, easily extensible internal DSL. The language is built as a fluent API, and explains which mechanics (such as lazy evaluation) go hand in hand with this kind of language representation. They also describe how they interpret the language and define some optimizations of the system, mainly through query transformators.
+
+\subsubsection*{A little language for surveys}
+
+A Little Language for Surveys \cite{RubyDSL} explores the use of the Ruby programming language to implement an internal domain-specific language. It checks how well the flexible and dynamic nature of the language accomodates for the implementation of a DSL for specifying and executing surveys. Two key features of the Ruby programming languages are exploited because they especially support defining internal DSLs: The flexibility of the syntax and the support for blocks. Function calls for example are easily readable, since the braces surrounding the arguments can be omitted and the arguments list can consist of a variable number of arguments (The latter is also supported in JavaScript\cite{Ecma6}). They make extensive use of the fact that entire blocks can be attached to method calls. These blocks are passed unevaluated to the called method, enabling \textit{deferred evaluation}. Next to these features, the meta-programming facilities of the Ruby makes it possible for them to read a DSL program and execute it in the contexts specified by that program. A two-pass architecture is used, splitting up the parsing and interpretation of the program. This is common practice for internal DSLs.
+
 %Survey language -> illustrates flexibility of embedded dsl + design patterns
 %
 %-----------------------------
@@ -234,30 +242,89 @@ The core of the language is a graph algebra in which the selection operator is g
 %https://www.usenix.org/legacy/publications/library/proceedings/dsl97/full_papers/kamin/kamin.pdf
 %-----------------------------
 
-%2 die ik al had -> 1 ervan queriet graphs!
-
-%https://idl.cs.washington.edu/files/2014-Ellipsis-EuroVis.pdf --> Zij doen wel element van fluent API als argument -> Overwegen of gebruiken of niet
-% MISSCHIEN http://www.cs.um.edu.mt/gordon.pace/Research/Papers/wict2009-01.pdf
-
-%HIER NOG ZETTEN WAAROM INTERNAL GEKOZEN (overhead van compiler enz..., out of scope van dissertation)
-
 
 \section{Design of an internal DSL for querying flow graphs}
 
 %zie Domain-specific languages: An annotated Bibliography
-%-> DSL sometimes contains entire GPL as sublanguage ...
+Crafting a compiler for our languages falls outside the scope of this dissertation and we believe that the overhead for building an external DSL does not weigh up against the benefits of an internal DSL (as discussed in \ref{subsec:DSLvsGPL}).
+In this section we discuss the design process of our internal domain-specific language named JS-QL.
 
-\subsection{internal DSL design constraints}
+\subsection{Internal DSL design constraints}
 
-%CONSTRAINTS:
-% What is the problem domain? -> Domein afbakenen kan via http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.49.9877&rep=rep1&type=pdf
-%-> daarom ook voor DSL gekozen
-%Flow graphs beperken predikaten, Extensibility, JavaScript, no REPL
-%https://idl.cs.washington.edu/files/2014-Ellipsis-EuroVis.pdf --> Zij doen wel element van fluent API als argument -> Overwegen of gebruiken of niet
-\subsection{DSL implementation techniques}
-%Welke bestaan er, welke hebben wij genomen
-%3 delen beschreven in agile engineering
+This section describe some factors that influenced the design of our query language. A first constraint for the language is that it was designed as an embedded DSL. This has as a consequence that we have to use the constructs and syntax the host language offers, JavaScript in our case. The JS-QL languages makes extensive use of JavaScript \texttt{Object}s that function as dictionaries. A limitation for us was that these dictionaries only accept strings as keys. Function calls for example can't serve as keys in JavaScript objects as their value can't always be calculated at compile time. This was a serious drawback for us and it even lead to an inconsistency in our language, as will be discussed in chapter \ref{ch:JSQL}. 
+Our language has to be easily extensible as users need to be able to specify their own predicates and policies. To this extent, JavaScript surfaced as an ideal language. The dynamic typing and optional function arguments made creating flexible predicates and policies a lot easier.
 
-\subsection{DSL design patterns}
-%Papers! http://martinfowler.com/dslCatalog/ (deferred evaluation enzo)
+Flow graphs need to be queried, so the language has to fit these needs in the form of appropriate predicates. The design of our language depended on the information that is contained in each state of the graph. The JIPDA graph states contain several fields that in turn can recursively contain other fields. The nature of the algorithm we use together with the structure of these states asked for a close mapping of states to query predicates. As JavaScript objects are great for storing nested information, we chose to use them as a mapping for states. From now on these objects will be referred to as \textit{dictionaries}. Fields in a dictionary now have a one-to-one relationship with fields in a state, making the matching process for the algorithm less of a burden. Another constraint imposed by the flow graph was that sequences of states had to be expressed in a precise yet legible fashion. This had as a result that the language was set up as a fluent interface, enabling the user to specify a number of states separated with a simple dot. We can thus say that the type of graph helped shape the JS-QL language.
+
+%GEEN REPL
+A final constraint was the need of an environment where queries can be expressed and evaluated against the flow graph. It would be tiresome to specify queries in one place and the input program elsewhere. This would also imply that every time a change to the program or the query has to be made, at least one separate file has to be modified. This is clearly not an optimal solution. As there is no \textbf{r}ead \textbf{e}val \textbf{p}rint \textbf{l}oop (REPL) available for JavaScript in the browser, we opted to extend the existing environment of the JIPDA analysis with support for (i) writing queries and (ii) checking these queries against the flow graph.
+
+
+\subsection{DSL implementation techniques and patterns}
+
+\begin{figure}[!ht]
+    \centering
+      \includegraphics[width=0.5\textwidth]{images/DSLTechniques} 
+      \caption{Internal DSL implementation techniques}
+    \label{fig:DSLTechniques}
+\end{figure}
+
+Figure \ref{fig:DSLTechniques} shows the different kinds of implementation techniques for internal DSLs, as specified by \cite{Ghosh:2010}. Our DSL doesn't generate any code, so we won't discuss generative internal DSLs. Embedded internal DSLs on the other hand can be implemented in three ways: 
+
+\begin{enumerate}
+\item \textit{Smart API}: ...
+\item \textit{Reflective metaprogramming}: ...
+\item \textit{Type embedding}: ...
+\end{enumerate}
+
+%Readability is an inevitable consequence of expressiveness in a DSL. Implementing fluent
+%interfaces is one way to improve readability and make Smart APIs. You can implement
+%method chaining so that the output from one method flows naturally as the
+%input of another. This technique makes your series of API invocations feel more natural,
+%and it’s closer to the sequence of actions that you would perform in the problem
+%domain. This makes the APIs smart in the sense that you don’t need to include any
+%boilerplate code in their invocation.
+
+%DECORATORS extend functionality
+%The Decorator design pattern helps you attach additional responsibilities to
+%objects. If you can make decorators dynamic like we did with Ruby modules in this
+%section, you get the added advantage of better readability for your DSL.
+%You can use builders to construct an object incrementally within your DSL. When
+%you make the builders dynamic, you cut down on the boilerplate code that you have
+%to write. Dynamic builders like the ones in Groovy or Ruby smooth out the implementation
+%aspect of your DSL by constructing methods dynamically through the
+%meta-object protocol of the language runtime
+
+% In this section, we move away from dynamic languages and try to find out if we can
+%make DSLs expressive using the power of a type system
+%The main purpose of this section was to make you think in types. For each abstraction
+%that’s in your domain model, make it a typed one and organize the related business
+%rules around that type. Many of the business rules will be automatically
+%enforced by the compiler, which means you won’t have to write explicit code for
+%them. If your implementation language has a proper type system, your DSL will be
+%as concise as ones written using dynamic languages.
+%-> types maken meer consise en robust
+
+
+%deferred evaluation
+%-> Used to specify extra properties (not available at compile-time) + filters on values that aren't available
+
+%delimiter directed translation
+%-> Every method call is evaluated/parsed separately
+%Embedded interpretation ±
+%-> Kweni of dit er in moet
+%newline separators
+%-> Language supports newlines between every state
+%method chaining/function sequence/fluent interface
+%-> Bread and butter of our DSL
+%macro
+%-> Used when using user-specified/defined predicates
+%literal map
+%-> Argument is a map similar to literal map
+%closure
+%-> prop/cond -> in literal map
+%object scoping
+%-> Alles wordt geevalueerd tegen 1 object om global namespace pollution tegen te gaan (alsook security issues)
+%state machine
+%-> Houd lijst van states bij die apart geprocessed worden
 

@@ -19,6 +19,31 @@
 
 \refsection{0}
   \sortlist{nty}{nty}
+    \entry{abiteboul1997lorel}{article}{}
+      \name{author}{5}{}{%
+        {{hash=e99985780977196e6a1237ff2144092e}{Abiteboul}{A\bibinitperiod}{Serge}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=49cf70ede27d305fd98af37dd900bf9d}{Quass}{Q\bibinitperiod}{Dallan}{D\bibinitperiod}{}{}{}{}}%
+        {{hash=5acdcd7796873cf61f463c32ff649006}{McHugh}{M\bibinitperiod}{Jason}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=f5c9bf7d1fe609c7c5aa35cdee017284}{Widom}{W\bibinitperiod}{Jennifer}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=165acaeca101c0122b0d1ec37aa7aa37}{Wiener}{W\bibinitperiod}{Janet\bibnamedelima L}{J\bibinitperiod\bibinitdelim L\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{5a816f126ceda351f7ebe97ba7551f65}
+      \strng{fullhash}{60d9ac7dbbb4fc401853f7e23913569a}
+      \field{sortinit}{A}
+      \field{sortinithash}{b685c7856330eaee22789815b49de9bb}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International journal on digital libraries}
+      \field{number}{1}
+      \field{title}{The Lorel query language for semistructured data}
+      \field{volume}{1}
+      \field{year}{1997}
+      \field{pages}{68\bibrangedash 88}
+      \range{pages}{21}
+    \endentry
     \entry{PrototypePoisoning}{inproceedings}{}
       \name{author}{3}{}{%
         {{hash=dc10b98d1ed54eb3a80022aa3b38e7ca}{Adida}{A\bibinitperiod}{Ben}{B\bibinitperiod}{}{}{}{}}%
@@ -158,6 +183,55 @@
       \field{pages}{281\bibrangedash 290}
       \range{pages}{10}
       \keyw{anomaly detection,drive-by-download attacks,web client exploits}
+    \endentry
+    \entry{Crew:1997}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=7c21f58a1da836dfda4e6a5ed3d83caf}{Crew}{C\bibinitperiod}{Roger\bibnamedelima F.}{R\bibinitperiod\bibinitdelim F\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Santa Barbara, California}%
+      }
+      \list{publisher}{1}{%
+        {USENIX Association}%
+      }
+      \strng{namehash}{7c21f58a1da836dfda4e6a5ed3d83caf}
+      \strng{fullhash}{7c21f58a1da836dfda4e6a5ed3d83caf}
+      \field{sortinit}{C}
+      \field{sortinithash}{59f25d509f3381b07695554a9f35ecb2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the Conference on Domain-Specific Languages on Conference on Domain-Specific Languages (DSL), 1997}
+      \field{series}{DSL'97}
+      \field{title}{ASTLOG: A Language for Examining Abstract Syntax Trees}
+      \field{year}{1997}
+      \field{pages}{18\bibrangedash 18}
+      \range{pages}{1}
+    \endentry
+    \entry{RubyDSL}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=20a64ffbb8851d485e35070c6a412220}{Cunningham}{C\bibinitperiod}{H.\bibnamedelimi Conrad}{H\bibinitperiod\bibinitdelim C\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Auburn, Alabama}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{20a64ffbb8851d485e35070c6a412220}
+      \strng{fullhash}{20a64ffbb8851d485e35070c6a412220}
+      \field{sortinit}{C}
+      \field{sortinithash}{59f25d509f3381b07695554a9f35ecb2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{Using a problem domain motivated by Bentley's "Little Languages" column [1], this paper explores the use of the Ruby programming language's flexible syntax, dynamic nature, and reflexive metaprogramming facilities to implement an internal domain-specific language (DSL) for surveys.}}
+      \field{booktitle}{Proceedings of the 46th Annual Southeast Regional Conference on XX}
+      \field{isbn}{978-1-60558-105-7}
+      \field{series}{ACM-SE 46}
+      \field{title}{{A little language for surveys: constructing an internal DSL in Ruby}}
+      \field{year}{2008}
+      \field{pages}{282\bibrangedash 287}
+      \range{pages}{6}
+      \keyw{dsl,edsl,ruby}
     \endentry
     \entry{vanDeursen:2000}{article}{}
       \name{author}{3}{}{%
@@ -356,6 +430,49 @@
       \field{year}{2016}
       \verb{url}
       \verb http://esprima.org
+      \endverb
+    \endentry
+    \entry{Hudak:1996}{article}{}
+      \name{author}{1}{}{%
+        {{hash=ebfbf9d5ed6e5a1698b8fe9fb2b322a4}{Hudak}{H\bibinitperiod}{Paul}{P\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{ebfbf9d5ed6e5a1698b8fe9fb2b322a4}
+      \strng{fullhash}{ebfbf9d5ed6e5a1698b8fe9fb2b322a4}
+      \field{sortinit}{H}
+      \field{sortinithash}{82012198d5dfa657b8c4a168793268a6}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0360-0300}
+      \field{journaltitle}{ACM Comput. Surv.}
+      \field{month}{12}
+      \field{number}{4es}
+      \field{title}{Building Domain-specific Embedded Languages}
+      \field{volume}{28}
+      \field{year}{1996}
+    \endentry
+    \entry{Ecma6}{online}{}
+      \name{author}{1}{}{%
+        {{hash=e83578898872635ef15c7690819d9c96}{International}{I\bibinitperiod}{Ecma}{E\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{e83578898872635ef15c7690819d9c96}
+      \strng{fullhash}{e83578898872635ef15c7690819d9c96}
+      \field{sortinit}{I}
+      \field{sortinithash}{25e99d37ba90f7c4fb20baf4e310faf3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{ECMAScript 2015 Language Specification}
+      \field{urlday}{16}
+      \field{urlmonth}{04}
+      \field{urlyear}{2016}
+      \field{year}{2015}
+      \verb{url}
+      \verb http://www.ecma-international.org/ecma-262/6.0/index.html
       \endverb
     \endentry
     \entry{PidginQLTechReport}{report}{}
