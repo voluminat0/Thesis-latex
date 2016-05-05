@@ -262,9 +262,9 @@ A final constraint was the need of an environment where queries can be expressed
 
 \subsection{DSL implementation techniques and patterns}
 
-\begin{figure}[!ht]
+\begin{figure}[!h]
     \centering
-      \includegraphics[width=0.5\textwidth]{images/DSLTechniques} 
+      \includegraphics[width=0.8\textwidth]{images/DSLTechniques} 
       \caption{Internal DSL implementation techniques}
     \label{fig:DSLTechniques}
 \end{figure}
@@ -272,59 +272,51 @@ A final constraint was the need of an environment where queries can be expressed
 Figure \ref{fig:DSLTechniques} shows the different kinds of implementation techniques for internal DSLs, as specified by \cite{Ghosh:2010}. Our DSL doesn't generate any code, so we won't discuss generative internal DSLs. Embedded internal DSLs on the other hand can be implemented in three ways: 
 
 \begin{enumerate}
-\item \textit{Smart API}: ...
-\item \textit{Reflective metaprogramming}: ...
-\item \textit{Type embedding}: ...
+\item \textit{Smart API}: Readability is key for DSLs. Implementing a fluent interface is a way to improve readability and make Smart APIs. To this extend method chaining is a popular technique: It can be implemented by making the output of one method flow naturally as the input of another. Benefits are that a series of invocations in the DSL feel more natural and that it expresses the series of actions you want to perform or detect in the problem domain. Boilerplate code is not needed for this type of internal DSL, hence the name \textit{Smart} API.
+\item \textit{Reflective metaprogramming}: The decorator pattern\footnote{https://en.wikipedia.org/wiki/Decorator\_pattern} is a well known pattern for extending individual objects. The ability to extend individual objects in a DSL greatly adds flexibility to the language. For some dynamically typed programming languages it is possible to define dynamic builders. These builders have a similar objective as the decorator pattern: construct an object incrementally within a DSL. This technique allows the language designer to smooth out the implementation aspect of the DSL by letting the user construct methods dynamically through the meta-object protocom of the language runtime.
+\item \textit{Type embedding}: Types make for more concise and robust code. This is the philosophy that is behind the type embedding technique. Internal DSLs with a statically typed host language often use this pattern to make the language more expressive using the power of a type system. Each abstraction in the domain model should be made typed (and generic). This allows for fewer code duplication and a large part of the work will be done by the compiler of the host language. By making abstractions typed, correctness of programs written in the DSL is guaranteed: If the code compiles, it will most likely be correct.
 \end{enumerate}
 
-%Readability is an inevitable consequence of expressiveness in a DSL. Implementing fluent
-%interfaces is one way to improve readability and make Smart APIs. You can implement
-%method chaining so that the output from one method flows naturally as the
-%input of another. This technique makes your series of API invocations feel more natural,
-%and it’s closer to the sequence of actions that you would perform in the problem
-%domain. This makes the APIs smart in the sense that you don’t need to include any
-%boilerplate code in their invocation.
+For our internal language we can already rule out the type embedding technique as JavaScript is a dynamically typed language. The problem domain of our approach doesn't need extra functionality to be added to individual objects in our language. These individual objects in our case are the states of the flow graph. States already are self-contained (they contain all necessary information) and don't require additional individual functionality. 
 
-%DECORATORS extend functionality
-%The Decorator design pattern helps you attach additional responsibilities to
-%objects. If you can make decorators dynamic like we did with Ruby modules in this
-%section, you get the added advantage of better readability for your DSL.
-%You can use builders to construct an object incrementally within your DSL. When
-%you make the builders dynamic, you cut down on the boilerplate code that you have
-%to write. Dynamic builders like the ones in Groovy or Ruby smooth out the implementation
-%aspect of your DSL by constructing methods dynamically through the
-%meta-object protocol of the language runtime
+This leaves us with the smart API approach, which is ideal for our domain. By chaining methods in our DSL we can specify which states we want to encounter along the graph in a clearly specified order. Combining a smart API with several carefully chosen DSL design patterns result in the concise and easily readable language that JS-QL is today. The remainder of this section elaborates on the chosen design patterns.
 
-% In this section, we move away from dynamic languages and try to find out if we can
-%make DSLs expressive using the power of a type system
-%The main purpose of this section was to make you think in types. For each abstraction
-%that’s in your domain model, make it a typed one and organize the related business
-%rules around that type. Many of the business rules will be automatically
-%enforced by the compiler, which means you won’t have to write explicit code for
-%them. If your implementation language has a proper type system, your DSL will be
-%as concise as ones written using dynamic languages.
-%-> types maken meer consise en robust
+\subsubsection*{Method chaining}
 
+Method chaining is the bread and butter of our DSL and at the same time also the \textit{only} way of expressing queries. This approach offers a fluent interface to the user in which it is hard to make any coding mistakes. The ability to express a state one wishes to encounter as a chained method to states he discovered earlier in the graph allows to build very readable queries. We illustrate this with an example: \texttt{G.skipZeroOrMore().functionCall()}. It is immediately obvious that this code is very intuitive: \texttt{G} is the entry point of our language, which indicates the start of a query. We then search for a path in the graph that contains a function call somewhere down that path. This is expressed by \texttt{skip}ping some, possibly none, states until a function call state is encountered.
 
-%deferred evaluation
-%-> Used to specify extra properties (not available at compile-time) + filters on values that aren't available
-
-%delimiter directed translation
-%-> Every method call is evaluated/parsed separately
-%Embedded interpretation ±
-%-> Kweni of dit er in moet
-%newline separators
-%-> Language supports newlines between every state
-%method chaining/function sequence/fluent interface
-%-> Bread and butter of our DSL
-%macro
-%-> Used when using user-specified/defined predicates
+\subsubsection*{Literal map}
 %literal map
 %-> Argument is a map similar to literal map
-%closure
-%-> prop/cond -> in literal map
+Specifying that one wishes to find states is often quite general. To this extent we need some sort of mechanism to express which types of states we want to match and what information we want to capture in (meta)variables. A literal map provides just this functionality by letting the user specify detailed key-value pairs. An example for could be: \texttt{.functionCall({name: 'f', arguments: '?args'})}. The literal map, enclosed in curly braces, indicates that only fuction calls with name \texttt{f} need to be matched and that the arguments of the matched state need to be captured in metavariable \texttt{?args}.
+
+\subsubsection*{Object scoping}
+
+The example for the method chaining design pattern is also applicable for the object scoping pattern. A single entry point \texttt{G} is created for queries, limiting the impact of the query that object. This pattern remedies two JavaScript flaws: Global namespace pollution and malicious code injection. This malicious code will only harm the \texttt{G} object, which is contained in some sort of sandbox.
 %object scoping
 %-> Alles wordt geevalueerd tegen 1 object om global namespace pollution tegen te gaan (alsook security issues)
-%state machine
-%-> Houd lijst van states bij die apart geprocessed worden
+
+\subsubsection*{Deferred evaluation}
+%deferred evaluation
+%-> Used to specify extra properties (not available at compile-time) + filters on values that aren't available
+Some queries contain definitions for extra properties and filters. The information for these filters and properties is often not available at compile-time of our language. A mechanism is needed to delay the evaluation of those filters and properties until the matching process in the backend has collected enough information. Our framework handles this by creating thunks for filters and properties and unwrapping these thunks when the matching engine needs to evaluate them. By the time the evaluation happens, all variables should be bound in these thunks in previous matching steps. Consider a metavariable \texttt{?val} which captures the value of an assignment. If we only want to match assignment states with a value greater than 2, we have to create a thunk for the filter function \texttt{>} with arguments \texttt{?val} and \texttt{2}. We can't disregard states with \texttt{?val} greater than 2 immediately, as we don't know which value will be bound to \texttt{?val} at compile time.
+
+\subsubsection*{Delimiter directed translation}
+%delimiter directed translation
+%-> Every method call is evaluated/parsed separately
+Inherent to our DSL is delimiter directed translation. As method chaining is used as a means to set up our fluent interface, all methods are separated by a dot (the delimiter). Each method separated by this dot gets separately translated internally into a representation that is easier for our backend to process.
+
+\subsubsection*{Newline separators}
+
+Finally, the newline separators design pattern is incorporated in our DSL. This design pattern allows users to enter newlines between parts of their code. This greatly improves the readability and can split a program up in logical parts. Our DSL supports newlines in queries. This can be very useful to separate different states or sequences of states. Consider an example in which we only want to find assignments to variables \texttt{a} and \texttt{b}. Code can then be divided in two distinct parts, as in example \ref{lst:newlineSeparators}.
+
+\begin{lstlisting}[label={lst:newlineSeparators},language=JavaScript,caption=Newline separators,mathescape=true]  % float=t?
+
+.assign({leftName: 'a'}) //first logical part
+.or()
+.assign({leftName: 'b'}) //second logical part
+\end{lstlisting}
+%newline separators
+%-> Language supports newlines between every state
+
 
