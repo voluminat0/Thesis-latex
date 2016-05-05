@@ -309,6 +309,45 @@
       \field{pages}{319\bibrangedash 349}
       \range{pages}{31}
     \endentry
+    \entry{DSLFowler}{book}{}
+      \name{author}{1}{}{%
+        {{hash=312ac886938a9b2be4f8eb607567fe4c}{Fowler}{F\bibinitperiod}{Martin}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {Addison-Wesley Professional}%
+      }
+      \strng{namehash}{312ac886938a9b2be4f8eb607567fe4c}
+      \strng{fullhash}{312ac886938a9b2be4f8eb607567fe4c}
+      \field{sortinit}{F}
+      \field{sortinithash}{c6a7d9913bbd7b20ea954441c0460b78}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1st}
+      \field{isbn}{0321712943, 9780321712943}
+      \field{title}{Domain Specific Languages}
+      \field{year}{2010}
+    \endentry
+    \entry{Ghosh:2010}{book}{}
+      \name{author}{1}{}{%
+        {{hash=f3be42aa1df228b42a25676cdbd0d941}{Ghosh}{G\bibinitperiod}{Debasish}{D\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Greenwich, CT, USA}%
+      }
+      \list{publisher}{1}{%
+        {Manning Publications Co.}%
+      }
+      \strng{namehash}{f3be42aa1df228b42a25676cdbd0d941}
+      \strng{fullhash}{f3be42aa1df228b42a25676cdbd0d941}
+      \field{sortinit}{G}
+      \field{sortinithash}{1c854ef9177a91bf894e66485bdbd3ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1st}
+      \field{isbn}{9781935182450}
+      \field{title}{DSLs in Action}
+      \field{year}{2010}
+    \endentry
     \entry{GateKeeper}{inproceedings}{}
       \name{author}{2}{}{%
         {{hash=b5a6716057fca01b6949fc57277e7e2d}{Guarnieri}{G\bibinitperiod}{Salvatore}{S\bibinitperiod}{}{}{}{}}%
@@ -601,6 +640,28 @@
       \field{pages}{481\bibrangedash 496}
       \range{pages}{16}
       \keyw{JavaScript,Web and client-side programming,aspects,browsers,language security,security policies}
+    \endentry
+    \entry{functionPurity}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=486b2699f07a3db0cb9bac3503e895e9}{Nicolay}{N\bibinitperiod}{Jens}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=5be67ae4958d5e0f4f0efe167af5c334}{Noguera}{N\bibinitperiod}{Carlos}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=3b3d87b36df328a2a97ee485f1b113ea}{De\bibnamedelima Roover}{D\bibinitperiod\bibinitdelim R\bibinitperiod}{Coen}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=8aec08ed0a99ee2f0084cea5c1bbc96f}{De\bibnamedelima Meuter}{D\bibinitperiod\bibinitdelim M\bibinitperiod}{Wolfgang}{W\bibinitperiod}{}{}{}{}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{3312f165cfdfc88d7edabd0ff5fe495b}
+      \strng{fullhash}{b0b022042b7d234f13b3312d0de2b33c}
+      \field{sortinit}{N}
+      \field{sortinithash}{925374ca63e7594de7fafdb83e64d41d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Source Code Analysis and Manipulation (SCAM), 2015 IEEE 15th International Working Conference on}
+      \field{title}{Detecting function purity in javascript}
+      \field{year}{2015}
+      \field{pages}{101\bibrangedash 110}
+      \range{pages}{10}
     \endentry
     \entry{JSNamespacing}{online}{}
       \name{author}{1}{}{%

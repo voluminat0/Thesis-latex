@@ -18,7 +18,7 @@ The actual architecture of the JS-QL framework is depicted in figure \ref{fig:ar
 \end{figure}
 \section{Flow graphs for JavaScript programs}
 
-The need for detailed control- and data flow information in our program representation graph limits the types of graphs that can be used for our framework. Program dependence graphs\cite{PDG} for example can be very useful to track the flow of information between certain points in a program but often lack more general information about program states, making them less qualified to use as our main program representation. In contrast, the JIPDA\cite{} abstract state graph contains all the information needed to precisely express patterns to be detected in a program. This section takes an in-depth look at the JIPDA abstract state graph and the information it holds in its states. Figure \ref{fig:JipdaGraph} shows part of a typical graph produced by JIPDA for a program containing a check for whether a number is equal to zero or not.
+The need for detailed control- and data flow information in our program representation graph limits the types of graphs that can be used for our framework. Program dependence graphs\cite{PDG} for example can be very useful to track the flow of information between certain points in a program but often lack more general information about program states, making them less qualified to use as our main program representation. In contrast, the JIPDA\cite{functionPurity} abstract state graph contains all the information needed to precisely express patterns to be detected in a program. This section takes an in-depth look at the JIPDA abstract state graph and the information it holds in its states. Figure \ref{fig:JipdaGraph} shows part of a typical graph produced by JIPDA for a program containing a check for whether a number is equal to zero or not.
 
 As can be observed, the graph depicts all possible paths a program can traverse. Since the analysis in JIPDA is flow-sensitive, it is guaranteed that a state \texttt{a} on some path in the graph occurs before a state \texttt{b} on the same path if state \texttt{a} occurs first before state \texttt{b} on the path. This makes reasoning about patterns in a program much easier, since no false positives will occur with regards to the order of execution of states. The graph produced by the JIPDA analysis is also a flow graph, and more precisely maintains information about two types of flows:
 %TODO uitleggen flow graph value flow en control flow -> in JIPDA
@@ -32,7 +32,7 @@ We need these kinds of information to be able to make correct assumptions at cer
 
 \subsection*{States of an abstract state graph}
 
-The abstract state graph is an alternation of four different types of states. JIPDA internally uses Esprima\cite{Esprima} to parse JavaScript code and set up an abstract syntax tree (AST). This AST is the starting point for the analysis that JIPDA performs, hence information about the nodes from the AST is also contained in certain states in the resulting graph. These states are marked in red and are so-called \textit{evaluation states}. Other states are \textit{continuation states} (green), \textit{return states} (blue) and \textit{result states} (yellow).
+JIPDA internally uses Esprima\cite{Esprima} to parse JavaScript code and set up an abstract syntax tree (AST). This AST is the starting point for the analysis that JIPDA performs, hence information about the nodes from the AST is also contained in certain states in the resulting graph. The small-step semantics of a program are defined by an abstract machine that transitions between different states. The abstract machine is in eval-continuation style, indicating that a state is either an evaluation state or a continuation state. These states correspond to the states that can be seen in the abstract state graph. This graph is an alternation of four different types of states. These states are marked in red and are so-called \textit{evaluation states}. Other states are \textit{continuation states} (green), \textit{return states} (blue) and \textit{result states} (yellow). The states the machine can be in are described below:
 
 \begin{figure}[!ht]
     \centering
@@ -43,10 +43,10 @@ The abstract state graph is an alternation of four different types of states. JI
 
 %HELP VRAGEN BIJ JENS
 \begin{enumerate}
-\item \textit{Evaluation state}: Represents the evaluation of an expression or statement in the program.
-\item \textit{Continuation state}: ...
-\item \textit{Return state}: Indicates the return of a function application, having the returned value stored in one of its properties.
-\item \textit{Result state}: Final state of the graph, indicating the abstract final value(s) of the program. The graph can have more than one result state, depending on the program's nature. 
+\item \textit{Evaluation state}: Represents the evaluation of an expression of the program in the binding environment $\beta$.
+\item \textit{Continuation state}: A state which indicates that the machine is ready to continue evaluation with the value it just calculated.
+\item \textit{Return state}: This is a special kind of continuation state, as it indicates the return of a function application. When the machine is in this state it is ready to continue evaluation with the value calculated for the return of the function application.
+\item \textit{Result state}: The final state of the graph, indicating the final computed value(s) of the program. This is also a special kind of continuation state. The machine and graph can have more than one result state, depending on the program's nature. 
 \end{enumerate}
 
 These states all contain valuable information about the point in the program they represent. The next part of this section discusses the different attributes that can be found in the states of the abstract state graph. 
@@ -103,15 +103,15 @@ The parsed source code is a list of nodes contained in the body property of the 
 
 \subsection*{Binding environment and store}
 
-In JIPDA, variables point to addresses. The mapping of a variable to an address is called a \textit{binding}. These bindings reside in a \textit{binding environment $\hat{\beta}$}. Each binding maps to a value through the \textit{store} $\hat{\sigma}$. The store acts as a heap where bindings represent addresses on that heap. Being able to capture bindings, addresses and values in metavariables enables us to express and inspect data flow properties of programs. Variables are mapped to values in two stages. The first step for looking up a variable $\hat{\nu}$ is to locate its binding in $\hat{\beta}$. Next, the value of the variable can be looked up in the store by composing these two functions. The value of $\hat{\nu}$ is given by $\hat{\sigma}(\hat{\beta}(\hat{\nu}))$. This way of mapping variables to values allows us to reason about individual bindings, which is necessary because during interpretation multiple bindings to the same variable can exist simultaneously. Listing \ref{lst:benvStoreExample} gives an example of how a variable gets a binding and is later looked up.
+In JIPDA, variables point to addresses. The mapping of a variable to an address is called a \textit{binding}. These bindings reside in a \textit{binding environment} $\beta$. Each binding maps to a value through the \textit{store} $\sigma$. The store acts as a heap where bindings represent addresses on that heap. Being able to capture bindings, addresses and values in metavariables enables us to express and inspect data flow properties of programs. Variables are mapped to values in two stages. The first step for looking up a variable $\nu$ is to locate its binding in $\beta$. Next, the value of the variable can be looked up in the store by composing these two functions. The value of $\nu$ is given by $\sigma(\beta(\nu))$. This way of mapping variables to values allows us to reason about individual bindings, which is necessary because during interpretation multiple bindings to the same variable can exist simultaneously. Listing \ref{lst:benvStoreExample} gives an example of how a variable gets a binding and is later looked up.
 \\
 \begin{lstlisting}[label={lst:benvStoreExample},language=JavaScript,caption=Example of the binding environment and store workings, mathescape=true]  % float=t?
 
 function f(){
-  //$\hat{\beta}$ contains a binding $x \rightarrow \widehat{Addr}$
+  //$\beta$ contains a binding $x \rightarrow \widehat{Addr}$
   var x = 3; 
   
-  //$\hat{\sigma}$ has an entry $\widehat{Addr} \rightarrow \widehat{Val}$
+  //$\sigma$ has an entry $\widehat{Addr} \rightarrow \widehat{Val}$
   //and the (set of) corresponding value(s) for x is returned. 
   return x;
 }
@@ -121,19 +121,13 @@ var value = f();
 
 \subsection*{Value}
 %Value uit store
-The lookup of a variable through a binding in the store results in the (set of) value(s) for that variable. This information is available in all states but evaluation states. For continuation states, the value will represent the looked up or calculated values of an expression. A return state's value is the set of possible values that will be returned. Result states contain the final values of a program.
-
-\subsection*{Application context}
-
-Some text about the application context.
+The lookup of a variable through a binding in the store results in the (set of) value(s) for that variable. This information is available in all states but evaluation states. Values can either be addresses or undefined. For continuation states, the value will represent the looked up or calculated values of an expression. A return state's value is the set of possible values that will be returned. Result states contain the final values of a program.
 
 \subsection*{Stack}
 
-Some text about the stack.
+The stack is a local continuation delimited by a meta-continuation. The \textit{local continuation} is a (possibly empty) list of frames which acts as a stack (of frames), with normal push and pop functionalities. A \textit{meta-continuation} is either empty or a stack address pointing to the underlying stacks in the stack store. These stack addresses are generated at call sites and thus represent the application contexts. Useful information such as the call stack can be obtained by tracing out all reachable stack addresses in the stack store, starting from the context that is directly contained in the current state. The traversal of the stack terminates when we encounter an empty meta-continuation, also called the \textit{root context}. A program starts and terminates evaluation in this root context, provided that evaluation happens without errors. The root context corresponds to the top-level part of a program, the global namespace in JavaScript.
 
-
-
-
+Although our framework doesn't provide stack traversal functionalities, basic properties of the stack (local continuation and meta-continuation) can be used and inspected to detect different kinds of states. For a function application, states corresponding with the start and end of the application will have the same local and meta-continuation. With this information, we can for example check for each path if there is a function application followed by a specific state \textit{before} the end of that function application. A concrete example of such a state is a recursive function call.
 
 \section{External DSLs for querying graphs}
 
@@ -164,10 +158,10 @@ Benefits of domain-specific languages include:
 \begin{itemize}
 \item DSLs are application-specific. This allows users to express their ideas at the level of abstraction of the problem domain.
 \item DSL programs are concise, self-documenting and highly reusable\cite{Bentley:1986}
-\item DSLs enhance productivity, maintainability, portability and reliability
-\item DSLs can shift the development of systems from typical system developers to domain experts with deeper knowledge of the domain.
-\item DSLs contain domain knowledge which can be reused
-\item DSLs significantly reduce programming errors
+\item Increased productivity: Once the language design and implementation have finished, work becomes much more efficient as you don't have to write the boilerplate code of the GPL manually. In this way you can replace a lot of GPL code with a few lines of DSL code.
+\item Domain expert involvement: DSLs whose domain, abstractions and notations are closely aligned with how domain experts reason and express themselves, allow for a fluent integration between developers and domain experts. Domain experts can read, and possibly even write code in the language as they are not directly confronted with any implementation details.
+\item Programs are often expressed at a level of abstraction that is meaningful for the domain. This brings along that these programs contain domain knowledge and that they can be reused with few to no modifications.
+\item Improved code quality: Fewer bugs, better architectural conformance, increased maintainability. This is the result of the partially removing the programmers freedom and the avoidance of code duplication by providing DSL constructs.
 \end{itemize}
 
 \noindent Some counterarguments for using a DSL are:
@@ -182,7 +176,7 @@ We argue that the costs for setting up a DSL do not weigh up against the benefit
 
 \subsection{External DSLs}
 
-Many DSLs come along with a compiler which translates DSL programs into applications. These kinds of DSLs are called \textit{external} DSLs. the compiler is also called an application generator\cite{Cleaveland:1988}, whereas the DSL is the application-specific language. The main advantage external DSLs is that the implementation of the compiler can completely be tailored to the DSL. The DSL in turn is restricted in no way with regards to notation, primitives and the like because its syntax is independent of the underlying language (since there is none). The remainder of this section discusses existing work about external DSLs used for graph traversal and graph querying.
+Many DSLs come along with a compiler which translates DSL programs into applications. These kinds of DSLs are called \textit{external} DSLs. the compiler is also called an application generator\cite{Cleaveland:1988}, whereas the DSL is the application-specific language. The main advantage of external DSLs is that the implementation of the compiler can completely be tailored to the DSL. The DSL in turn is restricted in no way with regards to notation, primitives and the like because its syntax is independent of the underlying host language (since there is none). The remainder of this section discusses existing work about external DSLs used for graph traversal and graph querying.
 
 \subsubsection*{StruQL}
 
@@ -279,7 +273,7 @@ Figure \ref{fig:DSLTechniques} shows the different kinds of implementation techn
 
 For our internal language we can already rule out the type embedding technique as JavaScript is a dynamically typed language. The problem domain of our approach doesn't need extra functionality to be added to individual objects in our language. These individual objects in our case are the states of the flow graph. States already are self-contained (they contain all necessary information) and don't require additional individual functionality. 
 
-This leaves us with the smart API approach, which is ideal for our domain. By chaining methods in our DSL we can specify which states we want to encounter along the graph in a clearly specified order. Combining a smart API with several carefully chosen DSL design patterns result in the concise and easily readable language that JS-QL is today. The remainder of this section elaborates on the chosen design patterns.
+This leaves us with the smart API approach, which is ideal for our domain. By chaining methods in our DSL we can specify which states we want to encounter along the graph in a clearly specified order. Combining a smart API with several carefully chosen DSL design patterns\cite{DSLFowler} result in the concise and easily readable language that JS-QL is today. The remainder of this section elaborates on the chosen design patterns.
 
 \subsubsection*{Method chaining}
 

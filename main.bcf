@@ -2240,6 +2240,7 @@
     <bcf:citekey order="3">bddbddb</bcf:citekey>
     <bcf:citekey order="4">algoEngine</bcf:citekey>
     <bcf:citekey order="5">PDG</bcf:citekey>
+    <bcf:citekey order="6">functionPurity</bcf:citekey>
     <bcf:citekey order="7">Esprima</bcf:citekey>
     <bcf:citekey order="8">vanDeursen:2000</bcf:citekey>
     <bcf:citekey order="9">FluentInterfacesJava</bcf:citekey>
@@ -2257,15 +2258,16 @@
     <bcf:citekey order="21">RubyDSL</bcf:citekey>
     <bcf:citekey order="22">Ecma6</bcf:citekey>
     <bcf:citekey order="23">Ghosh:2010</bcf:citekey>
-    <bcf:citekey order="24">GateKeeper</bcf:citekey>
-    <bcf:citekey order="25">PrototypePoisoning</bcf:citekey>
-    <bcf:citekey order="26">JSNamespacing</bcf:citekey>
-    <bcf:citekey order="27">HeapSpraying</bcf:citekey>
-    <bcf:citekey order="28">MaintainableSoftware</bcf:citekey>
-    <bcf:citekey order="29">PidginQLTechReport</bcf:citekey>
+    <bcf:citekey order="24">DSLFowler</bcf:citekey>
+    <bcf:citekey order="25">GateKeeper</bcf:citekey>
+    <bcf:citekey order="26">PrototypePoisoning</bcf:citekey>
+    <bcf:citekey order="27">JSNamespacing</bcf:citekey>
+    <bcf:citekey order="28">HeapSpraying</bcf:citekey>
+    <bcf:citekey order="29">MaintainableSoftware</bcf:citekey>
     <bcf:citekey order="30">PidginQLTechReport</bcf:citekey>
-    <bcf:citekey order="31">PDG</bcf:citekey>
-    <bcf:citekey order="32">ConScript</bcf:citekey>
+    <bcf:citekey order="31">PidginQLTechReport</bcf:citekey>
+    <bcf:citekey order="32">PDG</bcf:citekey>
+    <bcf:citekey order="33">ConScript</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="nty" type="entry" sortscheme="nty">
   <bcf:sorting>
