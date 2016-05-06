@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.26)  5 MAY 2016 16:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.26)  6 MAY 2016 11:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -971,12 +971,13 @@ Package pdftex.def Info: images/Architecture.pdf used on input line 15.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 33.
 
-<images/JipdaGraph.png, id=356, 273.02pt x 304.13625pt>
+<images/JipdaGraph.png, id=355, 273.02pt x 304.13625pt>
 File: images/JipdaGraph.png Graphic file (type png)
 
 <use images/JipdaGraph.png>
 Package pdftex.def Info: images/JipdaGraph.png used on input line 39.
 (pdftex.def)             Requested size: 263.00023pt x 292.97452pt.
+ [5]
 LaTeX Font Info:    Try loading font information for OMS+pcr on input line 58.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omspcr.fd
@@ -999,7 +1000,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 57--65
 
  []
 
-[5] [6 <./images/JipdaGraph.png>]
+[6 <./images/JipdaGraph.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 106--109
 
  []
@@ -1021,29 +1022,29 @@ Overfull \hbox (18.94424pt too wide) in paragraph at lines 240--240
 []\OT1/ptm/b/n/17.28 Design of an in-ter-nal DSL for query-ing flow graphs 
  []
 
-[14] <images/DSLTechniques.pdf, id=511, 584.1825pt x 222.8325pt>
+[14] [15] <images/DSLTechniques.pdf, id=517, 584.1825pt x 222.8325pt>
 File: images/DSLTechniques.pdf Graphic file (type pdf)
 
 <use images/DSLTechniques.pdf>
 Package pdftex.def Info: images/DSLTechniques.pdf used on input line 261.
 (pdftex.def)             Requested size: 312.00119pt x 119.01529pt.
- [15 <./images/DSLTechniques.pdf>]
+
 Overfull \hbox (0.90717pt too wide) in paragraph at lines 270--271
 \OT1/ptm/m/n/12 cally typed pro-gram-ming lan-guages it is pos-si-ble to de-fin
 e dy-namic builders.
  []
 
-[16] [17]) [18]
+[16 <./images/DSLTechniques.pdf>] [17] [18]) [19]
 Chapter 4.
-(./chapters/JSQL.tex) [19
+(./chapters/JSQL.tex) [20
 
 ]
 Chapter 5.
-(./chapters/implementation.tex) [20
+(./chapters/implementation.tex) [21
 
 ]
 Chapter 6.
-(./chapters/evaluation.tex [21
+(./chapters/evaluation.tex [22
 
 ]
 Overfull \hbox (23.09712pt too wide) in paragraph at lines 29--30
@@ -1056,13 +1057,13 @@ File: lstlang1.sty 2014/09/06 1.5e listings language file
 )
 (/usr/local/texlive/2015/texmf-dist/tex/latex/listings/lstlang2.sty
 File: lstlang2.sty 2014/09/06 1.5e listings language file
-) [22]
+) [23]
 Overfull \hbox (6.93253pt too wide) in paragraph at lines 74--76
 \OT1/ptm/m/n/12 sim-i-lar to the state in list-ing [][]6.3[][], with the only d
 if-fer-ence in the \OT1/pcr/m/n/12 mainObjectName
  []
 
-[23] [24]
+[24] [25]
 Overfull \hbox (31.32986pt too wide) in paragraph at lines 128--129
 \OT1/ptm/m/n/12 What needs to be de-tected are the calls to \OT1/pcr/m/n/12 doc
 ument.write/document.writeln\OT1/ptm/m/n/12 ,
@@ -1074,22 +1075,22 @@ Overfull \hbox (37.07695pt too wide) in paragraph at lines 128--129
 ][] does just that. \OT1/pcr/m/n/12 DocumentWrite(i)
  []
 
-[25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35]
+[26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36]
 Overfull \hbox (5.40962pt too wide) in paragraph at lines 457--458
 \OT1/ptm/m/n/12 the \OT1/pcr/m/n/12 ?name \OT1/ptm/m/n/12 vari-able which point
 s to the ad-dress of the global \OT1/pcr/m/n/12 document.cookie
  []
 
-[36] [37] [38] [39]) [40]
+[37] [38] [39] [40]) [41]
 Chapter 7.
-(./chapters/conclusion-and-future-work.tex) [41
+(./chapters/conclusion-and-future-work.tex) [42
 
-] [42
+] [43
 
 
 ]
 Appendix A.
-[43
+[44
 
 ]
 Overfull \hbox (1.96597pt too wide) in paragraph at lines 224--224
@@ -1097,7 +1098,7 @@ Overfull \hbox (1.96597pt too wide) in paragraph at lines 224--224
  \OT1/ptm/m/sc/12 isbn\OT1/ptm/m/n/12 :
  []
 
-[44
+[45
 
 ]
 Overfull \hbox (23.90715pt too wide) in paragraph at lines 224--224
@@ -1111,11 +1112,18 @@ Overfull \hbox (3.53706pt too wide) in paragraph at lines 224--224
 -guages for Graph
  []
 
-[45]
+[46]
 Overfull \hbox (24.4472pt too wide) in paragraph at lines 224--224
 []\OT1/ptm/m/n/12 Addy Os-mani. \OT1/ptm/m/it/12 Es-sen-tial JavaScript Names-p
 ac-ing Pat-terns\OT1/ptm/m/n/12 . 2011. \OT1/ptm/m/sc/12 url\OT1/ptm/m/n/12 : [
 ][]$\OT1/pcr/m/n/12 https :
+ []
+
+
+Overfull \hbox (10.49396pt too wide) in paragraph at lines 224--224
+\OT1/ptm/m/n/12 pp. 1{10. \OT1/ptm/m/sc/12 isbn\OT1/ptm/m/n/12 : 978-1-4503-390
+2-5. \OT1/ptm/m/sc/12 doi\OT1/ptm/m/n/12 : [][]$\OT1/pcr/m/n/12 10 . 1145 / 281
+5072 . 2815073$[][]\OT1/ptm/m/n/12 .
  []
 
 
@@ -1124,8 +1132,9 @@ Overfull \hbox (10.18898pt too wide) in paragraph at lines 224--224
  Soft-ware, Java Edi-tion\OT1/ptm/m/n/12 . 1st. O'Reilly
  []
 
+[47]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 224.
-[46]
+ [48]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 224.
  (./main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 224.
@@ -1137,13 +1146,13 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 15831 strings out of 493089
- 251488 string characters out of 6134842
- 763269 words of memory out of 5000000
- 18519 multiletter control sequences out of 15000+600000
+ 15839 strings out of 493089
+ 251648 string characters out of 6134842
+ 763277 words of memory out of 5000000
+ 18524 multiletter control sequences out of 15000+600000
  34240 words of font info for 76 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 44i,16n,49p,2322b,1916s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,16n,49p,2322b,1905s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -1157,10 +1166,10 @@ dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts
 /type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw
 /times/utmri8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/zapfding
 /uzdr.pfb>
-Output written on main.pdf (52 pages, 341534 bytes).
+Output written on main.pdf (54 pages, 343377 bytes).
 PDF statistics:
- 1218 PDF objects out of 1440 (max. 8388607)
- 1134 compressed objects within 12 object streams
- 538 named destinations out of 1000 (max. 500000)
+ 1232 PDF objects out of 1440 (max. 8388607)
+ 1146 compressed objects within 12 object streams
+ 541 named destinations out of 1000 (max. 500000)
  458 words of extra memory for PDF output out of 10000 (max. 10000000)
 

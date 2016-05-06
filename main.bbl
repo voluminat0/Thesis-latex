@@ -708,6 +708,37 @@
       \field{pages}{163\bibrangedash 196}
       \range{pages}{34}
     \endentry
+    \entry{Gremlin}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=9c6d81b05c71ac018f1eea092bf5239e}{Rodriguez}{R\bibinitperiod}{Marko\bibnamedelima A.}{M\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Pittsburgh, PA, USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{9c6d81b05c71ac018f1eea092bf5239e}
+      \strng{fullhash}{9c6d81b05c71ac018f1eea092bf5239e}
+      \field{sortinit}{R}
+      \field{sortinithash}{c7387613477035a752d935acfc3e3ea2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 15th Symposium on Database Programming Languages}
+      \field{isbn}{978-1-4503-3902-5}
+      \field{series}{DBPL 2015}
+      \field{title}{The Gremlin Graph Traversal Machine and Language (Invited Talk)}
+      \field{year}{2015}
+      \field{pages}{1\bibrangedash 10}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1145/2815072.2815073
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/2815072.2815073
+      \endverb
+      \keyw{finite automata,functional languages,graph traversal,virtual machines}
+    \endentry
     \entry{Simos:1995}{inproceedings}{}
       \name{author}{1}{}{%
         {{hash=0d0f7aad0ae45fc7f63b4a26440fcc86}{Simos}{S\bibinitperiod}{Mark\bibnamedelima A.}{M\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
