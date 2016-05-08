@@ -27,9 +27,52 @@ One particularly interesting technique used for static analysis is \textit{abstr
 %Quentin thesis
 Abstract interpretation is a static analysis technique used to reason about a program. It does this by interpreting an approximation of a program through abstraction of its semantics. A \textit{sound} analysis can be performed and the precision of this analysis can be adjusted to the user's needs through various mechanisms. This increase in precision comes at the cost of a greater analysis running time. 
 
-Abstract interpretation works in a similar way as normal program interpretation (so-called \textit{concrete interpretation}). The concrete interpretation of a program can be described as follows: 
+Abstract interpretation works in a similar way as normal program interpretation (so-called \textit{concrete interpretation}). The concrete interpretation of a program can be described as follows: A program \textit{e} can be injected into an initial state \textit{$s_0$}, the entry point of the program. From this state other states can be reached using a \textit{transition function}, until after several transitions a final state is reached. If no such state is ever reached, the execution will not terminate and hence will run indefinitely. The output of interpreting a program like this is a possibly infinite trace of execution states. The layout of this execution trace might depend on the input of the program or other changing values, making it useless for static analysis. 
 
-\subsection{Lattices}
+Abstract interpretation solves this by applying abstraction in order to compute a finite trace. Primitive values and addresses are \textit{abstracted} to be made finite, resulting in something which is computable in finite time but less precise. Abstract interpretation is similar to concrete interpretation: A program is again injected, but this time into an \textit{abstract state} $\hat{s_0}$. A transition from one state to another is done through an \textit{abstract transition function}. The difference between this and a regular transition function is that an abstract state can make an abstract transition to multiple states. This is a consequence of the precision loss due to abstraction. Figure \ref{fig:abstractInterpretation} shows the concrete and abstract interpretation traces for \texttt{while(x < 5)\{ x--;\}}. We assume that for the concrete case \texttt{x} is smaller than 5 when it reaches the code. The program will then never terminate, leading to an infinite execution trace. For the abstract case, we assume that \texttt{x} is abstracted. We see that in abstract state $\hat{s_3}$ the program can go to either $\hat{s_4}$ or $\hat{s_4}'$, and that the (possibly infinite) \texttt{while} loop is represented as a loop in the abstract state graph. This finite representation of a program (which is actually an abstract state graph) proves to be useful to provide answers to non-trivial questions about the program.
+
+\begin{figure}[!h]
+    \centering
+      \includegraphics[width=1.0\textwidth]{images/abstractInterpretation} 
+      \caption{Traces of concrete and abstract interpretation}
+    \label{fig:abstractInterpretation}
+\end{figure}
+
+
+\subsection{Mathematical background}
+\label{subsec:lattice}
+
+In order to fully understand abstract interpretation, we will first look at the mathematical concepts it relies on. The concepts defined in this section will aid us in formally defining an \texttt{abstraction}. This definition is needed to understand how precision is caused by abstracting values.
+
+\begin{definition}
+\textit{A relation $\sqsubseteq: S \times S$ is a \textbf{partial order} if it has the following characteristics:}
+\begin{enumerate}
+\item Reflexivity: $\forall x \in S : x \sqsubseteq x$
+\item Transitivity:  $\forall x,y,z \in S : x \sqsubseteq y \wedge y \sqsubseteq z \Rightarrow x \sqsubseteq z$
+\item Anti-symmetry: $\forall x,y \in S : x \sqsubseteq y \wedge y \sqsubseteq x \Rightarrow x = y$
+\end{enumerate}
+\end{definition}
+\begin{definition}
+\textit{A \textbf{partially ordered set} ($S$,$\sqsubseteq$) is a set with a partial order}
+\end{definition}
+\begin{definition}
+\textit{For a subset $X \subseteq S$, $u$ is an \textbf{upper bound} of $X$ if $u\in S, \forall x \in X: x \sqsubseteq u$. $u$ is the \textbf{least upper bound} of $X$ ($\bigsqcup X$) if for every upper bound $x$, $u \sqsubseteq x$. Similarly, the \textbf{lower bound} of $X$ can be defined as: $l \in S,\forall x \in X: l \sqsubseteq x$. $l$ is the \textbf{greatest lower bound} of $X$ ($\bigsqcap X$) if for every lower bound $x, x \sqsubseteq l$. Two important operators on partial orders are \textbf{join} ($\sqcup$) and \textbf{meet} ($\sqcap$). $x \sqcup y$ denotes $\bigsqcup\{x,y\}$, the least upper bound of $x$ and $y$, $x \sqcap y$ denotes $\bigsqcap\{x,y\}$, the greatest lower bound of $x$ and $y$.}
+%Least upper bound
+\end{definition}
+
+\begin{definition}
+\textit{A \textbf{lattice} $(L,\sqsubseteq)$ is a partially ordered set in which any two elements have a least upper bound and a greatest lower bound. A \textbf{complete lattice} $(C,\sqsubseteq)$ is a partially ordered set in which all subsets have a least upper bound and a greatest upper bound. A complete lattice includes two special elements: a \textbf{bottom} element $\bot = \bigsqcap C$ and a \textbf{top} element $\top = \bigsqcup C$.}
+\end{definition}
+\begin{definition}
+%Complete lattice
+\end{definition}
+
+%lattice voorbeeld
+
+\subsection{Abstraction}
+%Abstraction zonder gaulois, enkel precision
+%voorbeeld van sign abstraction
+
 \section{Support for generic vulnerabilities}
 \label{sec:genericVulnerabilities}
 % Ref naar findbugs enzo (quentin thesis ook?)
