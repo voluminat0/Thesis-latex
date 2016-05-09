@@ -261,6 +261,28 @@
       \field{pages}{26\bibrangedash 36}
       \range{pages}{11}
     \endentry
+    \entry{splint}{article}{}
+      \name{author}{2}{}{%
+        {{hash=fdf60d29316eacfbd0fdc22e786afd78}{Evans}{E\bibinitperiod}{David}{D\bibinitperiod}{}{}{}{}}%
+        {{hash=cf3413b1674218c82a52270e6364c56b}{Larochelle}{L\bibinitperiod}{David}{D\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{ce79e29ce0bfe3cc7f1ca306682795b3}
+      \strng{fullhash}{ce79e29ce0bfe3cc7f1ca306682795b3}
+      \field{sortinit}{E}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{software, IEEE}
+      \field{number}{1}
+      \field{title}{Improving security using extensible lightweight static analysis}
+      \field{volume}{19}
+      \field{year}{2002}
+      \field{pages}{42\bibrangedash 51}
+      \range{pages}{10}
+    \endentry
     \entry{Fernandez97aquery}{article}{}
       \name{author}{4}{}{%
         {{hash=990c9d37c6ee79c6bca5d6dbdd7e70f3}{Fernandez}{F\bibinitperiod}{Mary}{M\bibinitperiod}{}{}{}{}}%
@@ -471,6 +493,28 @@
       \verb http://esprima.org
       \endverb
     \endentry
+    \entry{Findbugs}{article}{}
+      \name{author}{2}{}{%
+        {{hash=8bea9aecfba9dbf4cfd7e0b8b9cd5933}{Hovemeyer}{H\bibinitperiod}{David}{D\bibinitperiod}{}{}{}{}}%
+        {{hash=d2e8bd4544451d3ad099f420ff11a3ed}{Pugh}{P\bibinitperiod}{William}{W\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{154f2dc98f4102d990d85d7724f62ad5}
+      \strng{fullhash}{154f2dc98f4102d990d85d7724f62ad5}
+      \field{sortinit}{H}
+      \field{sortinithash}{82012198d5dfa657b8c4a168793268a6}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{ACM Sigplan Notices}
+      \field{number}{12}
+      \field{title}{Finding bugs is easy}
+      \field{volume}{39}
+      \field{year}{2004}
+      \field{pages}{92\bibrangedash 106}
+      \range{pages}{15}
+    \endentry
     \entry{Hudak:1996}{article}{}
       \name{author}{1}{}{%
         {{hash=ebfbf9d5ed6e5a1698b8fe9fb2b322a4}{Hudak}{H\bibinitperiod}{Paul}{P\bibinitperiod}{}{}{}{}}%
@@ -513,6 +557,32 @@
       \verb{url}
       \verb http://www.ecma-international.org/ecma-262/6.0/index.html
       \endverb
+    \endentry
+    \entry{CodeSonar}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=09e5a2a46e4d6b74cfe8033e33402e47}{Jetley}{J\bibinitperiod}{Raoul\bibnamedelima Praful}{R\bibinitperiod\bibinitdelim P\bibinitperiod}{}{}{}{}}%
+        {{hash=a9ba0f1de015cedf640e2d07065c72bc}{Jones}{J\bibinitperiod}{Paul\bibnamedelima L.}{P\bibinitperiod\bibinitdelim L\bibinitperiod}{}{}{}{}}%
+        {{hash=a5ef2c988eb50a049dd4ec8176f589d4}{Anderson}{A\bibinitperiod}{Paul}{P\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Tucson, Arizona}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{cd51f54e3b36316b5472fc6cc80931e5}
+      \strng{fullhash}{cd51f54e3b36316b5472fc6cc80931e5}
+      \field{sortinit}{J}
+      \field{sortinithash}{ec3950a647c092421b9fcca6d819504a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 2008 Workshop on Static Analysis}
+      \field{isbn}{978-1-59593-924-1}
+      \field{series}{SAW '08}
+      \field{title}{Static Analysis of Medical Device Software Using CodeSonar}
+      \field{year}{2008}
+      \field{pages}{22\bibrangedash 29}
+      \range{pages}{8}
     \endentry
     \entry{PidginQLTechReport}{report}{}
       \name{author}{4}{}{%
@@ -682,6 +752,27 @@
       \verb https://addyosmani.com/blog/essential-js-namespacing
       \endverb
     \endentry
+    \entry{OWASP:LAPSE}{incollection}{}
+      \name{author}{3}{}{%
+        {{hash=f4f873e55ce15dba20ac8ef288d9b5ba}{Pérez}{P\bibinitperiod}{Pablo\bibnamedelima Martı́n}{P\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+        {{hash=383cd9bd6bee93daea04a2d88f6dfe6d}{Filipiak}{F\bibinitperiod}{Joanna}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=fd496f64fd59d4259f5bb8010eee862b}{Sierra}{S\bibinitperiod}{José\bibnamedelima Marı́a}{J\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{d5723a2dfbbd8c5a7c4be1435168e80d}
+      \strng{fullhash}{d5723a2dfbbd8c5a7c4be1435168e80d}
+      \field{sortinit}{P}
+      \field{sortinithash}{c0a4896d0e424f9ca4d7f14f2b3428e7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Future Information Technology}
+      \field{title}{LAPSE+ static analysis security software: Vulnerabilities detection in java EE applications}
+      \field{year}{2011}
+      \field{pages}{148\bibrangedash 156}
+      \range{pages}{9}
+    \endentry
     \entry{Reps1995}{inbook}{}
       \name{author}{1}{}{%
         {{hash=c2ff67335f7a60309a50e4475926590d}{Reps}{R\bibinitperiod}{Thomas\bibnamedelima W.}{T\bibinitperiod\bibinitdelim W\bibinitperiod}{}{}{}{}}%
@@ -770,6 +861,33 @@
       \endverb
       \keyw{domain analysis,domain engineering,domain modeling,feature model,organization domain,stakeholder model,variability modeling}
     \endentry
+    \entry{JOANA}{article}{}
+      \name{author}{7}{}{%
+        {{hash=20828927e3556800731f1b873e386107}{Snelting}{S\bibinitperiod}{Gregor}{G\bibinitperiod}{}{}{}{}}%
+        {{hash=7d718c300c2cf1c4fd5ebcb0a6991e0f}{Giffhorn}{G\bibinitperiod}{Dennis}{D\bibinitperiod}{}{}{}{}}%
+        {{hash=c2d3b1a4c007b4f1270373c0af5ef530}{Graf}{G\bibinitperiod}{Jürgen}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=7ea0cd575eb8568613cd0af3aa2a3947}{Hammer}{H\bibinitperiod}{Christian}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=7a3998888fd4b2740f3d44755fd96c2d}{Hecker}{H\bibinitperiod}{Martin}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=965ad68e85f1aa33e86aafb3af0d3174}{Mohr}{M\bibinitperiod}{Martin}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=30ab2cb2bac19baad392c0f37d6245d1}{Wasserrab}{W\bibinitperiod}{Daniel}{D\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{44b51ea0b281acb00c61369bfbe78896}
+      \strng{fullhash}{20421c48832e6b659d695af00cf7f9a3}
+      \field{sortinit}{S}
+      \field{sortinithash}{fd1e7c5ab79596b13dbbb67f8d70fb5a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{it - Information Technology}
+      \field{month}{11}
+      \field{title}{Checking Probabilistic Noninterference Using JOANA}
+      \field{volume}{56}
+      \field{year}{2014}
+      \field{pages}{280\bibrangedash 287}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1515/itit-2014-1051
+      \endverb
+    \endentry
     \entry{MaintainableSoftware}{book}{}
       \name{author}{5}{}{%
         {{hash=911dc764b805261ce617fe06d80754e3}{Visser}{V\bibinitperiod}{Joost}{J\bibinitperiod}{}{}{}{}}%
@@ -818,6 +936,19 @@
       \field{year}{2005}
       \field{pages}{97\bibrangedash 118}
       \range{pages}{22}
+    \endentry
+    \entry{flawfinder}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=a3a24201f540d5b88864c19233e02618}{Wheeler}{W\bibinitperiod}{David\bibnamedelima A}{D\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{a3a24201f540d5b88864c19233e02618}
+      \strng{fullhash}{a3a24201f540d5b88864c19233e02618}
+      \field{sortinit}{W}
+      \field{sortinithash}{99e3ba1b3f78bb6f073e7fa7ac11636b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Flawfinder}
+      \field{year}{2011}
     \endentry
   \endsortlist
 \endrefsection

@@ -21,7 +21,7 @@ Rice's theorem tells us that there is no general or effective method to prove no
 \end{figure}
 
 \textit{Precision} is very important in static analysis. Consider a static analyzer that concludes for each property that it is \textit{maybe} satisfied. It is clear to see that there is no precision in this analysis, rendering it useless. We have to strive to attain enough precision to solve the maximum number of problem instances. \textit{Speed} on the other hand is less important for static analysis. As static analysis is decidable, it is guaranteed that the analysis will run in finite time, but gathering precise results is much more meaningful than the performance of the analysis itself. 
-One particularly interesting technique used for static analysis is \textit{abstract interpretation}. This technique mimics interpretation of the program and allows to stay close to the original language semantics of those program without having to modify or instrument them to perform the analysis (in contrast to other static analysis techniques such as \textit{symbolic execution}). This mimicing of programs fits well for this dissertation, as we need to check for application-specific security vulnerabilities. It is thus a prerequisite that the semantics of the analyzed program lean as close to the original semantics as possible. A nice feature of abstract interpretation is that it allows to specify the precision needed by parameterizing it with a \textit{lattice}, but more on the topic of lattices follows in section \ref{subsec:lattice}. 
+One particularly interesting technique used for static analysis is \textit{abstract interpretation}. This technique mimics interpretation of the program and allows to stay close to the original language semantics of those program without having to modify or instrument them to perform the analysis (in contrast to other static analysis techniques such as \textit{symbolic execution}). This mimicing of programs fits well for this dissertation, as we need to check for application-specific security vulnerabilities. It is thus a prerequisite that the semantics of the analyzed program lean as close to the original semantics as possible. A nice feature of abstract interpretation is that it allows to specify the precision needed by parameterizing it with e.g. a \textit{lattice}.
 
 \subsection{Abstract interpretation}
 %Quentin thesis
@@ -60,25 +60,116 @@ In order to fully understand abstract interpretation, we will first look at the 
 %Least upper bound
 \end{definition}
 
-\begin{definition}
+\begin{definition}\label{def:lattice}
 \textit{A \textbf{lattice} $(L,\sqsubseteq)$ is a partially ordered set in which any two elements have a least upper bound and a greatest lower bound. A \textbf{complete lattice} $(C,\sqsubseteq)$ is a partially ordered set in which all subsets have a least upper bound and a greatest upper bound. A complete lattice includes two special elements: a \textbf{bottom} element $\bot = \bigsqcap C$ and a \textbf{top} element $\top = \bigsqcup C$.}
 \end{definition}
+
 \begin{definition}
-%Complete lattice
+\textit{A \textbf{Galois connection} is a particular correspondence between two partially ordered sets $(A\sqsubseteq_A)$ and $(B\sqsubseteq_B)$. More precisely this correspondence is a pair of functions: the \textbf{abstraction function} $\alpha : A \rightarrow B$ and the \textbf{concretization function} $\gamma : B \rightarrow A$, such that $\forall a \in A, b \in B: \alpha(a) \sqsubseteq_B b \Leftrightarrow a \sqsubseteq_A \gamma(b)$.}
 \end{definition}
 
-%lattice voorbeeld
+%TODO: lattice voorbeeld
+\begin{figure}
+% center everything in the figure
+\centering
+% horizontal node distance
+\begin{tikzpicture}[node distance=2cm]
+
+\title{Partially ordered set of signs (complete lattice)}
+\node(TOP)                          			 {$\top$};
+\node(PLUS)     [below right=.6cm and .6cm of TOP] {$+$};
+\node(ZERO)     [below=.6cm of TOP]       		 {$0$};
+\node(MINUS)    [left=.6cm of ZERO]       		 {$-$};
+\node(BOT)     	[below=1.8cm of TOP] {$\bot$};
+\draw(TOP)      -- (PLUS);
+\draw(TOP)      -- (ZERO);
+\draw(TOP)      -- (MINUS);
+\draw(BOT)      -- (PLUS);
+\draw(BOT)      -- (ZERO);
+\draw(BOT)      -- (MINUS);
+\end{tikzpicture}
+\caption{Partially ordered set of signs (complete lattice)}
+\label{fig:lattice}
+\end{figure}
 
 \subsection{Abstraction}
-%Abstraction zonder gaulois, enkel precision
-%voorbeeld van sign abstraction
+An \textit{abstraction} $\hat{X}$ of a concrete set $X$ in abstract interpretation is a Galois connection between the power set of $X$ $(\mathcal{P}(X),\subseteq)$ and $X$ itself $(X,\sqsubseteq)$. The abstraction function $\alpha$ maps a concrete value to its abstract counterpart, whereas the concretization $\gamma$ function maps an abstract value to its concrete counterpart\textit{s}. Abstract values, sets and operations are generally indicated with a hat. The following abstraction example illustrates how abstraction works, and how it causes \textit{imprecision} to occur.\\\\
+\textbf{Example} (Sign abstraction). A possible abstraction of integers $\mathbb{Z}$ could be to map them onto the set of signs $\widehat{Sign}$. The set of signs forms a complete lattice with $\sqsubseteq$ ordering, as depicted in figure \ref{fig:lattice}. This abstraction could be used in an analysis to detect divisions by zero, for example. We can define the abstract and concretization functions as follows:\\
+
+
+\centerline{$\alpha:\mathcal{P}(\mathbb{Z}) \rightarrow \widehat{Sign}$}
+\centerline{$\alpha(Z) = \bot$ when $Z = \varnothing$}
+\begin{addmargin}[5.84cm]{1em}% 1em left, 2em right
+$= 0$ when $Z = \{0\}$\\
+$= +$ when $\forall z \in Z, z > 0$\\
+$= -$ when $\forall z \in Z, z < 0$\\
+$= \top$ otherwise
+\end{addmargin}
+\leavevmode \\\\
+\centerline{$\gamma:\widehat{Sign} \rightarrow \mathcal{P}(\mathbb{Z})$}
+\centerline{$\gamma(P) = \varnothing$ when $P = \bot$}
+\begin{addmargin}[5.84cm]{1em}% 1em left, 2em right
+$= {0}$ when $P = \hat{0}$\\
+$= \mathbb{Z}^+$ when $P = +$\\
+$= \mathbb{Z}^-$ when $P = -$\\
+$= \mathbb{Z}$ otherwise\\
+\end{addmargin}
+\leavevmode \\
+The addition operator $+$: $\mathbb{Z}\times\mathbb{Z}\rightarrow\mathbb{Z}$ can also be abstracted to $\hat{+}$: $\hat{\mathbb{Z}}\times\hat{\mathbb{Z}}\rightarrow\hat{\mathbb{Z}}$ following the rules of sign. Some examples:\\
+
+
+\centerline{$\{0\}  \hat{+}  \{+\} = \{+\}$}
+\centerline{$\{-\}  \hat{+}  \{-\} = \{-\}$}
+\leavevmode \\
+but for more advanced examples, we can easily see a loss in precision:\\\\
+\centerline{$\{+\}  \hat{+}  \{-\} = \{-,0,+\}$}
+\centerline{$\{0\}  \hat{+}  \{0,+\} = \{0,+\}$}
+\\\\
+When applying the concretization function after the abstraction function, we observe that the result is less precise. Consider the negation function $f(N) = \{-n \vert n \in N\}$, which negates an integer. Applying the concretization function to an integer directly results in no loss of precision:\\ 
+\centerline{$f(\{1\}) = \{-1\}$,}\\ whereas applying it after the application of the abstraction function overapproximates the concrete value: \\
+\centerline{$(\gamma \circ f \circ \alpha)(\{1\}) = \mathbb{Z}^+$}\\
+$\mathbb{Z}^+$ is an overapproximation of $\{1\}$, conserving all properties that hold for $\{1\}$. The closer something is abstracted to its concrete value, the higher the precision of the analysis will be.
+
+\subsection{conclusion}
+To conclude this section, we briefly discuss why this loss of precision is important for this dissertation. When calculating value flow by performing static analysis through abstract interpretation, precision is also lost. In most programming languages, variables and objects point to values and addresses respectively. For this, JavaScript is no exception. It is obvious to see that simple calculations lose precision as in the example above. As a result of abstract interpretation, multiple addresses may point to the same object. This is exactly the kind of imprecision that is introduced in the analysis that is used in this dissertation. As each of these addresses is as valid of an address as any other, we need to consider all addresses of matched variables/objects on all matched paths in the state graph.
 
 \section{Support for generic vulnerabilities}
 \label{sec:genericVulnerabilities}
-% Ref naar findbugs enzo (quentin thesis ook?)
-% Nadeel fixed set, niet flexibel
+
+Static analysis is often used by model checkers to verify if a program satisfies a set of properties (i.e. a specification of a program). These tools often require additional information to be added to the program before being able to analyze it. The OWASP LAPSE+ plugin for Eclipse\cite{OWASP:LAPSE} for example requires the user to annotate all possible vulnerability sources and sinks in the source code. It then checks if there is information flow between a source and a sink. Although applicable to many programs, using static analysis to find general characteristics of programs is limited in several ways:
+The set of problems that these tools can detect is often restricted and a lot of tools support detection for similar problems. Tools detecting bug patterns detect the patterns that are pre-encoded in the tool. This implies that the tool only supports bug patterns that are pre-encoded and thus will most likely miss any bug pattern that isn't already endoced. Additionally, poorly encoded patterns may miss bugs, making the analysis of the tool unsound. Adding or extending functionality to existing solutions is often cumbersome and in most cases even impossible to do manually, which makes these solutions less useful for certain domain-specific programs, as these require a flexible tool. To this extent, a more practical approach would be to develop a tool which allows users to define what they wish to detect in their own code. This approach would make the analysis \textit{application-specific} and the detection rules would be \textit{user-defined}. More about application-specific approaches can be found in section \ref{sec:applicationSpecificVulnerabilities}. The remainder of this section discusses the most popular static analysis approaches for model checking and finding generic code characteristics and vulnerabilities.
+
+\subsection*{JOANA}
+The Java Object-Sensitive Analysis project (JOANA\cite{JOANA}) is an eclipse plugin which checks for security leaks in Java programs. The tool supports all Java language features (except for reflection) and scales well for larger programs. The analysis they use is flow-sensitive, context-sensitive, object-sensitive and lock-sensitive, minimizing the amount of false positives drastically. The types of security flaws JOANA is able to detect are:
+\begin{enumerate}
+\item \textit{Confidentiality}: Information about sensitive values, like passwords or personal data, should in no case be conveyed to public outputs.
+\item \textit{Integrity}: The dual of confidentiality: In no way should unsafe program inputs alter secure data or influence sensitive computations of a program.
+\end{enumerate}
+These flaws are detected by creating a system dependence graph (SDG) of the program on which information flow between sources and sinks is checked through program slicing. The SDG is an overapproximation of the information flow through the program. A benefit of this kind of graph is that it is able to detect direct (data dependencies) as well as indirect (control dependencies) dependencies. In order for the analysis to run, the user has to specify which parts of a program should act as sources and which should acts as sinks. This is done by adding annotations to the source code. JOANA comes with a machine-checked soundness proof. Although JOANA is good in what it does, it is limited in the amount of vulnerabilities it detects and there is no way to extend the tool to support more vulnerabilities.
+
+\subsection*{Flawfinder}
+%Flawfinder -> geen CF of DF
+Flawfinder\cite{flawfinder} is a tool for examining C/C++ source code and detecting security weaknesses. It comes with a database of well-known problems, such as buffer overflow risks and race conditions. The results of the analysis performed is a report of all found flaws with a corresponding security risk level. Although being useful to quickly check for security vulnerabilities, flawfinder is not flexible as it is not extensible, nor is it aware of the semantics of the system under test. Control flow and data flow analysis aren't supported by the tool, making it rather a rather naive approach.
+
+\subsection*{FindBugs}
+
+FindBugs\cite{Findbugs} is a static analysis tool for detecting bugs in Java programs. They detect many classes of bugs by checking structural bug patterns against a program's source code. These classes of bugs can be subdivided into three main classes: Correctness bugs, dodgy confusing code and bad practices. Recently, the Find Security Bugs plugin\footnote{http://find-sec-bugs.github.io} was developed on top of Findbugs. This plugin can detect 80 different (pre-encoded) vunerability types, among which are the top 10 OWASP security vulnerabilities. An example security violation detected by the plugin is the parsing of an untrusted XML file. The contents of this file might be malicious ant thus poses as a risk for the application.
+
+\subsection*{PMD}
+\footnote{https://pmd.github.io/}
+\subsection*{Splint}
+\cite{splint}
+%http://www.cs.virginia.edu/~evans/pubs/ieeesoftware-abstract.html
+%annotations
+\subsection*{CodeSonar}
+\cite{CodeSonar}
+%CodeSonar1 is a proprietary static analysis tool that can analyze C, C++ and Java programs to detect many different bugs. Because CodeSonar is based on symbolic execution, Grammatech argues that CodeSonar is able to detect more bugs than traditional static analysis tools that use bug patterns. One key feature of CodeSonar is that it puts great emphasis on detecting concurrency errors. Among other bugs, CodeSonar is able to detect data races, deadlocks and incorrect uses of synchronization techniques. The analysis of those concurrency errors relies on the fact that the programming model uses locks. No information could be found about how CodeSonar scales with respect to the size of the codebase.
+
+
 \section{Support for application-specific vulnerabilities}
+%The problem of above approaches is that they aren't extensible/flexible and have a fixed set of problems they can find.
 \label{sec:applicationSpecificVulnerabilities}
-% PQL, GateKeeper, JunGL -> RPE OPHEMELEN
+% PQL, GateKeeper, JunGL -> RPE OPHEMELEN; METAL; .QL
+%http://web.cs.ucdavis.edu/~hchen/mops/ -> http://www.cs.berkeley.edu/~daw/papers/mops-ccs02.pdf
 \section{Conclusion}
 %State of the art in statische analyse staat ver genoeg op application-specific toer op te gaan & RPE zijn de manier waarop. Dit stuk moet overeenkomen met de motivatie
