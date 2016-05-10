@@ -5,7 +5,10 @@ Programs can be represented in several ways. These representations can then be q
 \subsection{Finding Application Errors and Security Flaws Using PQL: a Program Query Language}
 The PQL language is designed to check if a program conforms certain program design rules\cite{PQL}. More precisely, it can be used to check the presence of sequences of events associated with a set of related objects. The language allows programmers to query for these types of sequences in an application-specific way, rendering very useful to detect design defects on a per application basis.
 
-Either dynamic or static analysis can be used to solve these PQL queries, but only the latter is of interest for this dissertation. The static analyser described uses a context-sensitive, flow-insensitive, inclusion-based pointer analysis.Since PQL attempts to optimize results of the static analysis to use them in the dynamic analysis, the used analysis must be sound. The points-to information is stored as datalog rules in a deductive database called \textit{bddbddb}. 
+Either dynamic or static analysis can be used to solve these PQL queries, but only the latter is of interest for this dissertation. The static analyser described uses a context-sensitive, flow-insensitive, inclusion-based pointer analysis. As PQL attempts to optimize results of the static analysis to use them in the dynamic analysis, the used analysis must be sound. The points-to information is stored as datalog rules in a deductive database called \textit{bddbddb}. 
+%The context-sensitive points-to analysis produces a numbering
+%of the calling contexts, the invocation graph of the context-sensitive
+%call graph, and finally the points-to results:
 
 %subqueries/reacting to a match
 Two interesting features of the PQL language are the support for subqueries and the ability to react to a match. The latter is only useful in the case we use dynamic analysis. Subqueries however add significant power to a language. In the case of PQL, they allow users to specify recursive event sequences of recursive object relations. Figure \ref{fig:derivedStream} shows how a recursive query is written in the PQL language.

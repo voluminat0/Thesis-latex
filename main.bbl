@@ -261,28 +261,6 @@
       \field{pages}{26\bibrangedash 36}
       \range{pages}{11}
     \endentry
-    \entry{splint}{article}{}
-      \name{author}{2}{}{%
-        {{hash=fdf60d29316eacfbd0fdc22e786afd78}{Evans}{E\bibinitperiod}{David}{D\bibinitperiod}{}{}{}{}}%
-        {{hash=cf3413b1674218c82a52270e6364c56b}{Larochelle}{L\bibinitperiod}{David}{D\bibinitperiod}{}{}{}{}}%
-      }
-      \list{publisher}{1}{%
-        {IEEE}%
-      }
-      \strng{namehash}{ce79e29ce0bfe3cc7f1ca306682795b3}
-      \strng{fullhash}{ce79e29ce0bfe3cc7f1ca306682795b3}
-      \field{sortinit}{E}
-      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{software, IEEE}
-      \field{number}{1}
-      \field{title}{Improving security using extensible lightweight static analysis}
-      \field{volume}{19}
-      \field{year}{2002}
-      \field{pages}{42\bibrangedash 51}
-      \range{pages}{10}
-    \endentry
     \entry{Fernandez97aquery}{article}{}
       \name{author}{4}{}{%
         {{hash=990c9d37c6ee79c6bca5d6dbdd7e70f3}{Fernandez}{F\bibinitperiod}{Mary}{M\bibinitperiod}{}{}{}{}}%
@@ -605,6 +583,42 @@
       \field{type}{techreport}
       \field{year}{2014}
     \endentry
+    \entry{PidginQL}{article}{}
+      \name{author}{4}{}{%
+        {{hash=d0ce54a4d6edc172f98e94fb457af967}{Johnson}{J\bibinitperiod}{Andrew}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=761cb2e8c9d3437484c367367d64d94c}{Waye}{W\bibinitperiod}{Lucas}{L\bibinitperiod}{}{}{}{}}%
+        {{hash=f1e09cc6d3055a8367280fac3f037eda}{Moore}{M\bibinitperiod}{Scott}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=bdb41de68e48d58bdaeb35d428b1b7ca}{Chong}{C\bibinitperiod}{Stephen}{S\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{56511a315deea9b2408a79dd232d9ab8}
+      \strng{fullhash}{3e6ea80d3704911efe88eb6dbb9273f7}
+      \field{sortinit}{J}
+      \field{sortinithash}{ec3950a647c092421b9fcca6d819504a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0362-1340}
+      \field{journaltitle}{SIGPLAN Not.}
+      \field{month}{06}
+      \field{number}{6}
+      \field{title}{Exploring and Enforcing Security Guarantees via Program Dependence Graphs}
+      \field{volume}{50}
+      \field{year}{2015}
+      \field{pages}{291\bibrangedash 302}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1145/2813885.2737957
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/2813885.2737957
+      \endverb
+      \keyw{Application-specific security,graph query language,program dependence graph}
+    \endentry
     \entry{karsai2014design}{article}{}
       \name{author}{6}{}{%
         {{hash=8346d95a6c30bf73c4c963c85af7eac2}{Karsai}{K\bibinitperiod}{Gabor}{G\bibinitperiod}{}{}{}{}}%
@@ -685,6 +699,35 @@
       \range{pages}{12}
       \keyw{algorithms,data tructures,graph query languages,memoization,model checking,optimization,precomputation,program analysis,regular expressions,regular path queries}
     \endentry
+    \entry{PQL}{article}{}
+      \name{author}{3}{}{%
+        {{hash=464aecd13bd177b8fc0240da4398b50b}{Martin}{M\bibinitperiod}{Michael}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=1ee39a41b6cb1b0caca41c1712b99eee}{Livshits}{L\bibinitperiod}{Benjamin}{B\bibinitperiod}{}{}{}{}}%
+        {{hash=c6e8ad520de884393c2780a9a26c7d31}{Lam}{L\bibinitperiod}{Monica\bibnamedelima S.}{M\bibinitperiod\bibinitdelim S\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{365a12750532fef17c8ebfb09b56e441}
+      \strng{fullhash}{365a12750532fef17c8ebfb09b56e441}
+      \field{sortinit}{M}
+      \field{sortinithash}{2684bec41e9697b92699b46491061da2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0362-1340}
+      \field{journaltitle}{SIGPLAN Not.}
+      \field{month}{10}
+      \field{number}{10}
+      \field{title}{Finding Application Errors and Security Flaws Using PQL: A Program Query Language}
+      \field{volume}{40}
+      \field{year}{2005}
+      \field{pages}{365\bibrangedash 383}
+      \range{pages}{19}
+      \keyw{SQL injection,bug finding,pattern matching,program traces,resource leaks,web applications}
+    \endentry
     \entry{ConScript}{inproceedings}{}
       \name{author}{2}{}{%
         {{hash=e0f24edf86fed83ada0008415ac6c51f}{Meyerovich}{M\bibinitperiod}{Leo\bibnamedelima A.}{L\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
@@ -754,15 +797,15 @@
     \endentry
     \entry{OWASP:LAPSE}{incollection}{}
       \name{author}{3}{}{%
-        {{hash=f4f873e55ce15dba20ac8ef288d9b5ba}{Pérez}{P\bibinitperiod}{Pablo\bibnamedelima Martı́n}{P\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+        {{hash=f03bf63741a330d2a0261ed733597bb5}{Pérez}{P\bibinitperiod}{Pablo\bibnamedelima Martín}{P\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
         {{hash=383cd9bd6bee93daea04a2d88f6dfe6d}{Filipiak}{F\bibinitperiod}{Joanna}{J\bibinitperiod}{}{}{}{}}%
-        {{hash=fd496f64fd59d4259f5bb8010eee862b}{Sierra}{S\bibinitperiod}{José\bibnamedelima Marı́a}{J\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+        {{hash=7bd96cfcb40bd90f2a29f28deb6cd337}{Sierra}{S\bibinitperiod}{José\bibnamedelima María}{J\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
       }
       \list{publisher}{1}{%
         {Springer}%
       }
-      \strng{namehash}{d5723a2dfbbd8c5a7c4be1435168e80d}
-      \strng{fullhash}{d5723a2dfbbd8c5a7c4be1435168e80d}
+      \strng{namehash}{bf36dd8585b3ec8c28233a3d8ac9ab4f}
+      \strng{fullhash}{bf36dd8585b3ec8c28233a3d8ac9ab4f}
       \field{sortinit}{P}
       \field{sortinithash}{c0a4896d0e424f9ca4d7f14f2b3428e7}
       \field{labelnamesource}{author}

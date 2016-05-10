@@ -136,8 +136,8 @@ To conclude this section, we briefly discuss why this loss of precision is impor
 \section{Support for generic vulnerabilities}
 \label{sec:genericVulnerabilities}
 
-Static analysis is often used by model checkers to verify if a program satisfies a set of properties (i.e. a specification of a program). These tools often require additional information to be added to the program before being able to analyze it. The OWASP LAPSE+ plugin for Eclipse\cite{OWASP:LAPSE} for example requires the user to annotate all possible vulnerability sources and sinks in the source code. It then checks if there is information flow between a source and a sink. Although applicable to many programs, using static analysis to find general characteristics of programs is limited in several ways:
-The set of problems that these tools can detect is often restricted and a lot of tools support detection for similar problems. Tools detecting bug patterns detect the patterns that are pre-encoded in the tool. This implies that the tool only supports bug patterns that are pre-encoded and thus will most likely miss any bug pattern that isn't already endoced. Additionally, poorly encoded patterns may miss bugs, making the analysis of the tool unsound. Adding or extending functionality to existing solutions is often cumbersome and in most cases even impossible to do manually, which makes these solutions less useful for certain domain-specific programs, as these require a flexible tool. To this extent, a more practical approach would be to develop a tool which allows users to define what they wish to detect in their own code. This approach would make the analysis \textit{application-specific} and the detection rules would be \textit{user-defined}. More about application-specific approaches can be found in section \ref{sec:applicationSpecificVulnerabilities}. The remainder of this section discusses the most popular static analysis approaches for model checking and finding generic code characteristics and vulnerabilities.
+Static analysis is often used by model checkers to verify if a program satisfies a set of properties (i.e. a specification of a program). These tools often require additional information to be added to the program before being able to analyze it. The OWASP LAPSE+ plugin for Eclipse\cite{OWASP:LAPSE} for example requires the user to annotate all possible vulnerability sources and sinks in the source code. It then checks if there is information flow between a source and a sink. Although applicable to many programs, tools for finding general characteristics of programs is limited in several ways:
+The set of problems that these tools can detect is often restricted and a lot of tools support detection for similar problems. Tools detecting bug patterns detect only the patterns that are pre-encoded in the tool. This implies that the tool only supports bug patterns that are pre-encoded and thus will most likely miss any bug pattern that isn't already encoded. Additionally, poorly encoded patterns may miss bugs, making the analysis of the tool unsound. Adding or extending functionality to existing solutions is often cumbersome and in most cases even impossible to do manually, which makes these solutions less useful for certain domain-specific programs, as these require a flexible tool. To this extent, a more practical approach would be to develop a tool which allows users to define by themselves what they wish to detect in a program. This approach would make the analysis \textit{application-specific} and the detection rules would be \textit{user-defined}. More about application-specific approaches can be found in section \ref{sec:applicationSpecificVulnerabilities}. The remainder of this section discusses the most popular static analysis approaches for model checking and finding generic code characteristics and vulnerabilities.
 
 \subsection*{JOANA}
 The Java Object-Sensitive Analysis project (JOANA\cite{JOANA}) is an eclipse plugin which checks for security leaks in Java programs. The tool supports all Java language features (except for reflection) and scales well for larger programs. The analysis they use is flow-sensitive, context-sensitive, object-sensitive and lock-sensitive, minimizing the amount of false positives drastically. The types of security flaws JOANA is able to detect are:
@@ -153,23 +153,96 @@ Flawfinder\cite{flawfinder} is a tool for examining C/C++ source code and detect
 
 \subsection*{FindBugs}
 
-FindBugs\cite{Findbugs} is a static analysis tool for detecting bugs in Java programs. They detect many classes of bugs by checking structural bug patterns against a program's source code. These classes of bugs can be subdivided into three main classes: Correctness bugs, dodgy confusing code and bad practices. Recently, the Find Security Bugs plugin\footnote{http://find-sec-bugs.github.io} was developed on top of Findbugs. This plugin can detect 80 different (pre-encoded) vunerability types, among which are the top 10 OWASP security vulnerabilities. An example security violation detected by the plugin is the parsing of an untrusted XML file. The contents of this file might be malicious ant thus poses as a risk for the application.
+FindBugs\cite{Findbugs} is a static analysis tool for detecting bugs in Java programs. They detect many classes of bugs by checking structural bug patterns against a program's source code. These classes of bugs can be subdivided into three main classes: Correctness bugs, dodgy confusing code and bad practices. Recently, the Find Security Bugs plugin\footnote{http://find-sec-bugs.github.io} was developed on top of Findbugs. This plugin can detect 80 different (pre-encoded) vulnerability types, among which are the top 10 OWASP security vulnerabilities. An example security violation detected by the plugin is the parsing of an untrusted XML file. The contents of this file might be malicious ant thus poses as a risk for the application. As the plugin is able to detect a wide range of bugs, it an ideal tool to checking for the most common security vulnerabilities. Nevertheless, only those vulnerabilities can be detected, and when a new class of security violations arises, there will be no way to add detection rules for them as a regular user.
 
-\subsection*{PMD}
-\footnote{https://pmd.github.io/}
-\subsection*{Splint}
-\cite{splint}
+%\subsection*{PMD}
+%\footnote{https://pmd.github.io/}
+%\subsection*{Splint}
+%\cite{splint}
 %http://www.cs.virginia.edu/~evans/pubs/ieeesoftware-abstract.html
 %annotations
+
 \subsection*{CodeSonar}
-\cite{CodeSonar}
-%CodeSonar1 is a proprietary static analysis tool that can analyze C, C++ and Java programs to detect many different bugs. Because CodeSonar is based on symbolic execution, Grammatech argues that CodeSonar is able to detect more bugs than traditional static analysis tools that use bug patterns. One key feature of CodeSonar is that it puts great emphasis on detecting concurrency errors. Among other bugs, CodeSonar is able to detect data races, deadlocks and incorrect uses of synchronization techniques. The analysis of those concurrency errors relies on the fact that the programming model uses locks. No information could be found about how CodeSonar scales with respect to the size of the codebase.
+CodeSonar\cite{CodeSonar}, developed by GrammaTech, is a proprietary source code analysis tool that performs an unified data flow and symbolic execution analysis for C, C++ and Java programs. They claim to detect more code flaws than the average static analysis tool because they don't rely on pattern matching or other similar approximations. The approach they use is to compile source code and generate several intermediate representations, such as control flow graphs, call graphs and AST's. They then traverse/query these models to find particular properties or patterns that indicate defects. Next to performing general checks, CodeSonar provides an C API which gives access to its intermediate representations of the compiled program. A user can then define custom checks on these representations. We can't verify the ease of use of these custom checks as we couldn't find any examples. The hybrid approach of CodeSonar (general checks \textit{and} application-specified checks) preludes the next section of this chapter, which discusses approaches that support detecting application-specific vulnerabilities through user-defined queries and rules.
 
 
 \section{Support for application-specific vulnerabilities}
-%The problem of above approaches is that they aren't extensible/flexible and have a fixed set of problems they can find.
 \label{sec:applicationSpecificVulnerabilities}
-% PQL, GateKeeper, JunGL -> RPE OPHEMELEN; METAL; .QL
-%http://web.cs.ucdavis.edu/~hchen/mops/ -> http://www.cs.berkeley.edu/~daw/papers/mops-ccs02.pdf
+
+The problem with tools supporting detection of generic vunerabilities is that they often don't allow users to write their own rule or queries to find domain- and/or application-specific flaws. Even if some mechanism for specifying user-defined rules is available, as in PMD\footnote{https://pmd.github.io} for example, it often is cumbersome to write them in the tool's input language. This limitation makes that these tools are often not very flexible, and it makes it hard to extend them. 
+
+In this section we discuss how putting the detection of application-specific characteristics and vulnerabilities in the hands of the application developer can be fruitful, by presenting some approaches which allow users to define their own program queries. Two main considerations for creating such a tool are (i) the way a program is represented and (ii) how the user is given access to this representation. The following approaches each have their own techniques to do so, and we will elaborate on their advantages and disadvantages.
+
+
+\subsection*{PQL}
+
+The PQL language is designed to check if a program conforms certain program design rules\cite{PQL}. More precisely, it can be used to check the presence of sequences of events associated with a set of related objects. The language allows programmers to query for these types of sequences in an application-specific way, rendering very useful to detect design defects on a per application basis.
+
+Either dynamic or static analysis can be used to solve these PQL queries, but only the latter is of interest for this dissertation. The static analyser described uses a context-sensitive, flow-insensitive, inclusion-based pointer analysis. As PQL attempts to optimize results of the static analysis to use them in the dynamic analysis, the used analysis must be sound. The points-to information, together with the program representation, is stored as datalog rules in a deductive database called \textit{bddbddb}. This is very similar to the approach of GateKeeper\cite{GateKeeper}.
+
+%subqueries/reacting to a match
+Two interesting features of the PQL language are the support for subqueries and the ability to react to a match. The latter is only useful in the case we use dynamic analysis. Subqueries however add significant power to a language. In the case of PQL, they allow users to specify recursive event sequences of recursive object relations. Figure \ref{fig:derivedStream} shows how a recursive query is written in the PQL language.
+
+\begin{figure}[!ht]
+    \centering
+      \includegraphics[width=0.5\textwidth]{images/derivedStream} 
+      \caption{A PQL recursive query for tracking data from sockets}
+    \label{fig:derivedStream}
+\end{figure}
+
+The actual matching of queries to these rules happens by first translating the PQL queries to the corresponding datalog queries. This happens automatically, to shield the user from dealing with the points-to information or the datalog program representation directly. Once translated, the queries get resolved by the \textit{bddbddb} system, after which te results are ready to be interpreted by the user. One thing to note is that since the analysis used is flow-insensitive, sequencing is not supported in such a way that the user can distinguish whether program point \texttt{a} happens before or after program point \texttt{b}. The same goes for negation: No guarantees about ordering can be made, which means that one can not deduce that an excluded event (i.e. a negated event) happens between two points in a sequence. They solve this by ignoring all excluded events, in order to maintain soundness of their approach.
+
+A benefit of using Datalog is that it is very efficient and has way less overhead compared to fully fledged declarative programming languages. Storing an analysis/program as datalog rules may be efficient, but it is hard to get a good overview of the program by just looking at these rules. PQL closes the gap between the lack in readability of plain datalog rules and writing clean application-specific queries by introducing its own language. However, this language feels somewhat verbose and the syntax is something the user has to get used to.
+
+\subsection*{Pidgin}
+
+Pidgin\cite{PidginQL} is a program analysis and understanding tool which allows users to specify and enforce application-specific security guarantees. In their approach they generate a \textit{Program Dependence Graph} (PDG) of programs by using an interprocedural data flow analysis (object-sensitive pointer analysis). This kind of graph contains all information about how data data flows through a program. More precisely, each pair of connected nodes indicates that the second node of the pair depends in some way on the first node. Figure \ref{fig:PDG} shows a PDG of a guessing game.
+
+\begin{figure}[!ht]
+    \centering
+      \includegraphics[width=0.7\textwidth]{images/PDG} 
+      \caption{Program dependence graph of a guessing game}
+    \label{fig:PDG}
+\end{figure}
+
+We can see that the value that flows to the output function indirectly depends on the value of the secret. This can be seen as a security violation and can be queried for in the Pigdin language. To this extent, the Pidgin Query Language (PidginQL) defines specialized constructs that allow the user to retrieve all relevant information from the PDG. As the program is represented as such a graph, the approach specializes in detecting if there is information flow from one node to another. An example of a PidginQL query is seen in listing \ref{lst:PidginExample}. The usual approach to writing queries goes as follows: First, the nodes between which information flow needs to be detected are specified and stored in variables. This is done through the aforementioned constructs. After specifying these \textit{source} and \textit{sink} nodes, another type of nodes can also be stored in a variable, namely \textit{declassifier} nodes. These nodes act as 'sanitizers' in a way that when information flows between a source and a sink and this information also flows through a sanitizer, then the flow is allowed. When all node have been captured in variables, declassifier nodes can be removed from the graph. The resulting graph is now modified in such a way that only the user-specified declassifier nodes are are removed. On this graph the final check is done if there is any flow left between the specified sources and sinks. 
+
+\begin{lstlisting}[label={lst:PidginExample},language=JavaScript,caption=A typical PidginQL query,mathescape=true]  % float=t?
+
+//source, sink and declassifier
+let source = pgm.returnsOf("getRandom") in 			
+let sink = pgm.formalsOf("output") in 				
+let declassifier = pgm.forExpression("secret == guess") in
+//Remove declassifiers and check for flow
+pgm.removeNodes(declassifier).between(source, sink)	 		
+is empty											
+\end{lstlisting}
+
+The PidginQL language is expressive and powerful for detecting information flows. The language however lacks expressiveness when it comes to inspecting nodes. There are no constructs that allow the user to only find nodes with a certain name, for example. A second limitation is the result of queries. Most static analysis tools report all found violations, with more information about the violating code. PidginQL on the other hand just indicates whether there is flow or not (remember the \texttt{is empty} construct on line 7).
+
+\subsection*{Metal}
+
+Metal\cite{Metal} can best be described as a general analysis tool of programs for which a user has to write application-specific extensions (also called checkers). These extentions are then executed as a traditional dataflow analysis, but can be augmented in ways outside the scope of traditional approaches. Metal extensions are applied depth-first to the control-flow graph of a function. This flow graph is computed from the AST of the program. By applying an extendion depth-first, each program point down a single path is checked. This process is very similar to pattern matching. Checkers in the Metal language consist of two parts: The actual code that describes the checker and a corresponding state machine. They distinguish two types of state machines: \textit{Global} state machines and \textit{variable-specific} state machines. The former detects program-wide properties, whereas the latter detects object-specific properties. 
+
+Checkers are written by defining states between which the state machine can transition. When the current program point matches a pattern described in the current state of the checker, the state machine transitions to the next state and/or performs an action (usually printing a warning). When there is no match with the current program point, the state machine doesn't transition and the analysis continues with the next program point. Example \ref{fig:Metal} clarifies the approach. The example shows an global extension which checks for the double enabling of disabling of interrupts (\texttt{sti()} and \texttt{cli()} respectively). When enabling interrupts, the state machine transitions to the 'enabled' state. when then enabling interrupts again, an error showing "Double sti" is printed. The same happens for disabling interrupts: When a user attempts to disable interrupts twice, or when the end of a path is reached when interrupts ate still disabled (and thus the state machine is still in the 'disabled' state), an error will be printed.
+
+\begin{figure}[!ht]
+    \centering
+      \includegraphics[width=0.5\textwidth]{images/Metal} 
+      \caption{A simple double enabling/disabling checker}
+    \label{fig:Metal}
+\end{figure}
+
+The Metal language is a good example of a clearly readable query language. Pattern matching languages are often most readable, and the approach used in Metal is both very expressive and flexible. Describing the states in the order one wishes to detect them is in our opinion the sweet spot between powerful, expressive languages and flexible, readable languages.
+
+\subsection*{JunGL}
+
+%Graph queries
+%Eigen taal die patronen gaat matchen
+
+
+
+
+
 \section{Conclusion}
-%State of the art in statische analyse staat ver genoeg op application-specific toer op te gaan & RPE zijn de manier waarop. Dit stuk moet overeenkomen met de motivatie
+In this chapter we discussed what static analysis is and why it is important for detecting characteristics and vulnerabilities in source code. We have also seen some approaches that enable users to write clean and readable queries that define the patterns to be detected. We can conclude that the state of the art in static analysis has reached a point where tools that support the detection of generic patterns often aren't expressive and flexible enough for application-specific use. A solution for this problem is a tool and a language which allow users to specify their own, custom queries for an application. In this way, no database of pre-encoded vulnerability detection queries is needed as the queries that are specified will mostly be too application-specific to generalize. We believe that expressing vulnerability queries (in the rest of this dissertation referred to as \textit{security policies}) is most readable and expressive using regular path expressions, as they can nearly be read as a regular sentence consisting of consecutive pieces of code/states to be detected.

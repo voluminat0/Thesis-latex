@@ -26,94 +26,94 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.3}Support for application-specific vulnerabilities}{10}{section.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.4}Conclusion}{10}{section.2.4}
+\contentsline {section}{\numberline {2.4}Conclusion}{14}{section.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Overview of the approach}{11}{chapter.3}
+\contentsline {chapter}{\numberline {3}Overview of the approach}{16}{chapter.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Architecture}{11}{section.3.1}
+\contentsline {section}{\numberline {3.1}Architecture}{16}{section.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}Flow graphs for JavaScript programs}{12}{section.3.2}
+\contentsline {section}{\numberline {3.2}Flow graphs for JavaScript programs}{17}{section.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}External DSLs for querying graphs}{17}{section.3.3}
+\contentsline {section}{\numberline {3.3}External DSLs for querying graphs}{22}{section.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.1}Domain-specific language vs. general purpose language}{17}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.1}Domain-specific language vs. general purpose language}{22}{subsection.3.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.2}External DSLs}{19}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.2}External DSLs}{24}{subsection.3.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.3}Internal DSLs}{21}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.3}Internal DSLs}{26}{subsection.3.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Design of an internal DSL for querying flow graphs}{23}{section.3.4}
+\contentsline {section}{\numberline {3.4}Design of an internal DSL for querying flow graphs}{28}{section.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.4.1}Internal DSL design constraints}{23}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.1}Internal DSL design constraints}{28}{subsection.3.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.4.2}DSL implementation techniques and patterns}{24}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.2}DSL implementation techniques and patterns}{29}{subsection.3.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}JS-QL: an internal DSL approach for querying flow graphs}{28}{chapter.4}
+\contentsline {chapter}{\numberline {4}JS-QL: an internal DSL approach for querying flow graphs}{33}{chapter.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}Syntax and structure}{28}{section.4.1}
+\contentsline {section}{\numberline {4.1}Syntax and structure}{33}{section.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}Types of queries}{28}{section.4.2}
+\contentsline {section}{\numberline {4.2}Types of queries}{33}{section.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.3}Defining policies}{28}{section.4.3}
+\contentsline {section}{\numberline {4.3}Defining policies}{33}{section.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.4}The matching engine}{28}{section.4.4}
+\contentsline {section}{\numberline {4.4}The matching engine}{33}{section.4.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Implementation}{29}{chapter.5}
+\contentsline {chapter}{\numberline {5}Implementation}{34}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}Used technologies}{29}{section.5.1}
+\contentsline {section}{\numberline {5.1}Used technologies}{34}{section.5.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Design of the query language}{29}{section.5.2}
+\contentsline {section}{\numberline {5.2}Design of the query language}{34}{section.5.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}Design of the matching engine}{29}{section.5.3}
+\contentsline {section}{\numberline {5.3}Design of the matching engine}{34}{section.5.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.4}Conclusion}{29}{section.5.4}
+\contentsline {section}{\numberline {5.4}Conclusion}{34}{section.5.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Evaluation}{30}{chapter.6}
+\contentsline {chapter}{\numberline {6}Evaluation}{35}{chapter.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.1}The GateKeeper language}{30}{section.6.1}
+\contentsline {section}{\numberline {6.1}The GateKeeper language}{35}{section.6.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.1}Writes to prototype objects}{30}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.1}Writes to prototype objects}{35}{subsection.6.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.2}Global namespace pollution}{32}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.2}Global namespace pollution}{37}{subsection.6.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.3}Script inclusions}{33}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.3}Script inclusions}{38}{subsection.6.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.4}Conclusion}{35}{subsection.6.1.4}
+\contentsline {subsection}{\numberline {6.1.4}Conclusion}{40}{subsection.6.1.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}The PidginQL language}{36}{section.6.2}
+\contentsline {section}{\numberline {6.2}The PidginQL language}{41}{section.6.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.1}Only CMS administrators can send a message to all CMS users}{36}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.1}Only CMS administrators can send a message to all CMS users}{41}{subsection.6.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.2}Public outputs do not depend on a user's password, unless it has been cryptographically hashed}{38}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.2}Public outputs do not depend on a user's password, unless it has been cryptographically hashed}{43}{subsection.6.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.3}A database is opened only after the master password is checked or when creating a new database}{40}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.3}A database is opened only after the master password is checked or when creating a new database}{45}{subsection.6.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.4}Conclusion}{42}{subsection.6.2.4}
+\contentsline {subsection}{\numberline {6.2.4}Conclusion}{47}{subsection.6.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.3}The ConScript language}{42}{section.6.3}
+\contentsline {section}{\numberline {6.3}The ConScript language}{47}{section.6.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.1}No string arguments to setInterval, setTimeout}{43}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.1}No string arguments to setInterval, setTimeout}{48}{subsection.6.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.2}HTTP-cookies only}{44}{subsection.6.3.2}
+\contentsline {subsection}{\numberline {6.3.2}HTTP-cookies only}{49}{subsection.6.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.3}Prevent resource abuse}{46}{subsection.6.3.3}
+\contentsline {subsection}{\numberline {6.3.3}Prevent resource abuse}{51}{subsection.6.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.4}Conclusion}{47}{subsection.6.3.4}
+\contentsline {subsection}{\numberline {6.3.4}Conclusion}{52}{subsection.6.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.4}Evaluation}{48}{section.6.4}
+\contentsline {section}{\numberline {6.4}Evaluation}{53}{section.6.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4.1}Advantages}{48}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.1}Advantages}{53}{subsection.6.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4.2}Limitations}{49}{subsection.6.4.2}
+\contentsline {subsection}{\numberline {6.4.2}Limitations}{54}{subsection.6.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4.3}Conclusion}{49}{subsection.6.4.3}
+\contentsline {subsection}{\numberline {6.4.3}Conclusion}{54}{subsection.6.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Conclusion and future work}{50}{chapter.7}
+\contentsline {chapter}{\numberline {7}Conclusion and future work}{55}{chapter.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.1}Summary}{50}{section.7.1}
+\contentsline {section}{\numberline {7.1}Summary}{55}{section.7.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.2}Future work}{50}{section.7.2}
+\contentsline {section}{\numberline {7.2}Future work}{55}{section.7.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Appendices}{51}{section*.37}
+\contentsline {chapter}{Appendices}{56}{section*.42}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Compound Policies}{52}{Appendix.a.A}
+\contentsline {chapter}{\numberline {A}Compound Policies}{57}{Appendix.a.A}
