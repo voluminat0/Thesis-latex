@@ -50,70 +50,78 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {4}JS-QL: an internal DSL approach for querying flow graphs}{33}{chapter.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}Syntax and structure}{33}{section.4.1}
+\contentsline {section}{\numberline {4.1}The JS-QL query language}{34}{section.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}Types of queries}{33}{section.4.2}
+\contentsline {subsection}{\numberline {4.1.1}JS-QL syntax}{34}{subsection.4.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.3}Defining policies}{33}{section.4.3}
+\contentsline {subsubsection}{The entry point}{34}{section*.39}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.4}The matching engine}{33}{section.4.4}
+\contentsline {subsubsection}{State}{34}{section*.40}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Implementation}{34}{chapter.5}
+\contentsline {subsection}{\numberline {4.1.2}Types of queries}{38}{subsection.4.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}Used technologies}{34}{section.5.1}
+\contentsline {subsection}{\numberline {4.1.3}Defining policies}{38}{subsection.4.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Design of the query language}{34}{section.5.2}
+\contentsline {section}{\numberline {4.2}The matching engine}{38}{section.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}Design of the matching engine}{34}{section.5.3}
+\contentsline {section}{\numberline {4.3}The graphical user interface}{38}{section.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.4}Conclusion}{34}{section.5.4}
+\contentsline {chapter}{\numberline {5}Implementation}{39}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Evaluation}{35}{chapter.6}
+\contentsline {section}{\numberline {5.1}Used technologies}{39}{section.5.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.1}The GateKeeper language}{35}{section.6.1}
+\contentsline {section}{\numberline {5.2}Design of the query language}{39}{section.5.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.1}Writes to prototype objects}{35}{subsection.6.1.1}
+\contentsline {section}{\numberline {5.3}Design of the matching engine}{39}{section.5.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.2}Global namespace pollution}{37}{subsection.6.1.2}
+\contentsline {section}{\numberline {5.4}Conclusion}{39}{section.5.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.3}Script inclusions}{38}{subsection.6.1.3}
+\contentsline {chapter}{\numberline {6}Evaluation}{40}{chapter.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.4}Conclusion}{40}{subsection.6.1.4}
+\contentsline {section}{\numberline {6.1}The GateKeeper language}{40}{section.6.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}The PidginQL language}{41}{section.6.2}
+\contentsline {subsection}{\numberline {6.1.1}Writes to prototype objects}{40}{subsection.6.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.1}Only CMS administrators can send a message to all CMS users}{41}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.1.2}Global namespace pollution}{42}{subsection.6.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.2}Public outputs do not depend on a user's password, unless it has been cryptographically hashed}{43}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.1.3}Script inclusions}{43}{subsection.6.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.3}A database is opened only after the master password is checked or when creating a new database}{45}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.1.4}Conclusion}{45}{subsection.6.1.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.4}Conclusion}{47}{subsection.6.2.4}
+\contentsline {section}{\numberline {6.2}The PidginQL language}{46}{section.6.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.3}The ConScript language}{47}{section.6.3}
+\contentsline {subsection}{\numberline {6.2.1}Only CMS administrators can send a message to all CMS users}{46}{subsection.6.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.1}No string arguments to setInterval, setTimeout}{48}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.2.2}Public outputs do not depend on a user's password, unless it has been cryptographically hashed}{48}{subsection.6.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.2}HTTP-cookies only}{49}{subsection.6.3.2}
+\contentsline {subsection}{\numberline {6.2.3}A database is opened only after the master password is checked or when creating a new database}{50}{subsection.6.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.3}Prevent resource abuse}{51}{subsection.6.3.3}
+\contentsline {subsection}{\numberline {6.2.4}Conclusion}{52}{subsection.6.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.4}Conclusion}{52}{subsection.6.3.4}
+\contentsline {section}{\numberline {6.3}The ConScript language}{52}{section.6.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.4}Evaluation}{53}{section.6.4}
+\contentsline {subsection}{\numberline {6.3.1}No string arguments to setInterval, setTimeout}{53}{subsection.6.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4.1}Advantages}{53}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.3.2}HTTP-cookies only}{54}{subsection.6.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4.2}Limitations}{54}{subsection.6.4.2}
+\contentsline {subsection}{\numberline {6.3.3}Prevent resource abuse}{56}{subsection.6.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4.3}Conclusion}{54}{subsection.6.4.3}
+\contentsline {subsection}{\numberline {6.3.4}Conclusion}{57}{subsection.6.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Conclusion and future work}{55}{chapter.7}
+\contentsline {section}{\numberline {6.4}Evaluation}{58}{section.6.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.1}Summary}{55}{section.7.1}
+\contentsline {subsection}{\numberline {6.4.1}Advantages}{58}{subsection.6.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.2}Future work}{55}{section.7.2}
+\contentsline {subsection}{\numberline {6.4.2}Limitations}{59}{subsection.6.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Appendices}{56}{section*.42}
+\contentsline {subsection}{\numberline {6.4.3}Conclusion}{59}{subsection.6.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Compound Policies}{57}{Appendix.a.A}
+\contentsline {chapter}{\numberline {7}Conclusion and future work}{60}{chapter.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.1}Summary}{60}{section.7.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.2}Future work}{60}{section.7.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Appendices}{61}{section*.46}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Compound Policies}{62}{Appendix.a.A}

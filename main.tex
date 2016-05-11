@@ -73,6 +73,37 @@
    frame=tb
 }
 
+\lstdefinelanguage{JSQL}{
+  keywords={G,state,wildcard,skipZeroOrMore},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={this, properties, lookup, value, filters, node, benv, store},
+  ndkeywordstyle=\color{purple}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{darkgreen}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstset{
+   language=JSQL,
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b,
+   frame=tb
+}
+
 \lstset{
    language=JavaScript,
    extendedchars=true,
@@ -176,6 +207,7 @@ van} %\\
 \input{chapters/background}
  
 \chapter{Overview of the approach}
+\label{ch:Overview}
 \input{chapters/overview}
 
 \chapter{JS-QL: an internal DSL approach for querying flow graphs}

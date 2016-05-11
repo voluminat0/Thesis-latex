@@ -224,7 +224,7 @@ The PidginQL language is expressive and powerful for detecting information flows
 
 Metal\cite{Metal} can best be described as a general analysis tool of programs for which a user has to write application-specific extensions (also called checkers). These extentions are then executed as a traditional dataflow analysis, but can be augmented in ways outside the scope of traditional approaches. Metal extensions are applied depth-first to the control-flow graph of a function. This flow graph is computed from the AST of the program. By applying an extendion depth-first, each program point down a single path is checked. This process is very similar to pattern matching. Checkers in the Metal language consist of two parts: The actual code that describes the checker and a corresponding state machine. They distinguish two types of state machines: \textit{Global} state machines and \textit{variable-specific} state machines. The former detects program-wide properties, whereas the latter detects object-specific properties. 
 
-Checkers are written by defining states between which the state machine can transition. When the current program point matches a pattern described in the current state of the checker, the state machine transitions to the next state and/or performs an action (usually printing a warning). When there is no match with the current program point, the state machine doesn't transition and the analysis continues with the next program point. Example \ref{fig:Metal} clarifies the approach. The example shows an global extension which checks for the double enabling of disabling of interrupts (\texttt{sti()} and \texttt{cli()} respectively). When enabling interrupts, the state machine transitions to the 'enabled' state. when then enabling interrupts again, an error showing "Double sti" is printed. The same happens for disabling interrupts: When a user attempts to disable interrupts twice, or when the end of a path is reached when interrupts ate still disabled (and thus the state machine is still in the 'disabled' state), an error will be printed.
+Checkers are written by defining states between which the state machine can transition. When the current program point matches a pattern described in the current state of the checker, the state machine transitions to the next state and/or performs an action (usually printing a warning). When there is no match with the current program point, the state machine doesn't transition and the analysis continues with the next program point. Example \ref{fig:Metal} clarifies the approach. The example shows an global extension which checks for the double enabling of disabling of interrupts (\texttt{sti()} and \texttt{cli()} respectively). When enabling interrupts, the state machine transitions to the 'enabled' state. when then enabling interrupts again, an error showing "Double sti" is printed. The same happens for disabling interrupts: When a user attempts to disable interrupts twice, or when the end of a path is reached when interrupts are still disabled (and thus the state machine is still in the 'disabled' state), an error will be printed.
 
 \begin{figure}[!ht]
     \centering
@@ -239,9 +239,6 @@ The Metal language is a good example of a clearly readable query language. Patte
 
 %Graph queries
 %Eigen taal die patronen gaat matchen
-
-
-
 
 
 \section{Conclusion}

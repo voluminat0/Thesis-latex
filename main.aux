@@ -77,12 +77,14 @@
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {3}Overview of the approach}{16}{chapter.3}}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{ch:Overview}{{3}{16}{Overview of the approach}{chapter.3}{}}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {3.1}Architecture}{16}{section.3.1}}
 \abx@aux@cite{PDG}
 \abx@aux@cite{functionPurity}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces JS-QL framework architecture\relax }}{17}{figure.caption.18}}
 \newlabel{fig:architecture}{{3.1}{17}{JS-QL framework architecture\relax }{figure.caption.18}{}}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {3.2}Flow graphs for JavaScript programs}{17}{section.3.2}}
+\newlabel{subsec:FlowGraphs}{{3.2}{17}{Flow graphs for JavaScript programs}{section.3.2}{}}
 \abx@aux@cite{Esprima}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Example JIPDA abstract state graph\relax }}{19}{figure.caption.20}}
 \newlabel{fig:JipdaGraph}{{3.2}{19}{Example JIPDA abstract state graph\relax }{figure.caption.20}{}}
@@ -124,115 +126,134 @@
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\addvspace {10\p@ }}
 \newlabel{ch:JSQL}{{4}{33}{JS-QL: an internal DSL approach for querying flow graphs}{chapter.4}{}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {4.1}Syntax and structure}{33}{section.4.1}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {4.2}Types of queries}{33}{section.4.2}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {4.3}Defining policies}{33}{section.4.3}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {4.4}The matching engine}{33}{section.4.4}}
-\newlabel{subsec:matchingEngine}{{4.4}{33}{The matching engine}{section.4.4}{}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {5}Implementation}{34}{chapter.5}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {4.1}The JS-QL query language}{34}{section.4.1}}
+\newlabel{sec:JSQLlanguage}{{4.1}{34}{The JS-QL query language}{section.4.1}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}JS-QL syntax}{34}{subsection.4.1.1}}
+\newlabel{subsec:Syntax}{{4.1.1}{34}{JS-QL syntax}{subsection.4.1.1}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{The entry point}{34}{section*.39}}
+\newlabel{lst:entryPoint}{{4.1}{34}{Matching the first state starting from entry point \texttt {G}}{lstlisting.4.1}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.1}Matching the first state starting from entry point \texttt  {G}}{34}{lstlisting.4.1}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsubsection}{State}{34}{section*.40}}
+\@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Information in the states of the abstract state graph\relax }}{35}{table.caption.41}}
+\newlabel{tab:InfoPerState}{{4.1}{35}{Information in the states of the abstract state graph\relax }{table.caption.41}{}}
+\newlabel{lst:stringVariables}{{4.2}{36}{Defining variables in JS-QL}{lstlisting.4.2}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.2}Defining variables in JS-QL}{36}{lstlisting.4.2}}
+\newlabel{lst:Unification}{{4.3}{37}{Unification in JS-QL}{lstlisting.4.3}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.3}Unification in JS-QL}{37}{lstlisting.4.3}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Visual representation of the unification process\relax }}{37}{figure.caption.42}}
+\newlabel{fig:Unification}{{4.1}{37}{Visual representation of the unification process\relax }{figure.caption.42}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}Types of queries}{38}{subsection.4.1.2}}
+\newlabel{subsec:TypesOfQueries}{{4.1.2}{38}{Types of queries}{subsection.4.1.2}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.3}Defining policies}{38}{subsection.4.1.3}}
+\newlabel{subsec:DefiningPolicies}{{4.1.3}{38}{Defining policies}{subsection.4.1.3}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {4.2}The matching engine}{38}{section.4.2}}
+\newlabel{sec:matchingEngine}{{4.2}{38}{The matching engine}{section.4.2}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {4.3}The graphical user interface}{38}{section.4.3}}
+\newlabel{sec:GUI}{{4.3}{38}{The graphical user interface}{section.4.3}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {5}Implementation}{39}{chapter.5}}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{ch:Implementation}{{5}{34}{Implementation}{chapter.5}{}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {5.1}Used technologies}{34}{section.5.1}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {5.2}Design of the query language}{34}{section.5.2}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {5.3}Design of the matching engine}{34}{section.5.3}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {5.4}Conclusion}{34}{section.5.4}}
+\newlabel{ch:Implementation}{{5}{39}{Implementation}{chapter.5}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {5.1}Used technologies}{39}{section.5.1}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {5.2}Design of the query language}{39}{section.5.2}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {5.3}Design of the matching engine}{39}{section.5.3}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {5.4}Conclusion}{39}{section.5.4}}
 \abx@aux@cite{PrototypePoisoning}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {6}Evaluation}{35}{chapter.6}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {6}Evaluation}{40}{chapter.6}}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {6.1}The GateKeeper language}{35}{section.6.1}}
-\newlabel{sec:ValidationGK}{{6.1}{35}{The GateKeeper language}{section.6.1}{}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.1}Writes to prototype objects}{35}{subsection.6.1.1}}
-\newlabel{lst:PrototypePoisoning}{{6.1}{35}{Prototype poisoning example}{lstlisting.6.1}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.1}Prototype poisoning example}{35}{lstlisting.6.1}}
-\newlabel{lst:Policy1GK}{{6.2}{36}{Policy 1 in GateKeeper}{lstlisting.6.2}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.2}Policy 1 in GateKeeper}{36}{lstlisting.6.2}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {6.1}The GateKeeper language}{40}{section.6.1}}
+\newlabel{sec:ValidationGK}{{6.1}{40}{The GateKeeper language}{section.6.1}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.1}Writes to prototype objects}{40}{subsection.6.1.1}}
+\newlabel{lst:PrototypePoisoning}{{6.1}{40}{Prototype poisoning example}{lstlisting.6.1}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.1}Prototype poisoning example}{40}{lstlisting.6.1}}
+\newlabel{lst:Policy1GK}{{6.2}{41}{Policy 1 in GateKeeper}{lstlisting.6.2}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.2}Policy 1 in GateKeeper}{41}{lstlisting.6.2}}
 \abx@aux@cite{JSNamespacing}
-\newlabel{lst:Policy1JSQL}{{6.3}{37}{Policy 1 in JS-QL}{lstlisting.6.3}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.3}Policy 1 in JS-QL}{37}{lstlisting.6.3}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.2}Global namespace pollution}{37}{subsection.6.1.2}}
+\newlabel{lst:Policy1JSQL}{{6.3}{42}{Policy 1 in JS-QL}{lstlisting.6.3}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.3}Policy 1 in JS-QL}{42}{lstlisting.6.3}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.2}Global namespace pollution}{42}{subsection.6.1.2}}
 \abx@aux@cite{HeapSpraying}
-\newlabel{lst:Policy2GK}{{6.4}{38}{Policy 2 in GateKeeper}{lstlisting.6.4}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.4}Policy 2 in GateKeeper}{38}{lstlisting.6.4}}
-\newlabel{lst:Policy2JSQL}{{6.5}{38}{Policy 2 in JS-QL}{lstlisting.6.5}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.5}Policy 2 in JS-QL}{38}{lstlisting.6.5}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.3}Script inclusions}{38}{subsection.6.1.3}}
-\newlabel{subsec:ScriptInclusion}{{6.1.3}{38}{Script inclusions}{subsection.6.1.3}{}}
-\newlabel{lst:ScriptInclusion}{{6.6}{39}{Script inclusion example}{lstlisting.6.6}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.6}Script inclusion example}{39}{lstlisting.6.6}}
-\newlabel{lst:Policy3GK}{{6.7}{39}{Policy 3 in GateKeeper}{lstlisting.6.7}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.7}Policy 3 in GateKeeper}{39}{lstlisting.6.7}}
+\newlabel{lst:Policy2GK}{{6.4}{43}{Policy 2 in GateKeeper}{lstlisting.6.4}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.4}Policy 2 in GateKeeper}{43}{lstlisting.6.4}}
+\newlabel{lst:Policy2JSQL}{{6.5}{43}{Policy 2 in JS-QL}{lstlisting.6.5}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.5}Policy 2 in JS-QL}{43}{lstlisting.6.5}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.3}Script inclusions}{43}{subsection.6.1.3}}
+\newlabel{subsec:ScriptInclusion}{{6.1.3}{43}{Script inclusions}{subsection.6.1.3}{}}
+\newlabel{lst:ScriptInclusion}{{6.6}{44}{Script inclusion example}{lstlisting.6.6}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.6}Script inclusion example}{44}{lstlisting.6.6}}
+\newlabel{lst:Policy3GK}{{6.7}{44}{Policy 3 in GateKeeper}{lstlisting.6.7}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.7}Policy 3 in GateKeeper}{44}{lstlisting.6.7}}
 \abx@aux@cite{MaintainableSoftware}
-\newlabel{lst:Policy3JSQL}{{6.8}{40}{Policy 3 in JS-QL}{lstlisting.6.8}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.8}Policy 3 in JS-QL}{40}{lstlisting.6.8}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.4}Conclusion}{40}{subsection.6.1.4}}
+\newlabel{lst:Policy3JSQL}{{6.8}{45}{Policy 3 in JS-QL}{lstlisting.6.8}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.8}Policy 3 in JS-QL}{45}{lstlisting.6.8}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.4}Conclusion}{45}{subsection.6.1.4}}
 \abx@aux@cite{PidginQLTechReport}
-\@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Expressiveness in JS-QL and GateKeeper\relax }}{41}{table.caption.39}}
-\newlabel{tab:GKJSQL}{{6.1}{41}{Expressiveness in JS-QL and GateKeeper\relax }{table.caption.39}{}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {6.2}The PidginQL language}{41}{section.6.2}}
-\newlabel{sec:ValidationPidginQL}{{6.2}{41}{The PidginQL language}{section.6.2}{}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}Only CMS administrators can send a message to all CMS users}{41}{subsection.6.2.1}}
-\newlabel{subsec:CMSAdmin}{{6.2.1}{41}{Only CMS administrators can send a message to all CMS users}{subsection.6.2.1}{}}
-\newlabel{lst:Policy4PidginQL}{{6.9}{42}{Policy 4 in PidginQL}{lstlisting.6.9}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.9}Policy 4 in PidginQL}{42}{lstlisting.6.9}}
-\newlabel{lst:Policy4JSQL}{{6.10}{43}{Policy 4 in JS-QL}{lstlisting.6.10}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.10}Policy 4 in JS-QL}{43}{lstlisting.6.10}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}Public outputs do not depend on a user's password, unless it has been cryptographically hashed}{43}{subsection.6.2.2}}
-\newlabel{lst:PWDepends}{{6.11}{43}{The output depends on the password example}{lstlisting.6.11}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.11}The output depends on the password example}{43}{lstlisting.6.11}}
-\newlabel{lst:Policy5PidginQL}{{6.12}{44}{Policy 5 in PidginQL}{lstlisting.6.12}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.12}Policy 5 in PidginQL}{44}{lstlisting.6.12}}
-\newlabel{lst:Policy5JSQL}{{6.13}{44}{Policy 5 in JSQL}{lstlisting.6.13}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.13}Policy 5 in JSQL}{44}{lstlisting.6.13}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.3}A database is opened only after the master password is checked or when creating a new database}{45}{subsection.6.2.3}}
-\newlabel{subsec:DBOpen}{{6.2.3}{45}{A database is opened only after the master password is checked or when creating a new database}{subsection.6.2.3}{}}
-\newlabel{lst:Policy6PidginQL}{{6.14}{45}{Policy 6 in PidginQL}{lstlisting.6.14}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.14}Policy 6 in PidginQL}{45}{lstlisting.6.14}}
-\newlabel{lst:Policy6JSQL}{{6.15}{46}{Policy 6 in JS-QL}{lstlisting.6.15}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.15}Policy 6 in JS-QL}{46}{lstlisting.6.15}}
+\@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Expressiveness in JS-QL and GateKeeper\relax }}{46}{table.caption.43}}
+\newlabel{tab:GKJSQL}{{6.1}{46}{Expressiveness in JS-QL and GateKeeper\relax }{table.caption.43}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {6.2}The PidginQL language}{46}{section.6.2}}
+\newlabel{sec:ValidationPidginQL}{{6.2}{46}{The PidginQL language}{section.6.2}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}Only CMS administrators can send a message to all CMS users}{46}{subsection.6.2.1}}
+\newlabel{subsec:CMSAdmin}{{6.2.1}{46}{Only CMS administrators can send a message to all CMS users}{subsection.6.2.1}{}}
+\newlabel{lst:Policy4PidginQL}{{6.9}{47}{Policy 4 in PidginQL}{lstlisting.6.9}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.9}Policy 4 in PidginQL}{47}{lstlisting.6.9}}
+\newlabel{lst:Policy4JSQL}{{6.10}{48}{Policy 4 in JS-QL}{lstlisting.6.10}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.10}Policy 4 in JS-QL}{48}{lstlisting.6.10}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}Public outputs do not depend on a user's password, unless it has been cryptographically hashed}{48}{subsection.6.2.2}}
+\newlabel{lst:PWDepends}{{6.11}{48}{The output depends on the password example}{lstlisting.6.11}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.11}The output depends on the password example}{48}{lstlisting.6.11}}
+\newlabel{lst:Policy5PidginQL}{{6.12}{49}{Policy 5 in PidginQL}{lstlisting.6.12}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.12}Policy 5 in PidginQL}{49}{lstlisting.6.12}}
+\newlabel{lst:Policy5JSQL}{{6.13}{49}{Policy 5 in JSQL}{lstlisting.6.13}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.13}Policy 5 in JSQL}{49}{lstlisting.6.13}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.3}A database is opened only after the master password is checked or when creating a new database}{50}{subsection.6.2.3}}
+\newlabel{subsec:DBOpen}{{6.2.3}{50}{A database is opened only after the master password is checked or when creating a new database}{subsection.6.2.3}{}}
+\newlabel{lst:Policy6PidginQL}{{6.14}{50}{Policy 6 in PidginQL}{lstlisting.6.14}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.14}Policy 6 in PidginQL}{50}{lstlisting.6.14}}
+\newlabel{lst:Policy6JSQL}{{6.15}{51}{Policy 6 in JS-QL}{lstlisting.6.15}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.15}Policy 6 in JS-QL}{51}{lstlisting.6.15}}
 \abx@aux@cite{ConScript}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.4}Conclusion}{47}{subsection.6.2.4}}
-\@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\contentsline {table}{\numberline {6.2}{\ignorespaces Expressiveness in JS-QL and GateKeeper\relax }}{47}{table.caption.40}}
-\newlabel{tab:PidginQLJSQL}{{6.2}{47}{Expressiveness in JS-QL and GateKeeper\relax }{table.caption.40}{}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {6.3}The ConScript language}{47}{section.6.3}}
-\newlabel{sec:ValidationConscript}{{6.3}{47}{The ConScript language}{section.6.3}{}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.1}No string arguments to setInterval, setTimeout}{48}{subsection.6.3.1}}
-\newlabel{lst:JSSetTimeout}{{6.16}{48}{No string arguments to setTimeout}{lstlisting.6.16}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.16}No string arguments to setTimeout}{48}{lstlisting.6.16}}
-\newlabel{lst:Policy7Conscript}{{6.17}{48}{Policy 7 in ConScript}{lstlisting.6.17}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.17}Policy 7 in ConScript}{48}{lstlisting.6.17}}
-\newlabel{lst:Policy7JSQL}{{6.18}{49}{Policy 7 in JS-QL}{lstlisting.6.18}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.18}Policy 7 in JS-QL}{49}{lstlisting.6.18}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.2}HTTP-cookies only}{49}{subsection.6.3.2}}
-\newlabel{subsec:HTTPOnly}{{6.3.2}{49}{HTTP-cookies only}{subsection.6.3.2}{}}
-\newlabel{lst:HTTPCookiesOnly}{{6.19}{49}{HTTP-cookies only example}{lstlisting.6.19}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.19}HTTP-cookies only example}{49}{lstlisting.6.19}}
-\newlabel{lst:Policy8Conscript}{{6.20}{50}{Policy 8 in ConScript}{lstlisting.6.20}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.20}Policy 8 in ConScript}{50}{lstlisting.6.20}}
-\newlabel{lst:Policy8JSQL}{{6.21}{50}{Policy 8 in JS-QL}{lstlisting.6.21}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.21}Policy 8 in JS-QL}{50}{lstlisting.6.21}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.3}Prevent resource abuse}{51}{subsection.6.3.3}}
-\newlabel{lst:Policy9Conscript}{{6.22}{51}{Policy 9 in ConScript}{lstlisting.6.22}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.22}Policy 9 in ConScript}{51}{lstlisting.6.22}}
-\newlabel{lst:Policy9JSQL}{{6.23}{52}{Policy 9 in JS-QL}{lstlisting.6.23}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.23}Policy 9 in JS-QL}{52}{lstlisting.6.23}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.4}Conclusion}{52}{subsection.6.3.4}}
-\@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\contentsline {table}{\numberline {6.3}{\ignorespaces Expressiveness in JS-QL and ConScript\relax }}{52}{table.caption.41}}
-\newlabel{tab:CSJSQL}{{6.3}{52}{Expressiveness in JS-QL and ConScript\relax }{table.caption.41}{}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {6.4}Evaluation}{53}{section.6.4}}
-\newlabel{sec:ValidationEvaluation}{{6.4}{53}{Evaluation}{section.6.4}{}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.1}Advantages}{53}{subsection.6.4.1}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.2}Limitations}{54}{subsection.6.4.2}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.3}Conclusion}{54}{subsection.6.4.3}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {7}Conclusion and future work}{55}{chapter.7}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.4}Conclusion}{52}{subsection.6.2.4}}
+\@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\contentsline {table}{\numberline {6.2}{\ignorespaces Expressiveness in JS-QL and GateKeeper\relax }}{52}{table.caption.44}}
+\newlabel{tab:PidginQLJSQL}{{6.2}{52}{Expressiveness in JS-QL and GateKeeper\relax }{table.caption.44}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {6.3}The ConScript language}{52}{section.6.3}}
+\newlabel{sec:ValidationConscript}{{6.3}{52}{The ConScript language}{section.6.3}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.1}No string arguments to setInterval, setTimeout}{53}{subsection.6.3.1}}
+\newlabel{lst:JSSetTimeout}{{6.16}{53}{No string arguments to setTimeout}{lstlisting.6.16}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.16}No string arguments to setTimeout}{53}{lstlisting.6.16}}
+\newlabel{lst:Policy7Conscript}{{6.17}{53}{Policy 7 in ConScript}{lstlisting.6.17}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.17}Policy 7 in ConScript}{53}{lstlisting.6.17}}
+\newlabel{lst:Policy7JSQL}{{6.18}{54}{Policy 7 in JS-QL}{lstlisting.6.18}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.18}Policy 7 in JS-QL}{54}{lstlisting.6.18}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.2}HTTP-cookies only}{54}{subsection.6.3.2}}
+\newlabel{subsec:HTTPOnly}{{6.3.2}{54}{HTTP-cookies only}{subsection.6.3.2}{}}
+\newlabel{lst:HTTPCookiesOnly}{{6.19}{54}{HTTP-cookies only example}{lstlisting.6.19}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.19}HTTP-cookies only example}{54}{lstlisting.6.19}}
+\newlabel{lst:Policy8Conscript}{{6.20}{55}{Policy 8 in ConScript}{lstlisting.6.20}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.20}Policy 8 in ConScript}{55}{lstlisting.6.20}}
+\newlabel{lst:Policy8JSQL}{{6.21}{55}{Policy 8 in JS-QL}{lstlisting.6.21}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.21}Policy 8 in JS-QL}{55}{lstlisting.6.21}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.3}Prevent resource abuse}{56}{subsection.6.3.3}}
+\newlabel{lst:Policy9Conscript}{{6.22}{56}{Policy 9 in ConScript}{lstlisting.6.22}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.22}Policy 9 in ConScript}{56}{lstlisting.6.22}}
+\newlabel{lst:Policy9JSQL}{{6.23}{57}{Policy 9 in JS-QL}{lstlisting.6.23}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {6.23}Policy 9 in JS-QL}{57}{lstlisting.6.23}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.4}Conclusion}{57}{subsection.6.3.4}}
+\@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\contentsline {table}{\numberline {6.3}{\ignorespaces Expressiveness in JS-QL and ConScript\relax }}{57}{table.caption.45}}
+\newlabel{tab:CSJSQL}{{6.3}{57}{Expressiveness in JS-QL and ConScript\relax }{table.caption.45}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {6.4}Evaluation}{58}{section.6.4}}
+\newlabel{sec:ValidationEvaluation}{{6.4}{58}{Evaluation}{section.6.4}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.1}Advantages}{58}{subsection.6.4.1}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.2}Limitations}{59}{subsection.6.4.2}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.3}Conclusion}{59}{subsection.6.4.3}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {7}Conclusion and future work}{60}{chapter.7}}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {7.1}Summary}{55}{section.7.1}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {7.2}Future work}{55}{section.7.2}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{Appendices}{56}{section*.42}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {A}Compound Policies}{57}{Appendix.a.A}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {7.1}Summary}{60}{section.7.1}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {7.2}Future work}{60}{section.7.2}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{Appendices}{61}{section*.46}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\numberline {A}Compound Policies}{62}{Appendix.a.A}}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{lst:WriteToBuiltinObjectPrototype}{{A.1}{57}{The \texttt {writeToBuiltinObjectPrototype} predicate}{lstlisting.a.A.1}{}}
-\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {A.1}The \texttt  {writeToBuiltinObjectPrototype} predicate}{57}{lstlisting.a.A.1}}
+\newlabel{lst:WriteToBuiltinObjectPrototype}{{A.1}{62}{The \texttt {writeToBuiltinObjectPrototype} predicate}{lstlisting.a.A.1}{}}
+\@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\contentsline {lstlisting}{\numberline {A.1}The \texttt  {writeToBuiltinObjectPrototype} predicate}{62}{lstlisting.a.A.1}}
