@@ -12,7 +12,7 @@ The abstract state graph obtained from the JIPDA analysis is a perfect starting 
 
 \subsection{JS-QL syntax}
 \label{subsec:Syntax}
- In this section we will discuss the available constructs and syntax of the JS-QL language. The examples in this section will be simplistic and will demonstrate how each construct works. They will therefore not always represent an actual security policy, but will rather serve as a guideline for using these constructs.
+ In this section we will discuss the available constructs and syntax of the JS-QL language. The examples in this section will be simplistic and will demonstrate how each construct works. They will therefore not always represent an actual security policy, but will rather serve as a guideline for using these constructs. We chose to use \textit{path expressions} to express queries in JS-QL, and more precisely \textit{regular path expressions}. This adds the flexibility of regular expressions to the language, as the most relevant features of regular expressions are incorporated in JS-QL.
 
 %Entry point
 \subsubsection{The entry point}
@@ -64,7 +64,9 @@ the \texttt{state} construct is the single most basic element of the language. I
   \label{tab:InfoPerState}
 \end{table}
 
+As readability is key in a query language, JS-QL provides four extra constructs that are semantically almost equivalent to the regular \texttt{state} construct. \texttt{evalState}, \texttt{kontState}, \texttt{returnState} and \texttt{resultState} are included in the language, with the purpose of enhancing readability, but also to match only those specific kinds of states.
 Note that the framework also supports the usage of the identifier and successors of a state, but it is very uncommon to use them, as they are semantically irrelevant to queries. The identifier of a state would only be relevant when a query is matched in that exact state. When this is the case, the state gets marked in the visual graph representation and all query information is then contained in that state. To retrieve the information, one simply has to click the state to inspect all variable values. Successors also contain few additional information, as all direct successors of a state are already made explicit in the state graph. A use case for the use of the successors keyword could be to find all states after which some branching occurs. This could then be specified as a JS-QL query which captures the successors array in a variable \texttt{?succArr}, and then filters the results to only contain the states with the length of \texttt{?succArr} strictly greater than 1.
+
 
 To understand how we can parametrize states, we first have to know how to define variables in JS-QL. Variables in JS-QL are strings, starting with a \texttt{?}. The fact that we use strings comes from the embedded nature of our language: If we were to specify variables as literals, the host language would complaint that it doesn't recognize the literal. Listing \ref{lst:stringVariables} illustrates this.
 
@@ -92,29 +94,106 @@ G.state({ node : { type: '?tpe' }})
  .state({ node : { type: '?tpe' }})
 \end{lstlisting}
 
-\noindent We immediately see that the variable \texttt{?tpe} occurs twice in the query. This can be done on purpose to achieve \textit{unification}. Unification simply means that two variables with the same name have to contain the same value. After executiong the first line, the first state in the graph is matched (if it has the \texttt{node} property) and the variable \texttt{?tpe} is bound to the type of the node. The matching engine then proceeds to the next state in both the query and the state graph. If the next state again has the \texttt{node} property with the same type as already bound to \texttt{tpe}, the unification process has succeeded and the whole query will match. If the node type of the next state isn't equal to the value already bound to \texttt{?tpe}, or if that state doesn't have a \texttt{node} property, there is no match. The results of a successfully matched query will be the set of all possible \textit{substitutions}, together with the identifier of the state where the last element of the query matched. Figure \ref{fig:Unification} gives a simplistic visual representation of this process for the query listed in listing \ref{lst:Unification}. For the graph on the left-hand side, the query is fully matched by successfully unifying the the type of the first and second state. In contrast, the graph on the right-hand side will not produce a match as $\{$\texttt{?tpe} $:$ 'ExpressionStatement'$\}$ can not be unified with $\{$\texttt{?tpe} $:$ 'AssignExpression'$\}$.
+\noindent We immediately see that the variable \texttt{?tpe} occurs twice in the query. This can be done on purpose to achieve \textit{unification}. Unification simply means that two variables with the same name have to contain the same value. After executiong the first line, the first state in the graph is matched (if it has the \texttt{node} property) and the variable \texttt{?tpe} is bound to the type of the node. The matching engine then proceeds to the next state in both the query and the state graph. If the next state again has the \texttt{node} property with the same type as already bound to \texttt{tpe}, the unification process has succeeded and the whole query will match. If the node type of the next state isn't equal to the value already bound to \texttt{?tpe}, or if that state doesn't have a \texttt{node} property, there is no match. The results of a successfully matched query will be the set of all possible \textit{substitutions}, together with the identifier of the state where the last element of the query matched. Figure \ref{fig:Unification} gives a simplistic visual representation of this process for the query listed in listing \ref{lst:Unification}. For the graph on the left-hand side, the query is fully matched by successfully unifying the the type of the first and second state. In contrast, the graph on the right-hand side will not produce a match as $\{$\texttt{?tpe} $:$ 'ExpressionStatement'$\}$ can't'be unified with $\{$\texttt{?tpe} $:$ 'AssignExpression'$\}$. More complex examples of unification can be found later in this chapter.
 
-\begin{figure}[!ht]
+\begin{figure}[!h]
     \centering
       \includegraphics[width=1\textwidth]{images/Unification} 
       \caption{Visual representation of the unification process}
     \label{fig:Unification}
 \end{figure}
 
-%Opmerken dat we nu slechts aan het matchen zijn vanaf het begin van de graph, wat als we iets ERGENS in de code willen detecten?
+All queries presented until now match the state graph from the beginning of the graph only. This behaviour is often undesirable as a developer usually wants to detect a pattern \textit{somewhere} in his code, not necessarily at the beginning. To resolve this, JS-QL combines techniques from regular expressions with a special built-in construct, the \textit{wildcard}.
+
 %TODO: translate variables starting with ! to ?__TMP__
 
-%state (+types)
-%unification uitleggen tesamen met parametrization + als niet matcht overslaan (tekening van match)
+\subsubsection{Wildcard}
 
+Wildcards are usually known as 'things of which the value can be anything', and this is no exception in JS-QL. A \texttt{wildcard} serves the sole purpose of matching any state it gets compared with. In other words, an equally correct name for this construct could have been \texttt{skip}, as it skips a state in both the query (the \texttt{wildcard} state itself) and the abstract state graph (the state the wildcard gets matched with). When talking about states in a query pattern, both \texttt{state} as \texttt{wildcard} match this definition. \texttt{wildcard}s act just like regular \texttt{state}s in a query, meaning that they only match \textit{1} state in the state graph. It is very unlikely that a developer knows exactly after how many states a violation would occur, so simply enumerating wildcards followed by the state to be matched would typically be a very tiresome effort. We therefore need to be able to specify that we wish to skip \textit{zero or more} states before matching the following state in the query pattern. This is where the power of regular expressions comes in handy. Just like regular expressions, JS-QL supports the use of both the Kleene star (\texttt{star}) and the Kleene plus (\texttt{plus}) operators. In our language, the \texttt{star} and \texttt{plus} constructs are both placed \textit{after} the state(s) they are applied to. Placing \texttt{star} behind a sequence of states indicates that those states can occur \textit{zero or more} times at the current position in the state graph. The semantics of \texttt{plus} are very similar, except for the fact that the states have to occur at least once in the order they are specified. Just like with regular expressions, pieces of a pattern can be surrounded by braces. Left and right braces in JS-QL are denoted by \texttt{lBrace} and \texttt{rBrace} respectively. The default behavior of both the kleene star and kleene plus operators is to apply them to the state that occurs right before it. If any kleene operator has to be applied to multiple states, these states have to be wrapped in braces in JS-QL. Listing \ref{lst:KleeneOperations} shows the differences. Lines 1 and 2 are semantically equivalent, as the braces on line 2 only contain 1 state, a \texttt{wildcard} in this case. Lines 3 and 4 on the other hand are semantically very different. The query on line 3 matches all but the first states in the state graph, whereas the query on line 4 matches every other state in the graph, starting from the second state. The combinations of \texttt{wildcard().star()} and \texttt{wildcard().plus()} are so commonly used in JS-QL, that a special construct is created for each of them: \texttt{skipZeroOrMore()} and \texttt{skipOneOrMore()} respectively.
 
-%THIS
-%props -> motiveren waarom andere kant
-%filters
-%lookup
-%not
-%wildcard
-%star
+\begin{lstlisting}[label={lst:KleeneOperations},language=JSQL,caption=Kleene operations differences,mathescape=true]  % float=t?
+
+G.wildcard().star() // Equal to G.skipZeroOrMore()
+G.lBrace().wildcard().rBrace().star()
+G.wildcard().state().plus()
+G.lBrace().wildcard().state().rBrace().plus()
+\end{lstlisting}
+
+\subsubsection{Disjunction}
+
+Sometimes when writing a query, more than one state on the path is allowed for the query to match. Consider a simple language in which we want to detect all uses of a variable \texttt{v}. Using a variable in this language can only be done by using it in an binary arithmetic expression. To keep the example simple, we disregard all other possible uses of a variable. We also assume in this example that no other variable was assigned the value of \texttt{v}, so that no aliases of \texttt{v} exist in the code. When using a variable in a binary arithmetic expression, the variable can be on either side of the operator. A naive solution to query for all uses of \texttt{v} would be to first launch a query that finds all occurences of \texttt{v} on the left-hand side, followed by a query that detects all occurences on the right-hand side. To alleviate the work of the user, JS-QL offers the disjunction construct \texttt{or}, which allows to specify that 1 state in the state graph can be matched by multiple states in the query pattern. If we then were to match all occurrences of \texttt{v} on the left- and right-hand side of arithmetic expressions, we could write a query as in listing \ref{lst:disjunction}.
+
+\begin{lstlisting}[label={lst:disjunction},language=JSQL,caption=The JS-QL disjunction operator,mathescape=true]  % float=t?
+
+G.skipZeroOrMore()
+.lBrace()
+  //Left-hand side with name 'v'
+  .state({node: { type: 'BinaryExpression',
+                  left: {name:'v'}}})      
+  .or()
+  //Right-hand side with name 'v'
+  .state({node: { type:  'BinaryExpression',
+                  right: {name:'v'}}})
+.rBrace()
+\end{lstlisting}
+
+This query first skips zero or more states, starting from the beginning of the graph. It then matches a \texttt{state} (\texttt{evalState} would be equally correct) with a \texttt{node} property of type 'BinaryExpression'. Remember that the node property of evaluation states contains the AST information for the current expression. Because of this, the \texttt{left} and \texttt{right} properties of the BinaryExpression are again nodes that can be further deconstructed. The \texttt{or} construct splits the query in two different query paths. One path will try to match the pattern specified before the construct, whereas the other path searches for matches for the pattern specified after the \texttt{or}. The same rules apply w.r.t. braces as for the \texttt{star} and \texttt{plus} operators. For the first path, we deconstruct the left property of the node and match its name with the literal \texttt{v}. This automatically filters out all states for which this condition doesn't hold. What remains is a match for each state for which the condition holds. The same is done for the second path, with the only difference that the name of the right node now has to be equal to \texttt{v}. As the query doesn't store any variables along the path, the result of the query can only be observed in the visual representation of the abstract state graph. In this graph, all matching nodes will be marked with color, indicating a match.
+
+When examining the example above, we notice that very few relevant information is available as a result of the query. A more detailed result should contain the actual node or even the entire state that was matched, so we could inspect it further. To this extent, an additional implicit property was made available for each deconstructable map in the language. This property represents the entire object by which it is encapsulated. We chose to give this property an appropriate name, indicating that it points to the object currently being inspected, namely \texttt{this}. Listing \texttt{lst:updatedDisjunction} gives an updated version of the relevant code from the previous example. In this version, the \texttt{thisNode} variable will be bound to the node of the matched state.
+
+\begin{lstlisting}[label={lst:updatedDisjunction},language=JSQL,caption=Using the \texttt{this} keyword,mathescape=true]  % float=t?
+
+//...
+.state({node: { this: '?thisNode',
+                type: 'BinaryExpression',
+                left: {name:'v'}}})     
+//... 
+\end{lstlisting}
+
+\subsubsection{Specifying additional properties}
+
+Sometimes it can be useful to capture extra information about already matched variables. Doing so in a separate section, exclusively designed for this purpose, has two advantages. First of all, it enhances the readability of queries. Queries with deeply nested maps can quickly become confusing to read and bothersome to modify. Secondly, it opens up for opportunities to make the language even more expressive. JS-QL has a built-in keyword \texttt{properties}, which can be used to obtain more information from already bound variables. 
+
+Expressing properties can be done in two ways, as indicated in listing \ref{lst:propertiesExample}. As the language we are using is an embedded language, we can take advantage of the host language. JavaScript allows the value of key-value pairs to be a function call with arguments. We can exploit this by defining a JavaScript function \texttt{prop}, to which we can pass which kind of information we wish to obtain and from which variable we want to obtain these properties. The first argument of \texttt{prop} is the function that needs to be applied when the matching engine processes the query. The arguments of this function are all other arguments that were passed to \texttt{prop}. Line 5 of the example below shows how to properly use the \texttt{prop} function. We have to defer the evaluation of the function passed as a first argument to \texttt{prop} because at compile-time the values of the variables aren't calculated yet (as no matching has happened). This function, in the example below 'memberOf', can be a user-specified function or a built-in function. As for now, JS-QL only has three build-in functions that work on variables, and all three require that variable to be of type \textit{Array}:
+
+\begin{enumerate}
+\item \textit{length}: A query could contain \texttt{prop('length', '?arr')}, where \texttt{?arr} is a variable with a value of type \texttt{Array}. The function then returns the length of the array bound to the variable.
+\item \textit{at}: This function takes 2 additional arguments: A variable containing an array, and an index \texttt{i}. The resulting value is the \texttt{i}th element of the array.
+\item \textit{memberOf}: This function is the most important and also most used one. It takes a variable containing an array \texttt{arr} as an argument and expands the current substitution set, so that for each element in \texttt{arr} a new substitution set is created with that element appended to it. In the example below, the substitution set before the execution of line 5 would look like \\\texttt{[\{?decls : [dec1, dec2]\}]}, \\and would afterwards look like: \\\texttt{[\{?decls : [dec1, dec2], ?dec : dec1 \},\\\phantom{ }\{?decls : [dec1, dec2], ?dec : dec2 \}]}
+\end{enumerate}
+
+\noindent Another way to define additional properties is by simply specifying which attribute of a variable one wishes to capture. Line 6 of the example below shows how the 'name' of the 'left' attribute of \texttt{?dec} is bound to \texttt{?decName}. Declaring a new property variable is done similarly for both ways of defining properties: The key of the map should contain the variable name to be declared, whereas the value should be the property specification. One might notice that this order of key-value pairs is different from all other notations in JS-QL. This is because the host language doesn't allow function calls to be keys in maps, and thus restricts the syntax of our language in that way.
+
+The example below matches all states of the state graph that declare variables. These declarations are captured in \texttt{?decls}. Next, for each declaration, a new substitution set is generated by the 'memberOf' function. Each substitution set now contains a variable \texttt{?dec} bound to an element of the \texttt{?decls} array. Finally, the name of the declaration in each substitution set is captured in \texttt{?decName}.
+
+\begin{lstlisting}[label={lst:propertiesExample},language=JSQL,caption=Specifying additional properties in JS-QL,mathescape=true]  % float=t?
+
+G.skipZeroOrMore()
+.state({
+      node:{ declarations: '?decls' },
+      properties:{
+        '?dec'     : prop('memberOf', '?decls'),
+        '?decName' : '?dec.left.name'
+      }})
+\end{lstlisting}
+
+It is very important to keep in mind that only the variables that are already bound can be used in properties. This implies that the order of the keywords in a query is important for the semantics of the query. If we were to switch the \texttt{node} and \texttt{properties} keywords of the above query, an error would occur because the \texttt{?decls} variable wouldn't be available to use in the properties section.
+
+%zeggen waarom aan andere kant staat
+
+\subsubsection{Filtering states}
+
+\subsubsection{Data flow in JS-QL}
+
+\subsubsection{Negation}
+
+%internals matcht het de gewone state, en als er een match is dan geen match.
+%Variabelen moeten reeds gebonden zijn
+%niet meer dan 1 state negeren (limitation), kunnen wel zoeken naar het niet-einde van iets.
+
+%ergens zeggen dat van boven naar beneden gematched wordt voor variables
+%SUMMARY OF BUILT-IN CONSTRUCTS
+
 \subsection{Types of queries}
 \label{subsec:TypesOfQueries}
 %forward

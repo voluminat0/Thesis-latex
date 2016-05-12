@@ -21,7 +21,7 @@
 \BOOKMARK [1][-]{section.3.4}{Design of an internal DSL for querying flow graphs}{chapter.3}% 21
 \BOOKMARK [2][-]{subsection.3.4.1}{Internal DSL design constraints}{section.3.4}% 22
 \BOOKMARK [2][-]{subsection.3.4.2}{DSL implementation techniques and patterns}{section.3.4}% 23
-\BOOKMARK [0][-]{chapter.4}{JS-QL: an internal DSL approach for querying flow graphs}{}% 24
+\BOOKMARK [0][-]{chapter.4}{JS-QL: An internal DSL approach for querying flow graphs}{}% 24
 \BOOKMARK [1][-]{section.4.1}{The JS-QL query language}{chapter.4}% 25
 \BOOKMARK [2][-]{subsection.4.1.1}{JS-QL syntax}{section.4.1}% 26
 \BOOKMARK [2][-]{subsection.4.1.2}{Types of queries}{section.4.1}% 27
@@ -56,5 +56,5 @@
 \BOOKMARK [0][-]{chapter.7}{Conclusion and future work}{}% 56
 \BOOKMARK [1][-]{section.7.1}{Summary}{chapter.7}% 57
 \BOOKMARK [1][-]{section.7.2}{Future work}{chapter.7}% 58
-\BOOKMARK [0][-]{section*.46}{Appendices}{}% 59
+\BOOKMARK [0][-]{section*.53}{Appendices}{}% 59
 \BOOKMARK [0][-]{Appendix.a.A}{Compound Policies}{}% 60

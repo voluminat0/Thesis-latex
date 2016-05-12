@@ -237,9 +237,17 @@ The Metal language is a good example of a clearly readable query language. Patte
 
 \subsection*{JunGL}
 
-%Graph queries
-%Eigen taal die patronen gaat matchen
+In contrast with other languages presented in this section, JunGL\cite{JunGL} is a scripting language to perform refactorings, based on pattern matching. The interesting part of their approach is how they specify which parts of the code they wish to refactor. In order to refactor some source code, the program first has to be represented in some way which is easy to access programmatically. They do this by parsing the code into a uniform graph, initially containing only the information of the parsed AST. Lazy edges containing control flow information can also be added to the graph, but only when the refactoring needs this information. JunGL makes use of \textit{path queries} to express which patterns they wish to match. We believe that these queries are both very readable and very expressive. For example, figure \ref{fig:JunGL} shows the path query to find the path from a variable occurence \texttt{var} to its declaration as a method parameter:
+
+\begin{figure}[!ht]
+    \centering
+      \includegraphics[width=0.4\textwidth]{images/JunGL} 
+      \caption{A typical JunGL path query}
+    \label{fig:JunGL}
+\end{figure}
+
+The above style of query denotation offers the exact amount of flexibility, readability and expressiveness that we need to let developers express user-specified queries over a graph. An additional advantage of this type of queries is that no boilerplate code is needed for writing queries, giving an 'out-of-the-box' feel to this type of languages.
 
 
 \section{Conclusion}
-In this chapter we discussed what static analysis is and why it is important for detecting characteristics and vulnerabilities in source code. We have also seen some approaches that enable users to write clean and readable queries that define the patterns to be detected. We can conclude that the state of the art in static analysis has reached a point where tools that support the detection of generic patterns often aren't expressive and flexible enough for application-specific use. A solution for this problem is a tool and a language which allow users to specify their own, custom queries for an application. In this way, no database of pre-encoded vulnerability detection queries is needed as the queries that are specified will mostly be too application-specific to generalize. We believe that expressing vulnerability queries (in the rest of this dissertation referred to as \textit{security policies}) is most readable and expressive using regular path expressions, as they can nearly be read as a regular sentence consisting of consecutive pieces of code/states to be detected.
+In this chapter we discussed what static analysis is and why it is important for detecting characteristics and vulnerabilities in source code. We have also seen some approaches that enable users to write clean and readable queries that define the patterns to be detected. We can conclude that the state of the art in static analysis has reached a point where tools that support the detection of generic patterns often aren't expressive and flexible enough for application-specific use. A solution for this problem is a tool and a language which allow users to specify their own, custom queries for an application. In this way, no database of pre-encoded vulnerability detection queries is needed as the queries that are specified will mostly be too application-specific to generalize. We believe that expressing vulnerability queries (in the rest of this dissertation referred to as \textit{security policies}) is most readable and expressive using path expressions, as they can nearly be read as a regular sentence consisting of consecutive pieces of code/states to be detected.
