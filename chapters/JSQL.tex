@@ -154,7 +154,7 @@ When examining the example above, we notice that very few relevant information i
 
 Sometimes it can be useful to capture extra information about already matched variables. Doing so in a separate section, exclusively designed for this purpose, has two advantages. First of all, it enhances the readability of queries. Queries with deeply nested maps can quickly become confusing to read and bothersome to modify. Secondly, it opens up for opportunities to make the language even more expressive. JS-QL has a built-in keyword \texttt{properties}, which can be used to obtain more information from already bound variables. 
 
-Expressing properties can be done in two ways, as indicated in listing \ref{lst:propertiesExample}. As the language we are using is an embedded language, we can take advantage of the host language. JavaScript allows the value of key-value pairs to be a function call with arguments. We can exploit this by defining a JavaScript function \texttt{prop}, to which we can pass which kind of information we wish to obtain and from which variable we want to obtain these properties. The first argument of \texttt{prop} is the function that needs to be applied when the matching engine processes the query. The arguments of this function are all other arguments that were passed to \texttt{prop}. Line 5 of the example below shows how to properly use the \texttt{prop} function. We have to defer the evaluation of the function passed as a first argument to \texttt{prop} because at compile-time the values of the variables aren't calculated yet (as no matching has happened). This function, in the example below 'memberOf', can be a user-specified function or a built-in function. As for now, JS-QL only has three build-in functions that work on variables, and all three require that variable to be of type \textit{Array}:
+Expressing properties can be done in two ways, as indicated in listing \ref{lst:propertiesExample}. As the language we are using is an embedded language, we can take advantage of the host language. JavaScript allows the value of key-value pairs to be a function call with arguments. We can we can benefit from this by defining a JavaScript function \texttt{prop}, to which we can pass which kind of information we wish to obtain and from which variable we want to obtain these properties. The first argument of \texttt{prop} is the function that needs to be applied when the matching engine processes the query. The arguments of this function are all other arguments that were passed to \texttt{prop}. Line 5 of the example below shows how to properly use the \texttt{prop} function. We have to defer the evaluation of the function passed as a first argument to \texttt{prop} because at compile-time the values of the variables aren't calculated yet (as no matching has happened). This function, in the example below 'memberOf', can be a user-specified function or a built-in function. More details on how users can specify their own functions is duscussed in section \ref{subsec:DefiningPolicies}. As for now, JS-QL only has three build-in functions that work on variables, and all three require that variable to be of type \textit{Array}:
 
 \begin{enumerate}
 \item \textit{length}: A query could contain \texttt{prop('length', '?arr')}, where \texttt{?arr} is a variable with a value of type \texttt{Array}. The function then returns the length of the array bound to the variable.
@@ -162,7 +162,7 @@ Expressing properties can be done in two ways, as indicated in listing \ref{lst:
 \item \textit{memberOf}: This function is the most important and also most used one. It takes a variable containing an array \texttt{arr} as an argument and expands the current substitution set, so that for each element in \texttt{arr} a new substitution set is created with that element appended to it. In the example below, the substitution set before the execution of line 5 would look like \\\texttt{[\{?decls : [dec1, dec2]\}]}, \\and would afterwards look like: \\\texttt{[\{?decls : [dec1, dec2], ?dec : dec1 \},\\\phantom{ }\{?decls : [dec1, dec2], ?dec : dec2 \}]}
 \end{enumerate}
 
-\noindent Another way to define additional properties is by simply specifying which attribute of a variable one wishes to capture. Line 6 of the example below shows how the 'name' of the 'left' attribute of \texttt{?dec} is bound to \texttt{?decName}. Declaring a new property variable is done similarly for both ways of defining properties: The key of the map should contain the variable name to be declared, whereas the value should be the property specification. One might notice that this order of key-value pairs is different from all other notations in JS-QL. This is because the host language doesn't allow function calls to be keys in maps, and thus restricts the syntax of our language in that way.
+\noindent Another way to define properties is by simply specifying which attribute of a variable one wishes to capture. Line 6 of the example below shows how the 'name' of the 'left' attribute of \texttt{?dec} is bound to \texttt{?decName}. Declaring a new property variable is done similarly for both ways of defining properties: The key of the map should contain the variable name to be declared, whereas the value should be the property specification. One might notice that this order of key-value pairs is different from all other notations in JS-QL. This is because the host language doesn't allow function calls to be keys in maps, and thus restricts the syntax of our language in that way.
 
 The example below matches all states of the state graph that declare variables. These declarations are captured in \texttt{?decls}. Next, for each declaration, a new substitution set is generated by the 'memberOf' function. Each substitution set now contains a variable \texttt{?dec} bound to an element of the \texttt{?decls} array. Finally, the name of the declaration in each substitution set is captured in \texttt{?decName}.
 
@@ -172,18 +172,74 @@ G.skipZeroOrMore()
 .state({
       node:{ declarations: '?decls' },
       properties:{
-        '?dec'     : prop('memberOf', '?decls'),
-        '?decName' : '?dec.left.name'
+        '?dec'     : prop('memberOf', '?decls'),  // \texttt{prop} notation
+        '?decName' : '?dec.left.name'             // attributes notation
       }})
 \end{lstlisting}
 
 It is very important to keep in mind that only the variables that are already bound can be used in properties. This implies that the order of the keywords in a query is important for the semantics of the query. If we were to switch the \texttt{node} and \texttt{properties} keywords of the above query, an error would occur because the \texttt{?decls} variable wouldn't be available to use in the properties section.
 
-%zeggen waarom aan andere kant staat
-
 \subsubsection{Filtering states}
 
+Filters in JS-QL work very similar to properties, except that they act as guards who filter out states that don't satisfy certain conditions. A filter can be any function, predefined or specified by the user, that returns a boolean value. When returning true the pattern can be matched further, otherwise the matching process aborts and no match for the current path in the state graph is found. A filter is declared through the \texttt{cond} JavaScript function (similar to \texttt{prop} for filters), and takes a filter function as a first argument. All other arguments are passed as the arguments to the filter function. As no variables have to be stored for filters, the notation is not traditional in such a way that it doesn't use map. Instead, a JavaScript array lists all filters to be satisfied. Consider the following example: JavaScript allows the declaration of multiple variables in one declaration statement, e.g.:\\\texttt{var a = 1, b = 2;} \\Some companies see this as a bad practice, as it is harder to maintain and less error-prone. A query can be written to to detect all violations of this company policy, by storing the length of the declarations in a variable and checking if the length of the variable is larger than 1. Only the states for which this filter is satisfied will be contained in the results of the query. Listing \ref{lst:multipleDeclarations} illustrates this example.
+
+\begin{lstlisting}[label={lst:multipleDeclarations},language=JSQL, caption=Filtering for multiple declarations,mathescape=true]
+G.skipZeroOrMore()
+.state({
+      node:{declarations: '?decls'},
+      properties:{
+        '?length' : prop('length', '?decls')
+      },
+      filters:[
+          cond('>', '?length', 1)
+      ]
+    }) 
+\end{lstlisting}
+
 \subsubsection{Data flow in JS-QL}
+
+Support for data flow opens up to write a whole new class of queries. As JavaScript is a dynamic language, any variable can be assigned to any other variable. This phenomenon is known as \textit{aliasing}, and is very common in the language. As already discussed in chapter \ref{ch:Overview}, JIPDA stores the addresses and values of variables in the \texttt{store}. Values stored for primitive types are indistinguishable in the store, because of abstract interpretation:\\
+\texttt{var x = 4; var y = 9999;}\\
+Both x and y are integers and will point in the store to a value of \texttt{\{Num\}}. We thus can't track aliasing for primitives. Reference types in JavaScript however are distinguishable in the store as they each point to a set of unique addresses for that reference. Remember that reference types can point to multiple addresses as a consequence of precision loss of abstract interpretation. A feature of the abstract state graph that affects the expressiveness of our language is that it displays states as they are evaluated. This means that for assignments for example, the address of the left-hand side of the assignment often isn't available in the assignment state, as the value (and address) of the right-hand side needs to be evaluated first. This happens \textit{after} the assignment state in the state graph. An example is the simple program: 
+\texttt{var x,y; x = \{\}; y = x;}
+In this program, \texttt{x} gets assigned a fresh object, after which it gets aliased to \texttt{y}. \texttt{x} and \texttt{y} point to the same set of addresses after execution of this part of the program.
+The relevant graph part is depicted in figure \ref{fig:AssignmentLookup}
+
+\begin{figure}[!h]
+    \centering
+      \includegraphics[width=.5\textwidth]{images/assignmentLookup} 
+      \caption{Assignment representation in the state graph}
+    \label{fig:AssignmentLookup}
+\end{figure}
+
+The problem with this kind of representation in the graph is that when we try to match the assignment in a query, no address information for \texttt{x} is available. After evaluating the fresh object, \texttt{x} gets stored in the store. Later on in the program, \texttt{y} gets assigned the value of \texttt{x}. Now, there is no problem because the address of \texttt{x} is already available in the store, so it can be looked up in the query. Note that the data flow detection in JS-QL isn't nearly as powerful as for example a taint analysis. Queryies and policies can be written to mimic a taint-analysis, but this requires some work. Later in this chapter we will discuss how custom queries and policies can be defined.
+
+Variables can be looked up in JS-QL using the \texttt{lookup} keyword. The value-part of this keyword is again a map with the names of the variables to lookup as keys, and the variable names that need to be bound to the addresses as values. Performing a lookup in JS-QL happens by first looking into the lexical scope. When variables with the same name are defined in both a function and the global scope, the lookup value of that variable will depend on the state that is currently matched. Therefore, we need to provide some sort of mechanism to 'overwrite' this default behavior, in case the address of the global variable is needed when the currently matched state is inside a function application. To this extent, JS-QL recognizes the \texttt{\_global} string as an indicator to perform a lookup in the global scope. Listing \ref{lst:lookup} shows how variables can be looked up. First, the name of the right-hand side node of the assignment expression gets bound to \texttt{?rn}. When the assigment expression gets matched with a state in the global scope, all three address variables \texttt{?rnAddr}, \texttt{?globrnAddr} and \texttt{?xAddr} will have the same value. However, when the assignment on line 7 gets matched, \texttt{?globrnAddr} will point to the globally defined \texttt{x}, whereas the other two lookups contain the address of the locally defined \texttt{x}.
+
+\begin{lstlisting}[label={lst:lookup},language=JSQL, caption=Looking up addresses in JS-QL,mathescape=true]
+//Javascript program
+var x, y;
+x = {};
+y = x;
+var f = function(){
+  var x = 4; //local x gets declared
+  y = x;
+}
+f();
+//JS-QL query
+G.skipZeroOrMore()
+.state({node:{
+          expression:{
+            type:'AssignmentExpression', right: {name:'?rn'}
+        }},
+        lookup:{
+          '?rn'        : '?rnAddr',     //lookup by variablename
+          '_global.?rn': '?globrnAddr', //lookup in global scope
+          'x'          : '?xAddr'       //lookup based on name
+        }})
+\end{lstlisting}
+
+
 
 \subsubsection{Negation}
 
@@ -203,6 +259,7 @@ It is very important to keep in mind that only the variables that are already bo
 \subsection{Defining policies}
 \label{subsec:DefiningPolicies}
 %predikaten en queries
+%prop en filter functies
 %recursie!
 %Policies omgezet naar automaton -> dan naar query engine
 \section{The matching engine} 
