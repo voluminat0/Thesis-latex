@@ -6,6 +6,7 @@
 \usepackage[english]{babel}
 \usepackage{listings}
 \usepackage{scrextend}
+\usepackage{xcolor}
 \usepackage{setspace}
 \usepackage{stmaryrd}
 \usepackage{amsthm}
@@ -272,31 +273,96 @@ G.skipZeroOrMore()
        })
 \end{lstlisting}
 
-\begin{lstlisting}[label={lst:WriteToBuiltinObjectPrototype},language=JavaScript,caption=The \texttt{writeToBuiltinObjectPrototype} predicate,mathescape=true]  % float=t?
+\begin{lstlisting}[label={lst:assignPredicate},language=JavaScript,caption=The \texttt{assign} predicate,mathescape=true]  % float=t?
 
-RegularPathExpression.prototype.writeToBuiltinObjectPrototype = function(obj){
-	var obj = obj || {};
-	var states = [];
-	var frozenObjects = ['Array', 'Boolean', 'Date', 'Function', 'Document', 'Math', 'Window','String'];
-	var ret = this.lBrace();
-	var objProps = this.getTmpIfUndefined();
-	for(var i = 0; i < frozenObjects.length; i++){
-		var s = {};
-		this.setupStateChain(s, ['node', 'expression', 'left','properties'], objProps);
-		this.setupStateChain(s, ['node', 'expression', 'left','mainObjectName'], frozenObjects[i]);
-		this.setupFilter(s, 'contains', objProps, 'prototype');
-		this.finalize(s, obj);
-		states.push(s);
-	}
-	for(var j = 0; j < states.length; j++){
-		if(j !== states.length - 1){
-			ret = ret.state(states[j]).or()
-		}
-		else{
-			ret = ret.state(states[j]).rBrace();
-		}
-	}
-	return ret;
+JSQL.prototype.writeToBuiltinObjectPrototype = function(obj){
+  var obj = obj || {};
+  var states = [];
+  var frozenObjects = ['Array', 'Boolean', 'Date', 'Function', 'Document', 'Math', 'Window','String'];
+  var ret = this.lBrace();
+  var objProps = this.getTmpIfUndefined();
+  for(var i = 0; i < frozenObjects.length; i++){
+    var s = {};
+    this.setupStateChain(s, ['node', 'expression', 'left','properties'], objProps);
+    this.setupStateChain(s, ['node', 'expression', 'left','mainObjectName'], frozenObjects[i]);
+    this.setupFilter(s, 'contains', objProps, 'prototype');
+    this.finalize(s, obj);
+    states.push(s);
+  }
+  for(var j = 0; j < states.length; j++){
+    if(j !== states.length - 1){
+      ret = ret.state(states[j]).or()
+    }
+    else{
+      ret = ret.state(states[j]).rBrace();
+    }
+  }
+  return ret;
+}
+\end{lstlisting}
+
+\begin{lstlisting}[label={lst:taintedBy},language=JavaScript,caption=The \texttt{taintedBy} recursive policy,mathescape=true]  % float=t?
+JSQL.prototype.taintedBy = function(obj){ //x, y, rec
+  obj = obj || {};
+  var s1 = {};
+  var s2 = {};
+  var newObj = {};
+  var x = this.getTmpIfUndefined(obj.x);
+  var y = this.getTmpIfUndefined(obj.y);
+  var flow;
+  
+  if(obj.rec){
+    flow = this.getRecVar(obj.rec);
+  }
+  else{
+    flow = this.getTmpIfUndefined();
+  }
+
+  newObj.x = flow;
+  newObj.y = y;
+  newObj.rec = obj.rec;
+
+  this.setupStateChain(s1, ['node','expression','right','name'], x); //alias
+  this.setupStateChain(s1, ['node','expression','left','name'], y); //leaked
+  this.setupStateChain(s2, ['node','expression','right','name'], x); //alias
+  this.setupStateChain(s2, ['node','expression','left','name'], flow); //leaked
+
+  return this .lBrace()
+        .state(s1) //assign from x to y
+        .or()
+        .state(s2) //assign from x to tmp
+        .skipZeroOrMore()
+        .rec(newObj,this.taintedBy)
+        .rBrace();
+
+}
+\end{lstlisting}
+
+\begin{lstlisting}[label={lst:WriteToBuiltinObjectPrototype},language=JavaScript,caption=The \texttt{writeToBuiltinObjectPrototype} policy,mathescape=true]  % float=t?
+
+JSQL.prototype.writeToBuiltinObjectPrototype = function(obj){
+  var obj = obj || {};
+  var states = [];
+  var frozenObjects = ['Array', 'Boolean', 'Date', 'Function', 'Document', 'Math', 'Window','String'];
+  var ret = this.lBrace();
+  var objProps = this.getTmpIfUndefined();
+  for(var i = 0; i < frozenObjects.length; i++){
+    var s = {};
+    this.setupStateChain(s, ['node', 'expression', 'left','properties'], objProps);
+    this.setupStateChain(s, ['node', 'expression', 'left','mainObjectName'], frozenObjects[i]);
+    this.setupFilter(s, 'contains', objProps, 'prototype');
+    this.finalize(s, obj);
+    states.push(s);
+  }
+  for(var j = 0; j < states.length; j++){
+    if(j !== states.length - 1){
+      ret = ret.state(states[j]).or()
+    }
+    else{
+      ret = ret.state(states[j]).rBrace();
+    }
+  }
+  return ret;
 }
 \end{lstlisting}
 

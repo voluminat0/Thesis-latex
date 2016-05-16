@@ -80,66 +80,66 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.1.3}Defining predicates and policies}{48}{subsection.4.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}The matching engine}{48}{section.4.2}
+\contentsline {subsubsection}{recursion}{50}{section*.54}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.3}The graphical user interface}{48}{section.4.3}
+\contentsline {subsection}{\numberline {4.1.4}conclusion}{52}{subsection.4.1.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Implementation}{49}{chapter.5}
+\contentsline {chapter}{\numberline {5}Implementation}{53}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}Used technologies}{49}{section.5.1}
+\contentsline {section}{\numberline {5.1}Used technologies}{53}{section.5.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Design of the query language}{49}{section.5.2}
+\contentsline {section}{\numberline {5.2}Design of the query language}{53}{section.5.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}Design of the matching engine}{49}{section.5.3}
+\contentsline {section}{\numberline {5.3}Design of the matching engine}{53}{section.5.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.4}Conclusion}{49}{section.5.4}
+\contentsline {section}{\numberline {5.4}Conclusion}{53}{section.5.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Evaluation}{50}{chapter.6}
+\contentsline {chapter}{\numberline {6}Evaluation}{54}{chapter.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.1}The GateKeeper language}{50}{section.6.1}
+\contentsline {section}{\numberline {6.1}The GateKeeper language}{54}{section.6.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.1}Writes to prototype objects}{50}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.1}Writes to prototype objects}{54}{subsection.6.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.2}Global namespace pollution}{52}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.2}Global namespace pollution}{56}{subsection.6.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.3}Script inclusions}{53}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.3}Script inclusions}{57}{subsection.6.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.4}Conclusion}{55}{subsection.6.1.4}
+\contentsline {subsection}{\numberline {6.1.4}Conclusion}{59}{subsection.6.1.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}The PidginQL language}{56}{section.6.2}
+\contentsline {section}{\numberline {6.2}The PidginQL language}{60}{section.6.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.1}Only CMS administrators can send a message to all CMS users}{56}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.1}Only CMS administrators can send a message to all CMS users}{60}{subsection.6.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.2}Public outputs do not depend on a user's password, unless it has been cryptographically hashed}{58}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.2}Public outputs do not depend on a user's password, unless it has been cryptographically hashed}{62}{subsection.6.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.3}A database is opened only after the master password is checked or when creating a new database}{60}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.3}A database is opened only after the master password is checked or when creating a new database}{64}{subsection.6.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.4}Conclusion}{62}{subsection.6.2.4}
+\contentsline {subsection}{\numberline {6.2.4}Conclusion}{66}{subsection.6.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.3}The ConScript language}{62}{section.6.3}
+\contentsline {section}{\numberline {6.3}The ConScript language}{66}{section.6.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.1}No string arguments to setInterval, setTimeout}{63}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.1}No string arguments to setInterval, setTimeout}{67}{subsection.6.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.2}HTTP-cookies only}{64}{subsection.6.3.2}
+\contentsline {subsection}{\numberline {6.3.2}HTTP-cookies only}{68}{subsection.6.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.3}Prevent resource abuse}{66}{subsection.6.3.3}
+\contentsline {subsection}{\numberline {6.3.3}Prevent resource abuse}{70}{subsection.6.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.4}Conclusion}{67}{subsection.6.3.4}
+\contentsline {subsection}{\numberline {6.3.4}Conclusion}{71}{subsection.6.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.4}Evaluation}{68}{section.6.4}
+\contentsline {section}{\numberline {6.4}Evaluation}{72}{section.6.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4.1}Advantages}{68}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.1}Advantages}{72}{subsection.6.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4.2}Limitations}{69}{subsection.6.4.2}
+\contentsline {subsection}{\numberline {6.4.2}Limitations}{73}{subsection.6.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4.3}Conclusion}{69}{subsection.6.4.3}
+\contentsline {subsection}{\numberline {6.4.3}Conclusion}{73}{subsection.6.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Conclusion and future work}{70}{chapter.7}
+\contentsline {chapter}{\numberline {7}Conclusion and future work}{74}{chapter.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.1}Summary}{70}{section.7.1}
+\contentsline {section}{\numberline {7.1}Summary}{74}{section.7.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.2}Future work}{70}{section.7.2}
+\contentsline {section}{\numberline {7.2}Future work}{74}{section.7.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Appendices}{71}{section*.57}
+\contentsline {chapter}{Appendices}{75}{section*.58}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Compound Policies and queries}{72}{Appendix.a.A}
+\contentsline {chapter}{\numberline {A}Compound Policies and queries}{76}{Appendix.a.A}

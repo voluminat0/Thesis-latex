@@ -297,17 +297,75 @@ The \texttt{use} and \texttt{def} predicates are again user-defined predicates. 
 \label{subsec:DefiningPolicies}
 
 Expressing queries and policies with only the \texttt{state} and \texttt{wildcard} constructs quickly becomes tiresome as every attribute of the state has to be explicitly specified. The JS-QL framework remedies this by letting users specify their own predicates and policies as well as by providing some basic customizable predicates for single expressions and statements.
-We can distinguish predicates and policies by what they match. Predicates are like the \texttt{state} construct, in the sense that they match only one specific state. For example, JS-QL has a built-in predicate \texttt{functionCall} which matches function calls. The nice thing about these predicates is that a user can specify what he wants to match in a state. 
+We can distinguish predicates and policies by what they match. Predicates are like the \texttt{state} construct, in the sense that they match only one specific state. For example, JS-QL has a built-in predicate \texttt{functionCall} which matches function calls. The nice thing about these predicates is that a user can specify what he wants to match in a state. Policies on the other hand are sequences of predicates and/or \texttt{state}s, forming a pattern. We will demonstrate how to write predicates by dissecting a relatively simple built-in predicate called \texttt{assign}. All predicates and policies can be written in a separate file, as long as they are extend in the \textit{JSQL prototype}:\\
+\texttt{JSQL.prototype.assign = function(obj)\{\ldots \}}\\
+This is the basic notation for named predicates, in this case the \texttt{assign} predicate. The dots in the code above will be filled in by the actual predicate code. We immidiately notice the \texttt{obj} argument. This argument represents the map of all properties of the state that need to be matched. By abstracting the map to a single \texttt{obj} variable, the user is free in which properties and attributes he wishes to match or omit for a specific query. The usefulness of predicates would drastically be reduced if the user has to again pass a nested map of properties to the predicate. We therefore let the developer of the predicate decide which properties he wishes to match, and how he names these properties in the predicate. For the example of the \texttt{assign} predicate, we chose to provide 3 basic attributes to the user: \texttt{this}, \texttt{left} and \texttt{right}, representing the whole assignment node, its left- and right-hand side resp.
+\begin{lstlisting}[label={lst:predicateArguments},language=JavaScript, caption=State properties of the \texttt{assign} predicate,mathescape=true]
+var s = {}; // variable representing the state
+var objThis  = this.getTmpIfUndefined(obj.this); 
+var objLeft  = this.getTmpIfUndefined(obj.left); 
+var objRight = this.getTmpIfUndefined(obj.right); 
+\end{lstlisting}
+\noindent A particularly handy feature of JavaScript is the named keys of a map. When accessing such a key in the map (like \texttt{obj.left} for example), the corresponding value is returned when found. When no such key exists, JavaScript returns \texttt{undefined}. To ease the use of predicates, some attributes in the \texttt{obj} map can be made optional. We do this by using the \texttt{getTmpIfUndefined} method, which returns a \textit{temporary variable} when the value for its argument is \texttt{undefined}, and the regular value (a literal or a variable) when it is contained in the map. Temporary variables are variables that won't be contained in the resulting substitutions. By introducing these variables in the code, no conditionals have to be written that check whether an attribute has been specified in the map of a predicate, as we can then just use the temporary variable as a replacement. We instantiate a variable for each attribute as seen in the example. Remember that the attributes can have any name as long as it is clear to the user what the attribute stands for: \texttt{obj.right} could have also been \texttt{obj.abc}, but that would harm the readability of the predicate and confuse the user.
 
-%write once use many times
+Mapping the attributes of the \texttt{obj} map to a state happens by setting up the state chain. To make things not too complicated for query and predicate developers, we provide a \texttt{setupStateChain} method which does just that. As can be seen in the example above, a map that mimics a state of the state graph is defined though variable \texttt{s}. This variable will be used to build the mimicked state. For each attribute that we provide through the predicate, an entry has to be made in the state map \texttt{s}. We indicate which piece of information we want to match by passing an array of keys we want to traverse in a state as a second argument to \texttt{setupStateChain}. The last key of this array will have the third argument as its value. The first argument is the map in which we want to store this information. When executing line 1 and 2 of listing \ref{lst:predicateState}, \texttt{s} will now contain 1 direct attribute \texttt{node}, which will in turn have 1 attribute \texttt{expression}, which will finally have 2 attributes, \texttt{left} and \texttt{right}. As we only match assignments, we filter the operator of the expression to be '=' on line 4. Note that this is not limited to querying the \texttt{node} property of a state. All information in the state graph can be queried through a predicate.
+\begin{lstlisting}[label={lst:predicateState},language=JavaScript, caption=State chain setup of the \texttt{assign} predicate,mathescape=true]
+this.setupStateChain(s,['node','this'], objThis);
+this.setupStateChain(s,['node','expression','left'], objLeft);
+this.setupStateChain(s,['node','expression','right'], objRight); 
+this.setupStateChain(s,['node','expression','operator'], '='');
+\end{lstlisting}
 
-%predikaten en queries
-%prop en filter functies
-%recursie!
+We want to be able to specify properties, filters and lookups as in regular states. JS-QL allows this in the same way as in states. Putting everything together happens by finalizing each state map (only \texttt{s} in this case) and specifying the state(s) that match the predicate/policy. Listing \ref{lst:predicateFinalize} shows how finalization is done and how the pattern is specified. Finalizing handles things like lookups, filters and properties through the \texttt{finalize} method. This method extracts all relevant information from the \texttt{obj} map and adds it to the state map it gets as a first argument. Finally, the pattern is specified and each state in the pattern gets initialized its own designated state map. For predicates, there will always be at most one state map. Policies however can have multiple state maps, as they represent a sequence of states, each with their own map. This is the only characteristic in which predicates and policies differ. An example of a policy can be seen in listing \ref{lst:WriteToBuiltinObjectPrototype} in the appendix.
 
-\section{The matching engine} 
-\label{sec:matchingEngine} 
-%Policies omgezet naar automaton -> dan naar query engine
-%algo uitleggen
-% Paper uitleggen met automaton enzovoort enzoverder
-\label{sec:GUI}
+\begin{lstlisting}[label={lst:predicateFinalize},language=JavaScript, caption=Finalizing the \texttt{assign} predicate,mathescape=true]
+this.finalize(s, obj); //Finalize a specific state
+return this.state(s);  //Fill in the state map
+\end{lstlisting}
+
+The full code for the predicate is listed in \ref{lst:assignPredicate} in the appendix. We can now use this predicate in any query, with the arguments that we wish to match in a state, as seen below:
+
+\begin{lstlisting}[label={lst:assignCall},language=JSQL, caption=Using the \texttt{assign} predicate,mathescape=true]
+G.skipZeroOrMore().assign({left: '?l'})
+G.skipZeroOrMore().assign({right: '?r'})
+G.skipZeroOrMore().assign({left: '?l', right:'?r',
+                           properties:{
+                              '?rName' : '?r.name'
+                           },
+                           lookup:{
+                              '?rName' : '?rAddr'
+                           }}) 
+//And so on ...
+\end{lstlisting}
+
+\subsubsection{recursion}
+%moet dit naar types of queries?
+Some types of queries or analyses require that a variable is reintroduced in several consecutive states, or that a trace of information is kept along each state. This behavior can be achieved by defining \textit{recursive queries}. Recursive queries are queries that can invoke themselves again, until a base case is matched. This type of query can for example be used to detect by which variables a variable is tainted (i.e. influenced/marked). JS-QL supports recursive queries by providing the \texttt{rec} function. This function takes two arguments: (i) The mapping for the next recursive step and (ii) the predicate/policy that needs to be called recursively. The \texttt{taintedBy} policy is included in the appendix as listing \ref{lst:taintedBy}. It describes a naive taint analysis which only considers simple assignments. It takes three arguments, which can all be omitted: \texttt{orig} denotes the original value which will be aliased, \texttt{alias} represents the alias of the original value and \texttt{rec} keeps track of all variables that have been used as aliases inbetween \texttt{orig} and \texttt{alias}. The relevant code of the policy is found below:
+
+\begin{lstlisting}[label={lst:recursivePolicy},language=JSQL, caption=Recursive call of the \texttt{taintedBy} policy,mathescape=true]
+this.setupStateChain(s1, //State map s1
+                    ['node','expression','right','name'], orig); 
+this.setupStateChain(s1, //State map s1
+                    ['node','expression','left','name'], alias); 
+this.setupStateChain(s2, //State map s2
+                    ['node','expression','right','name'], orig);
+this.setupStateChain(s2, //State map s2
+                    ['node','expression','left','name'], flow);
+
+return this .lBrace()
+            .state(s1)                  //1. From orig to alias
+            .or()
+            .state(s2)                  //2. From orig to flow
+            .skipZeroOrMore()           //   Skip some states
+            .rec(newObj,this.taintedBy) //   From flow to alias
+            .rBrace();
+
+//JS-QL query:
+G.skipZeroOrMore({orig: '?o', alias:'?alias', rec:'?r'})
+\end{lstlisting}
+
+The policy matches all simple assignments by name. Lines 1-8 set up the state maps of 2 separate states. The first state matches a direct assignment from \texttt{orig} to \texttt{alias}. The second state does the same, but the alias in this case is an intermediate assigned variable \texttt{flow}. So when we assign $a$ to $b$ and $b$ to $c$, the resulting state can look like: \{orig: a, flow: b, alias: c\}, indicating that $c$ is an alias of $a$, and that it obtained the value of $a$ through $b$. Lines 10-16 show the pattern that needs to be matched. Or we match an assignment directly (the base case), or we match a state from \texttt{orig} to \texttt{flow}, and later in the graph from \texttt{flow} to \texttt{alias}. The recursive call will keep occuring until no more match is found in the state graph, or when the base case is matched. This policy clearly shows that recursive queries can also be used to discover data flow properties of a program. When writing a policy similar to \texttt{taintedBy} which also keeps track of the address of the values, even more accurate data flow properties can be detected.
+
+\subsection{conclusion}
+In this chapter we described the syntax and usage of the JS-QL language. We discussed the basic constructs used to build queries in section \ref{subsec:Syntax}, as well as more advanced predicates that are either built-in or that can be user-specified. JS-QL supports several types of policies, and each of them is described in section \ref{subsec:TypesOfQueries}.
+Writing predicates and policies might seem tiresome at first glance, but actually is quite repetitive and easy to do. The benefit of predicates and policies is that they are 'write once, use often'. A method for defining custom predicates and policies is described in section \ref{subsec:DefiningPolicies}. We can conclude that the JS-QL can be learned with little effort, after which expressive queries can be written to check all kinds of code characteristics. 
