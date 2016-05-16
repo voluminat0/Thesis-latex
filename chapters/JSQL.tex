@@ -243,27 +243,71 @@ G.skipZeroOrMore()
 
 \subsubsection{Negation}
 
-%internals matcht het de gewone state, en als er een match is dan geen match.
-%Variabelen moeten reeds gebonden zijn
-%niet meer dan 1 state negeren (limitation), kunnen wel zoeken naar het niet-einde van iets.
+Expressing which statements and expressions we want to detect on a path in the graph is made easy by JS-QL. Sometimes however, this doesn't suffice for some queries. In some languages, accessing a file after it was closed results in an error in the application. This might compromise the integrity of the system. A naive approach to writing a policy for this would be to detect all calls to the \texttt{access} method that follow, after some wildcard states, the call of a \texttt{close} method for a file \texttt{f}. While this query would match and return all violations against the policy, false positives would occur. This is because of the wildcard states between the two function calls. One of these calls could be a call to the \texttt{open} method, meaning that accessing the file afterwards is permitted.  A better approach would be to specify that we \textit{don't} want to encounter a call to \texttt{open} for \texttt{f} between closing and accessing it. This is exactly what the \texttt{not} construct does. When placing this construct right before a state, the query will only be matched if the negated state can't be matched with the current state in the state graph. When placing \texttt{not} before a state, and \texttt{star} or \texttt{plus} right after that state, it can be read as: "Match zero/one or more states that are \textit{not} the negated state". A better query for the example above would then be written as in listing \ref{lst:OpenClosedFile}, which can be found in the appendix for brevity reasons. The query first skips several states until it reaches a call to \texttt{close} on file \texttt{f}. The address of the file to be closed is also stored in a variable to correctly detect only the accessing and opening of that specific file. Next, all states are matched that are not opening \texttt{f}. Finally, the actual violation is detected, namely accessing the file after it has been closed and not re-opened. Negation is in the current version of JS-QL subject to some limitations: 
+\begin{enumerate}
+\item Variables that are bound in a negated state, are only visible to that state. They will thus not be included in the resulting substitutions.
+\item Currently, only one state can be negated. Negating sequences of states wrapped in braces is not yet supported.
+\end{enumerate}
 
-%ergens zeggen dat van boven naar beneden gematched wordt voor variables
+%\subsubsection{Summary of constructs}
+
 %SUMMARY OF BUILT-IN CONSTRUCTS
 
 \subsection{Types of queries}
 \label{subsec:TypesOfQueries}
-%forward
-%backward
-%Universal
-%existential
-\subsection{Defining policies}
+
+The most straightforward way to query for properties is by just specifying a pattern and an input program. The pattern is then checked and each violating path is reported in the results. Sometimes however other types of queries are needed for the detection of specific policy violations. In this section we discuss the different types of queries and how they can be used.
+
+\subsubsection{Existential queries}
+All queries already presented in this chapter are existential queries. They report a violation of a policy for each path on which they encounter the violation. Existential queries can be defined as follows:
+\begin{definition}
+\textbf{Existential queries}: Given an edge-labeled directed graph $G$ where labels may have parameters, a vertex $v0$ in $G$, and a parametric regular-expression pattern $P$, compute all pairs of vertex $v$ in $G$ and a substitution $\theta$ for parameters in $P$ such that there exists a path from $v0$ to $v$ in $G$ that matches some sentence accepted by $P$ under $\theta$.
+\end{definition}
+
+\noindent What this means is that \textit{any} path in the state graph matching user-defined query will produce a resulting substitution. For that path, the policy has been violated, but chances are that that path never gets executed when actually running the program, as a consequence of the overapproximations of the static analysis in JIPDA. A branch of a conditional might never be executed in a program for example. If the value of the test in the conditional gets overapproximated (i.e. with an abstract value of \textit{\{Bool\}}), the state graph will depict both branches, as it can't decide which branch will be taken. Existential queries thus match a pattern \textit{if there exists a path} in the state graph matching the query.
+
+\subsubsection{Universal queries}
+
+Sometimes detecting if a pattern occurs along a path in the state graph doesn't suffice. Universal queries provide stronger guarantees for queries, as they require that the query matches for the same substitutions along all possible paths in the state graph between two states. We define universal queries as follows:
+\begin{definition}
+\textbf{Universal queries}: Given an edge-labeled directed graph $G$ where labels may have parameters, a vertex $v0$ in $G$, and a parametric regular-expression pattern $P$, compute all pairs of vertex $v$ in $G$ and substitution $\theta$ for parameters in $P$ such that every path from $v0$ to $v$ in $G$ matches some sentence accepted by $P$ under $\theta$.
+\end{definition}
+
+The intrinsic difference between universal and existential queries is how they match a pattern. Where it suffices for existential queries that just one path exists in the state graph, universal queries make sure that \textit{all} paths between two points in the graph match the specified query. For the sake of a representative example, imagine a JS-QL predicate \texttt{def(\{name:'?x'\})}, which checks all definitions and redefinitions of a variable bound to \texttt{?x}. This variable has a constant value in the state graph as long as no redefinitions of \texttt{?x} happens along any path between two states in the graph. We can then query for each state in the graph where \texttt{?x} has a constant value. The query in listing \ref{lst:UniversalQuery} shows how this can be expressed in JS-QL. Creating such predicates will be discussed in the next section. The definition of a variable \texttt{v} is matched, and any state following that matched state that isn't a redefinition of \texttt{v} will be contained in the result. All states in the state graph up until a redefinition of \texttt{v} (or the end of the graph) will then be marked in color in the user interface.
+
+\begin{lstlisting}[label={lst:UniversalQuery},language=JSQL, caption=Checking for constant folding using a universal query,mathescape=true]
+G.skipZeroOrMore()
+.def({name: '?x'})            // Define the variable
+.not().def({name: '?x'}).star // As long as it isn't redefined
+\end{lstlisting}
+
+\subsubsection{Query direction}
+
+Queries in most traditional systems are viewed as straightforward, in the sense that they match a part of a graph or other program representation from point $a$ to $b$. This way of reasoning implies that queries are always matched from the beginning to the end of a program (if control-flow information is available, that is). Our framework supports this manner of querying in the traditional way, but also allows to explore the state graph bottom-up. This can be meaningful to search for certain program properties. \textit{Forward} queries are queries as we've defined them until now. They match the state graph from the beginning state to the resultstates and are pretty easy to understand and read. \textit{Backward} queries on the other hand traverse the graph in a bottom-up manner, meaning that the query starts at the end of the state graph and matches states until the starting state of the graph is reached. Although backward queries are less common they can be useful to perform some program analysis, such as live variables analysis. This analysis calculates for each program point the variables that may be potentially read before their next write. A variable is thus live if it holds a value that may be needed in the future. The backward query for this analysis goes as follows:
+
+\begin{lstlisting}[label={lst:Liveness},language=JSQL, caption=Live variables anlysis in JS-QL,mathescape=true]
+G.skipZeroOrMore()
+.use({name: '?x'})            // Read the variable 
+.not().def({name: '?x'}).star // As long as it isn't written
+\end{lstlisting}
+
+The \texttt{use} and \texttt{def} predicates are again user-defined predicates. Starting from the resultstate of the program, some states are skipped until the first use of variable \texttt{?x} is found. Note that this is in fact the \textit{last} use of that variable in the state graph for that liveness set. The query then marks all states that aren't a write to \texttt{?x}. In this way, one or more states will be marked, representing the path on which variable \texttt{?x} was live.
+
+\subsection{Defining predicates and policies}
 \label{subsec:DefiningPolicies}
+
+Expressing queries and policies with only the \texttt{state} and \texttt{wildcard} constructs quickly becomes tiresome as every attribute of the state has to be explicitly specified. The JS-QL framework remedies this by letting users specify their own predicates and policies as well as by providing some basic customizable predicates for single expressions and statements.
+We can distinguish predicates and policies by what they match. Predicates are like the \texttt{state} construct, in the sense that they match only one specific state. For example, JS-QL has a built-in predicate \texttt{functionCall} which matches function calls. The nice thing about these predicates is that a user can specify what he wants to match in a state. 
+
+%write once use many times
+
 %predikaten en queries
 %prop en filter functies
 %recursie!
-%Policies omgezet naar automaton -> dan naar query engine
+
 \section{The matching engine} 
-\label{sec:matchingEngine} %algo uitleggen
+\label{sec:matchingEngine} 
+%Policies omgezet naar automaton -> dan naar query engine
+%algo uitleggen
 % Paper uitleggen met automaton enzovoort enzoverder
-\section{The graphical user interface} 
 \label{sec:GUI}

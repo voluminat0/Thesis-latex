@@ -225,7 +225,52 @@ van} %\\
 \input{chapters/conclusion-and-future-work}
 
 \begin{appendices}
-\chapter{Compound Policies}
+\chapter{Compound Policies and queries}
+
+\begin{lstlisting}[label={lst:OpenClosedFile},language=JavaScript,caption=A query for detecting accesses to closed files,mathescape=true]  % float=t?
+
+G.skipZeroOrMore()
+.state({node:{
+          expression:{
+            callee : {name : 'close'},
+            arguments: '?args'
+        }},
+        properties:{
+          '?arg' : prop('memberOf','?args'),
+          '?argName': '?arg.name'
+        },
+        lookup:{
+          '?argName': '?argAddr' //Match address of the file
+        }
+       })
+.not()
+.state({node:{
+          expression:{
+            callee : {name : 'open'},
+            arguments: '?args2'
+        }},
+        properties:{
+          '?arg2' : prop('memberOf','?args2'),
+          '?argName2': '?arg2.name'
+        },
+        lookup:{
+          '?argName2': '?argAddr'
+        }
+       }).star() //Zero or more states
+.state({node:{
+          expression:{
+            callee : {name : 'access'},
+            arguments: '?args3'
+        }},
+        properties:{
+          '?arg3' : prop('memberOf','?args3'),
+          '?argName3': '?arg3.name'
+        },
+        lookup:{
+          '?argName3': '?argAddr' //Match address of the file
+        }
+       })
+\end{lstlisting}
 
 \begin{lstlisting}[label={lst:WriteToBuiltinObjectPrototype},language=JavaScript,caption=The \texttt{writeToBuiltinObjectPrototype} predicate,mathescape=true]  % float=t?
 
@@ -254,6 +299,8 @@ RegularPathExpression.prototype.writeToBuiltinObjectPrototype = function(obj){
 	return ret;
 }
 \end{lstlisting}
+
+
 
 \end{appendices}
 

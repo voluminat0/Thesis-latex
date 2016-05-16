@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.26)  13 MAY 2016 13:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.26)  16 MAY 2016 10:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1495,13 +1495,29 @@ Package pdftex.def Info: images/assignmentLookup.pdf used on input line 210.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[43] [44 <./images/assignmentLookup.pdf>]) [45]
+[43] [44 <./images/assignmentLookup.pdf>] [45]
+Overfull \hbox (1.60716pt too wide) in paragraph at lines 264--265
+\OT1/ptm/m/it/12 la-bels may have pa-ram-e-ters, a ver-tex $\OML/cmm/m/it/12 v\
+OT1/cmr/m/n/12 0$ \OT1/ptm/m/it/12 in $\OML/cmm/m/it/12 G$\OT1/ptm/m/it/12 , an
+d a para-met-ric regular-expression
+ []
+
+LaTeX Font Info:    Font shape `OMS/ptm/m/it' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 267.
+
+Overfull \hbox (1.60716pt too wide) in paragraph at lines 273--274
+\OT1/ptm/m/it/12 la-bels may have pa-ram-e-ters, a ver-tex $\OML/cmm/m/it/12 v\
+OT1/cmr/m/n/12 0$ \OT1/ptm/m/it/12 in $\OML/cmm/m/it/12 G$\OT1/ptm/m/it/12 , an
+d a para-met-ric regular-expression
+ []
+
+[46] [47]) [48]
 Chapter 5.
-(./chapters/implementation.tex) [46
+(./chapters/implementation.tex) [49
 
 ]
 Chapter 6.
-(./chapters/evaluation.tex [47
+(./chapters/evaluation.tex [50
 
 ]
 Overfull \hbox (23.09712pt too wide) in paragraph at lines 29--30
@@ -1514,13 +1530,13 @@ File: lstlang1.sty 2014/09/06 1.5e listings language file
 )
 (/usr/local/texlive/2015/texmf-dist/tex/latex/listings/lstlang2.sty
 File: lstlang2.sty 2014/09/06 1.5e listings language file
-) [48]
+) [51]
 Overfull \hbox (6.93253pt too wide) in paragraph at lines 74--76
 \OT1/ptm/m/n/12 sim-i-lar to the state in list-ing [][]6.3[][], with the only d
 if-fer-ence in the \OT1/pcr/m/n/12 mainObjectName
  []
 
-[49] [50]
+[52] [53]
 Overfull \hbox (31.32986pt too wide) in paragraph at lines 128--129
 \OT1/ptm/m/n/12 What needs to be de-tected are the calls to \OT1/pcr/m/n/12 doc
 ument.write/document.writeln\OT1/ptm/m/n/12 ,
@@ -1532,83 +1548,83 @@ Overfull \hbox (37.07695pt too wide) in paragraph at lines 128--129
 ][] does just that. \OT1/pcr/m/n/12 DocumentWrite(i)
  []
 
-[51] [52] [53] [54] [55] [56] [57] [58] [59] [60] [61]
+[54] [55] [56] [57] [58] [59] [60] [61] [62] [63] [64]
 Overfull \hbox (5.40962pt too wide) in paragraph at lines 457--458
 \OT1/ptm/m/n/12 the \OT1/pcr/m/n/12 ?name \OT1/ptm/m/n/12 vari-able which point
 s to the ad-dress of the global \OT1/pcr/m/n/12 document.cookie
  []
 
-[62] [63] [64] [65]) [66]
+[65] [66] [67] [68]) [69]
 Chapter 7.
-(./chapters/conclusion-and-future-work.tex) [67
+(./chapters/conclusion-and-future-work.tex) [70
 
-] [68
+] [71
 
 
 ]
 Appendix A.
-[69
+[72
 
-]
-Overfull \hbox (1.96597pt too wide) in paragraph at lines 261--261
+] [73]
+Overfull \hbox (1.96597pt too wide) in paragraph at lines 308--308
 \OT1/ptm/m/n/12 WWW '10. Raleigh, North Car-olina, USA: ACM, 2010, pp. 281{290.
  \OT1/ptm/m/sc/12 isbn\OT1/ptm/m/n/12 :
  []
 
-[70
+[74
 
 ]
-Overfull \hbox (23.90715pt too wide) in paragraph at lines 261--261
+Overfull \hbox (23.90715pt too wide) in paragraph at lines 308--308
 \OT1/ptm/m/it/12 Pro-ceed-ings of the 18th Con-fer-ence on USENIX Se-cu-rity Sy
 m-po-sium\OT1/ptm/m/n/12 . SSYM'09.
  []
 
 
-Overfull \hbox (3.53706pt too wide) in paragraph at lines 261--261
+Overfull \hbox (3.53706pt too wide) in paragraph at lines 308--308
 []\OT1/ptm/m/n/12 K. A. Haw-ick. ``Flu-ent In-ter-faces and Domain-Specific Lan
 -guages for Graph
  []
 
-[71]
-Overfull \hbox (6.8318pt too wide) in paragraph at lines 261--261
+[75]
+Overfull \hbox (6.8318pt too wide) in paragraph at lines 308--308
 \OT1/ptm/m/n/12 Pro-gram De-pen-dence Graphs''. In: \OT1/ptm/m/it/12 SIG-PLAN N
 ot. \OT1/ptm/m/n/12 50.6 (June 2015), pp. 291{
  []
 
 
-Overfull \hbox (24.4472pt too wide) in paragraph at lines 261--261
+Overfull \hbox (24.4472pt too wide) in paragraph at lines 308--308
 []\OT1/ptm/m/n/12 Addy Os-mani. \OT1/ptm/m/it/12 Es-sen-tial JavaScript Names-p
 ac-ing Pat-terns\OT1/ptm/m/n/12 . 2011. \OT1/ptm/m/sc/12 url\OT1/ptm/m/n/12 : [
 ][]$\OT1/pcr/m/n/12 https :
  []
 
-[72]
-Overfull \hbox (10.49396pt too wide) in paragraph at lines 261--261
+[76]
+Overfull \hbox (10.49396pt too wide) in paragraph at lines 308--308
 \OT1/ptm/m/n/12 pp. 1{10. \OT1/ptm/m/sc/12 isbn\OT1/ptm/m/n/12 : 978-1-4503-390
 2-5. \OT1/ptm/m/sc/12 doi\OT1/ptm/m/n/12 : [][]$\OT1/pcr/m/n/12 10 . 1145 / 281
 5072 . 2815073$[][]\OT1/ptm/m/n/12 .
  []
 
 
-Overfull \hbox (19.56245pt too wide) in paragraph at lines 261--261
+Overfull \hbox (19.56245pt too wide) in paragraph at lines 308--308
 []\OT1/ptm/m/n/12 Gregor Snelt-ing et al. ``Check-ing Prob-a-bilis-tic Non-in-t
 er-fer-ence Us-ing JOANA''.
  []
 
 
-Overfull \hbox (10.18898pt too wide) in paragraph at lines 261--261
+Overfull \hbox (10.18898pt too wide) in paragraph at lines 308--308
 []\OT1/ptm/m/n/12 Joost Visser et al. \OT1/ptm/m/it/12 Build-ing Main-tain-able
  Soft-ware, Java Edi-tion\OT1/ptm/m/n/12 . 1st. O'Reilly
  []
 
-[73]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 261.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 261.
+[77]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 308.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 308.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 261.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 261.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 308.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 308.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: DD583494D36B1C126DA0F0A3E46FA449;4366.
+(rerunfilecheck)             Checksum: 6779B9DCD5FD63CFDE6F72E4231C0473;4393.
 
 
 LaTeX Warning: There were undefined references.
@@ -1623,13 +1639,13 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 26970 strings out of 493089
- 485195 string characters out of 6134842
- 976344 words of memory out of 5000000
- 29244 multiletter control sequences out of 15000+600000
+ 27037 strings out of 493089
+ 486168 string characters out of 6134842
+ 993588 words of memory out of 5000000
+ 29250 multiletter control sequences out of 15000+600000
  37093 words of font info for 84 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 64i,16n,60p,2809b,1907s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 64i,16n,60p,2809b,1960s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -1647,10 +1663,10 @@ s/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/ur
 w/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/u
 tmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on main.pdf (79 pages, 1183852 bytes).
+Output written on main.pdf (83 pages, 1195954 bytes).
 PDF statistics:
- 1638 PDF objects out of 1728 (max. 8388607)
- 1504 compressed objects within 16 object streams
- 709 named destinations out of 1000 (max. 500000)
+ 1725 PDF objects out of 1728 (max. 8388607)
+ 1587 compressed objects within 16 object streams
+ 770 named destinations out of 1000 (max. 500000)
  558 words of extra memory for PDF output out of 10000 (max. 10000000)
 
