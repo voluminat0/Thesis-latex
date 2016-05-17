@@ -28,10 +28,10 @@
 \BOOKMARK [2][-]{subsection.4.1.3}{Defining predicates and policies}{section.4.1}% 28
 \BOOKMARK [2][-]{subsection.4.1.4}{conclusion}{section.4.1}% 29
 \BOOKMARK [0][-]{chapter.5}{Implementation}{}% 30
-\BOOKMARK [1][-]{section.5.1}{Used technologies}{chapter.5}% 31
-\BOOKMARK [1][-]{section.5.2}{Design of the query language}{chapter.5}% 32
-\BOOKMARK [1][-]{section.5.3}{Design of the matching engine}{chapter.5}% 33
-\BOOKMARK [1][-]{section.5.4}{Conclusion}{chapter.5}% 34
+\BOOKMARK [1][-]{section.5.1}{Architecture}{chapter.5}% 31
+\BOOKMARK [1][-]{section.5.2}{The user interface}{chapter.5}% 32
+\BOOKMARK [1][-]{section.5.3}{The query language}{chapter.5}% 33
+\BOOKMARK [1][-]{section.5.4}{The matching engine}{chapter.5}% 34
 \BOOKMARK [0][-]{chapter.6}{Evaluation}{}% 35
 \BOOKMARK [1][-]{section.6.1}{The GateKeeper language}{chapter.6}% 36
 \BOOKMARK [2][-]{subsection.6.1.1}{Writes to prototype objects}{section.6.1}% 37
@@ -55,5 +55,5 @@
 \BOOKMARK [0][-]{chapter.7}{Conclusion and future work}{}% 55
 \BOOKMARK [1][-]{section.7.1}{Summary}{chapter.7}% 56
 \BOOKMARK [1][-]{section.7.2}{Future work}{chapter.7}% 57
-\BOOKMARK [0][-]{section*.58}{Appendices}{}% 58
-\BOOKMARK [0][-]{Appendix.a.A}{Compound Policies and queries}{}% 59
+\BOOKMARK [0][-]{section*.70}{Appendices}{}% 58
+\BOOKMARK [0][-]{Appendix.a.A}{JS-QL policies and predicates}{}% 59
