@@ -45,7 +45,7 @@ We decided to allow the user to specify queries in the user interface itself. In
 
 JIPDA already provided the functionality to display the abstract state graph in the user interface. In order to show results, this representation of the graph needed to be modified so that it became optimal for the user to reason about query results. We changed the following:
 \begin{enumerate}
-\item \textit{Edge labels}: The JIPDA state graph already contained edge labels, but the information they contained was irrelevant for our approach. As our approach uses edge labels to match states, we had to shift information from nodes to edges. All evaluation states's outgoing edges are also augmented with a visible edge label representing the type of AST node it contains, to make it easier for the user to see what he has to specify in his queries.
+\item \textit{Edge labels}: The JIPDA state graph already contained edge labels, but the information they contained was irrelevant for our approach. As our approach uses edge labels to match states, we had to shift information from nodes to edges. All evaluation states' outgoing edges are also augmented with a visible edge label representing the type of AST node it contains, to make it easier for the user to see what he has to specify in his queries.
 \item \textit{State colours}: The default colours of all JIPDA states have been stripped from the graph. This was done to increase the contrast with marked states (i.e. states indicating a match of the query). When the matching engine produced all results, these results have to be transferred to the corresponding states of the state graph. A 'marker' property was added to each matched state, containing the match information as well as a CSS class to highlight them in the otherwise colourless graph. This CSS class can be customised by the user.
 \end{enumerate}
 
@@ -55,14 +55,42 @@ Each query result is a set of substitutions, mapping variables (denoted by a sta
 
 
 \section{The query language}
-The JS-QL query language is implemented as an embedded DSL with JavaScript as its host language. We motivated the use of a DSL in chapter \ref{ch:overview} and explored the JS-QL syntax and semantics in chapter \ref{ch:JSQL}. This section describes how the DSL is implemented and how we incorporated several DSL implementation techniques.
+The JS-QL query language is implemented as an embedded DSL with JavaScript as its host language. We motivated the use of a DSL in chapter \ref{ch:Overview} and explored the JS-QL syntax and semantics in chapter \ref{ch:JSQL}. This section describes how the DSL is implemented and how we incorporated several DSL implementation techniques.
 
-%deferred evaluation
-%recursion
-%tmp en rec var
-%regexpart
-%cond
-%prop
+A JS-QL query gets parsed like a regular expression. Each state in the pattern represents one character in the regular expression, defined by objects of type \texttt{RegexPart}. These parts of the pattern have 5 fields to ease the translation from regular expression to automaton:
+\begin{enumerate}
+\item \textit{Name}: The name of a regular expression part. In the current implementation, the name just denotes the type of the state/predicate that the \texttt{RegexPart} represents (e.g. \texttt{state, wildcard, not, lbrace, \ldots})
+\item \textit{Symbol}: The actual symbol that will be parsed by the parser to set up the automaton corresponding to the query.
+\item \textit{Object}: The argument of the state/predicate in which all variables are bound and properties, filters and lookups are specified.
+\item \textit{ExpandFunction}: A higher order function representing a recursive predicate or policy that is called for recursive queries. This argument doesn't need to be specified when no recursion happens in a query.
+\item \textit{ExpandContext}: A unique identifier to avoid overlapping recursive variable names. Only used for recursive queries.
+\end{enumerate}
+
+\noindent States and predicates are actually just function calls returning \texttt{this} to enable method chaining (which is a commonly used technique to implement a fluent interface). Each function call actually represents one state in the pattern, and thus for each of these calls the corresponding \texttt{RegexPart} gets pushed into a map containing the pattern information. 
+An exception to this are recursive queries. Recursive query patterns can have an arbitrary amount of states, so we can't model them directly as a sequence of \texttt{RegexPart}s as we don't know the length of the actually matched pattern. We therefore store a whole recursive query in just one \texttt{RegexPart} object, and mark it with 'subgraph' as its name. Further we specify the \texttt{ExpandFunction} and \texttt{-Context} to be able to process the subgraph in the matching algorithm. The idea for treating recursive queries like was adopted from the PQL language\cite{PQL}. The information in this map is unmodified in the sense that the variables aren't resolved yet. The entire query pattern (i.e. the map) is then processed by applying \textit{Thompson's Construction Algorithm} and the \textit{Subset Construction Algorithm} consecutively to obtain a NFA and DFA respectively. These algorithms won't be discussed in too much detail, as they are well described in many online resources and in the literature\cite{Thompson}. An overview of how queries are processed is depicted in figure \ref{fig:QueryProcessing}.
+
+\begin{figure}[!h]
+    \centering
+      \includegraphics[width=1\textwidth]{images/QueryProcessing} 
+      \caption{Stages of processing a query}
+    \label{fig:QueryProcessing}
+\end{figure}
+
+\subsection*{Regular, temporary and recursive variables}
+
+JS-QL supports three types of variables: Regular, temporary and recursive variables. Each of these types of variables has its own function in the framework:
+\begin{enumerate}
+\item \textit{Regular variables}: These variables contain the information that the user wants to match in a query. When a match succeeds, they will always be contained in the resulting substitutions.
+\item \textit{Recursive variables}: Variables that are used as intermediary variables. They function as a variable that was bound in the previous step of a recursive query, enabling a recursive step to work with the value of one or more variables of the previous step. The \texttt{taintedBy} example used in chapter \ref{ch:JSQL} uses a recursive variable to store all intermediary assignments.
+\item \textit{Temporary variables}: These variables are state-local. They are used when a user doesn't specify a certain argument for a predicate or policy. When only specifying the \texttt{left} argument for the \texttt{assign} predicate shown in chapter \ref{ch:JSQL}, the \texttt{right} and \texttt{this} will be bound to temporary variables. These variables get dropped from the resulting substitutions.
+\end{enumerate}
+
+\noindent By allowing the user to choose from three types of variables, writing queries becomes very flexible. In this way the bindings in a substitution set can be limited to only the information needed by the user. When imagining JS-QL without the support of temporary variables for example, the size of the substitution set for more complex queries would grow very large very quickly. This greatly decreases the readability of the results and makes interpretation of these results much harder.
+
+\subsection*{Deferring evaluation of properties and filters}
+
+One way to define properties is to use the \texttt{prop} function. Filters on the other hand can be expressed through the \texttt{cond} function. Both of these functions have one thing in common: The value they return depends on the value of the variables specified by the user. The problem now is that the value of these variables is not yet calculated at compile-time. Consider the following example: \texttt{cond('===', '?var', 3)}. Here, the state declaring \texttt{?var} is not yet matched in the state graph, meaning that \texttt{?var} is not yet bound and that we can't check if it is equal to 3. We remedy this by deferring the evaluation of the specified function. Instead of passing the result of evaluating the function directly with its arguments, we wrap them into a \textit{thunk} and pass that thunk to the matching engine. When the matching engine finally needs the value of the thunk, it unwraps it and resolves all variables to the values to which they are bound. If not all variables are bound, the query fails.
+%TODO: uitleggen hoe we dit oplossen
 
 \section{The matching engine}
 

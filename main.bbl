@@ -931,6 +931,39 @@
       \verb 10.1515/itit-2014-1051
       \endverb
     \endentry
+    \entry{Thompson}{article}{}
+      \name{author}{1}{}{%
+        {{hash=0738a39ce7d754134211fbb089ce3a15}{Thompson}{T\bibinitperiod}{Ken}{K\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{0738a39ce7d754134211fbb089ce3a15}
+      \strng{fullhash}{0738a39ce7d754134211fbb089ce3a15}
+      \field{sortinit}{T}
+      \field{sortinithash}{423d138a005a533b47e6475e39378bf2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0001-0782}
+      \field{journaltitle}{Commun. ACM}
+      \field{month}{06}
+      \field{number}{6}
+      \field{title}{Programming Techniques: Regular Expression Search Algorithm}
+      \field{volume}{11}
+      \field{year}{1968}
+      \field{pages}{419\bibrangedash 422}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1145/363347.363387
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/363347.363387
+      \endverb
+      \keyw{match,regular expression,search}
+    \endentry
     \entry{MaintainableSoftware}{book}{}
       \name{author}{5}{}{%
         {{hash=911dc764b805261ce617fe06d80754e3}{Visser}{V\bibinitperiod}{Joost}{J\bibinitperiod}{}{}{}{}}%
@@ -994,6 +1027,8 @@
       \field{year}{2011}
     \endentry
   \endsortlist
+  \missing{JunGL}
+  \missing{Metal}
 \endrefsection
 \endinput
 
