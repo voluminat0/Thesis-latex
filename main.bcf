@@ -2272,15 +2272,16 @@
     <bcf:citekey order="35">DSLFowler</bcf:citekey>
     <bcf:citekey order="36">PQL</bcf:citekey>
     <bcf:citekey order="37">Thompson</bcf:citekey>
-    <bcf:citekey order="38">GateKeeper</bcf:citekey>
-    <bcf:citekey order="39">PrototypePoisoning</bcf:citekey>
-    <bcf:citekey order="40">JSNamespacing</bcf:citekey>
-    <bcf:citekey order="41">HeapSpraying</bcf:citekey>
-    <bcf:citekey order="42">MaintainableSoftware</bcf:citekey>
-    <bcf:citekey order="43">PidginQLTechReport</bcf:citekey>
+    <bcf:citekey order="38">algoEngine</bcf:citekey>
+    <bcf:citekey order="39">GateKeeper</bcf:citekey>
+    <bcf:citekey order="40">PrototypePoisoning</bcf:citekey>
+    <bcf:citekey order="41">JSNamespacing</bcf:citekey>
+    <bcf:citekey order="42">HeapSpraying</bcf:citekey>
+    <bcf:citekey order="43">MaintainableSoftware</bcf:citekey>
     <bcf:citekey order="44">PidginQLTechReport</bcf:citekey>
-    <bcf:citekey order="45">PDG</bcf:citekey>
-    <bcf:citekey order="46">ConScript</bcf:citekey>
+    <bcf:citekey order="45">PidginQLTechReport</bcf:citekey>
+    <bcf:citekey order="46">PDG</bcf:citekey>
+    <bcf:citekey order="47">ConScript</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="nty" type="entry" sortscheme="nty">
   <bcf:sorting>

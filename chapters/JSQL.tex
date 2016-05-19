@@ -1,21 +1,18 @@
 In this chapter we present the JS-QL framework. The framework offers the possibility for developers to write application-specific queries to check for certain program properties. More specific, it tries to offer a solution to developers who want to test their applications for vulnerabilities by writing and enforcing security policies for them. The framework consists of three main parts: 
 \begin{enumerate}
-\item \textit{The JS-QL query language}: Short for \textbf{J}ava\textbf{S}cript \textbf{Q}uery \textbf{L}anguage. This is the domain-specific language in which users can express all kinds of security policies. An overview of the language is given in section \ref{sec:JSQLlanguage}.
-\item \textit{The matching engine}: This is the core of the framework. It matches the user-defined query against states of the JIPDA abstract state graph, capturing and unifying all the relevant information. This engine can be configured to behave differently for certain queries, as will be discussed in section \ref{subsec:TypesOfQueries}.
-\item \textit{The graphical user interface}: The user interface provides the infrastructure for the developer to interact with the framework. It contains a section where users can specify the input program and security policy, a graphical component representing the abstract state graph corresponding to the input program and a visual and textual representation of the query results. The textual representation allows developers to inspect the captured variables, a handy feature when these variables are compound data structures.
+\item \textit{The JS-QL query language}: Short for \textbf{J}ava\textbf{S}cript \textbf{Q}uery \textbf{L}anguage. This is the domain-specific language in which users can express all kinds of security policies. An overview of the language is given in section \ref{sec:syntax}.
+\item \textit{The matching engine}: This is the core of the framework. It matches the user-defined query against states of the JIPDA abstract state graph, capturing and unifying all the relevant information. This engine can be configured to behave differently for certain queries, as will be discussed in section \ref{sec:TypesOfQueries}.
+\item \textit{The graphical user interface}: The user interface provides the infrastructure for the developer to interact with the framework. It contains a section where users can specify the input program and security policy, a graphical component representing the abstract state graph corresponding to the input program and a visual and textual representation of the query results. The textual representation allows developers to inspect the captured variables, a handy feature when these variables are compound data structures. The user interface is displayed in figure \ref{fig:UI}.
 \end{enumerate}
 
+The abstract state graph obtained from the JIPDA analysis is a perfect starting point to inspect a program for certain characteristics and security vulnerabilities. In chapter \ref{ch:Overview} we motivated our choise to design an internal DSL to query for specific (sequences of) states in this graph, with the aim to discover program patterns that might lead to violations of user-defined security policies. The language constructs are built to make it easy for the user to specify which kind of pattern he wishes to detect. The rest of this section presents all facets of the JS-QL language: Section \ref{sec:Syntax} discusses all constructs of the language and gives an in-depth explanation on how to use them in a correct way. As different security policies require different traversals of the state graph, more than one type of query is needed. We discuss the difference between several query types in section \ref{sec:TypesOfQueries}. In order to have an effective query language, we must allow the user to create compound queries out of the available language constructs. Section \ref{sec:DefiningPolicies} shows how this can be done within the framework.
+
 \section{The JS-QL query language}
-\label{sec:JSQLlanguage}
-
-The abstract state graph obtained from the JIPDA analysis is a perfect starting point to inspect a program for certain characteristics and security vulnerabilities. In chapter \ref{ch:Overview} we motivated our choise to design an internal DSL to query for specific (sequences of) states in this graph, with the aim to discover program patterns that might lead to violations of user-defined security policies. The language constructs are built to make it easy for the user to specify which kind of pattern he wishes to detect. The rest of this section presents all facets of the JS-QL language: Section \ref{subsec:Syntax} discusses all constructs of the language and gives an in-depth explanation on how to use them in a correct way. As different security policies require different traversals of the state graph, more than one type of query is needed. We discuss the difference between several query types in section \ref{subsec:TypesOfQueries}. In order to have an effective query language, we must allow the user to create compound queries out of the available language constructs. Section \ref{subsec:DefiningPolicies} shows how this can be done within the framework.
-
-\subsection{JS-QL syntax}
-\label{subsec:Syntax}
+\label{sec:Syntax}
  In this section we will discuss the available constructs and syntax of the JS-QL language. The examples in this section will be simplistic and will demonstrate how each construct works. They will therefore not always represent an actual security policy, but will rather serve as a guideline for using these constructs. We chose to use \textit{path expressions} to express queries in JS-QL, and more precisely \textit{regular path expressions}. This adds the flexibility of regular expressions to the language, as the most relevant features of regular expressions are incorporated in JS-QL.
 
 %Entry point
-\subsubsection{The entry point}
+\subsection{The entry point}
 As our language is an internal DSL, meaning that it is embedded in a host language, the host language has to provide an entry point from where we can start using the JS-QL language. We chose to map this point to the \texttt{G} object, which is short for \textbf{G}raph. This implies that all query patterns in JS-QL will start from this object. A simple example is seen in \ref{lst:entryPoint}, where the first state of the graph is matched.
 
 \begin{lstlisting}[label={lst:entryPoint},language=JSQL,caption=Matching the first state starting from entry point \texttt{G},mathescape=true]  % float=t?
@@ -24,7 +21,7 @@ As our language is an internal DSL, meaning that it is embedded in a host langua
 G.state()
 \end{lstlisting}
 
-\subsubsection{State}
+\subsection{State}
 the \texttt{state} construct is the single most basic element of the language. It matches any state in the graph, but doesn't provide much information on its own. Nevertheless is it the most important building block of the language, as it can be used to construct higher-level queries and predicates. States can be made more precise and expressive by parametrizing them with \textit{state constraints}, but in order to know what we can query for, we will first give a short overview of what information is available in which states. To get a more detailed explanation on what each piece of information represents, we refer to the section about flow graphs (\ref{subsec:FlowGraphs}). Table \ref{tab:InfoPerState} indicates what information is available in which type of state. The table also shows which keyword is used to represent the information is that is in embodied in the states.
 
 \begin{table}[!h]
@@ -107,7 +104,7 @@ All queries presented until now match the state graph from the beginning of the 
 
 %TODO: translate variables starting with ! to ?__TMP__
 
-\subsubsection{Wildcard}
+\subsection{Wildcard}
 
 Wildcards are usually known as 'things of which the value can be anything', and this is no exception in JS-QL. A \texttt{wildcard} serves the sole purpose of matching any state it gets compared with. In other words, an equally correct name for this construct could have been \texttt{skip}, as it skips a state in both the query (the \texttt{wildcard} state itself) and the abstract state graph (the state the wildcard gets matched with). When talking about states in a query pattern, both \texttt{state} as \texttt{wildcard} match this definition. \texttt{wildcard}s act just like regular \texttt{state}s in a query, meaning that they only match \textit{1} state in the state graph. It is very unlikely that a developer knows exactly after how many states a violation would occur, so simply enumerating wildcards followed by the state to be matched would typically be a very tiresome effort. We therefore need to be able to specify that we wish to skip \textit{zero or more} states before matching the following state in the query pattern. This is where the power of regular expressions comes in handy. Just like regular expressions, JS-QL supports the use of both the Kleene star (\texttt{star}) and the Kleene plus (\texttt{plus}) operators. In our language, the \texttt{star} and \texttt{plus} constructs are both placed \textit{after} the state(s) they are applied to. Placing \texttt{star} behind a sequence of states indicates that those states can occur \textit{zero or more} times at the current position in the state graph. The semantics of \texttt{plus} are very similar, except for the fact that the states have to occur at least once in the order they are specified. Just like with regular expressions, pieces of a pattern can be surrounded by braces. Left and right braces in JS-QL are denoted by \texttt{lBrace} and \texttt{rBrace} respectively. The default behavior of both the kleene star and kleene plus operators is to apply them to the state that occurs right before it. If any kleene operator has to be applied to multiple states, these states have to be wrapped in braces in JS-QL. Listing \ref{lst:KleeneOperations} shows the differences. Lines 1 and 2 are semantically equivalent, as the braces on line 2 only contain 1 state, a \texttt{wildcard} in this case. Lines 3 and 4 on the other hand are semantically very different. The query on line 3 matches all but the first states in the state graph, whereas the query on line 4 matches every other state in the graph, starting from the second state. The combinations of \texttt{wildcard().star()} and \texttt{wildcard().plus()} are so commonly used in JS-QL, that a special construct is created for each of them: \texttt{skipZeroOrMore()} and \texttt{skipOneOrMore()} respectively.
 
@@ -119,7 +116,7 @@ G.wildcard().state().plus()
 G.lBrace().wildcard().state().rBrace().plus()
 \end{lstlisting}
 
-\subsubsection{Disjunction}
+\subsection{Disjunction}
 
 Sometimes when writing a query, more than one state on the path is allowed for the query to match. Consider a simple language in which we want to detect all uses of a variable \texttt{v}. Using a variable in this language can only be done by using it in an binary arithmetic expression. To keep the example simple, we disregard all other possible uses of a variable. We also assume in this example that no other variable was assigned the value of \texttt{v}, so that no aliases of \texttt{v} exist in the code. When using a variable in a binary arithmetic expression, the variable can be on either side of the operator. A naive solution to query for all uses of \texttt{v} would be to first launch a query that finds all occurences of \texttt{v} on the left-hand side, followed by a query that detects all occurences on the right-hand side. To alleviate the work of the user, JS-QL offers the disjunction construct \texttt{or}, which allows to specify that 1 state in the state graph can be matched by multiple states in the query pattern. If we then were to match all occurrences of \texttt{v} on the left- and right-hand side of arithmetic expressions, we could write a query as in listing \ref{lst:disjunction}.
 
@@ -150,7 +147,7 @@ When examining the example above, we notice that very few relevant information i
 //... 
 \end{lstlisting}
 
-\subsubsection{Specifying additional properties}
+\subsection{Specifying additional properties}
 
 Sometimes it can be useful to capture extra information about already matched variables. Doing so in a separate section, exclusively designed for this purpose, has two advantages. First of all, it enhances the readability of queries. Queries with deeply nested maps can quickly become confusing to read and bothersome to modify. Secondly, it opens up for opportunities to make the language even more expressive. JS-QL has a built-in keyword \texttt{properties}, which can be used to obtain more information from already bound variables. 
 
@@ -183,7 +180,7 @@ G.skipZeroOrMore()
 
 It is very important to keep in mind that only the variables that are already bound can be used in properties. This implies that the order of the keywords in a query is important for the semantics of the query. If we were to switch the \texttt{node} and \texttt{properties} keywords of the above query, an error would occur because the \texttt{?decls} variable wouldn't be available to use in the properties section.
 
-\subsubsection{Filtering states}
+\subsection{Filtering states}
 
 Filters in JS-QL work very similar to properties, except that they act as guards who filter out states that don't satisfy certain conditions. A filter can be any function, predefined or specified by the user, that returns a boolean value. When returning true the pattern can be matched further, otherwise the matching process aborts and no match for the current path in the state graph is found. A filter is declared through the \texttt{cond} JavaScript function (similar to \texttt{prop} for filters), and takes a filter function as a first argument. All other arguments are passed as the arguments to the filter function. As no variables have to be stored for filters, the notation is not traditional in such a way that it doesn't use map. Instead, a JavaScript array lists all filters to be satisfied. Consider the following example: JavaScript allows the declaration of multiple variables in one declaration statement, e.g.:\\\texttt{var a = 1, b = 2;} \\Some companies see this as a bad practice, as it is harder to maintain and less error-prone. A query can be written to to detect all violations of this company policy, by storing the length of the declarations in a variable and checking if the length of the variable is larger than 1. Only the states for which this filter is satisfied will be contained in the results of the query. Listing \ref{lst:multipleDeclarations} illustrates this example.
 
@@ -200,7 +197,7 @@ G.skipZeroOrMore()
     }) 
 \end{lstlisting}
 
-\subsubsection{Data flow in JS-QL}
+\subsection{Data flow in JS-QL}
 
 Support for data flow opens up to write a whole new class of queries. As JavaScript is a dynamic language, any variable can be assigned to any other variable. This phenomenon is known as \textit{aliasing}, and is very common in the language. As already discussed in chapter \ref{ch:Overview}, JIPDA stores the addresses and values of variables in the \texttt{store}. Values stored for primitive types are indistinguishable in the store, because of abstract interpretation:\\
 \texttt{var x = 4; var y = 9999;}\\
@@ -245,7 +242,7 @@ G.skipZeroOrMore()
 
 
 
-\subsubsection{Negation}
+\subsection{Negation}
 
 Expressing which statements and expressions we want to detect on a path in the graph is made easy by JS-QL. Sometimes however, this doesn't suffice for some queries. In some languages, accessing a file after it was closed results in an error in the application. This might compromise the integrity of the system. A naive approach to writing a policy for this would be to detect all calls to the \texttt{access} method that follow, after some wildcard states, the call of a \texttt{close} method for a file \texttt{f}. While this query would match and return all violations against the policy, false positives would occur. This is because of the wildcard states between the two function calls. One of these calls could be a call to the \texttt{open} method, meaning that accessing the file afterwards is permitted.  A better approach would be to specify that we \textit{don't} want to encounter a call to \texttt{open} for \texttt{f} between closing and accessing it. This is exactly what the \texttt{not} construct does. When placing this construct right before a state, the query will only be matched if the negated state can't be matched with the current state in the state graph. When placing \texttt{not} before a state, and \texttt{star} or \texttt{plus} right after that state, it can be read as: "Match zero/one or more states that are \textit{not} the negated state". A better query for the example above would then be written as in listing \ref{lst:OpenClosedFile}, which can be found in the appendix for brevity reasons. The query first skips several states until it reaches a call to \texttt{close} on file \texttt{f}. The address of the file to be closed is also stored in a variable to correctly detect only the accessing and opening of that specific file. Next, all states are matched that are not opening \texttt{f}. Finally, the actual violation is detected, namely accessing the file after it has been closed and not re-opened. Negation is in the current version of JS-QL subject to some limitations: 
 \begin{enumerate}
@@ -257,12 +254,12 @@ Expressing which statements and expressions we want to detect on a path in the g
 
 %SUMMARY OF BUILT-IN CONSTRUCTS
 
-\subsection{Types of queries}
-\label{subsec:TypesOfQueries}
+\section{Types of queries}
+\label{sec:TypesOfQueries}
 
 The most straightforward way to query for properties is by just specifying a pattern and an input program. The pattern is then checked and each violating path is reported in the results. Sometimes however other types of queries are needed for the detection of specific policy violations. In this section we discuss the different types of queries and how they can be used.
 
-\subsubsection{Existential queries}
+\subsection{Existential queries}
 All queries already presented in this chapter are existential queries. They report a violation of a policy for each path on which they encounter the violation. Existential queries can be defined as follows:
 \begin{definition}
 \textbf{Existential queries}: Given an edge-labeled directed graph $G$ where labels may have parameters, a vertex $v0$ in $G$, and a parametric regular-expression pattern $P$, compute all pairs of vertex $v$ in $G$ and a substitution $\theta$ for parameters in $P$ such that there exists a path from $v0$ to $v$ in $G$ that matches some sentence accepted by $P$ under $\theta$.
@@ -270,7 +267,7 @@ All queries already presented in this chapter are existential queries. They repo
 
 \noindent What this means is that \textit{any} path in the state graph matching user-defined query will produce a resulting substitution. For that path, the policy has been violated, but chances are that that path never gets executed when actually running the program, as a consequence of the overapproximations of the static analysis in JIPDA. A branch of a conditional might never be executed in a program for example. If the value of the test in the conditional gets overapproximated (i.e. with an abstract value of \textit{\{Bool\}}), the state graph will depict both branches, as it can't decide which branch will be taken. Existential queries thus match a pattern \textit{if there exists a path} in the state graph matching the query.
 
-\subsubsection{Universal queries}
+\subsection{Universal queries}
 
 Sometimes detecting if a pattern occurs along a path in the state graph doesn't suffice. Universal queries provide stronger guarantees for queries, as they require that the query matches for the same substitutions along all possible paths in the state graph between two states. We define universal queries as follows:
 \begin{definition}
@@ -285,7 +282,7 @@ G.skipZeroOrMore()
 .not().def({name: '?x'}).star // As long as it isn't redefined
 \end{lstlisting}
 
-\subsubsection{Query direction}
+\subsection{Query direction}
 
 Queries in most traditional systems are viewed as straightforward, in the sense that they match a part of a graph or other program representation from point $a$ to $b$. This way of reasoning implies that queries are always matched from the beginning to the end of a program (if control-flow information is available, that is). Our framework supports this manner of querying in the traditional way, but also allows to explore the state graph bottom-up. This can be meaningful to search for certain program properties. \textit{Forward} queries are queries as we've defined them until now. They match the state graph from the beginning state to the resultstates and are pretty easy to understand and read. \textit{Backward} queries on the other hand traverse the graph in a bottom-up manner, meaning that the query starts at the end of the state graph and matches states until the starting state of the graph is reached. Although backward queries are less common they can be useful to perform some program analysis, such as live variables analysis. This analysis calculates for each program point the variables that may be potentially read before their next write. A variable is thus live if it holds a value that may be needed in the future. The backward query for this analysis goes as follows:
 
@@ -297,8 +294,8 @@ G.skipZeroOrMore()
 
 The \texttt{use} and \texttt{def} predicates are again user-defined predicates. Starting from the resultstate of the program, some states are skipped until the first use of variable \texttt{?x} is found. Note that this is in fact the \textit{last} use of that variable in the state graph for that liveness set. The query then marks all states that aren't a write to \texttt{?x}. In this way, one or more states will be marked, representing the path on which variable \texttt{?x} was live.
 
-\subsection{Defining predicates and policies}
-\label{subsec:DefiningPolicies}
+\section{Defining predicates and policies}
+\label{sec:DefiningPolicies}
 
 Expressing queries and policies with only the \texttt{state} and \texttt{wildcard} constructs quickly becomes tiresome as every attribute of the state has to be explicitly specified. The JS-QL framework remedies this by letting users specify their own predicates and policies as well as by providing some basic customizable predicates for single expressions and statements.
 We can distinguish predicates and policies by what they match. Predicates are like the \texttt{state} construct, in the sense that they match only one specific state. For example, JS-QL has a built-in predicate \texttt{functionCall} which matches function calls. The nice thing about these predicates is that a user can specify what he wants to match in a state. Policies on the other hand are sequences of predicates and/or \texttt{state}s, forming a pattern. We will demonstrate how to write predicates by dissecting a relatively simple built-in predicate called \texttt{assign}. All predicates and policies can be written in a separate file, as long as they are extend in the \textit{JSQL prototype}:\\
@@ -342,7 +339,7 @@ G.skipZeroOrMore().assign({left: '?l', right:'?r',
 //And so on ...
 \end{lstlisting}
 
-\subsubsection{recursion}
+\subsection{recursion}
 %moet dit naar types of queries?
 Some types of queries or analyses require that a variable is reintroduced in several consecutive states, or that a trace of information is kept along each state. This behavior can be achieved by defining \textit{recursive queries}. Recursive queries are queries that can invoke themselves again, until a base case is matched. This type of query can for example be used to detect by which variables a variable is tainted (i.e. influenced/marked). JS-QL supports recursive queries by providing the \texttt{rec} function. This function takes two arguments: (i) The mapping for the next recursive step and (ii) the predicate/policy that needs to be called recursively. The \texttt{taintedBy} policy is included in the appendix as listing \ref{lst:taintedBy}. It describes a naive taint analysis which only considers simple assignments. It takes three arguments, which can all be omitted: \texttt{orig} denotes the original value which will be aliased, \texttt{alias} represents the alias of the original value and \texttt{rec} keeps track of all variables that have been used as aliases inbetween \texttt{orig} and \texttt{alias}. The relevant code of the policy is found below:
 
@@ -370,6 +367,6 @@ G.skipZeroOrMore({orig: '?o', alias:'?alias', rec:'?r'})
 
 The policy matches all simple assignments by name. Lines 1-8 set up the state maps of 2 separate states. The first state matches a direct assignment from \texttt{orig} to \texttt{alias}. The second state does the same, but the alias in this case is an intermediate assigned variable \texttt{flow}. So when we assign $a$ to $b$ and $b$ to $c$, the resulting state can look like: \{orig: a, flow: b, alias: c\}, indicating that $c$ is an alias of $a$, and that it obtained the value of $a$ through $b$. Lines 10-16 show the pattern that needs to be matched. Or we match an assignment directly (the base case), or we match a state from \texttt{orig} to \texttt{flow}, and later in the graph from \texttt{flow} to \texttt{alias}. The recursive call will keep occuring until no more match is found in the state graph, or when the base case is matched. This policy clearly shows that recursive queries can also be used to discover data flow properties of a program. When writing a policy similar to \texttt{taintedBy} which also keeps track of the address of the values, even more accurate data flow properties can be detected.
 
-\subsection{conclusion}
-In this chapter we described the syntax and usage of the JS-QL language. We discussed the basic constructs used to build queries in section \ref{subsec:Syntax}, as well as more advanced predicates that are either built-in or that can be user-specified. JS-QL supports several types of policies, and each of them is described in section \ref{subsec:TypesOfQueries}.
-Writing predicates and policies might seem tiresome at first glance, but actually is quite repetitive and easy to do. The benefit of predicates and policies is that they are 'write once, use often'. A method for defining custom predicates and policies is described in section \ref{subsec:DefiningPolicies}. We can conclude that the JS-QL can be learned with little effort, after which expressive queries can be written to check all kinds of code characteristics. 
+\section{conclusion}
+In this chapter we described the syntax and usage of the JS-QL language. We discussed the basic constructs used to build queries in section \ref{sec:Syntax}, as well as more advanced predicates that are either built-in or that can be user-specified. JS-QL supports several types of policies, and each of them is described in section \ref{sec:TypesOfQueries}.
+Writing predicates and policies might seem tiresome at first glance, but actually is quite repetitive and easy to do. The benefit of predicates and policies is that they are 'write once, use often'. A method for defining custom predicates and policies is described in section \ref{sec:DefiningPolicies}. We can conclude that the JS-QL can be learned with little effort, after which expressive queries can be written to check all kinds of code characteristics. 
