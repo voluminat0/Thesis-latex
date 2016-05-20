@@ -55,6 +55,7 @@ Each query result is a set of substitutions, mapping variables (denoted by a sta
 
 
 \section{The query language}
+\label{sec:queryLanguageImpl}
 The JS-QL query language is implemented as an embedded DSL with JavaScript as its host language. We motivated the use of a DSL in chapter \ref{ch:Overview} and explored the JS-QL syntax and semantics in chapter \ref{ch:JSQL}. This section describes how the DSL is implemented and how we incorporated several DSL implementation techniques.
 
 A JS-QL query gets parsed like a regular expression. Each state in the pattern represents one character in the regular expression, defined by objects of type \texttt{RegexPart}. These parts of the pattern have 5 fields to ease the translation from regular expression to automaton:
@@ -132,6 +133,44 @@ In the second phase of the algorithm, $W$ gets traversed. As already discussed, 
 \subsection{Matching states with a pattern}
 \label{subsec:matching}
 
+Matching in the strict sense of the word is checking if two things are equal. In our implementation, a match occurs when a state in $P$ is \textit{subsumed} by a state of $G$. What this means is that all the information that is contained in a state in the pattern has to occur in the state of the state graph that is currently being matched, allowing the latter to contain way more information than just what is specified by the pattern state. Figure \ref{fig:matchingPredicates} illustrates how a state is matched. The JS-QL predicate on the right produces a match, as it is subsumed by the JIPDA state. In contrast, the left JS-QL predicate specifies a \texttt{callee} attribute, which isn't contained in the JIPDA state. This suffices to produce a mismatch, leading to a failed match for the currently matched path in the state graph.
+
+The JS-QL framework matches through the \texttt{match} function. This function is just an entry point to the matching process, as it only passes all matching work to the \texttt{matchState} function and waits for its results. \texttt{match} however does perform an initial check to make sure no excessive work is done. An example: When encountering a wildcard in the pattern, no matching needs to be done as a wildcard matches any state. Negation is also handled by this function: matching a negated pattern state simply consists of matching the regular state (i.e. the state without negation) and returning false when a match is found and the empty substitution list otherwise. The remainder of this section discusses the different phases of the matching process, as already has been depicted in figure \ref{fig:matchingEngine} above.
+
+\begin{figure}[!h]
+    \centering
+      \includegraphics[width=1\textwidth]{images/matchingPredicates} 
+      \caption{A matching and mismatching predicate for a JIPDA state}
+    \label{fig:matchingPredicates}
+\end{figure}
+
+\subsubsection{matchState}
+The \texttt{matchState} function is responsible for delegating the matching of keywords and combining the results of those matches. The initial substitution set $\theta$ is empty and grows larger for each keyword that is matched. Internally, the function works as follows: For each keyword specified in the JS-QL query, match its value (i.e. a nested map, a literal or a variable) with the corresponding attribute of the state to be matched and collect the results of this partial matching. If the partial match failed, \texttt{false} is returned, elsewise the partial match is merged with $\theta$. Each possible keyword has a different processing method (see figure \ref{fig:matchingEngine}), and we will briefly discuss each of them.
+
+\subsubsection{matchRecursive}
+The \texttt{node} attribute of states represents its corresponding AST node. This node gets matched recursively until a variable or a literal is encountered. In the case of a variable, the corresponding AST node value is bound to it. If each node-attribute of the predicate is matched, the substitution set containing all matched variables is returned. There are several reasons why the \texttt{matchRecursive} function would not produce a match:
+\begin{enumerate}
+\item As already mentioned, the AST node gets matched recursively until a variable or literal is encountered. In the case of a literal being matched, a mismatch occurs when the value of the literal doesn't agree with the value in the AST node.
+\item In the other case, matching a variable which was already bound in a previous state results in a mismatch if the value of the variable can't be unified with the newly matched value.
+\item The most common reason for a mismatch to happen is when a node-attribute specified in a JS-QL query isn't present in the AST node of a JIPDA state. This 'mismatching-technique' is often used instead of explicitly specifying the \textit{type} of the node in the predicate. Figure \ref{fig:matchingPredicates} illustrates this: The predicate on the right-hand side doesn't match as no 'callee' attribute is present in the current JIPDA state.
+\end{enumerate}
+
+\subsubsection{addExtraProperties}
+
+This function matches the properties attribute of a predicate. The matching process is split in two, using one function for each way that properties can be defined: One function handles properties that just access attributes of already bound variables. The other function handles properties specified by \texttt{prop}. Both functions first resolve all needed variables, and fail to match if one or more variables can't be resolved (i.e. are not contained in the current substitution set). After resolving all used variables, the new variables defined by the properties are evaluated and added to the substitution set to be returned. \texttt{addExtraProperties} may produce no results if any of the same reasons as in \texttt{matchRecursive} occur.
+
+\subsubsection{verifyConditions}
+
+As the JS-QL language allows to express filters, a function is needed to evaluate and check these filters. \texttt{verifyConditions} does just that. Its internal working is very similar to the matching of properties. After resolving the needed variables, the specified filter function is applied to its arguments. When the condition for a filter holds, the next filter is checked. In the case that condition for a filter doesn't hold, the matching process is aborted. If all filters return \texttt{true} the matching process can continue, as the matched state meets all requirements that the filter imposes.
+
+\subsubsection{getAddresses}
+%Zoekt alle addressen op van een bepaalde naam. gebruikt hiervoor benv en store.
+The \texttt{getAddresses} function looks up the addresses for the variable specified in the lookup map. Variables can have multiple addresses caused by precision loss due to abstract interpretation. For each name in the map, a literal or a variable to be resolved, the addresses are looked up using the binding environment and the store. When no address is found for the specified name (meaning that the variable doesn't exist at that point in the program), the matching process fails.
+
+\subsubsection{processValue}
+Continuation states all have a value attribute. This attribute contains the addresses or values for the expression or statement that has just been evaluated. The \texttt{processValue} function just duplicates the existing substitution set and adds one address/value to each of the duplicated substitution set. The resulting substitution sets each contain one possible value or address.
+
+
 
 \subsection{Merging substitution results}
 \label{subsec:merging}
@@ -168,6 +207,16 @@ Merging happens when the substitution set of previously matched state in the pat
 \subsection{Processing subgraphs}
 \label{subsec:subgraphs}
 
+Recall that recursive query calls are represented in $P$ by a single state of type 'subgraph'. When encountered in an algorithm, this state has to be expanded in such a way that the pattern gets modified to contain \textit{one} additional recursive step. The algorithms used by JS-QL match a state of $G$ with a state of $P$, and halts the matching process for that path when no match is found. This has as a side effect that we indeed don't have to try and exhaustively expand each subgraph state, because the algorithm might never reach the expanded states. Another consideration is that if we were to expand the subgraph state multiple times, the algorithm might get trapped in an infinite loop as it doesn't know when to stop exploring recursive steps. Figure \ref{fig:subgraphExpansion} shows what happens when a recursive state of the \texttt{taintedBy} policy is encountered by the algorithms. We see that the subgraph in the original policy gets replaced by the entire pattern of that policy in the first recursive step.
+
+\begin{figure}[!h]
+    \centering
+      \includegraphics[width=1\textwidth]{images/subgraphExpansion} 
+      \caption{Before and after expanding a subgraph for one recursive step}
+    \label{fig:subgraphExpansion}
+\end{figure}
+
+Expansion of a subgraph state happens by applying the \texttt{expandFunction} (see section \ref{sec:queryLanguageImpl}), which is a predicate or policy returning a piece of a pattern $P_{subgraph}$, and replacing the subgraph state in $P$ by the obtained pattern $P_{subgraph}$. The same subgraph may be expanded for different paths in the state graph, resulting in costly computations for each of those paths. We remedy this by caching each expanded subgraph. A subgraph state (with its unique identifier) gets mapped to its expanded subgraph pattern. When in the next iteration of the algorithm a subgraph state is encountered, its corresponding subgraph pattern is first looked up in the cache. Only when there is no corresponding subgraph available, the subgraph will be calculated and added to the cache.
 
 
 

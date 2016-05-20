@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.26)  19 MAY 2016 17:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.26)  20 MAY 2016 19:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1550,7 +1550,7 @@ Package pdftex.def Info: images/UI.png used on input line 35.
 (pdftex.def)             Requested size: 390.0pt x 265.6279pt.
 
 [55 <./images/UI.png>] [56]
-Overfull \hbox (9.96716pt too wide) in paragraph at lines 62--63
+Overfull \hbox (9.96716pt too wide) in paragraph at lines 63--64
 \OT1/ptm/m/n/12 tion, the name just de-notes the type of the state/pred-i-cate 
 that the \OT1/pcr/m/n/12 RegexPart
  []
@@ -1559,7 +1559,7 @@ that the \OT1/pcr/m/n/12 RegexPart
 File: images/QueryProcessing.pdf Graphic file (type pdf)
 
 <use images/QueryProcessing.pdf>
-Package pdftex.def Info: images/QueryProcessing.pdf used on input line 74.
+Package pdftex.def Info: images/QueryProcessing.pdf used on input line 75.
 (pdftex.def)             Requested size: 390.0pt x 291.3448pt.
 
 
@@ -1570,27 +1570,48 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 File: images/matchingEngine.pdf Graphic file (type pdf)
 
 <use images/matchingEngine.pdf>
-Package pdftex.def Info: images/matchingEngine.pdf used on input line 108.
+Package pdftex.def Info: images/matchingEngine.pdf used on input line 109.
 (pdftex.def)             Requested size: 390.0pt x 338.13641pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [60] [61 <./images/matchingEngine.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 124--127
+Underfull \hbox (badness 10000) in paragraph at lines 125--128
 
  []
 
 
-Overfull \hbox (2.03966pt too wide) in paragraph at lines 128--129
+Overfull \hbox (2.03966pt too wide) in paragraph at lines 129--130
 [][]\OT1/ptm/b/n/12 Definition 10. []\OT1/ptm/m/it/12 The \OT1/ptm/b/it/12 de-t
 er-min-ism con-di-tion \OT1/ptm/m/it/12 is a con-di-tion used in uni-ver-sal qu
 eries,
  []
 
-[62]) [63]
+[62] <images/matchingPredicates.pdf, id=1198, 896.34875pt x 241.90375pt>
+File: images/matchingPredicates.pdf Graphic file (type pdf)
+
+<use images/matchingPredicates.pdf>
+Package pdftex.def Info: images/matchingPredicates.pdf used on input line 142.
+(pdftex.def)             Requested size: 390.0pt x 105.24942pt.
+ [63 <./images/matchingPredicates.pdf>]
+[64]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[65] <images/subgraphExpansion.pdf, id=1229, 965.6075pt x 252.945pt>
+File: images/subgraphExpansion.pdf Graphic file (type pdf)
+
+<use images/subgraphExpansion.pdf>
+Package pdftex.def Info: images/subgraphExpansion.pdf used on input line 214.
+(pdftex.def)             Requested size: 390.0pt x 102.1604pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+) [66] [67 <./images/subgraphExpansion.pdf>]
 Chapter 6.
-(./chapters/evaluation.tex [64
+(./chapters/evaluation.tex [68
 
 ]
 Overfull \hbox (23.09712pt too wide) in paragraph at lines 29--30
@@ -1603,13 +1624,13 @@ File: lstlang1.sty 2014/09/06 1.5e listings language file
 )
 (/usr/local/texlive/2015/texmf-dist/tex/latex/listings/lstlang2.sty
 File: lstlang2.sty 2014/09/06 1.5e listings language file
-) [65]
+) [69]
 Overfull \hbox (6.93253pt too wide) in paragraph at lines 74--76
 \OT1/ptm/m/n/12 sim-i-lar to the state in list-ing [][]6.3[][], with the only d
 if-fer-ence in the \OT1/pcr/m/n/12 mainObjectName
  []
 
-[66] [67]
+[70] [71]
 Overfull \hbox (31.32986pt too wide) in paragraph at lines 128--129
 \OT1/ptm/m/n/12 What needs to be de-tected are the calls to \OT1/pcr/m/n/12 doc
 ument.write/document.writeln\OT1/ptm/m/n/12 ,
@@ -1621,35 +1642,35 @@ Overfull \hbox (37.07695pt too wide) in paragraph at lines 128--129
 ][] does just that. \OT1/pcr/m/n/12 DocumentWrite(i)
  []
 
-[68] [69] [70] [71] [72] [73] [74] [75] [76] [77] [78]
+[72] [73] [74] [75] [76] [77] [78] [79] [80] [81] [82]
 Overfull \hbox (5.40962pt too wide) in paragraph at lines 457--458
 \OT1/ptm/m/n/12 the \OT1/pcr/m/n/12 ?name \OT1/ptm/m/n/12 vari-able which point
 s to the ad-dress of the global \OT1/pcr/m/n/12 document.cookie
  []
 
-[79] [80] [81] [82]) [83]
+[83] [84] [85] [86]) [87]
 Chapter 7.
-(./chapters/conclusion-and-future-work.tex) [84
+(./chapters/conclusion-and-future-work.tex) [88
 
-] [85
+] [89
 
 
 ]
 Appendix A.
-[86
+[90
 
 ]
 
 Package Listings Warning: Text dropped after begin of listing on input line 306
 .
 
-[87] [88] [89]
+[91] [92] [93]
 Overfull \hbox (1.96597pt too wide) in paragraph at lines 375--375
 \OT1/ptm/m/n/12 WWW '10. Raleigh, North Car-olina, USA: ACM, 2010, pp. 281{290.
  \OT1/ptm/m/sc/12 isbn\OT1/ptm/m/n/12 :
  []
 
-[90
+[94
 
 ]
 Overfull \hbox (23.90715pt too wide) in paragraph at lines 375--375
@@ -1663,7 +1684,7 @@ Overfull \hbox (3.53706pt too wide) in paragraph at lines 375--375
 -guages for Graph
  []
 
-[91]
+[95]
 Overfull \hbox (6.8318pt too wide) in paragraph at lines 375--375
 \OT1/ptm/m/n/12 Pro-gram De-pen-dence Graphs''. In: \OT1/ptm/m/it/12 SIG-PLAN N
 ot. \OT1/ptm/m/n/12 50.6 (June 2015), pp. 291{
@@ -1676,7 +1697,7 @@ ac-ing Pat-terns\OT1/ptm/m/n/12 . 2011. \OT1/ptm/m/sc/12 url\OT1/ptm/m/n/12 : [
 ][]$\OT1/pcr/m/n/12 https :
  []
 
-[92]
+[96]
 Overfull \hbox (10.49396pt too wide) in paragraph at lines 375--375
 \OT1/ptm/m/n/12 pp. 1{10. \OT1/ptm/m/sc/12 isbn\OT1/ptm/m/n/12 : 978-1-4503-390
 2-5. \OT1/ptm/m/sc/12 doi\OT1/ptm/m/n/12 : [][]$\OT1/pcr/m/n/12 10 . 1145 / 281
@@ -1701,14 +1722,14 @@ Overfull \hbox (10.18898pt too wide) in paragraph at lines 375--375
  Soft-ware, Java Edi-tion\OT1/ptm/m/n/12 . 1st. O'Reilly
  []
 
-[93]
+[97]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 375.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 375.
  (./main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 375.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 375.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 4670BFCFD70A8DC414556A49C9647F1E;5414.
+(rerunfilecheck)             Checksum: 1DCCDBE2A1EB6A419EB08B5186F9EC83;5414.
 
 
 LaTeX Warning: There were undefined references.
@@ -1718,10 +1739,10 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 27279 strings out of 493089
- 489938 string characters out of 6134842
- 1026674 words of memory out of 5000000
- 29324 multiletter control sequences out of 15000+600000
+ 27307 strings out of 493089
+ 490466 string characters out of 6134842
+ 1026904 words of memory out of 5000000
+ 29335 multiletter control sequences out of 15000+600000
  37093 words of font info for 84 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
  64i,16n,60p,2809b,1966s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1743,10 +1764,10 @@ type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/
 times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utm
 r8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb><
 /usr/local/texlive/2015/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on main.pdf (100 pages, 1725837 bytes).
+Output written on main.pdf (104 pages, 1895212 bytes).
 PDF statistics:
- 2080 PDF objects out of 2487 (max. 8388607)
- 1916 compressed objects within 20 object streams
- 931 named destinations out of 1000 (max. 500000)
- 693 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2125 PDF objects out of 2487 (max. 8388607)
+ 1955 compressed objects within 20 object streams
+ 946 named destinations out of 1000 (max. 500000)
+ 703 words of extra memory for PDF output out of 10000 (max. 10000000)
 
