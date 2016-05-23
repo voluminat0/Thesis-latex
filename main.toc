@@ -6,7 +6,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.1}Motivation}{1}{section.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.2}Objective}{1}{section.1.2}
+\contentsline {section}{\numberline {1.2}Objectives and contributions}{1}{section.1.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.3}Overview}{1}{section.1.3}
 \defcounter {refsection}{0}\relax 
@@ -156,10 +156,10 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {7}Conclusion and future work}{88}{chapter.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.1}Summary}{88}{section.7.1}
+\contentsline {section}{\numberline {7.1}Technical limitations of the approach}{89}{section.7.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.2}Future work}{88}{section.7.2}
+\contentsline {section}{\numberline {7.2}Future research}{90}{section.7.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Appendices}{89}{section*.71}
+\contentsline {chapter}{Appendices}{91}{section*.76}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}JS-QL policies and predicates}{90}{Appendix.a.A}
+\contentsline {chapter}{\numberline {A}JS-QL policies and predicates}{92}{Appendix.a.A}

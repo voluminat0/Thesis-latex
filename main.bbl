@@ -123,12 +123,29 @@
       \field{year}{1996}
       \field{pages}{505\bibrangedash 516}
       \range{pages}{12}
-      \verb{doi}
-      \verb 10.1145/235968.233368
-      \endverb
-      \verb{url}
-      \verb http://doi.acm.org/10.1145/235968.233368
-      \endverb
+    \endentry
+    \entry{Metal}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=30dba5c275254d54d7b57f5cb601e177}{Chelf}{C\bibinitperiod}{Benjamin}{B\bibinitperiod}{}{}{}{}}%
+        {{hash=481c9efce218239925870e8098897eff}{Engler}{E\bibinitperiod}{Dawson}{D\bibinitperiod}{}{}{}{}}%
+        {{hash=3ada4290937022dd4b4138a047432d46}{Hallem}{H\bibinitperiod}{Seth}{S\bibinitperiod}{}{}{}{}}%
+      }
+      \list{organization}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{2f05be00f0fc494a8361bd6d632f6683}
+      \strng{fullhash}{2f05be00f0fc494a8361bd6d632f6683}
+      \field{sortinit}{C}
+      \field{sortinithash}{59f25d509f3381b07695554a9f35ecb2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{ACM SIGSOFT Software Engineering Notes}
+      \field{number}{1}
+      \field{title}{How to write system-specific, static checkers in metal}
+      \field{volume}{28}
+      \field{year}{2002}
+      \field{pages}{51\bibrangedash 60}
+      \range{pages}{10}
     \endentry
     \entry{Cleaveland:1988}{article}{}
       \name{author}{1}{}{%
@@ -444,12 +461,6 @@
       \field{year}{2008}
       \field{pages}{405\bibrangedash 418}
       \range{pages}{14}
-      \verb{doi}
-      \verb 10.1145/1376616.1376660
-      \endverb
-      \verb{url}
-      \verb http://doi.acm.org/10.1145/1376616.1376660
-      \endverb
       \keyw{graph algebra,graph query language,query optimization}
     \endentry
     \entry{Esprima}{online}{}
@@ -611,12 +622,6 @@
       \field{year}{2015}
       \field{pages}{291\bibrangedash 302}
       \range{pages}{12}
-      \verb{doi}
-      \verb 10.1145/2813885.2737957
-      \endverb
-      \verb{url}
-      \verb http://doi.acm.org/10.1145/2813885.2737957
-      \endverb
       \keyw{Application-specific security,graph query language,program dependence graph}
     \endentry
     \entry{karsai2014design}{article}{}
@@ -865,12 +870,6 @@
       \field{year}{2015}
       \field{pages}{1\bibrangedash 10}
       \range{pages}{10}
-      \verb{doi}
-      \verb 10.1145/2815072.2815073
-      \endverb
-      \verb{url}
-      \verb http://doi.acm.org/10.1145/2815072.2815073
-      \endverb
       \keyw{finite automata,functional languages,graph traversal,virtual machines}
     \endentry
     \entry{Simos:1995}{inproceedings}{}
@@ -896,12 +895,6 @@
       \field{year}{1995}
       \field{pages}{196\bibrangedash 205}
       \range{pages}{10}
-      \verb{doi}
-      \verb 10.1145/211782.211845
-      \endverb
-      \verb{url}
-      \verb http://doi.acm.org/10.1145/211782.211845
-      \endverb
       \keyw{domain analysis,domain engineering,domain modeling,feature model,organization domain,stakeholder model,variability modeling}
     \endentry
     \entry{JOANA}{article}{}
@@ -927,9 +920,6 @@
       \field{year}{2014}
       \field{pages}{280\bibrangedash 287}
       \range{pages}{8}
-      \verb{doi}
-      \verb 10.1515/itit-2014-1051
-      \endverb
     \endentry
     \entry{Thompson}{article}{}
       \name{author}{1}{}{%
@@ -956,13 +946,28 @@
       \field{year}{1968}
       \field{pages}{419\bibrangedash 422}
       \range{pages}{4}
-      \verb{doi}
-      \verb 10.1145/363347.363387
-      \endverb
-      \verb{url}
-      \verb http://doi.acm.org/10.1145/363347.363387
-      \endverb
       \keyw{match,regular expression,search}
+    \endentry
+    \entry{JunGL}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=bedb2df4b6e5f1545788d1b56a8ea7a2}{Verbaere}{V\bibinitperiod}{Mathieu}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=d89d7ec15e843a5d8bfb187a75fbc2c9}{Ettinger}{E\bibinitperiod}{Ran}{R\bibinitperiod}{}{}{}{}}%
+        {{hash=775d2bba69321780e9bbbaa86729733e}{Moor}{M\bibinitperiod}{Oege}{O\bibinitperiod}{de}{d\bibinitperiod}{}{}}%
+      }
+      \list{organization}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{448a0018bce3ee32f1de5f66e2b06a41}
+      \strng{fullhash}{448a0018bce3ee32f1de5f66e2b06a41}
+      \field{sortinit}{V}
+      \field{sortinithash}{d18f5ce25ce0b5ca7f924e3f6c04870e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 28th international conference on Software engineering}
+      \field{title}{JunGL: a scripting language for refactoring}
+      \field{year}{2006}
+      \field{pages}{172\bibrangedash 181}
+      \range{pages}{10}
     \endentry
     \entry{MaintainableSoftware}{book}{}
       \name{author}{5}{}{%
@@ -1027,8 +1032,6 @@
       \field{year}{2011}
     \endentry
   \endsortlist
-  \missing{JunGL}
-  \missing{Metal}
 \endrefsection
 \endinput
 

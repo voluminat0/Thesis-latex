@@ -2282,6 +2282,7 @@
     <bcf:citekey order="45">PidginQLTechReport</bcf:citekey>
     <bcf:citekey order="46">PDG</bcf:citekey>
     <bcf:citekey order="47">ConScript</bcf:citekey>
+    <bcf:citekey order="48">Findbugs</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="nty" type="entry" sortscheme="nty">
   <bcf:sorting>

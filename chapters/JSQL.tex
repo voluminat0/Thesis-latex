@@ -297,6 +297,7 @@ The \texttt{use} and \texttt{def} predicates are again user-defined predicates. 
 \section{Defining predicates and policies}
 \label{sec:DefiningPolicies}
 
+\subsection{Creating a predicate}
 Expressing queries and policies with only the \texttt{state} and \texttt{wildcard} constructs quickly becomes tiresome as every attribute of the state has to be explicitly specified. The JS-QL framework remedies this by letting users specify their own predicates and policies as well as by providing some basic customizable predicates for single expressions and statements.
 We can distinguish predicates and policies by what they match. Predicates are like the \texttt{state} construct, in the sense that they match only one specific state. For example, JS-QL has a built-in predicate \texttt{functionCall} which matches function calls. The nice thing about these predicates is that a user can specify what he wants to match in a state. Policies on the other hand are sequences of predicates and/or \texttt{state}s, forming a pattern. We will demonstrate how to write predicates by dissecting a relatively simple built-in predicate called \texttt{assign}. All predicates and policies can be written in a separate file, as long as they are extend in the \textit{JSQL prototype}:\\
 \texttt{JSQL.prototype.assign = function(obj)\{\ldots \}}\\

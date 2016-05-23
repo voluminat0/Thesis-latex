@@ -1,18 +1,15 @@
 [0] Config.pm:324> INFO - This is Biber 2.1
 [0] Config.pm:327> INFO - Logfile is 'main.blg'
-[42] biber-darwin:276> INFO - === Wed May 18, 2016, 15:57:02
-[42] Biber.pm:333> INFO - Reading 'main.bcf'
-[141] Biber.pm:645> INFO - Found 42 citekeys in bib section 0
-[167] Biber.pm:2977> INFO - Processing section 0
-[182] Biber.pm:3115> INFO - Looking for bibtex format file 'references.bib' for section 0
-[187] bibtex.pm:1021> INFO - Decoding LaTeX character macros into UTF-8
-[191] bibtex.pm:895> INFO - Found BibTeX data source 'references.bib'
-[239] Utils.pm:146> WARN - I didn't find a database entry for 'Metal' (section 0)
-[239] Utils.pm:146> WARN - I didn't find a database entry for 'JunGL' (section 0)
-[599] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[599] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[599] Biber.pm:2854> INFO - Sorting list 'nty' of type 'entry' with scheme 'nty' and locale 'en-US'
-[599] Biber.pm:2858> INFO - No sort tailoring available for locale 'en-US'
-[683] bbl.pm:505> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[687] bbl.pm:596> INFO - Output to main.bbl
-[687] Biber.pm:106> INFO - WARNINGS: 2
+[48] biber-darwin:276> INFO - === Mon May 23, 2016, 15:37:37
+[48] Biber.pm:333> INFO - Reading 'main.bcf'
+[143] Biber.pm:645> INFO - Found 42 citekeys in bib section 0
+[179] Biber.pm:2977> INFO - Processing section 0
+[200] Biber.pm:3115> INFO - Looking for bibtex format file 'references.bib' for section 0
+[205] bibtex.pm:1021> INFO - Decoding LaTeX character macros into UTF-8
+[209] bibtex.pm:895> INFO - Found BibTeX data source 'references.bib'
+[636] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[637] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[637] Biber.pm:2854> INFO - Sorting list 'nty' of type 'entry' with scheme 'nty' and locale 'en-US'
+[637] Biber.pm:2858> INFO - No sort tailoring available for locale 'en-US'
+[735] bbl.pm:505> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[740] bbl.pm:596> INFO - Output to main.bbl

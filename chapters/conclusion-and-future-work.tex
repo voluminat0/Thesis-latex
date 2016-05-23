@@ -1,4 +1,32 @@
-\section{Summary}
-\section{Future work}
-%not
-%combine results
+%\section{Summary}
+In this dissertation we explored an alternative way to detect specific characteristics and security vulnerabilities in JavaScript programs. Unlike previous approaches such as FindBugs\cite{Findbugs}, the focus of the thesis was to support this detection on a per-application basis. In this way developers aren't limited to pre-encoded patterns and analyses of a specific tool, as our approach would enable users to write succinct and application-oriented queries. This type of program analyses is important because the use of JavaScript as a language for all kinds of applications is booming. This has as a consequence that malicious users get more creative and passionate about finding security vulnerabilities in these applications and that more program vulnerabilities are discovered and exploited. Our approach combines abstract interpretation with JS-QL, a novel program query language, in order to allow developers to test their applications against these vulnerabilities. The language is a domain-specific language written on top of JavaScript and is based on the concept of regular path expressions. These expressions are similar to traditional regular expressions, except that they can be applied to find certain paths in a graph instead of finding patterns in a string. Other approaches are described in related work (Sections \ref{sec:genericVulnerabilities} and \ref{sec:applicationSpecificVulnerabilities}), although none of them use abstract interpretation to model the flow of programs. JS-QL queries provide sufficient expressiveness to detect this kind of information in programs in a way that is especially readable. We also provide a tool along with a minimalistic user interface serving as a means to apply JS-QL queries to JavaScript programs, reporting all results of a query in both a visual (graph) representation and a textual representation. We conclude from our experiments that our language is apt for writing several types of security policies. These policies are often more readable, concise and equally expressive compared to their notation in other languages. 
+
+%Nu bespreken we limitations
+\section{Technical limitations of the approach}
+
+This section discusses the limitations of the framework. We seek to find appropriate solutions for all of the following limitations of the framework in future work.
+
+\subsection*{Negation}
+
+As discussed in section \ref{sec:Syntax}, negation is supported by the JS-QL language. The current implementation however is limited to the negation of only one state, which sometimes doesn't suffice. Consider a situation in which a state in the state graph must be matched with all but two specific states \texttt{stateA} and \texttt{stateB}. To match this state, it would be convenient to be able to express a pattern in JS-QL like \\\texttt{not().lBrace().stateA().or.stateB().rBrace()}\\indicating that neither states must be matched for a certain state in the state graph. This functionality is not available in the current iplementation of JS-QL. One could also argue that it would be useful to specify the negation of a single value in a state. In this way, one could for example express that he wishes to find all variable declarations, except for variables with name 'a'. The relevant code in the state map would then be something like: \texttt{\{name: '$\neg$a'\}}. Although this notation might be useful, JS-QL already supports queries with the same semantic value, by using a simple filter indicating that the name can't be equal to 'a'.
+
+\subsection*{Performance}
+
+Our current implementation has a rather high computational overhead as each state edge label $el$ and pattern label $tl$ can be matched multiple times in the algorithm. Each match is a computationally heavy operation, which means that we should try to avoid matching $el$ and $tl$ more than once. This could be done by memoizing the substitutions between all already matched pairs of state and pattern, decreasing the computational overhead drastically. This approach would make the framework scale in two ways: (i) The JavaScript programs to be queries can be of larger size because (ii) the algorithms used would saturize more quickly, resulting in faster query results. Currently, all programs and queries tested run within reasonable time ($>$ 3 seconds), but we expect that for larger programs and queries the run-time of the framework will increase greatly. Although not being optimal w.r.t. performance, the goal of this thesis was to investigate whether regular path queries can be used to effectively detect security vulnerabilities, rather than building a performant tool to process these queries.
+
+\section{Future research}
+
+This section discusses the subjects of interest for future research. We believe that research in those areas can be fruitful for both the JS-QL language as well as other approaches for detecting security vulnerabilities.
+
+\subsection*{Combinating results}
+
+A gread addition to JS-QL would be the ability to combine results of queries. This would make it easier for the user to detect multiple vulnerabilities at the same time, and it would make the language more expressive. Combining results could be implemented as a simple conjunction operation, but could also be defined as a more complex operation between results, such as an exclusive disjunction for example. The usefulness of the latter has already been proven in our experiments (\ref{subsec:CMSAdmin}).
+
+\subsection*{Security policies}
+Our experiments already show how security policies originating from related work can be expressed in JS-QL. Gathering more security policies to express will grant us insight on several recurring patterns used to exploit application flaws. The exploration of policies and policy types can lead to the creation of more specific and precise constructs in JS-QL, optimal for expressing these security policies.
+
+\subsection*{JS-QL combined with other program representations}
+JS-QL is developed to work on the JIPDA state graph. We would like to investigate how much work is needed to port JS-QL to support other graphs. Hypothetically, only the matching process has to be altered, as other graphs will contain information that is structured differently. This investigation could even be extended if we consider other program representations, such as Datalog. We suspect that this would involve much more work. We can keep the JS-QL language as the language to express policies, but we would have to develop a whole new mechanism (i.e. a compiler) to translate queries to Datalog-queries.
+
+
+%Onderzoeken of andere program representaties (zoals datalog) ook geschikt zijn
