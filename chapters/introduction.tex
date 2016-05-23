@@ -1,3 +1,6 @@
+\setcounter{page}{1}
+\pagenumbering{arabic} % Start roman numbering 
+
 %korte intro waarover thesis gaat
 
 %op statische manier udsp verifiëren
@@ -17,31 +20,30 @@
 %uitdrukken door gebruikers
 %eens uitgedrukt matchen
 
+%As concurrency bugs can be particularly hard to find, any assistance from the computer
+%to find them is welcome. Such help is provided by static or dynamic analysis tools. Our
+%objective is to use one of the most important static analysis techniques, namely abstract
+%interpretation, in order to find such defects. We base our work on the PCESK machine,
+%a formalism described by Might and Van Horn [MVH11]. Our contributions are the
+%following.
 
 \section{Objectives and contributions}
-% Objectives -> finding bugs/vulnerabilities is hard, any help is useful
-% Investigate whether RPE are geschikt voor security policies
-% Taal
-% Tool
+As the use of Javascript for native and web applications is booming, more and more JavaScript programs become publicly available. Along with more programs, more security vulnerabilities arise. Malicious individuals keep finding new and innovative ways to exploit program flaws, so developers of applications should be armed with appropriate tools to find these vulnerabilities before their application gets deployed. We present such a tool together with domain-specific query language to aid the user in expressing security policies. Our contributions are the following:
+\begin{enumerate}
+\item We investigate which type of querying mechanism suits best for expressing security policies and program characteristics in general. We believe that regular path expressions are a good fit for this as they are very readable and easy to reason about. The best way to implement such a mechanism is also investigated by comparing different approaches in terms of expressiveness, readability and flexibility.
+\item We present the JS-QL \textit{domain-specific language}, a language built to express succinct and highly readable program queries. The application-specific nature of the queries written in the language together with the possibility for users to define these queries by themselves makes it a powerful aid in checking program characteristics and, more precisely, security vulnerabilities. In contrast to general program checkers, a much wider range of program characteristics can be detected.
+\item Specifying security policies is one thing, checking them against a program is another. To this extent, we have developed a \textit{tool} to match the queries specified in JS-QL against JavaScript programs. The tool supports multiple types of queries, allowing the user (and thus also developer) to explore his program in several ways. For now, a simple user interface handles all communication with the user, meaning that both input information (the query and the input program) and the output results (all found matches) are displayed in a single window. Although queries are evaluated through the user interface, compound queries can be written and saved in a separate file and are instantly available to the user.
+\end{enumerate} 
 \section{Overview}
 
-%2.1 static analyse + abstract interpretation to be precise
-%2.2 Generic vulnerabilities
-%2.3 Application-specific vulnerabilities
+This dissertation starts with chapter \ref{ch:Background} which discusses the detection of security vulnerabilities. We first give an introduction to static analysis (Section \ref{sec:staticAnalysis}). We discuss the basics of static analysis as wel as a static analysis technique called abstract interpretation. Next, we review existing work for detecting generic vulnerabilities in programs (Section \ref{sec:genericVulnerabilities}). As the goal of this dissertation is to explore a way to express application-specific queries for detecting program vulnerabilities, we also describe some application-specific approaches to query for program characteristics and security vulnerabilities (Section \ref{sec:applicationSpecificVulnerabilities}). We conclude that the approach that seems most apt for this thesis is to combine regular path queries with an abstract state graph.
 
-%3.1 architectuur
-%3.2 flow graphs for JS
-%3.3 DSL’s (internal vs external vs global vs dal)
-%3.4 Designing internal DSL + patterns + constraints
+In chapter \ref{ch:Overview} an overview of our approach is given. We sketch the architecture of our framework and briefly discuss what the roles of each component are (Section \ref{sec:Architecture}). As we traverse an abstract state graph to obtain program information, the reader has to have knowledge of what information that is contained in this graph. We go into greater detail about the information contained in each type of graph node in section \ref{sec:FlowGraphs}. The language developed in this dissertation is a so-called internal domain-specific language (DSL) built on top of JavaScript. Section  \ref{sec:DSLForQueryingGraphs} discusses the benefits of domain-specific languages over general-purpose languages and compares internal domain-specific languages with external ones. Finally, this chapter also explains some of the design constraints for building a domain-specific language as well as design patterns used to implement the JS-QL language (Section \ref{sec:DesignInternalDSL}).
 
-%4.1 Taal
-%4.2 Type queries
-%4.3 Defining predicates and policies +recursion
+The syntax, semantics and usage of the JS-QL language is explained in chapter \ref{ch:JSQL}. We describe all syntactic aspects of the language in section \ref{sec:Syntax}. Our implementation supports multiple types of queries, such as \textit{existential} and \textit{universal} queries, imposing different rules for a query to produce results. We also explain the difference between \textit{forward} and \textit{backward} queries, all in section \ref{sec:TypesOfQueries}. The most important contribution of our approach is that queries are user-defined and application-specific. In section \ref{sec:DefiningPolicies} we describe how queries in JS-QL should be written by leading the user through the different steps by means of an example.
 
-%5 implementation + dieper ingaan op implementatiedetails vooral van matching engine
+Chapter \ref{ch:Implementation} describes how the framework is implemented and how components work together. We explain how the user interface is implemented and how it sends data to the DSL-layer. We further discuss how this data is processed as well as how the DSL is built. As the matching of the abstract state graph and the query pattern is the core of our framework, we invest in explaining how the matching engine works.
 
-%6 Evaluatie van our approach door policies uit verschillende papers na te bootsen en kijken of we kunnen uitdrukken
+We evaluated our approach in chapter \ref{ch:Evaluation} by expressing security policies originating from other work. We checked whether we could express these queries in JS-QL and evaluated the query verboseness, flexibility, expressiveness and readability. We concluded that JS-QL is well-suited to express different kinds of security policies, but some policies concerning dependencies in a program remain hard to express. 
 
-%7 Conclusion en future work
-
-%Wat we bespreken in de thesis
+We conclude briefly in chapter \ref{ch:Conclusion} and give an overview of our approach's limitations. We finally also provide some topics for future research and explain why this research could be useful.
