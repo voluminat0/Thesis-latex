@@ -4,162 +4,164 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.1}Objectives and contributions}{1}{section.1.1}
+\contentsline {section}{\numberline {1.1}Objectives and contributions}{2}{section.1.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.2}Overview}{2}{section.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {2}Detecting security vulnerabilities}{4}{chapter.2}
+\contentsline {chapter}{\numberline {2}Detecting security vulnerabilities}{5}{chapter.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}Introduction to static analysis}{5}{section.2.1}
+\contentsline {section}{\numberline {2.1}Introduction to static analysis}{6}{section.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1.1}Abstract interpretation}{6}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.1}Abstract interpretation}{7}{subsection.2.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1.2}Mathematical background}{7}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.2}Mathematical background}{8}{subsection.2.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1.3}Abstraction}{8}{subsection.2.1.3}
+\contentsline {subsection}{\numberline {2.1.3}Abstraction}{9}{subsection.2.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1.4}conclusion}{9}{subsection.2.1.4}
+\contentsline {section}{\numberline {2.2}Support for generic vulnerabilities}{11}{section.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.2}Support for generic vulnerabilities}{9}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Limitations}{11}{subsection.2.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.3}Support for application-specific vulnerabilities}{12}{section.2.3}
+\contentsline {subsection}{\numberline {2.2.2}Existing analysis tools}{11}{subsection.2.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.4}Conclusion}{17}{section.2.4}
+\contentsline {section}{\numberline {2.3}Support for application-specific vulnerabilities}{13}{section.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Overview of the approach}{18}{chapter.3}
+\contentsline {section}{\numberline {2.4}Conclusion}{18}{section.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Architecture}{18}{section.3.1}
+\contentsline {chapter}{\numberline {3}Overview of the approach}{19}{chapter.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}Flow graphs for JavaScript programs}{19}{section.3.2}
+\contentsline {section}{\numberline {3.1}Architecture}{19}{section.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}DSLs for querying graphs}{24}{section.3.3}
+\contentsline {section}{\numberline {3.2}Flow graphs for JavaScript programs}{20}{section.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.1}Domain-specific language vs. general purpose language}{24}{subsection.3.3.1}
+\contentsline {section}{\numberline {3.3}DSLs for querying graphs}{25}{section.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.2}External DSLs}{26}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.1}Domain-specific language vs. general purpose language}{25}{subsection.3.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.3}Internal DSLs}{28}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.2}External DSLs}{27}{subsection.3.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Design of an internal DSL for querying flow graphs}{30}{section.3.4}
+\contentsline {subsection}{\numberline {3.3.3}Internal DSLs}{29}{subsection.3.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.4.1}Internal DSL design constraints}{30}{subsection.3.4.1}
+\contentsline {section}{\numberline {3.4}Design of an internal DSL for querying flow graphs}{31}{section.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.4.2}DSL implementation techniques and patterns}{31}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.1}Internal DSL design constraints}{31}{subsection.3.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}JS-QL: An internal DSL approach for querying flow graphs}{35}{chapter.4}
+\contentsline {subsection}{\numberline {3.4.2}DSL implementation techniques and patterns}{32}{subsection.3.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}The JS-QL query language}{36}{section.4.1}
+\contentsline {chapter}{\numberline {4}JS-QL: An internal DSL approach for querying flow graphs}{36}{chapter.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1.1}The entry point}{36}{subsection.4.1.1}
+\contentsline {section}{\numberline {4.1}The JS-QL query language}{37}{section.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1.2}State}{36}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.1}The entry point}{37}{subsection.4.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1.3}Wildcard}{39}{subsection.4.1.3}
+\contentsline {subsection}{\numberline {4.1.2}State}{37}{subsection.4.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1.4}Disjunction}{41}{subsection.4.1.4}
+\contentsline {subsection}{\numberline {4.1.3}Wildcard}{40}{subsection.4.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1.5}Specifying additional properties}{42}{subsection.4.1.5}
+\contentsline {subsection}{\numberline {4.1.4}Disjunction}{42}{subsection.4.1.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1.6}Filtering states}{44}{subsection.4.1.6}
+\contentsline {subsection}{\numberline {4.1.5}Specifying additional properties}{43}{subsection.4.1.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1.7}Data flow in JS-QL}{45}{subsection.4.1.7}
+\contentsline {subsection}{\numberline {4.1.6}Filtering states}{45}{subsection.4.1.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1.8}Negation}{47}{subsection.4.1.8}
+\contentsline {subsection}{\numberline {4.1.7}Data flow in JS-QL}{46}{subsection.4.1.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}Types of queries}{48}{section.4.2}
+\contentsline {subsection}{\numberline {4.1.8}Negation}{48}{subsection.4.1.8}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.1}Existential queries}{48}{subsection.4.2.1}
+\contentsline {section}{\numberline {4.2}Types of queries}{49}{section.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.2}Universal queries}{48}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.1}Existential queries}{49}{subsection.4.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.3}Query direction}{49}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.2}Universal queries}{49}{subsection.4.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.3}Defining predicates and policies}{50}{section.4.3}
+\contentsline {subsection}{\numberline {4.2.3}Query direction}{50}{subsection.4.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.1}Creating a predicate}{50}{subsection.4.3.1}
+\contentsline {section}{\numberline {4.3}Defining predicates and policies}{51}{section.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.2}recursion}{53}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.1}Creating a predicate}{51}{subsection.4.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.4}conclusion}{54}{section.4.4}
+\contentsline {subsection}{\numberline {4.3.2}recursion}{54}{subsection.4.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Implementation}{55}{chapter.5}
+\contentsline {section}{\numberline {4.4}conclusion}{55}{section.4.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}Architecture}{55}{section.5.1}
+\contentsline {chapter}{\numberline {5}Implementation}{56}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}The user interface}{57}{section.5.2}
+\contentsline {section}{\numberline {5.1}Architecture}{56}{section.5.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}The query language}{58}{section.5.3}
+\contentsline {section}{\numberline {5.2}The user interface}{58}{section.5.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.4}The matching engine}{61}{section.5.4}
+\contentsline {section}{\numberline {5.3}The query language}{59}{section.5.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.4.1}Inputs and output}{62}{subsection.5.4.1}
+\contentsline {section}{\numberline {5.4}The matching engine}{62}{section.5.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.4.2}Query algorithms}{63}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.1}Inputs and output}{63}{subsection.5.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.4.3}Matching states with a pattern}{65}{subsection.5.4.3}
+\contentsline {subsection}{\numberline {5.4.2}Query algorithms}{64}{subsection.5.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{matchState}{65}{section*.60}
+\contentsline {subsection}{\numberline {5.4.3}Matching states with a pattern}{66}{subsection.5.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{matchRecursive}{66}{section*.61}
+\contentsline {subsubsection}{matchState}{66}{section*.63}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{addExtraProperties}{66}{section*.62}
+\contentsline {subsubsection}{matchRecursive}{67}{section*.64}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{verifyConditions}{67}{section*.63}
+\contentsline {subsubsection}{addExtraProperties}{67}{section*.65}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{getAddresses}{67}{section*.64}
+\contentsline {subsubsection}{verifyConditions}{68}{section*.66}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{processValue}{67}{section*.65}
+\contentsline {subsubsection}{getAddresses}{68}{section*.67}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.4.4}Merging substitution results}{67}{subsection.5.4.4}
+\contentsline {subsubsection}{processValue}{68}{section*.68}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.4.5}Processing subgraphs}{68}{subsection.5.4.5}
+\contentsline {subsection}{\numberline {5.4.4}Merging substitution results}{68}{subsection.5.4.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Evaluation}{70}{chapter.6}
+\contentsline {subsection}{\numberline {5.4.5}Processing subgraphs}{69}{subsection.5.4.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.1}The GateKeeper language}{70}{section.6.1}
+\contentsline {chapter}{\numberline {6}Evaluation}{71}{chapter.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.1}Writes to prototype objects}{70}{subsection.6.1.1}
+\contentsline {section}{\numberline {6.1}The GateKeeper language}{71}{section.6.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.2}Global namespace pollution}{72}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.1}Writes to prototype objects}{71}{subsection.6.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.3}Script inclusions}{73}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.2}Global namespace pollution}{73}{subsection.6.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.4}Conclusion}{75}{subsection.6.1.4}
+\contentsline {subsection}{\numberline {6.1.3}Script inclusions}{74}{subsection.6.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}The PidginQL language}{76}{section.6.2}
+\contentsline {subsection}{\numberline {6.1.4}Conclusion}{76}{subsection.6.1.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.1}Only CMS administrators can send a message to all CMS users}{76}{subsection.6.2.1}
+\contentsline {section}{\numberline {6.2}The PidginQL language}{77}{section.6.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.2}Public outputs do not depend on a user's password, unless it has been cryptographically hashed}{78}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.1}Only CMS administrators can send a message to all CMS users}{77}{subsection.6.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.3}A database is opened only after the master password is checked or when creating a new database}{80}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.2}Public outputs do not depend on a user's password, unless it has been cryptographically hashed}{79}{subsection.6.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.4}Conclusion}{82}{subsection.6.2.4}
+\contentsline {subsection}{\numberline {6.2.3}A database is opened only after the master password is checked or when creating a new database}{81}{subsection.6.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.3}The ConScript language}{82}{section.6.3}
+\contentsline {subsection}{\numberline {6.2.4}Conclusion}{83}{subsection.6.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.1}No string arguments to setInterval, setTimeout}{83}{subsection.6.3.1}
+\contentsline {section}{\numberline {6.3}The ConScript language}{83}{section.6.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.2}HTTP-cookies only}{84}{subsection.6.3.2}
+\contentsline {subsection}{\numberline {6.3.1}No string arguments to setInterval, setTimeout}{84}{subsection.6.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.3}Prevent resource abuse}{86}{subsection.6.3.3}
+\contentsline {subsection}{\numberline {6.3.2}HTTP-cookies only}{85}{subsection.6.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.4}Conclusion}{87}{subsection.6.3.4}
+\contentsline {subsection}{\numberline {6.3.3}Prevent resource abuse}{87}{subsection.6.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.4}Evaluation}{88}{section.6.4}
+\contentsline {subsection}{\numberline {6.3.4}Conclusion}{88}{subsection.6.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4.1}Advantages}{88}{subsection.6.4.1}
+\contentsline {section}{\numberline {6.4}Evaluation}{89}{section.6.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4.2}Limitations}{89}{subsection.6.4.2}
+\contentsline {subsection}{\numberline {6.4.1}Advantages}{89}{subsection.6.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4.3}Conclusion}{89}{subsection.6.4.3}
+\contentsline {subsection}{\numberline {6.4.2}Limitations}{90}{subsection.6.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Conclusion and future work}{90}{chapter.7}
+\contentsline {subsection}{\numberline {6.4.3}Conclusion}{90}{subsection.6.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.1}Technical limitations of the approach}{91}{section.7.1}
+\contentsline {chapter}{\numberline {7}Conclusion and future work}{91}{chapter.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.2}Future research}{92}{section.7.2}
+\contentsline {section}{\numberline {7.1}Technical limitations of the approach}{92}{section.7.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Appendices}{93}{section*.76}
+\contentsline {section}{\numberline {7.2}Future research}{93}{section.7.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}JS-QL policies and predicates}{94}{Appendix.a.A}
+\contentsline {chapter}{Appendices}{94}{section*.79}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}JS-QL policies and predicates}{95}{Appendix.a.A}

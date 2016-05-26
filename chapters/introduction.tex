@@ -1,31 +1,25 @@
 \setcounter{page}{1}
 \pagenumbering{arabic} % Start roman numbering 
 
+
 %korte intro waarover thesis gaat
 
-%op statische manier udsp verifiëren
-%javascript (higher order pl) (prototype based inheritance)
-%zorgen dat je kan uitdrukken in uitbreiding JS (domein specifiek) (RPE als library).
+%This dissertation investigates the use of abstract interpretation to detect concurrency
+%issues in higher-order programs. Our thesis is that abstract interpretation can be used to
+%develop useful analyses in order to find defects in concurrent programs. Moreover, defining
+%the analyses with locks as a synchronization primitive instead of the traditional cas leads
+%to simpler and more efficient analyses for race conditions and deadlocks.
+%Detecting bugs such as race conditions and deadlocks is particularly hard, and they
+%tend to appear late in the development of programs. Being able to detect them automatically
+%using static analysis tools is therefore important. In this dissertation, we start from
+%Might and Van Horn’s PCESK machine, from which we can build a graph of states reachable
+%by a higher-order program. We design analyses that use this graph to detect race
+%conditions and deadlocks. We then improve the PCESK machine to be able to analyze
+%larger programs based on locks. The race condition and deadlock analyses are simplified
+%by this improvement, and we are able to analyze more complex programs.
 
-%er zijn al anderen die geprobeerd hebben, 
-%waarom RPE: security poli’s om af te checken bestaan uit control flow en dataflow constraints (beperkingen waarin instructies gevaluteerd worden)
-%zegen ok we hebben met JIPDA ASG (precies opeenvolging van staten), leent zich om cf-properties af te checken. Checken is niet specificeren (RPE zeer geschikt).
+This dissertation investigates how static analysis can help the user to statically verify user-defined and application-specific security policies. Static analysis benefits from the fact that a program doesn't have to be compiled to check for program properties, defects and security vulnerabilities. Our thesis is that a query language based on regular path expressions can be combined with the output of statically analyzing programs to effectively express patterns for detecting security vulnerabilities, as the result of static analysises contains valuable information that other approaches lack by default. Detecting program flaws and vulnerabilities is particularly hard, and they tend to surface late in the development of programs. Earlier approaches in static analysis often consist of a robust framework containing pre-encoded rules and queries to detect the most common programming pitfalls. Although detecting a decent amount of vulnerabilities and supporting a wide range of programs on-the-fly, these approaches overlook certain program flaws that are related to the domain of specific programs. It therefore is important to be able to write succinct queries to test a program against \textit{application-specific} flaws, as most programs differ in behaviour which makes it difficult to write only one query or pre-encoded rule for a set of different programs. We present JS-QL, a domain-specific query language based on regular path queries built on top of JavaScript. This language allows users to express queries in the native JavaScript language in such a way that queries remain readable and that expressiveness is maximized. JS-QL is used in combination with static analysis to check \textit{user-defined} queries against an abstract state graph, which is a program's representation resulting from the analysis.
 
-%stel je wilt udsp afchecken (als user), dan moeten we wat voor soorten characteristics aanbieden,
-%cfg is een, dataflow is ander, eigenschappen die JIPDA berekent uittrekbaar maken (store characteristics). Domein specifieke uitbreiding aan JS.
-
-%vertrokken van JS en opzoek naar manier omdool om gebruikers zelf policies definiëren en ik kan statisch at compile time afchecken
-%ingredients
-%cf en df berekenen
-%uitdrukken door gebruikers
-%eens uitgedrukt matchen
-
-%As concurrency bugs can be particularly hard to find, any assistance from the computer
-%to find them is welcome. Such help is provided by static or dynamic analysis tools. Our
-%objective is to use one of the most important static analysis techniques, namely abstract
-%interpretation, in order to find such defects. We base our work on the PCESK machine,
-%a formalism described by Might and Van Horn [MVH11]. Our contributions are the
-%following.
 
 \section{Objectives and contributions}
 As the use of Javascript for native and web applications is booming, more and more JavaScript programs become publicly available. Along with more programs, more security vulnerabilities arise. Malicious individuals keep finding new and innovative ways to exploit program flaws, so developers of applications should be armed with appropriate tools to find these vulnerabilities before their application gets deployed. We present such a tool together with domain-specific query language to aid the user in expressing security policies. Our contributions are the following:
