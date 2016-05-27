@@ -32,21 +32,33 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.1}Architecture}{19}{section.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}Flow graphs for JavaScript programs}{20}{section.3.2}
+\contentsline {section}{\numberline {3.2}Flow graphs for JavaScript programs}{21}{section.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}DSLs for querying graphs}{25}{section.3.3}
+\contentsline {subsection}{\numberline {3.2.1}Information in an abstract state graph}{21}{subsection.3.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.1}Domain-specific language vs. general purpose language}{25}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.2.2}States of an abstract state graph}{22}{subsection.3.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.2}External DSLs}{27}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.2.3}Attributes of the states}{23}{subsection.3.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.3}Internal DSLs}{29}{subsection.3.3.3}
+\contentsline {section}{\numberline {3.3}DSLs for querying graphs}{26}{section.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Design of an internal DSL for querying flow graphs}{31}{section.3.4}
+\contentsline {section}{\numberline {3.4}Design of an internal DSL for querying flow graphs}{28}{section.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.4.1}Internal DSL design constraints}{31}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.1}Internal DSL design constraints}{28}{subsection.3.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.4.2}DSL implementation techniques and patterns}{32}{subsection.3.4.2}
+\contentsline {subsubsection}{JavaScript as a host language}{28}{section*.33}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Flow graphs representing programs}{29}{section*.34}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{The query environment}{29}{section*.35}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.2}DSL implementation techniques and patterns}{29}{subsection.3.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.5}Existing DSL approaches for querying graphs}{32}{section.3.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.5.1}External DSLs}{32}{subsection.3.5.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.5.2}Internal DSLs}{34}{subsection.3.5.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {4}JS-QL: An internal DSL approach for querying flow graphs}{36}{chapter.4}
 \defcounter {refsection}{0}\relax 
@@ -100,17 +112,17 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.4.3}Matching states with a pattern}{66}{subsection.5.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{matchState}{66}{section*.63}
+\contentsline {subsubsection}{matchState}{66}{section*.72}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{matchRecursive}{67}{section*.64}
+\contentsline {subsubsection}{matchRecursive}{67}{section*.73}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{addExtraProperties}{67}{section*.65}
+\contentsline {subsubsection}{addExtraProperties}{67}{section*.74}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{verifyConditions}{68}{section*.66}
+\contentsline {subsubsection}{verifyConditions}{68}{section*.75}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{getAddresses}{68}{section*.67}
+\contentsline {subsubsection}{getAddresses}{68}{section*.76}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{processValue}{68}{section*.68}
+\contentsline {subsubsection}{processValue}{68}{section*.77}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.4.4}Merging substitution results}{68}{subsection.5.4.4}
 \defcounter {refsection}{0}\relax 
@@ -162,6 +174,6 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {7.2}Future research}{93}{section.7.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Appendices}{94}{section*.79}
+\contentsline {chapter}{Appendices}{94}{section*.88}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {A}JS-QL policies and predicates}{95}{Appendix.a.A}
