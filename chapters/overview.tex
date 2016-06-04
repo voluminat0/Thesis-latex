@@ -1,4 +1,4 @@
-This chapter discusses gives an overview of the approach we took for building the JS-QL framework. For this framework we used the JIPDA static analysis tool to generate an abstract state graph representing a JavaScript program. This graph contains valuable control- and value-flow information, which is needed to detect more complex security vulnerabilities. We have developed JS-QL, a querying language to effectively query for security vulnerablilties in JavaScript programs. The language is built as an internal domain-specific language on top of JavaScript. Our approach combines the JIPDA abstract state graph with JS-QL, resulting in a tool in which application-specific and user-defined security policies can be specified and checked.
+This chapter gives an overview of our approach for building the JS-QL framework. For this framework we used the JIPDA static analysis tool to generate an abstract state graph representing a JavaScript program. This graph contains control- and value-flow information, necessary to detect more complex security vulnerabilities. We have developed JS-QL, a querying language to effectively query for security vulnerabilties in JavaScript programs. The language is built as an internal domain-specific language on top of JavaScript. Our approach combines the JIPDA abstract state graph with JS-QL, resulting in a tool in which application-specific and user-defined security policies can be specified and checked.
 
 \section{Architecture}
 \label{sec:Architecture}
@@ -25,7 +25,7 @@ Program querying depends on the way a program is represented and how queries are
 
 \subsection*{Query language}
 % DSL
-With the JS-QL language, we offer an internal domain-specific language specialized in expressing queries corresponding to sequences of states in the flow graph. It is important that exploring and accessing information of a flow graph happens in a user-friendly way, as such graphs might be complex to understand. We believe that regular path expressions enable users to write clean and understandable queries. 
+With the JS-QL language, we offer an internal domain-specific language specialized in expressing queries corresponding to sequences of states in the flow graph. The language makes use of \textit{regular path expressions}, which are expressions describing the path that needs to be traversed in a graph in a syntax similar to regular expressions.It is important that exploring and accessing information of a flow graph happens in a user-friendly way, as such graphs might be complex to understand. We believe that regular path expressions enable users to write clean and understandable queries. 
 
 
 \section{Flow graphs for JavaScript programs}
@@ -363,3 +363,8 @@ Dagoba\footnote{http://aosabook.org/en/500L/dagoba-an-in-memory-graph-database.h
 \subsubsection*{A little language for surveys}
 
 A Little Language for Surveys \cite{RubyDSL} explores the use of the Ruby programming language to implement an internal domain-specific language. It checks how well the flexible and dynamic nature of the language accomodates for the implementation of a DSL for specifying and executing surveys. Two key features of the Ruby programming language are exploited because these features especially support defining internal DSLs: the flexibility of the syntax and the support for blocks. Function calls for example are easily readable, since the braces surrounding the arguments can be omitted and the argument list can consist of a variable number of arguments . They make extensive use of the fact that entire blocks can be attached to method calls. These blocks are passed unevaluated to the called method, enabling \textit{deferred evaluation}. In addition to these features, the meta-programming facilities of Ruby make it possible to read a DSL program and execute it in the contexts specified by that program. A two-pass architecture is used, splitting up the parsing and interpretation of the program. This is common practice for internal DSLs.
+
+
+\section{Conclusion}
+In this chapter we discuss our approach for building the JS-QL framework. We described the architecture of the framework and discussed each component. As our approach uses the JIPDA abstract state graph as a program presentation, we described the information that can be found in this graph. JS-QL is an embedded domain-specific language. In this chapter we motivated the use of an embedded DSL, and we describe the design constraints and design patterns that influenced the language. Finally, we provided an overview of existing DSL approaches for querying graphs.
+

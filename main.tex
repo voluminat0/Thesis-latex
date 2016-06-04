@@ -162,11 +162,11 @@
 \hyphenation{mul-ti-di-rec-tio-na-li-ty}
  
 \author{Valentijn Spruyt}
-\title{Expressing and checking application-specific, user-specified security policies}
+\title{Static detection of user-specified \\ security vulnerabilities in client-side\\ JavaScript}
 \promotor{Prof. Dr. Coen De Roover}
 \advisors{Jens Nicolay\\
-         Quentin Stievenart}
-\degree{Master of Science in Applied Sciences and Engineering: Computer Science}
+         Quentin Sti\'{e}venart}
+\degree{Master of Science in de Ingenieurswetenschappen: Computerwetenschappen}
 \faculty{Faculty of Science and Bio-Engineering Sciences}
 \advisortitle{Advisors}
 \department{Department of Computer Science\\ and Applied Computer Science}
@@ -193,18 +193,23 @@ van} %\\
 
 \pagenumbering{roman} % Start roman numbering
 \chapter*{Abstract}
- %Security & policies
-%Detecting security violations in source code can be tedious, especially when done manually. These violations can usually be split up into several categories, depending on the type of violation.
-%daarom is het makkelijk om security policies te gebruiken
- 
- %Important because/Not a lot of static JS checkers
- 
- %This dissertation ..
+
+%Why
+Program flaws and vulnerabilities tend to surface late in the development of programs, and they are hard to detect. Existing approaches often consist of a robust framework containing pre-encoded rules and queries to detect the most common programming pitfalls. Although these approaches are able to detect a decent amount of vulnerabilities and support a wide range of programs on-the-fly, they overlook certain program flaws that are related to the application domain of specific programs.
+
+%What in thesis onderzocht
+In this dissertation, we investigate how static analysis can aid in detecting application-specific security vulnerabilities. As these vulnerabilities are not general enough to be checked by tools that use a database of pre-encoded patterns, developers should be able to write rules that are specifically applicable to their program. 
+
+%Hoe
+We present the JS-QL framework, a tool for statically checking user-specified security vulnerabilities in JavaScript applications. The framework makes use of JS-QL, an embedded domain-specific query language built on top of JavaScript. JS-QL queries are based on regular path expressions, enabling users to express queries in an intuitive way. 
+
+%Resultaten
+We evaluated our framework by comparing our language with other query languages in terms of expressiveness. We conclude that the combination of static analysis and regular path expressions is well-suited to specify security policies and detect program vulnerabilities.
  
 \chapter*{Acknowledgements}
  
 %ouders for opportunity
-I am most thankful towards my promotor Coen De Roover and my supervisors Jens Nicolay and Quentin Stiévenart for their valuable advice and helpful comments throughout the year. They helped me focus on the important parts of my thesis and kept me motivated. I would also like to thank my friends Jonas and Dylan for their support and encouragement to keep working on this dissertation, even in periods when I lacked motivation. I admire my loving girlfriend for standing by my side through this period and for putting up with my stressful behaviour. Finally, I would also like to thank my friend Ben for reading most parts of this work. I appreciate his comments and insights greatly.
+I am most thankful towards my promotor Coen De Roover and my supervisors Jens Nicolay and Quentin Sti\'{e}venart for their valuable advice and helpful comments throughout the year. They helped me focus on the important parts of my thesis and kept me motivated. I would also like to thank my friends Jonas and Dylan for their support and encouragement to keep working on this dissertation, even in periods when I lacked motivation. I admire my loving girlfriend for standing by my side through this period and for putting up with my stressful behaviour. I am also grateful for the opportunity my parents gave me to go to university to get my masters degree. Finally, I would also like to thank my friend Ben for reading most parts of this work. I appreciate his comments and insights greatly.
 
 \tableofcontents
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.26)  27 MAY 2016 17:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.26)  4 JUN 2016 14:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1189,7 +1189,7 @@ LaTeX Info: Redefining \nameref on input line 178.
 \openout5 = `main.out'.
 
 
-<images/VUB_logo.pdf, id=324, 758.835pt x 153.57375pt>
+<images/VUB_logo.pdf, id=332, 758.835pt x 153.57375pt>
 File: images/VUB_logo.pdf Graphic file (type pdf)
 
 <use images/VUB_logo.pdf>
@@ -1209,11 +1209,7 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 180.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 1275) in paragraph at lines 180--180
-[]\OT1/ptm/m/n/24.88 Expressing and check-ing application-
- []
-
-<images/VUB_schild.pdf, id=325, 260.975pt x 259.97125pt>
+<images/VUB_schild.pdf, id=333, 260.975pt x 259.97125pt>
 File: images/VUB_schild.pdf Graphic file (type pdf)
 
 <use images/VUB_schild.pdf>
@@ -1237,12 +1233,8 @@ File: images/VUB_logo.pdf Graphic file (type pdf)
  <use images/VUB_logo.pdf>
 Package pdftex.def Info: images/VUB_logo.pdf used on input line 191.
 (pdftex.def)             Requested size: 214.81128pt x 43.38934pt.
-
-Underfull \hbox (badness 1275) in paragraph at lines 191--191
-[]\OT1/ptm/m/n/24.88 Expressing and check-ing application-
- []
-
 File: images/VUB_schild.pdf Graphic file (type pdf)
+
 <use images/VUB_schild.pdf>
 Package pdftex.def Info: images/VUB_schild.pdf used on input line 191.
 (pdftex.def)             Requested size: 122.34766pt x 122.34517pt.
@@ -1281,24 +1273,24 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 Chapter 1.
 (./chapters/introduction.tex
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 24.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 16.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.27 \item
+l.19 \item
            We investigate which type of querying mechanism suits best for ex...
 [1
 
-] [2]) [3] [4]
+] [2]) [3]
 Chapter 2.
 (./chapters/background.tex
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 2.
- [5
+ [4
 
 ]
-<images/decider.pdf, id=494, 493.845pt x 82.3075pt>
+<images/decider.pdf, id=500, 493.845pt x 82.3075pt>
 File: images/decider.pdf Graphic file (type pdf)
  <use images/decider.pdf>
 Package pdftex.def Info: images/decider.pdf used on input line 27.
@@ -1308,10 +1300,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 39--43
 
  []
 
-[6 <./images/decider.pdf>]
+[5 <./images/decider.pdf>]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 44.
- [7]
+ [6]
 LaTeX Font Info:    Try loading font information for OT1+pcr on input line 57.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pcr.fd
@@ -1325,19 +1317,19 @@ File: omspcr.fd
 LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 57.
 
-<images/abstractInterpretation.pdf, id=517, 705.63625pt x 122.4575pt>
+<images/abstractInterpretation.pdf, id=523, 705.63625pt x 122.4575pt>
 File: images/abstractInterpretation.pdf Graphic file (type pdf)
 
 <use images/abstractInterpretation.pdf>
 Package pdftex.def Info: images/abstractInterpretation.pdf used on input line 6
 1.
 (pdftex.def)             Requested size: 390.0pt x 67.68068pt.
- [8 <./images/abstractInterpretation.pdf>]
+ [7 <./images/abstractInterpretation.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 126--127
 
  []
 
-[9]
+[8]
 Underfull \hbox (badness 10000) in paragraph at lines 137--140
 
  []
@@ -1362,7 +1354,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 152--161
 
  []
 
-[10]
+[9]
 Overfull \hbox (1.01544pt too wide) in paragraph at lines 183--184
 \OT1/ptm/m/n/12 The re-main-der of this sec-tion dis-cusses the most pop-u-lar 
 static anal-y-sis ap-proaches
@@ -1374,53 +1366,53 @@ Overfull \hbox (9.47527pt too wide) in paragraph at lines 185--187
 nsitive and lock-sensitive,
  []
 
-[11]
+[10]
 Overfull \hbox (4.58037pt too wide) in paragraph at lines 190--191
 \OT1/ptm/m/n/12 pro-gram slic-ing. The SDG is an over-ap-prox-i-ma-tion of the 
 in-for-ma-tion flow through
  []
 
-[12] [13] [14] <images/PDG.png, id=603, 614.295pt x 390.45876pt>
+[11] [12] [13] <images/PDG.png, id=609, 614.295pt x 390.45876pt>
 File: images/PDG.png Graphic file (type png)
 
 <use images/PDG.png>
 Package pdftex.def Info: images/PDG.png used on input line 229.
 (pdftex.def)             Requested size: 272.99881pt x 173.52422pt.
- [15 <./images/PDG.png>]
+ [14 <./images/PDG.png>]
 LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <10> not available
 (Font)              Font shape `OT1/pcr/b/n' tried instead on input line 246.
- [16]
-<images/Metal.png, id=638, 349.305pt x 319.1925pt>
+ [15]
+<images/Metal.png, id=644, 349.305pt x 319.1925pt>
 File: images/Metal.png Graphic file (type png)
  <use images/Metal.png>
 Package pdftex.def Info: images/Metal.png used on input line 267.
 (pdftex.def)             Requested size: 155.99762pt x 142.54918pt.
 
-<images/JunGL.png, id=641, 348.30125pt x 208.78pt>
+<images/JunGL.png, id=647, 348.30125pt x 208.78pt>
 File: images/JunGL.png Graphic file (type png)
  <use images/JunGL.png>
 Package pdftex.def Info: images/JunGL.png used on input line 284.
 (pdftex.def)             Requested size: 155.99762pt x 93.5073pt.
 
-[17 <./images/Metal.png>]) [18 <./images/JunGL.png>]
+[16 <./images/Metal.png>]) [17 <./images/JunGL.png>]
 Chapter 3.
 (./chapters/overview.tex
-<images/Architecture.pdf, id=658, 503.8825pt x 212.795pt>
+<images/Architecture.pdf, id=663, 503.8825pt x 212.795pt>
 File: images/Architecture.pdf Graphic file (type pdf)
 
 <use images/Architecture.pdf>
 Package pdftex.def Info: images/Architecture.pdf used on input line 10.
 (pdftex.def)             Requested size: 350.99762pt x 148.23138pt.
- [19
+ [18
 
-] [20 <./images/Architecture.pdf>]
-<images/JipdaGraph.png, id=687, 273.02pt x 304.13625pt>
+] [19 <./images/Architecture.pdf>]
+<images/JipdaGraph.png, id=693, 273.02pt x 304.13625pt>
 File: images/JipdaGraph.png Graphic file (type png)
 
 <use images/JipdaGraph.png>
 Package pdftex.def Info: images/JipdaGraph.png used on input line 41.
 (pdftex.def)             Requested size: 263.00023pt x 292.97452pt.
- [21] [22 <./images/JipdaGraph.png>]
+ [20] [21 <./images/JipdaGraph.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 81--89
 
  []
@@ -1435,9 +1427,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 81--89
 
  []
 
-[23]
+[22]
 
-LaTeX Warning: Reference `ex:benvStore' on page 24 undefined on input line 132.
+LaTeX Warning: Reference `ex:benvStore' on page 23 undefined on input line 132.
 
 
 
@@ -1445,113 +1437,88 @@ Underfull \hbox (badness 10000) in paragraph at lines 135--138
 
  []
 
-[24] [25]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 185.
+[23] [24]
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 184.
 
  (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 185.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 184.
 
-[26] [27]
-Overfull \hbox (18.94424pt too wide) in paragraph at lines 209--209
+[25] [26]
+Overfull \hbox (18.94424pt too wide) in paragraph at lines 208--208
 []\OT1/ptm/b/n/17.28 Design of an in-ter-nal DSL for query-ing flow graphs 
  []
 
-[28] <images/DSLTechniques.pdf, id=813, 584.1825pt x 222.8325pt>
+[27] <images/DSLTechniques.pdf, id=819, 584.1825pt x 222.8325pt>
 File: images/DSLTechniques.pdf Graphic file (type pdf)
 
 <use images/DSLTechniques.pdf>
-Package pdftex.def Info: images/DSLTechniques.pdf used on input line 240.
+Package pdftex.def Info: images/DSLTechniques.pdf used on input line 239.
 (pdftex.def)             Requested size: 312.00119pt x 119.01529pt.
- [29 <./images/DSLTechniques.pdf>]
-Overfull \hbox (7.79066pt too wide) in paragraph at lines 267--268
+ [28 <./images/DSLTechniques.pdf>]
+Overfull \hbox (7.79066pt too wide) in paragraph at lines 266--267
 [][]\OT1/ptm/b/n/12 Example 7. []\OT1/ptm/m/n/12 Con-sider the query: \OT1/pcr/
 m/n/12 G.skipZeroOrMore().functionCall()\OT1/ptm/m/n/12 .
  []
 
-[30]
-Overfull \hbox (9.61551pt too wide) in paragraph at lines 277--278
+[29]
+Overfull \hbox (9.61551pt too wide) in paragraph at lines 276--277
 [][]\OT1/ptm/b/n/12 Example 8. []\OT1/pcr/m/n/12 functionCall(\OMS/cmsy/m/n/12 
 f\OT1/pcr/m/n/12 name: 'f', arguments: '?args'\OMS/cmsy/m/n/12 g\OT1/pcr/m/n/12
  )\OT1/ptm/m/n/12 .
  []
 
-[31] [32] [33] [34]) [35]
+[30] [31] [32] [33]) [34]
 Chapter 4.
-(./chapters/JSQL.tex [36
+(./chapters/JSQL.tex [35
 
-]
+] [36]
+Overfull \hbox (12.98146pt too wide) in paragraph at lines 74--76
+\OT1/ptm/m/n/12 cally al-most equiv-a-lent to the reg-u-lar \OT1/pcr/m/n/12 sta
+te \OT1/ptm/m/n/12 con-struct. \OT1/pcr/m/n/12 evalState\OT1/ptm/m/n/12 , \OT1/
+pcr/m/n/12 kontState\OT1/ptm/m/n/12 ,
+ []
 
-LaTeX Warning: Reference `subsec:FlowGraphs' on page 37 undefined on input line
- 25.
-
-[37] [38] [39] <images/Unification.pdf, id=944, 695.59875pt x 262.9825pt>
+[37] [38] <images/Unification.pdf, id=957, 695.59875pt x 262.9825pt>
 File: images/Unification.pdf Graphic file (type pdf)
 
 <use images/Unification.pdf>
-Package pdftex.def Info: images/Unification.pdf used on input line 98.
+Package pdftex.def Info: images/Unification.pdf used on input line 114.
 (pdftex.def)             Requested size: 390.0pt x 147.44574pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[40] [41 <./images/Unification.pdf>] [42] [43]
-Overfull \hbox (7.38863pt too wide) in paragraph at lines 157--158
-[]\OT1/ptm/m/it/12 length\OT1/ptm/m/n/12 : A query could con-tain \OT1/pcr/m/n/
-12 prop('length', '?arr')\OT1/ptm/m/n/12 , where \OT1/pcr/m/n/12 ?arr
- []
-
-[44] [45]
-Overfull \hbox (0.52467pt too wide) in paragraph at lines 202--208
-\OT1/ptm/m/n/12 Support for data flow opens up to write a whole new class of qu
-eries. As JavaScript
- []
-
-<images/assignmentLookup.pdf, id=1025, 402.50375pt x 353.32pt>
+ [39 <./images/Unification.pdf>] [40] [41] [42]
+[43] [44] [45] [46]
+<images/assignmentLookup.pdf, id=1096, 402.50375pt x 353.32pt>
 File: images/assignmentLookup.pdf Graphic file (type pdf)
 
 <use images/assignmentLookup.pdf>
-Package pdftex.def Info: images/assignmentLookup.pdf used on input line 211.
+Package pdftex.def Info: images/assignmentLookup.pdf used on input line 311.
 (pdftex.def)             Requested size: 195.0pt x 171.1713pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[46] [47 <./images/assignmentLookup.pdf>] [48]
-Overfull \hbox (2.65636pt too wide) in paragraph at lines 265--266
+ [47 <./images/assignmentLookup.pdf>] [48]
+Overfull \hbox (2.65636pt too wide) in paragraph at lines 346--347
 [][]\OT1/ptm/b/n/12 Definition 12. []\OT1/ptm/b/it/12 Ex-is-ten-tial queries\OT
 1/ptm/m/it/12 : Given an edge-labeled di-rected graph $\OML/cmm/m/it/12 G$ \OT1
 /ptm/m/it/12 where
  []
 
-
-Overfull \hbox (1.60716pt too wide) in paragraph at lines 265--266
-\OT1/ptm/m/it/12 la-bels may have pa-ram-e-ters, a ver-tex $\OML/cmm/m/it/12 v\
-OT1/cmr/m/n/12 0$ \OT1/ptm/m/it/12 in $\OML/cmm/m/it/12 G$\OT1/ptm/m/it/12 , an
-d a para-met-ric regular-expression
- []
-
 LaTeX Font Info:    Font shape `OMS/ptm/m/it' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 268.
-
-Overfull \hbox (1.60716pt too wide) in paragraph at lines 274--275
-\OT1/ptm/m/it/12 la-bels may have pa-ram-e-ters, a ver-tex $\OML/cmm/m/it/12 v\
-OT1/cmr/m/n/12 0$ \OT1/ptm/m/it/12 in $\OML/cmm/m/it/12 G$\OT1/ptm/m/it/12 , an
-d a para-met-ric regular-expression
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 349.
+[49] [50]
+Overfull \hbox (20.59904pt too wide) in paragraph at lines 403--404
+\OT1/ptm/m/n/12 one spe-cific state. For ex-am-ple, JS-QL has a built-in pred-i
+-cate \OT1/pcr/m/n/12 functionCall
  []
 
-[49] [50] [51]
-Overfull \hbox (7.73698pt too wide) in paragraph at lines 311--312
-\OT1/ptm/m/n/12 which re-turns a \OT1/ptm/m/it/12 tem-po-rary vari-able \OT1/pt
-m/m/n/12 when the value for its ar-gu-ment is \OT1/pcr/m/n/12 undefined\OT1/ptm
-/m/n/12 ,
+[51] [52]
+Overfull \hbox (15.86977pt too wide) in paragraph at lines 471--472
+[]\OT1/ptm/m/n/12 Finalizing han-dles lookups, fil-ters and prop-er-ties throug
+h the \OT1/pcr/m/n/12 finalize \OT1/ptm/m/n/12 method.
  []
 
-[52] [53] [54]) [55]
+[53] [54] [55]) [56]
 Chapter 5.
-(./chapters/implementation.tex [56
+(./chapters/implementation.tex [57
 
 ]
 Overfull \hbox (0.51385pt too wide) in paragraph at lines 28--29
@@ -1559,78 +1526,66 @@ Overfull \hbox (0.51385pt too wide) in paragraph at lines 28--29
 ues ev-ery com-po-nent to-gether in the frame-
  []
 
-[57] <images/UI.png, id=1197, 881.2925pt x 600.2425pt>
+[58] <images/UI.png, id=1271, 881.2925pt x 600.2425pt>
 File: images/UI.png Graphic file (type png)
  <use images/UI.png>
 Package pdftex.def Info: images/UI.png used on input line 35.
 (pdftex.def)             Requested size: 390.0pt x 265.6279pt.
 
-[58 <./images/UI.png>] [59]
-Overfull \hbox (9.96716pt too wide) in paragraph at lines 63--64
-\OT1/ptm/m/n/12 tion, the name just de-notes the type of the state/pred-i-cate 
-that the \OT1/pcr/m/n/12 RegexPart
- []
-
-<images/QueryProcessing.pdf, id=1217, 674.52pt x 503.8825pt>
+[59 <./images/UI.png>]
+<images/QueryProcessing.pdf, id=1282, 674.52pt x 503.8825pt>
 File: images/QueryProcessing.pdf Graphic file (type pdf)
 
 <use images/QueryProcessing.pdf>
-Package pdftex.def Info: images/QueryProcessing.pdf used on input line 75.
+Package pdftex.def Info: images/QueryProcessing.pdf used on input line 63.
 (pdftex.def)             Requested size: 390.0pt x 291.3448pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[60] [61 <./images/QueryProcessing.pdf>] [62]
-<images/matchingEngine.pdf, id=1256, 754.82pt x 654.445pt>
+[60]
+Overfull \hbox (9.96716pt too wide) in paragraph at lines 72--73
+\OT1/ptm/m/n/12 tion, the name just de-notes the type of the state/pred-i-cate 
+that the \OT1/pcr/m/n/12 RegexPart
+ []
+
+[61 <./images/QueryProcessing.pdf>] [62] [63]
+<images/matchingEngine.pdf, id=1336, 754.82pt x 654.445pt>
 File: images/matchingEngine.pdf Graphic file (type pdf)
 
 <use images/matchingEngine.pdf>
-Package pdftex.def Info: images/matchingEngine.pdf used on input line 110.
+Package pdftex.def Info: images/matchingEngine.pdf used on input line 124.
 (pdftex.def)             Requested size: 390.0pt x 338.13641pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[63] [64 <./images/matchingEngine.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 126--129
-
- []
-
-
-Overfull \hbox (2.03966pt too wide) in paragraph at lines 130--131
+[64] [65 <./images/matchingEngine.pdf>] [66]
+Overfull \hbox (2.03966pt too wide) in paragraph at lines 152--153
 [][]\OT1/ptm/b/n/12 Definition 14. []\OT1/ptm/m/it/12 The \OT1/ptm/b/it/12 de-t
 er-min-ism con-di-tion \OT1/ptm/m/it/12 is a con-di-tion used in uni-ver-sal qu
 eries,
  []
 
-[65] <images/matchingPredicates.pdf, id=1282, 896.34875pt x 241.90375pt>
+<images/matchingPredicates.pdf, id=1364, 896.34875pt x 241.90375pt>
 File: images/matchingPredicates.pdf Graphic file (type pdf)
 
 <use images/matchingPredicates.pdf>
-Package pdftex.def Info: images/matchingPredicates.pdf used on input line 143.
+Package pdftex.def Info: images/matchingPredicates.pdf used on input line 162.
 (pdftex.def)             Requested size: 390.0pt x 105.24942pt.
- [66 <./images/matchingPredicates.pdf>]
-[67]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[68] <images/subgraphExpansion.pdf, id=1315, 965.6075pt x 252.945pt>
+ [67 <./images/matchingPredicates.pdf>]
+[68] [69] [70] <images/subgraphExpansion.pdf, id=1404, 965.6075pt x 252.945pt>
 File: images/subgraphExpansion.pdf Graphic file (type pdf)
 
 <use images/subgraphExpansion.pdf>
-Package pdftex.def Info: images/subgraphExpansion.pdf used on input line 215.
+Package pdftex.def Info: images/subgraphExpansion.pdf used on input line 246.
 (pdftex.def)             Requested size: 390.0pt x 102.1604pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-) [69] [70 <./images/subgraphExpansion.pdf>]
+) [71 <./images/subgraphExpansion.pdf>]
 Chapter 6.
-(./chapters/evaluation.tex [71
+(./chapters/evaluation.tex [72
 
 ]
-Overfull \hbox (23.09712pt too wide) in paragraph at lines 29--30
+Overfull \hbox (23.09712pt too wide) in paragraph at lines 28--29
 \OT1/ptm/m/n/12 de-tect writes to pro-to-types of builtin ob-jects, they de-fin
 e the \OT1/pcr/m/n/12 FrozenViolation(v)
  []
@@ -1640,105 +1595,111 @@ File: lstlang1.sty 2014/09/06 1.5e listings language file
 )
 (/usr/local/texlive/2015/texmf-dist/tex/latex/listings/lstlang2.sty
 File: lstlang2.sty 2014/09/06 1.5e listings language file
-) [72]
-Overfull \hbox (6.93253pt too wide) in paragraph at lines 74--76
+)
+Overfull \hbox (5.41025pt too wide) in paragraph at lines 52--53
+\OT1/ptm/m/n/12 spond-ing with \OT1/pcr/m/n/12 MemberExpression\OT1/ptm/m/n/12 
+s with two ex-tra fields: \OT1/pcr/m/n/12 mainObjectName
+ []
+
+[73]
+Overfull \hbox (6.93253pt too wide) in paragraph at lines 73--75
 \OT1/ptm/m/n/12 sim-i-lar to the state in list-ing [][]6.3[][], with the only d
 if-fer-ence in the \OT1/pcr/m/n/12 mainObjectName
  []
 
-[73] [74]
-Overfull \hbox (31.32986pt too wide) in paragraph at lines 128--129
+[74] [75]
+Overfull \hbox (31.32986pt too wide) in paragraph at lines 127--128
 \OT1/ptm/m/n/12 What needs to be de-tected are the calls to \OT1/pcr/m/n/12 doc
 ument.write/document.writeln\OT1/ptm/m/n/12 ,
  []
 
 
-Overfull \hbox (37.07695pt too wide) in paragraph at lines 128--129
+Overfull \hbox (37.07695pt too wide) in paragraph at lines 127--128
 \OT1/ptm/m/n/12 tacks are of-ten ob-fus-cated. The pol-icy in list-ing [][]6.7[
 ][] does just that. \OT1/pcr/m/n/12 DocumentWrite(i)
  []
 
-[75] [76] [77] [78] [79] [80] [81] [82] [83] [84] [85]
-Overfull \hbox (5.40962pt too wide) in paragraph at lines 457--458
+[76] [77] [78] [79] [80] [81] [82] [83] [84] [85] [86]
+Overfull \hbox (5.40962pt too wide) in paragraph at lines 464--465
 \OT1/ptm/m/n/12 the \OT1/pcr/m/n/12 ?name \OT1/ptm/m/n/12 vari-able which point
 s to the ad-dress of the global \OT1/pcr/m/n/12 document.cookie
  []
 
-[86] [87] [88] [89]) [90]
+[87] [88] [89] [90] [91]) [92]
 Chapter 7.
-(./chapters/conclusion-and-future-work.tex [91
+(./chapters/conclusion-and-future-work.tex [93
 
-] [92]) [93] [94
+] [94]) [95] [96
 
 
 ]
 Appendix A.
-[95
+[97
 
 ]
 
-Package Listings Warning: Text dropped after begin of listing on input line 318
+Package Listings Warning: Text dropped after begin of listing on input line 323
 .
 
-[96] [97] [98]
-Overfull \hbox (1.96597pt too wide) in paragraph at lines 387--387
+[98] [99] [100]
+Overfull \hbox (1.96597pt too wide) in paragraph at lines 392--392
 \OT1/ptm/m/n/12 WWW '10. Raleigh, North Car-olina, USA: ACM, 2010, pp. 281{290.
  \OT1/ptm/m/sc/12 isbn\OT1/ptm/m/n/12 :
  []
 
-[99
+[101
 
 ]
-Overfull \hbox (23.90715pt too wide) in paragraph at lines 387--387
+Overfull \hbox (23.90715pt too wide) in paragraph at lines 392--392
 \OT1/ptm/m/it/12 Pro-ceed-ings of the 18th Con-fer-ence on USENIX Se-cu-rity Sy
 m-po-sium\OT1/ptm/m/n/12 . SSYM'09.
  []
 
 
-Overfull \hbox (3.53706pt too wide) in paragraph at lines 387--387
+Overfull \hbox (3.53706pt too wide) in paragraph at lines 392--392
 []\OT1/ptm/m/n/12 K. A. Haw-ick. \  Flu-ent In-ter-faces and Domain-Specific La
 n-guages for Graph
  []
 
-[100]
-Overfull \hbox (6.8318pt too wide) in paragraph at lines 387--387
+[102]
+Overfull \hbox (6.8318pt too wide) in paragraph at lines 392--392
 \OT1/ptm/m/n/12 Pro-gram De-pen-dence Graphs". In: \OT1/ptm/m/it/12 SIG-PLAN No
 t. \OT1/ptm/m/n/12 50.6 (June 2015), pp. 291{
  []
 
 
-Overfull \hbox (24.4472pt too wide) in paragraph at lines 387--387
+Overfull \hbox (24.4472pt too wide) in paragraph at lines 392--392
 []\OT1/ptm/m/n/12 Addy Os-mani. \OT1/ptm/m/it/12 Es-sen-tial JavaScript Names-p
 ac-ing Pat-terns\OT1/ptm/m/n/12 . 2011. \OT1/ptm/m/sc/12 url\OT1/ptm/m/n/12 : [
 ][]$\OT1/pcr/m/n/12 https :
  []
 
-[101]
-Overfull \hbox (19.56245pt too wide) in paragraph at lines 387--387
+[103]
+Overfull \hbox (19.56245pt too wide) in paragraph at lines 392--392
 []\OT1/ptm/m/n/12 Gregor Snelt-ing et al. \  Check-ing Prob-a-bilis-tic Non-in-
 ter-fer-ence Us-ing JOANA".
  []
 
 
-Overfull \hbox (0.50372pt too wide) in paragraph at lines 387--387
+Overfull \hbox (0.50372pt too wide) in paragraph at lines 392--392
 \OT1/ptm/m/n/12 Al-go-rithm". In: \OT1/ptm/m/it/12 Com-mun. ACM \OT1/ptm/m/n/12
  11.6 (June 1968), pp. 419{422. \OT1/ptm/m/sc/12 issn\OT1/ptm/m/n/12 : 0001-
  []
 
 
-Overfull \hbox (10.18898pt too wide) in paragraph at lines 387--387
+Overfull \hbox (10.18898pt too wide) in paragraph at lines 392--392
 []\OT1/ptm/m/n/12 Joost Visser et al. \OT1/ptm/m/it/12 Build-ing Main-tain-able
  Soft-ware, Java Edi-tion\OT1/ptm/m/n/12 . 1st. O'Reilly
  []
 
-[102]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 387.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 387.
+[104]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 392.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 392.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 387.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 387.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 392.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 392.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 21C7C7A4853A79F11C7222B292B30E8D;5793.
+(rerunfilecheck)             Checksum: 290A91B399C0790E3C920F645FAC31C2;5936.
 
 
 LaTeX Warning: There were undefined references.
@@ -1748,13 +1709,13 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 27877 strings out of 493089
- 499384 string characters out of 6134842
- 1044186 words of memory out of 5000000
- 29850 multiletter control sequences out of 15000+600000
+ 27954 strings out of 493089
+ 500199 string characters out of 6134842
+ 1044615 words of memory out of 5000000
+ 29869 multiletter control sequences out of 15000+600000
  37093 words of font info for 84 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 64i,16n,60p,2809b,2050s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 64i,16n,60p,1434b,2050s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -1773,10 +1734,10 @@ type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/
 times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utm
 r8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb><
 /usr/local/texlive/2015/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on main.pdf (109 pages, 1816219 bytes).
+Output written on main.pdf (111 pages, 1821284 bytes).
 PDF statistics:
- 2221 PDF objects out of 2487 (max. 8388607)
- 2047 compressed objects within 21 object streams
- 994 named destinations out of 1000 (max. 500000)
- 730 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2326 PDF objects out of 2487 (max. 8388607)
+ 2149 compressed objects within 22 object streams
+ 1052 named destinations out of 1200 (max. 500000)
+ 746 words of extra memory for PDF output out of 10000 (max. 10000000)
 
