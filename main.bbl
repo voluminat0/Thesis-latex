@@ -95,35 +95,6 @@
       \field{pages}{711\bibrangedash 721}
       \range{pages}{11}
     \endentry
-    \entry{Buneman:1996}{article}{}
-      \name{author}{4}{}{%
-        {{hash=0e2b444d9d3a80f70ca5eb50e7596a60}{Buneman}{B\bibinitperiod}{Peter}{P\bibinitperiod}{}{}{}{}}%
-        {{hash=2e8b3098624fa0217809d4ed9e007b55}{Davidson}{D\bibinitperiod}{Susan}{S\bibinitperiod}{}{}{}{}}%
-        {{hash=e8ecfd9c957ed5769073c484d8a11d47}{Hillebrand}{H\bibinitperiod}{Gerd}{G\bibinitperiod}{}{}{}{}}%
-        {{hash=dad05536948804793c3e454acd5ecb8f}{Suciu}{S\bibinitperiod}{Dan}{D\bibinitperiod}{}{}{}{}}%
-      }
-      \list{location}{1}{%
-        {New York, NY, USA}%
-      }
-      \list{publisher}{1}{%
-        {ACM}%
-      }
-      \strng{namehash}{918e91c222657e7c9fd6ce11c7ba089c}
-      \strng{fullhash}{ed91c5376a17047bb870b4186f2e4118}
-      \field{sortinit}{B}
-      \field{sortinithash}{4ecbea03efd0532989d3836d1a048c32}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{0163-5808}
-      \field{journaltitle}{SIGMOD Rec.}
-      \field{month}{06}
-      \field{number}{2}
-      \field{title}{A Query Language and Optimization Techniques for Unstructured Data}
-      \field{volume}{25}
-      \field{year}{1996}
-      \field{pages}{505\bibrangedash 516}
-      \range{pages}{12}
-    \endentry
     \entry{Metal}{inproceedings}{}
       \name{author}{3}{}{%
         {{hash=30dba5c275254d54d7b57f5cb601e177}{Chelf}{C\bibinitperiod}{Benjamin}{B\bibinitperiod}{}{}{}{}}%
@@ -527,25 +498,6 @@
       \field{title}{Building Domain-specific Embedded Languages}
       \field{volume}{28}
       \field{year}{1996}
-    \endentry
-    \entry{Ecma6}{online}{}
-      \name{author}{1}{}{%
-        {{hash=e83578898872635ef15c7690819d9c96}{International}{I\bibinitperiod}{Ecma}{E\bibinitperiod}{}{}{}{}}%
-      }
-      \strng{namehash}{e83578898872635ef15c7690819d9c96}
-      \strng{fullhash}{e83578898872635ef15c7690819d9c96}
-      \field{sortinit}{I}
-      \field{sortinithash}{25e99d37ba90f7c4fb20baf4e310faf3}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{ECMAScript 2015 Language Specification}
-      \field{urlday}{16}
-      \field{urlmonth}{04}
-      \field{urlyear}{2016}
-      \field{year}{2015}
-      \verb{url}
-      \verb http://www.ecma-international.org/ecma-262/6.0/index.html
-      \endverb
     \endentry
     \entry{CodeSonar}{inproceedings}{}
       \name{author}{3}{}{%
@@ -1017,19 +969,6 @@
       \field{year}{2005}
       \field{pages}{97\bibrangedash 118}
       \range{pages}{22}
-    \endentry
-    \entry{flawfinder}{misc}{}
-      \name{author}{1}{}{%
-        {{hash=a3a24201f540d5b88864c19233e02618}{Wheeler}{W\bibinitperiod}{David\bibnamedelima A}{D\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
-      }
-      \strng{namehash}{a3a24201f540d5b88864c19233e02618}
-      \strng{fullhash}{a3a24201f540d5b88864c19233e02618}
-      \field{sortinit}{W}
-      \field{sortinithash}{99e3ba1b3f78bb6f073e7fa7ac11636b}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Flawfinder}
-      \field{year}{2011}
     \endentry
   \endsortlist
 \endrefsection

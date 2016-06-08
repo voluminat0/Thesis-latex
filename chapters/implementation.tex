@@ -204,26 +204,26 @@ Continuation states have a 'value' attribute. This attribute contains the addres
 
 Merging happens when the substitution set of previously matched state in the pattern has to be combined with the newly acquired substitution set for the currently matched state. When these substitution sets can be combined, a valid next step in the state graph is found with the newly created substitution set $\theta_{res}$. Else, the algorithm halts for the current path in the state graph, as the substitution sets can not be merged. Merging in the JS-QL framework is fairly straightforward. 
 
-A merge between two substitution sets $\theta_i$ and $\theta_j$ only succeeds if no substitution of $\theta_i$ is contradicted by a substitution in $\theta_j$, and vice versa. When one substitution set contains a substitution that is not contained in the other, the resulting substitution set will also contain that substitution. Two contradicting substitutions result in a mismatch, making the algorithm halt for the currently matched path. The merging process is illustrated in example \ref{ex:Merging}
+A merge between two substitution sets $\theta_i$ and $\theta_j$ only succeeds if no substitution of $\theta_i$ is contradicted by a substitution in $\theta_j$, and vice versa. When one substitution set contains a substitution that is not contained in the other, the resulting substitution set will also contain that substitution. Two contradicting substitutions result in a mismatch, making the algorithm halt for the currently matched path. The merging process is illustrated in example \ref{ex:Merging}.
 \begin{exmp}
 \label{ex:Merging}
-Table \ref{tab:merging} shows some possible outcomes of merging two substitution sets.
+Table \ref{tab:merging} shows the possible outcome $\theta_{res}$ of merging two substitution sets $\theta_{i}$ and $\theta_{j}$.
 
 \begin{table}[!h]
 \centering
-  \begin{tabular}{| c | c | c |}
+  \begin{tabular}{| c | c | c | c |}
   \hline
-  $\theta_i$ & $\theta_j$ & $\theta_{res}$\\
+   & $\theta_i$ & $\theta_j$ & $\theta_{res}$\\
   \hline \hline
   %\{?var1: 'a'\}, \{?var2: 'b'\} & \{?var3: 'a'\} & \{?var1: 'a'\}, \{?var2: 'b'\}, \{?var3: 'a'\} \\
-  ?var1: x & ?var3: x & ?var1: x\\
-  ?var2: y &  & ?var2: y\\
-  &  & ?var3: x\\
+  \multirow{3}{*}{1} & ?var1: x & ?var3: x & ?var1: x\\
+    & ?var2: y &  & ?var2: y\\
+    & & & ?var3: x\\
   \hline
-  ?var1: x & ?var1: y & false\\
+  2 & ?var1: x & ?var1: y & false\\
   \hline
-  ?var1: x & ?var1: x & ?var1: x\\
-  & ?var2: y & ?var2: y \\
+   \multirow{2}{*}{3} & ?var1: x & ?var1: x & ?var1: x\\
+  & & ?var2: y & ?var2: y \\
   \hline
 
   \end{tabular}
@@ -238,9 +238,9 @@ Table \ref{tab:merging} shows some possible outcomes of merging two substitution
 \subsection{Processing subgraphs}
 \label{subsec:subgraphs}
 
-Recursive query calls are represented in $P$ by a single state of type 'subgraph'. When encountered in an algorithm, this state has to be expanded in such a way that the pattern gets modified to contain \textit{one} additional recursive step. The algorithms used by JS-QL match a state of $G$ with a state of $P$, and halts the matching process for that path when no match is found. This has as a side effect that we indeed do not have to try and exhaustively expand each subgraph state, because the algorithm might never reach the expanded states. Another consideration is that if we were to expand the subgraph state multiple times, the algorithm might get trapped in an infinite loop as it does not know when to stop exploring recursive steps. 
+Recursive query calls in pattern $P$ are represented by a single state of type 'subgraph'. When encountered in a query solver algorithm, this state has to be expanded in such a way that the pattern gets modified to contain \textit{one} additional recursive step. The query solver algorithms used by JS-QL match a state of graph $G$ with a state of $P$, and halts the matching process for that path when no match is found. This has as a side effect that we indeed do not have to try and exhaustively expand each subgraph state, because the algorithm might never reach the expanded states. Another consideration is that if we were to expand the subgraph state multiple times, the algorithm might get trapped in an infinite loop as it does not know when to stop exploring recursive steps. 
 
-Figure \ref{fig:subgraphExpansion} shows what happens when a recursive state of the \texttt{taintedBy} policy is encountered by the algorithms. We see that the subgraph in the original policy gets replaced by the entire pattern of that policy in the first recursive step.
+Figure \ref{fig:subgraphExpansion} shows what happens when a recursive state of the \texttt{taintedBy} policy is encountered by a solver algorithm. We see that the subgraph in the original policy gets replaced by the entire pattern of that policy in the first recursive step.
 
 \begin{figure}[!h]
     \centering
@@ -249,8 +249,11 @@ Figure \ref{fig:subgraphExpansion} shows what happens when a recursive state of 
     \label{fig:subgraphExpansion}
 \end{figure}
 
-Expansion of a subgraph state happens by applying the \texttt{expandFunction} (See section \ref{sec:queryLanguageImpl}), which is a predicate or policy returning a piece of a pattern $P_{subgraph}$, and replacing the subgraph state in $P$ by the obtained pattern $P_{subgraph}$. The same subgraph may be expanded for different paths in the state graph, resulting in costly computations for each of those paths. We remedy this by caching each expanded subgraph. A subgraph state (with its unique identifier) gets mapped to its expanded subgraph pattern. When in the next iteration of the algorithm a subgraph state is encountered, its corresponding subgraph pattern is first looked up in the cache. Only when there is no corresponding subgraph available, the subgraph will be calculated and added to the cache.
+Expansion of a subgraph state happens by applying the \texttt{expandFunction} (section \ref{sec:queryLanguageImpl}), which is a predicate or policy returning a piece of a pattern $P_{subgraph}$, and replacing the subgraph state in $P$ by the obtained pattern $P_{subgraph}$. The same subgraph may be expanded for different paths in the state graph, resulting in costly computations for each of those paths. We remedy this by caching each expanded subgraph. Each subgraph state (with its unique identifier) is mapped to its expanded subgraph pattern. When in the next iteration of the algorithm a subgraph state is encountered, its corresponding subgraph pattern is first looked up in the cache. Only when there is no corresponding subgraph available, the subgraph is calculated and added to the cache.
 
 
+\section{Conclusion}
+
+In this chapter we discussed the implementation of the JS-QL framework. As the code of our framework is logically subdivided in several functionality layers, we describe the architecture of the framework and discuss each component in it. We provide an overview of the user interface, and explain how it can be used and interpreted. The JS-QL framework uses the JS-QL query language to express queries, and we describe several implementation techniques used to build JS-QL. Finally, we also discuss the workings of the matching engine, which is the core of the framework. We explain how queries are matched and results are merged, and describe how results are accumulated.
 
 

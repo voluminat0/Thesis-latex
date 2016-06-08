@@ -4,11 +4,11 @@ In this chapter we validate and evaluate the expressiveness of the JS-QL query l
 \section{The GateKeeper language}
 \label{sec:ValidationGK}
 
-In this section we express 3 policies originally presented in Gatekeeper~Kcite{GateKeeper}.
+In this section we express 3 policies originally presented in Gatekeeper. GateKeeper is a mostly static approach for soundly enforcing security and reliability policies for JavaScript programs~\cite{GateKeeper}. Programs are represented as a database of Datalog rules, against which GateKeeper policies (also written in Datalog) are checked.
 
 \subsection{Writes to prototype objects}
 
-Many websites use bookmarklets to store user information to automate the login process, for example \cite{PrototypePoisoning}. This is a common strategy used to reduce the amount of information the user has enter every time he visits the website. An attacker website however can alter the JavaScript environment in such a way that he can steal all of this information from the user. Imagine a simple login function which checks the current location of the webpage to verify that it is on the correct webpage. The current location can be compromised by overwriting the \texttt{toString} function of the \texttt{String} object, as depicted in listing \ref{lst:PrototypePoisoning}. This function can be configured to always return a "good" location. In this way, the login function can be called in the environment of a malicious website, possibly leaking sensitive information.
+Many websites use bookmarklets to store user information to automate the login process, as for example discussed by Adida et al.~\cite{PrototypePoisoning}. This is a common strategy used to reduce the amount of information the user has enter every time he visits the website. An attacker website however can alter the JavaScript environment in such a way that he can steal all of this information from the user. Imagine a simple login function which checks the current location of the webpage to verify that it is on the correct webpage. The current location can be compromised by overwriting the \texttt{toString} function of the \texttt{String} object, as depicted in listing \ref{lst:PrototypePoisoning}. This function can be configured to always return a "good" location. In this way, the login function can be called in the environment of a malicious website, possibly leaking sensitive information.
 
 \begin{lstlisting}[label={lst:PrototypePoisoning},language=JavaScript,caption=Prototype poisoning example,mathescape=true]  % float=t?
 
@@ -25,7 +25,8 @@ var login = function(){
 \end{lstlisting}
 
 %gatekeeper doet het zo
-Gatekeeper expresses policies by defining a set of rules in datalog. In order to detect writes to prototypes of builtin objects, they define the \texttt{FrozenViolation(v)} predicade, as shown in listing \ref{lst:Policy1GK}. This predicate first looks for all stores of field \texttt{v}. This field points to location \texttt{h2}, which represents the points-to address for variables. Only writes to builtin objects are infringements of the policy, which implies that \texttt{h2} has to point to a field of of one of these objects. This is expressed as follows: in \texttt{BuiltInObjects(h)}, \texttt{h} points to the heap location of a builtin object. The \texttt{Reaches(h1,h2)} predicate makes sure that the field that was stored reaches the builtin object directly or indirectly, by recursively checking if one of the properties of the builtin object has a field pointing to the stored field.
+\subsubsection*{GateKeeper policy}
+Gatekeeper expresses policies by defining a set of rules in datalog. For example, in order to detect writes to prototypes of builtin objects, GateKeeper defines the \texttt{FrozenViolation(v)} predicade, shown in listing \ref{lst:Policy1GK}. This predicate first looks for all stores of field \texttt{v}. This field points to location \texttt{h2}, which represents the points-to address for variables. Only writes to builtin objects are infringements of the policy, which implies that \texttt{h2} has to point to a field of of one of these objects. This is expressed as follows: in \texttt{BuiltInObjects(h)}, \texttt{h} points to the heap location of a builtin object. The \texttt{Reaches(h1,h2)} predicate makes sure that the field that was stored reaches the builtin object directly or indirectly, by recursively checking if one of the properties of the builtin object has a field pointing to the stored field.
 
 \begin{lstlisting}[label={lst:Policy1GK},language=Prolog,caption=Policy 1 in GateKeeper,mathescape=true]  % float=t?
 
@@ -38,7 +39,7 @@ FrozenViolation(v) :- Store(v,_,_),
                       BuiltInObject(h1),
                       Reaches(h1,h2).
 
-% Specify all built in objects
+% Specify all built-in objects
 BuiltInObject(h) :- GlobalSym("String", h).
 BuiltInObject(h) :- GlobalSym("Array", h).
 % ...
@@ -48,8 +49,8 @@ GlobalSym(m,h) :- PtsTo("global", g),
 
 \end{lstlisting}
 
-%ik doe het zo (geef voorbeeld voor ééntje, zeggen dat we een compound query hebben gemaakt voor om te bundelen)
-Writing this policy in JS-QL is easy. We augmented the JIPDA-nodes corresponding with \texttt{MemberExpression}s with two extra fields: \texttt{mainObjectName} and \texttt{properties}, representing the root object and the property-chain array that was accessed respectively. An example: for \texttt{o.x.y.z}, \texttt{o} would be the \texttt{mainObjectName}, and \texttt{[x,y,z]} would be the array \texttt{properties} which represents the properties that were chained. Listing \ref{lst:Policy1JSQL} depicts the JS-QL query to efficiently express this policy. Note that the filter on lines 10-12 can be omitted. This filter indicates that we only want to detect writes to the \texttt{prototype} property of the \texttt{String} object. When this is omitted, we will detect all writes to this object.
+\subsubsection*{JS-QL policy}
+JS-QL also supports expressing similar queries. We augmented the JIPDA-nodes corresponding with \texttt{MemberExpression}s with two extra fields: \texttt{mainObjectName} and \texttt{properties}, representing the root object and the property-chain array that was accessed respectively. An example: for memberexpression \texttt{o.x.y.z}, \texttt{o} is the \texttt{mainObjectName}, and \texttt{[x,y,z]} is the array \texttt{properties} which represents the properties that are chained. Listing \ref{lst:Policy1JSQL} depicts the JS-QL query to efficiently express this policy. Note that the filter on lines 10-12 can be omitted. This filter indicates that we only want to detect writes to the \texttt{prototype} property of the \texttt{String} object. When this is omitted, we will detect all writes to this object.
 
 \begin{lstlisting}[label={lst:Policy1JSQL},language=JavaScript,caption=Policy 1 in JS-QL,mathescape=true]  % float=t?
 
@@ -71,13 +72,18 @@ G.skipZeroOrMore()
 \end{lstlisting}
 
 This example JS-QL policy only detects writes to the \texttt{String} object. We wrote a compound policy \texttt{writeToBuiltinObjectPrototype} to detect writes to all builtin objects' prototype property. The code for this policy can be found in listing \ref{lst:WriteToBuiltinObjectPrototype} in the appendix. This policy is just the disjunction of states similar to the state in listing \ref{lst:Policy1JSQL}, with the only difference in the \texttt{mainObjectName} property, which corresponds to a different builtin object name.
-%TODO: bespreken
+
+\subsubsection*{Discussion}
+JS-QL proves to be able to express the prototype poisoning policy, as well as similar policies. The GateKeeper policy was more verbose compared to its JS-QL equivalent, indicating that JS-QL policies can be concise while remaining expressive.
+
 
 \subsection{Global namespace pollution}
 
-Working in a JavaScript environment often involves the inclusion of multiple (third-party) scripts. These scripts offer instant access to functionality which would be tiresome to implement for every project yourself. Some of these scripts are written by other parties, so one can't be sure that they follow the same coding guidelines as he does. Inexperienced programmers might not be aware of the JavaScript namespacing patterns \cite{JSNamespacing}. This leaves an open window for a phenomenon called "global namespace pollution". Defining variables in the global scope in JavaScript can lead to unanticipated behaviour of the program when another script defines a global variable with the same name.
 
-Preventing stores to the global object (i.e. in the global scope) can be enforced with a two-line GateKeeper policy. GateKeeper handles the global object explicitly by defining a variable \texttt{global}. Global variables can then be simulated as fields of this object. Note that JIPDA does this in a similar way. A policy to detect global stores can then be defined as in listing \ref{lst:Policy2GK}: The global object variable is located on address \texttt{g}. Every field store \texttt{h} that points to a field of \texttt{g} will then be detected by the \texttt{GlobalStore} policy.
+Working in a JavaScript environment often involves the inclusion of multiple (third-party) scripts. These scripts offer access to functionality which would be tiresome to implement for every project yourself. Some of these scripts are written by other parties, so developers cannot be sure that these parties follow the same coding guidelines as they do. Inexperienced programmers might not be aware of the JavaScript namespacing patterns \cite{JSNamespacing}. This leaves an open window for a phenomenon called "global namespace pollution". Defining variables in the global scope in JavaScript can lead to unanticipated behaviour of the program when another script defines a global variable with the same name.
+
+\subsubsection*{GateKeeper policy}
+Preventing stores to the global object (i.e. in the global scope) can be enforced with a two-line GateKeeper policy. GateKeeper handles the global object explicitly by defining a variable \texttt{global}. Global variables can then be simulated as fields of this object. A policy to detect global stores can then be defined as in listing \ref{lst:Policy2GK}: The global object variable is located on address \texttt{g}. Every field store \texttt{h} that points to a field of \texttt{g} will then be detected by the \texttt{GlobalStore} policy.
 
 \begin{lstlisting}[label={lst:Policy2GK},language=Prolog,caption=Policy 2 in GateKeeper,mathescape=true]  % float=t?
 
@@ -85,7 +91,11 @@ GlobalStore(h) :- PtsTo("global",g),
                   HeapPtsTo(g,_,h).
 \end{lstlisting}
 
-We could write a similar policy in JS-QL that would also look if the address of the variable points to the global object. However, this is more difficult in our system. Not because of any language restrictions, but because of the nature of JIPDA. When a variable or function gets declared or when a variable is assigned to, the right-hand side first has to be evaluated. This is also reflected in the JIPDA graph. Only when the expression is evaluated, the store and environment are modified to contain the recently evaluated information. The allocation address for newly created variables isn't yet available in the states we query on lines 3,5 and 7 in listing \ref{lst:Policy2JSQL}. We remedy this by looking a bit further down the graph, more specifically in the states where this information \textit{is} available. The policy goes as follows: After skipping to an assignment or a declaration of a function or variable, we bind the name the variable's or function's name to metavariable \texttt{?name}. We then again skip some nodes until we find a state where the address of \texttt{?name} is available and bind it to \texttt{?nameAddress}. Finally, we search for the variable or function with the same name in the global object and also bind it to \texttt{?nameAddr}, which filters the resulting substitutions to only contain information about globally declared objects.
+
+\subsubsection*{JS-QL policy}
+We could write a similar policy in JS-QL that would also verify whether the address of the variable points to the global object. However, this is more difficult in our system because of the flog graph generated by JIPDA. When a variable or function gets declared or when a variable is assigned to, the right-hand side first has to be evaluated. This is also reflected in the JIPDA graph. Only when the expression is evaluated, the store and environment are modified to contain the recently evaluated information. The allocation address for newly created variables is not yet available in the states we query on lines 3,5 and 7 in listing \ref{lst:Policy2JSQL}. We remedy this by looking further down the graph, more specifically in the states where this information \textit{is} available. 
+
+The policy is implemented as follows: After skipping to an assignment or a declaration of a function or variable, we bind the name the variable's or function's name to metavariable \texttt{?name}. We then again skip some nodes until we find a state where the address of \texttt{?name} is available and bind it to \texttt{?nameAddress}. Finally, we search for the variable or function with the same name in the global object and also bind it to \texttt{?nameAddr}, which filters the resulting substitutions to only contain information about globally declared objects.
 
 \begin{lstlisting}[label={lst:Policy2JSQL},language=JavaScript,caption=Policy 2 in JS-QL,mathescape=true]  % float=t?
 
@@ -104,10 +114,15 @@ G.skipZeroOrMore()
     }})
 \end{lstlisting}
 
+\subsubsection{Discussion}
+%TODO
+We conclude that JS-QL is capable of expressing a policy for detecting global namespace pollution, and that the resulting queries are more verbose and explicit than their equivalent in GateKeeper. This is because GateKeeper has a database of points-to analysis information available, whereas JS-QL has to specify a lookup manually.
+
 \subsection{Script inclusions}
 \label{subsec:ScriptInclusion}
 
-A well known exploit in JavaScript environments is \textit{heap spraying}\cite{HeapSpraying}. This is an attacking technique that can eventually even compromise a user's system. In short, it arranges the layout of the heap by allocating a vast amount of carefully-chosen strings, installing a certain sequence of bytes at a predetermined location in the memory of a target. When this is achieved, the exploit is triggered. This trigger depends on the user's operating system and browser. Such an agressive attack can be instantiated on the victim's computer by simply including a malicious script. This could be a reason to write a policy which detects all script inclusions. Regular script inclusions through \texttt{<script></script>} tags can be detected by hand. Javascript however also allows programmers to write arbitrary HTML code by using the \texttt{document.write} and \texttt{document.writeln} functions. Listing \ref{lst:ScriptInclusion} gives an example of malicious script inclusions.
+
+A well known exploit in JavaScript environments is \textit{heap spraying}\cite{HeapSpraying}. This is an attacking technique that can eventually even compromise a user's system. In short, heap spraying arranges the layout of the heap by allocating a vast amount of carefully-chosen strings, installing a certain sequence of bytes at a predetermined location in the memory of a target. When this is achieved, the exploit is triggered and a script is executed, possibly compromising the victims system. Such an agressive attack can be instantiated on the victim's computer by simply including a malicious script. To prevent this, a developer can write a policy which detects all script inclusions. Regular script inclusions through \texttt{<script></script>} tags can be detected by hand. Javascript however also allows programmers to write arbitrary HTML code by using the \texttt{document.write} function or similar functions (e.g. \texttt{document.writeln}). Listing \ref{lst:ScriptInclusion} gives an example of malicious script inclusions.
 
 \begin{lstlisting}[label={lst:ScriptInclusion},language=JavaScript,caption=Script inclusion example,mathescape=true]  % float=t?
 
@@ -116,15 +131,17 @@ var scripts = ["<script>bad1</script>","<script>bad2</script>"];
 
 for(var i = 0; i < scripts.length; i++){
   evilScript = scripts[i];
-  document.write(evilScript); //violation
+  document.write(evilScript); //Script inclusion
 }
 
 var o = {};
 o.f = document.writeln;
-o.f("<script>bad3</script>"); //Violation
+o.f("<script>bad3</script>"); //Script inclusion
 \end{lstlisting}
 
-This policy can be written with only a few lines of datalog in GateKeeper. What needs to be detected are the calls to \texttt{document.write/document.writeln}, even when they are aliased. This is important to note because scripts used for attacks are often obfuscated. The policy in listing \ref{lst:Policy3GK} does just that. \texttt{DocumentWrite(i)} first looks for the address \texttt{d} on the heap which points to the global \texttt{document} object. Next, the location of the property \texttt{write/writeln} of that object is reified in variable \texttt{m}. This is also an address on the heap. The last step is to find all call sites \texttt{i} that point to that same address on the heap. 
+\subsubsection*{GateKeeper policy}
+
+The policy for detecting script inclusions can be written with only a few lines of datalog in GateKeeper, as depicted in listing \ref{lst:Policy3GK}. What needs to be detected are the calls to \texttt{document.write} and similar methods, even when they are aliased. This is important because scripts containing attacks are often obfuscated. \texttt{DocumentWrite(i)} first looks for the address \texttt{d} on the heap which points to the global \texttt{document} object. Next, the location of the property \texttt{write/writeln} of that object is reified in variable \texttt{m}. This is also an address on the heap. The last step is to find all call sites \texttt{i} that point to that same address on the heap. 
 
 \begin{lstlisting}[label={lst:Policy3GK},language=Prolog,caption=Policy 3 in GateKeeper,mathescape=true]  % float=t?
 
@@ -137,9 +154,12 @@ DocumentWrite(i) :- GlobalSym("document",d),
                     Calls(i,m).
 \end{lstlisting}
 
-JS-QL also proves to be suitable to express such a policy in listing \ref{lst:Policy3JSQL}. The approach we take first skips zero or more states in the JIPDA graph. We specify that we then want to find a function call with the name of the function bound to metavariable \texttt{?name}. In order to know to which address the called function points in the store, we look it up and bind the address to \texttt{?addr} in the lookup-clause of the \texttt{fCall} predicate. Finally we also match the address of \texttt{document.write/document.writeln} to the same \texttt{?addr} metavariable, filtering out all function calls that do not point to this address.
 
-The analysis that we use is context-sensitive and Javascript is lexically scoped. This implies that we need to explicitly specify that we are looking for the address of the \textit{global} \texttt{document.write/document.writeln} object. If we didn't do this and the user has defined an object with the name "document" and a property "write" or "writeln" inside the scope of the current state in the graph, we would get the address of that object instead of the global object. That is why JS-QL provides a \texttt{\_global} keyword which indicates that we need to search for the address in the global namespace. 
+\subsubsection*{JS-QL policy}
+
+JS-QL can also express the policy listed in \ref{lst:Policy3JSQL}. The approach we take first skips zero or more states in the JIPDA graph. We specify that we then want to find a function call with the name of the function bound to metavariable \texttt{?name}. In order to know to which address the called function points in the store, we look it up and bind the address to \texttt{?addr} in the lookup-clause of the \texttt{fCall} predicate. Finally we also match the address of \texttt{document.write/document.writeln} to the same \texttt{?addr} metavariable, filtering out all function calls that do not point to this address.
+
+The analysis that we use is context-sensitive and Javascript is lexically scoped. This implies that we need to explicitly specify that we are looking for the address of the \textit{global} \texttt{document.write} object. If we did not do this and the user has defined an object with the name "document" and a property "write" or "writeln" inside the scope of the current state in the graph, we would get the address of that object instead of the global object. \texttt{\_global} is the JS-QL keyword indicating that we are looking up an address in the global namespace, as depicted in listing \ref{lst:Policy3JSQL}.
 
 \begin{lstlisting}[label={lst:Policy3JSQL},language=JavaScript,caption=Policy 3 in JS-QL,mathescape=true]  % float=t?
 
@@ -163,10 +183,13 @@ G.skipZeroOrMore()
 .rBrace()
 \end{lstlisting}
 
+\subsubsection*{Discussion}
+Although the example demonstrates that the JS-QL query is more verbose than its GateKeeper counterpart, we conclude that we are able to express policies for detecting script inclusions.
+
 %GK is flow insensitive, mijn vb gaat meer vinden
 
 \subsection{Conclusion}
- In this section we expressed 3 policies in the GateKeeper language and JS-QL. As table \ref{tab:GKJSQL} indicates, all policies expressed in GateKeeper were also expressible in JS-QL. Gatekeeper excels in writing concise policies to detect certain individual properties of a program. It is however difficult to express a policy which finds a sequence of properties in a program. JS-QL does not have this limitation. The language is designed to match states along an abstract state graph. While it can also express individual properties of a program such as calls of a certain method, it is also capable of finding complex patterns. Two other features that JS-QL offers and GateKeeper lacks is filtering and defining extra properties. It would be very cumbersome to write a policy in GateKeeper to find all function calls to methods that take more than four arguments (This is a bad code smell according to the Software Improvement Group\cite{MaintainableSoftware}). JS-QL provides the \texttt{properties} and \texttt{filters} constructs to express this.
+ In this section we expressed 3 security-related policies in the GateKeeper language and JS-QL. As table \ref{tab:GKJSQL} indicates, all policies expressed in GateKeeper were also expressible in JS-QL. Gatekeeper excels in writing concise policies to detect certain individual properties of a program. It is however difficult to express a policy which finds a sequence of properties in a program. JS-QL does not have this limitation. The language is designed to match states along an abstract state graph. While it can also express individual properties of a program such as calls of a certain method, it is also capable of finding complex patterns. Two other features that JS-QL offers and GateKeeper lacks is filtering and defining extra properties. It would be very cumbersome to write a policy in GateKeeper to find all function calls to methods that take more than four arguments, which can be considered as a code smell~\cite{MaintainableSoftware}. JS-QL provides the \texttt{properties} and \texttt{filters} constructs to express this.
 
  \begin{table}[!htb]
   
@@ -183,20 +206,22 @@ G.skipZeroOrMore()
   \end{center}
 \end{table}
 
- We conclude that our language is more expressive since we are able to express sequences and extra properties/filters for example, increasing the flexibility of policies. GateKeeper on the other hand is less verbose in most situations. This is because we have to express everything we want to detect inside the constructs of JS-QL (like \texttt{state(\{\dots\})}). Data flow analysis for example happens behind the scenes in GateKeeper, whereas JS-QL has to do the checks for aliasing in the language itself. An example can be seen in \ref{subsec:ScriptInclusion}, where we have to explicitly match the address of the called function to the address of \texttt{document.write/writeln}. This matching happens internally in Gatekeeper.
+ We argue that our language is more expressive since we are able to express sequences and extra properties/filters for example, increasing the flexibility of policies. GateKeeper on the other hand is less verbose in most situations. This is because we have to express everything we want to detect inside the constructs of JS-QL (like \texttt{state(\{\dots\})}). Data flow analysis happens behind the scenes in GateKeeper, whereas JS-QL has to do the checks for aliasing in the language itself. An example can be seen in \ref{subsec:ScriptInclusion}, where we have to explicitly match the address of the called function to the address of \texttt{document.write}. This matching happens internally in Gatekeeper.
 
 
 \section{The PidginQL language}
 \label{sec:ValidationPidginQL}
 
-In this section we express 3 policies originally presented in Pidgin\cite{PidginQLTechReport}.
+In this section we express 3 policies originally presented in Pidgin\cite{PidginQLTechReport}. Pidgin presents a query language, PidginQL, that queryies,a program dependence graph. This type of graph is different from the flow graph generated by JIPDA because it only depicts dependencies between program statements, rather than modelling the whole execution of a program. 
 
 \subsection{Only CMS administrators can send a message to all CMS users}
 \label{subsec:CMSAdmin}
 %Context uitleg
-Imagine a situation where not only administrators can send broadcast messages. A regular user with bad intentions could easily take advantage of this situation to cause harm to the system. A CMS application for instance with a decent size of users could be exploited by sending a message to all users, asking them to reply with their password. When the attacker provides a reason to the victims convincing them to send their password, he could possibly compromise the contents of the victim's account. An example of such a reason could be that the 'administrator' needs to have the password of a user account in order to update the software of that user to the latest version. This behaviour is undesirable, thus we need a policy which prevents regular users from sending such messages.
+In a scenario where not only administrators can broadcast messages, a regular user with bad intentions could easily take advantage of this situation to cause harm to the system. A CMS application for instance with a decent size of users could be exploited by sending a message to all users, asking them to provide with sensitive information, such as their password. When the attacker provides a reason to the victims convincing them to send their password, he could possibly compromise the contents of the victim's account. This behaviour is undesirable, thus we need a policy which prevents regular users from sending such messages.
 
-The policy described in Pidgin~\cite{PidginQLTechReport} that addresses this issue can be found in listing \ref{lst:Policy4PidginQL}. First, all nodes that are entries of the \texttt{addNotice} method are searched for and stored in a variable. \texttt{addNotice} is the method that sends messages to all users, and has the same behaviour as the broadcast method in the explanation above. Next, all points in the PDG are found that match a return node of the \texttt{isCMSAdmin} method with a return value which is truthy. In order to know if there exists some path in the graph where \texttt{addNotice} is called when the return value of \texttt{isCMSAdmin} is false, all paths between the nodes in \texttt{addNotice} and \texttt{isAdmin} are removed from the graph for all paths where \texttt{isAdmin} is true. Finally, the intersection of the nodes in this 'unsanitized' graph and the nodes in the \texttt{sensitiveOps} argument is taken. When this intersection is not empty, we can assume that there is a violation of the policy in the remainder of the graph. This last part is exactly what the \texttt{accessControlled} method does.
+\subsubsection*{Pidgin policy}
+
+The policy described in Pidgin that addresses this issue can be found in listing \ref{lst:Policy4PidginQL}. First, all nodes that are entries of the \texttt{addNotice} method are searched for and stored in a variable. \texttt{addNotice} is the method that sends messages to all users. Next, all points in the PDG are found that match a return node of the \texttt{isCMSAdmin} method with a return value which is truthy. In order to know if there exists some path in the graph where \texttt{addNotice} is called when the return value of \texttt{isCMSAdmin} is false, all paths between the nodes in \texttt{addNotice} and \texttt{isAdmin} are removed from the graph for all paths where \texttt{isAdmin} is true. Finally, the intersection of the nodes in this 'unsanitized' graph and the nodes in the \texttt{sensitiveOps} argument, which represents a broadcast in this case, is taken. When this intersection is not empty, we can assume that there is a violation of the policy in the remainder of the graph. This last part is exactly what the \texttt{accessControlled} method does.
 
 %AccessControlled = let accessControlled(G, checks, sensitiveOps) = G.removeControlDeps(checks) ∩ sensitiveOps is empty
 \begin{lstlisting}[label={lst:Policy4PidginQL},language=JavaScript,caption=Policy 4 in PidginQL,mathescape=true]  % float=t?
@@ -210,9 +235,9 @@ let isAdminTrue = pgm.findPCNodes(isAdmin,TRUE) in
                 pgm.accessControlled(isAdminTrue, addNotice)
 \end{lstlisting}
 
-When attempting to write a similar query in JS-QL, we need to define the problem in terms of control flow: "There must be no path between the returns of \texttt{isCMSAdmin} when the return value is false, and a call of the \texttt{addNotice} method." We must note that with abstract interpretation, it is not trivial to specify whether a value is truthy or falsy. When looking at a conditional (like an \texttt{IfStatement}), we can determine whether the true of false branch has been taken by comparing the first node of the branches with the alternate/consequent of the conditional. This can be seen on lines 2 and 6 of listing \ref{lst:Policy4JSQL}, where the \texttt{?alt} variable of the \texttt{IfStatement} gets matched with one of the successive states, ensuring that that state is the beginning of the false branch. We bind the context of the branch state to \textit{?kont} and the stack to \textit{?lkont}. The next time we find a state with the same context and stack, we know that the end of the branch has been reached. Lines 8-9 indicate that we only wish to find the calls to \texttt{addNotice} before the end of the branch.
+\subsubsection{JS-QL policy}
 
-While this policy finds all cases where \texttt{isCMSAdmin} is false, it will not detect calls to \texttt{addNotice} outside this test. We can solve this by finding all calls to \texttt{addNotice}, but this leads to false positives. It would be ideal to have a means to express the \textit{XOR} relation between results of the JS-QL policies. If we had this kind of mechanism at hands, we could search for all calls to \texttt{addNotice} and the calls to \texttt{addNotice} that happen in the true branch of \texttt{isCMSAdmin} and remove all states that occur in both results. The result of this removal would then contain only the violations of the policy.
+When attempting to write a similar query in JS-QL, we need to define the problem in terms of control flow: "There must be no path between the returns of \texttt{isCMSAdmin} when the return value is false, and a call of the \texttt{addNotice} method." With abstract interpretation, a value can be both true and false, which is why we have to inspect the nodes in the state graph. When looking at a conditional (like an \texttt{IfStatement}), we can determine whether the true of false branch has been taken by comparing the first node of the branches with the alternate/consequent of the conditional. This can be seen on lines 2 and 6 of listing \ref{lst:Policy4JSQL}, where the \texttt{?alt} variable of the \texttt{IfStatement} gets matched with one of the successive states, ensuring that that state is the beginning of the false branch. We bind the context of the branch state to \textit{?kont} and the stack to \textit{?lkont}. The next time we find a state with the same context and stack, we know that the end of the branch has been reached. Lines 8-9 indicate that we only wish to find the calls to \texttt{addNotice} before the end of the branch.
 
 \begin{lstlisting}[label={lst:Policy4JSQL},language=JavaScript,caption=Policy 4 in JS-QL]  % float=t?
 
@@ -226,10 +251,13 @@ G.skipZeroOrMore()
 .fCall({name:'addNotice'})
 \end{lstlisting}
 
+\subsubsection*{Discussion}
+While this policy finds all cases where \texttt{isCMSAdmin} is false, it will not detect calls to \texttt{addNotice} outside this test. We can solve this by finding all calls to \texttt{addNotice}, but this leads to false positives. The situation would be improved if a means to express the \textit{XOR} relation between results of the JS-QL policies existed. If we had this kind of mechanism at hands, we could search for all calls to \texttt{addNotice} and the calls to \texttt{addNotice} that happen in the true branch of \texttt{isCMSAdmin} and remove all states that occur in both results. The result of this removal would then contain only the violations of the policy. Currently, no operation for combining queries is supported, as this would require an other layer of abstraction over query results. Although possible, the combining of queries is out of the scope of this dissertation.
 
 \subsection{Public outputs do not depend on a user's password, unless it has been cryptographically hashed}
 
-Password information is something most people want to keep to themselves. It is therefore not desirable that sensitive information about this password is leaked in any way to public outputs. This leak of information doesn't have to be explicit however. Imagine a situation where a malicious piece of code checks if the length of the password is larger than 5. If the condition is true the output will display 1, otherwise the output is 0. This also reveals information about the password, and thus should be treated as a violation. The name for this kind of information flow is \textit{implicit flow}.
+
+Users want to prevent sensitive information from leaking to other users. It is therefore not desirable that sensitive information about passwords is leaked in any way to public outputs. This leak of information can be implicit. Imagine a situation where a malicious piece of code checks if the length of the password is larger than 5. If the condition is true the output will display 1, otherwise the output is 0. This also reveals information about the password, and thus should be treated as a violation. The name for this kind of information flow is \textit{implicit flow}.
 
 \begin{lstlisting}[label={lst:PWDepends},language=JavaScript,caption=The output depends on the password example,mathescape=true]  % float=t?
 
@@ -246,7 +274,9 @@ else{
 }
 \end{lstlisting}
 
-Since the PidginQL paper represents the program as a program dependence graph, the 'depends' relation is easily checked. In the graph there must be no path between the retrieval of the password and an output, unless \texttt{computeHash} was called. \textit{Declassification} happens when calling this method, which means that from then on the password is sanitized and ready to flow to an output. The policy in listing \ref{lst:Policy5PidginQL} displays how this can be expressed in the PidginQL language.
+\subsubsection*{Pidgin policy}
+
+Since PidginQL works on the the dependence graph of a program, the 'depends' relation is easily checked. In the graph there must be no path between the retrieval of the password and an output, unless \texttt{computeHash} was called. \textit{Declassification} happens when calling this method, which means that from then on the password is sanitized and ready to flow to an output. The policy in listing \ref{lst:Policy5PidginQL} displays how this is expressed in the PidginQL language.
 
 \begin{lstlisting}[label={lst:Policy5PidginQL},language=JavaScript,caption=Policy 5 in PidginQL,mathescape=true]  % float=t?
 
@@ -256,6 +286,8 @@ let outputs   = pgm.formalsOf("writeToStorage") $\cup$
 let hashFormals = pgm.formalsOf("computeHash") in
 pgm.declassifies(hashFormals, passwords, outputs)
 \end{lstlisting}
+
+\subsubsection*{JS-QL policy}
 
 The scenario for which we write a policy in JS-QL is as follows: An output depends on the password when the password is used in a conditional expression. In one or more of the branches of this conditional expression an output function is then called. The example code on which we test our policy is listed in listing \ref{lst:PWDepends}. We look for a state in the graph where the password is returned, and we store the address in \texttt{?addr}. The program then continues for some states in which the \texttt{computeHash} method is \textit{not} called with the password as an argument (lines 3-16). We then match a state representing a conditional node, in this case an \texttt{IfStatement} for which we bind the true branch to \texttt{?cons} and the false branch to \texttt{?alt}. 
 
@@ -294,17 +326,23 @@ G.skipZeroOrMore()
 .fCall({name: 'print'})
 \end{lstlisting}
  
-%We do have to admit that it is nearly impossible to express a policy which checks all dependencies, since our query languages works on an underlying abstract state graph instead of a program dependence graph. We illustrate this in the following scenario: Instead of using \texttt{password.length > 5} in the conditional, the length is stored in another variable \texttt{length}. We won't detect violations when the following expression is used as a condition: \texttt{length > 5}, since we can't mark the length 
-%TODO COEN VRAGEN OF IK MET TAINT MOET PROBEREN
+\subsubsection*{Discussion}
+Expressing dependencies in JS-QL is challenging. However, we were able to fully express the PidginQL policy for checking if an output depends on a user password. We can conclude that the JS-QL policy is more verbose than its PidginQL counterpart, but it is also more flexible in its notation.
+%We do have to admit that it is nearly impossible to express a policy which checks all dependencies, as our query languages works on an underlying abstract state graph instead of a program dependence graph. We illustrate this in the following scenario: Instead of using \texttt{password.length > 5} in the conditional, the length is stored in another variable \texttt{length}. We won't detect violations when the following expression is used as a condition: \texttt{length > 5}, since we can't mark the length 
 
+
+%TODO: Conclusie?
 
 \subsection{A database is opened only after the master password
 is checked or when creating a new database}
 \label{subsec:DBOpen}
 
-A database can contain a lot of sensitive information, so it is important that only authorized people can access this information. It might thus be a good idea to restrict access to the database entirely, unless upon creation or when the correct credentials can be presented. 
 
-The PidginQL query in listing \ref{lst:Policy6PidginQL} describes the query pattern in pseudocode. All nodes corresponding to checks of the master password are stored in the \texttt{check} variable. Lines 2 and 3 remove these nodes from the graph when the condition is true (i.e. when the master password is correct). Lastly, the nodes where the creation of a new database occurs are also deleted from the graph, resulting in a graph which consists of only nodes that represent the opening of the database. If the graph is empty, then there are no violations found.
+A database may contain sensitive information, so it is important that only authorized people can access this information. it therefore is necessary to restrict access to the database, unless upon creation or when the correct credentials can be presented. 
+
+\subsubsection*{Pidgin policy}
+
+The PidginQL query in listing \ref{lst:Policy6PidginQL} describes the query pattern in pseudocode. All nodes corresponding to checks of the master password are stored in the \texttt{check} variable. Lines 2 and 3 remove these nodes from the graph when the condition is true (i.e. when the master password is correct). Finally, the nodes where the creation of a new database occurs are also deleted from the graph, resulting in a graph which consists of only nodes that represent the opening of the database. If the graph is empty, then no violations are found.
 
 \begin{lstlisting}[label={lst:Policy6PidginQL},language=JavaScript,caption=Policy 6 in PidginQL,mathescape=true]  % float=t?
 
@@ -316,9 +354,11 @@ let openDB = (method called to open the database)
 notChecked.removeNodes(newDB) and openDB is empty
 \end{lstlisting}
 
-We created 2 JS-QL policies that provide full coverage for the problem that is presented in this section, listed in listing \ref{lst:Policy6JSQL}. The problem can be worded otherwise: We want to find all calls to \texttt{openDatabase} that are not inside the true branch of a conditional that checks if the master password is correct. When described like this, the policy gets much more intuitive to express in JS-QL. The policy can be split up in two parts: The first part will skip to an \texttt{IfStatement} of which we bind the true branch to \texttt{?cons}, as in the previous example. We then again check if the condition of that statement uses the \texttt{isMasterPassword} to verify the correctness of the password. We want to look into all states for which this condition doesn't hold, which is described on line 7. In this case all calls to \texttt{openDatabase} are prohibited, except inside the \texttt{newDatabase} function. 
+\subsubsection*{JS-QL policy}
 
-This policy catches all violations \textit{after} the first matching \texttt{IfStatement}. That is why there is the need for a second part in the policy. The detection of all calls to the \texttt{openDataBase} function completes this policy, but adds as a side effect that it will add false positives. These false positives will be the calls to \texttt{openDatabase} that occur when the master password is correct. This confirms the need for the \textit{XOR} relation, as described in the previous section. 
+We created 2 JS-QL policies that provide full coverage for the problem that is presented in this section, listed in listing \ref{lst:Policy6JSQL}. The problem can be alternatively stated as follows: Find all calls to \texttt{openDatabase} that are not inside the true branch of a conditional that checks if the master password is correct. When described like this, the policy is much more intuitive to express in JS-QL. The policy can be split up in two parts: The first part will skip to an \texttt{IfStatement} of which we bind the true branch to \texttt{?cons}, as in the previous example. We then again check if the condition of that statement uses the \texttt{isMasterPassword} to verify the correctness of the password. We want to look into all states for which this condition does not hold, which is described on line 7. In this case all calls to \texttt{openDatabase} are prohibited, except inside the \texttt{newDatabase} function. 
+
+This policy catches all violations \textit{after} the first matching \texttt{IfStatement}. That is why there is the need for a second part in the policy, depicted on line 16. The detection of all calls to the \texttt{openDataBase} function completes this policy, but adds as a side effect that it will add false positives. These false positives will be the calls to \texttt{openDatabase} that occur when the master password is correct. This confirms the need for the \textit{XOR} relation, as described in the previous section. 
 
 \begin{lstlisting}[label={lst:Policy6JSQL},language=JavaScript,caption=Policy 6 in JS-QL,mathescape=true]  % float=t?
 
@@ -341,11 +381,13 @@ G.skipZeroOrMore()
 .rBrace()
 \end{lstlisting}
 
+\subsubsection*{Discussion}
+This policy was challenging to express in JS-QL. Although able to detect all violations, the JS-QL policy will result in false positives. At the moment, it is not possible to express a JS-QL query for this policy which only detects violations without false positives.
 
 \subsection{Conclusion}
 In this section we expressed 3 policies in the PidginQL language and JS-QL. Table \ref{tab:PidginQLJSQL} indicates that not all three policies were easily expressible. We are able to express all 3 policies in JS-QL, but 2 of them will have results containing false positives. These two policies each consisted of two separate queries. If we wish to attain a resultset only containing violations and no false positives, we could take the exclusive disjunction of the resultsets of these separate queries. 
 
-The PidginQL language is best at expressing policies that deal with the dependencies between nodes in their program dependence graph. This type of graph is very powerful to check the control and data flow between two parts of code\cite{PDG}, but it is more difficult to use it to detect more general properties about a program. For JS-QL, it is the other way around. Our approach allows us to detect a wide range of general and complex properties about a program, but sometimes has troubles detecting dependencies between states with only one policy. PidginQl may be powerful in finding dependencies as described above, it does however not return much meaningful information about the found violations. Where JS-QL returns all violating nodes marked in a GUI, PidginQl just indicates whether there are violations or not. It doesn't specify which nodes are violating the policy.
+The PidginQL language is best at expressing policies that deal with the dependencies between nodes in their program dependence graph. This type of graph is very powerful to check the control and data flow between two parts of code\cite{PDG}, but it is more difficult to use it to detect more general properties about a program. For JS-QL, it is the other way around. Our approach allows us to detect a wide range of general and complex properties about a program, but it sometimes has troubles detecting dependencies between states with only one policy. PidginQL may be powerful in finding dependencies as described above, it does however not return much meaningful information about the found violations. Where JS-QL returns all violating nodes marked in a GUI, PidginQl just indicates whether there are violations or not. It doesn't specify which nodes are violating the policy.
 
  \begin{table}[!htb]
   
@@ -358,22 +400,23 @@ The PidginQL language is best at expressing policies that deal with the dependen
     JS-QL & \omark & \cmark & \omark \\ \hline
     \end{tabular}
     \caption*{Legend: \cmark: Fully expressible, \omark: Expressible with false positives}
-    \caption{Expressiveness in JS-QL and GateKeeper}\label{tab:PidginQLJSQL}
+    \caption{Expressiveness in JS-QL and Pidgin}\label{tab:PidginQLJSQL}
   \end{center}
 \end{table}
 
 Another restriction in PidginQL is that there is no way to reason about the internals of a state in the graph. Our language allows the programmer to query information in the graph on the level of each state. We can dig inside a state at any time and specify the information we wish to obtain in some user-declared metavariables. This is not possible in PidginQL. This expressiveness and flexibility brings along that JS-QL queries and policies will often be more verbose.
 
-We can conclude that both languages are equally expressive in their own way. While JS-QL can be used for many different domains, PidginQL is especially strong in it's own domain, namely in querying for dependencies between nodes.
+While JS-QL can be used for many different domains, PidginQL is especially strong in the domain of querying for dependencies between nodes.
 
 \section{The ConScript language}
 \label{sec:ValidationConscript}
 
-In this section we express 3 policies originally presented in \cite{ConScript}.
+In this section we express 3 policies originally presented in ConScript~\cite{ConScript}. ConScript is a client-side advice implementation for security. The language allows the hosting page to express fine-grained application-specific security policies that are enforced at runtime.
 
 \subsection{No string arguments to setInterval, setTimeout}
 
-In JavaScript, \texttt{setInterval} and \texttt{setTimeout} take a callback function as a first argument. This function is fired after a certain interal or timeout. Surprisingly, a string argument can also be passed as the first argument. This is good news for potential attackers, because the string gets evaluated as if it were a regular, good-behaving piece of JavaScript code. Malicious code can then be passed as a string argument to \texttt{setInterval/setTimeout}, which can lead to a security threat.
+
+In JavaScript, \texttt{setInterval} and \texttt{setTimeout} take a callback function as a first argument that is fired after a certain interval of time. Surprisingly, a string argument can also be passed as the first argument, as indicated in listing \ref{lst:JSSetTimeout}. This allows potential attackers to pass malicious code as a string argument to \texttt{setInterval/setTimeout}, which can lead to security threats.
 
 
 \begin{lstlisting}[label={lst:JSSetTimeout},language=JavaScript,caption=No string arguments to setTimeout,mathescape=true]  % float=t?
@@ -388,7 +431,9 @@ setTimeout(o, interval);
 setTimeout(f, interval);
 \end{lstlisting}
 
-ConScript is an aspect-oriented advice language that deals with security violations just like this. The aspects are written in JavaScript, which enables the programmer to make full use of the language. They also provide a typesystem which assures that the policies are written correctly, as can be seen in listing \ref{lst:Policy7Conscript} on line 1. Lines 10-11 depict the actual registration of the advice on the \texttt{setInterval} and \texttt{setTimeout} functions. When called, the \texttt{onlyFnc} function will be triggered instead, which checks if the type of the argument is indeed of type "function". \texttt{curse()} has to be called within the advice function, disabling the advice in order to prevent an infinite loop. We consider this as a small hack, since it has no semantic additional value for the policy itself.
+\subsubsection*{ConScript policy}
+
+ConScript is an aspect-oriented advice language that is able to detect security violations such as the one depicted in listing \ref{lst:JSSetTimeout}. The aspects are written in JavaScript, which enables the programmer to make full use of the language. The ConScript language also provides a typesystem which assures that the policies are written correctly, as can be seen in listing \ref{lst:Policy7Conscript} on line 1. Lines 10-11 depict the actual registration of the advice on the \texttt{setInterval} and \texttt{setTimeout} functions. When called, the \texttt{onlyFnc} function will be triggered instead, which checks if the type of the argument is indeed of type "function". \texttt{curse()} has to be called within the advice function, disabling the advice in order to prevent an infinite loop. We consider this as a small hack, since it has no additional semantic value for the policy itself.
 
 \begin{lstlisting}[label={lst:Policy7Conscript},language=JavaScript,caption=Policy 7 in ConScript,mathescape=true]  % float=t?
 
@@ -405,9 +450,10 @@ around(setInterval, onlyFnc);
 around(setTimeout, onlyFnc);
 \end{lstlisting}
 
+\subsubsection*{JS-QL policy}
 %Policy in JS-QL
-As we can't reason about concrete values in abstract interpretation, writing a policy that only allows strings might seem a little more tricky. This is not the case because the lattice we use gives us information about the type of the value of variables. A string for example is indicated by the lattice value \texttt{\{Str\}}. We can then define a \texttt{isString} helper function which checks whether a variable is of type String or not. The JS-QL policy in listing \ref{lst:Policy7JSQL} uses this function to determine whether the looked up value of the \texttt{?name} variable is of type String or not. The policy looks for a call of the \texttt{setTimeout} function and binds its arguments to \texttt{?args}. \texttt{memberOf} is a powerful construct which creates a new substitution set for each of the elements in the list that it takes as an argument.
-This allows us to inspect and check each individual argument \texttt{?arg} of the \texttt{setTimeout} function. We take the name of the argument and look up its value in the lookup clause. What remains is to filter out the string arguments, as already discussed above. This policy will only detect the actual violation on line x in listing \ref{lst:JSSetTimeout}.
+As we can not reason about actual concrete values in abstract interpretation in our approach, writing a policy that only allows strings seems more challenging. This is not the case however, because the lattice we use gives us information about the type of the value of variables. A string for example is indicated by the lattice value \texttt{\{Str\}}. We can then define a \texttt{isString} helper function which checks whether a variable \textit{may} be of type String or not. The JS-QL policy in listing \ref{lst:Policy7JSQL} uses this function to determine whether the looked up value of the \texttt{?name} variable is of type String or not. The policy looks for a call of the \texttt{setTimeout} function and binds its arguments to \texttt{?args}. \texttt{memberOf}, which creates a new substitution set for each of the elements in the list that it takes as an argument.
+This allows us to inspect and check each individual argument \texttt{?arg} of the \texttt{setTimeout} function. We take the name of the argument and look up its value in the lookup clause. What remains is to filter out the string arguments, as already discussed above. This policy will only detect the actual violation on line 6 in listing \ref{lst:JSSetTimeout}.
 
 \begin{lstlisting}[label={lst:Policy7JSQL},language=JavaScript,caption=Policy 7 in JS-QL,mathescape=true]  % float=t?
 
@@ -427,11 +473,14 @@ G.skipZeroOrMore()
 \end{lstlisting}
 
 %Bespreken
+\subsubsection*{Discussion}
+Both approaches are able to express the policy in a concise way. The JS-QL policy however is more readable than its ConScript counterpart, as it requires less boilerplate code and does not use type system annotations.
 
 \subsection{HTTP-cookies only}
 \label{subsec:HTTPOnly}
 
-Servers often store state information on the client in the form of cookies. They do this to avoid the cost of maintaining session state between calls to the server. Cookies may therefore contain sensitive information that may only be accessed by the server, so it might be a good idea to prohibit reads and writes to the client's cookies. These are stored in the global \texttt{document.cookie} object. Listing \ref{lst:HTTPCookiesOnly} gives an example of possible violations.
+
+Servers often store state information on the client in the form of cookies. They do this to avoid the cost of maintaining session state between calls to the server. Cookies may therefore contain sensitive information that may only be accessed by the server, so it is necessary to prohibit reads and writes to the client's cookies. These are stored in the global \texttt{document.cookie} object. Listing \ref{lst:HTTPCookiesOnly} gives an example of possible violations.
 
 \begin{lstlisting}[label={lst:HTTPCookiesOnly},language=JavaScript,caption=HTTP-cookies only example,mathescape=true]  % float=t?
 
@@ -449,7 +498,10 @@ cookie3 = badFunc();            //Violation (read)
 document.cookie = {value:"bad"} //Violation (write)
 \end{lstlisting}
 
-In conscript, the above policy can be enforced with only a few lines of code. Listing \ref{lst:Policy8Conscript} wraps reads and writes of the "cookie" field of \texttt{document} in the \texttt{httpOnly} advice. An error is thrown when a violation against this policy is encountered.
+
+\subsubsection*{ConScript policy}
+
+In ConScript, the above policy can be enforced with only a few lines of code. Listing \ref{lst:Policy8Conscript} wraps reads and writes of the "cookie" field of \texttt{document} in the \texttt{httpOnly} advice. An error is thrown when a violation against this policy is encountered.
 
 \begin{lstlisting}[label={lst:Policy8Conscript},language=JavaScript,caption=Policy 8 in ConScript,mathescape=true]  % float=t?
 
@@ -461,7 +513,10 @@ around(getField(document, "cookie"), httpOnly);
 around(setField(document, "cookie"), httpOnly);
 \end{lstlisting}
 
-Writing an equivalent JS-QL policy proves to be more verbose. The reason for this is that we only work with our own embedded DSL to query the information in the JIPDA graph. While the \texttt{getField} and \texttt{setField} in \ref{lst:Policy8Conscript} handle the lookup of the address of \texttt{document.cookie}, we have to manually specify that we want to store the address in metavariable \texttt{?cookieAddr} and try to match it with the address of the \texttt{?name} metavariable, which we assign to the same metavariable \texttt{?cookieAddr} to filter out variables with a different address. The JS-QL policy in \ref{lst:Policy8JSQL} specifies that it will only detect writes (the first \texttt{assign} predicate) and reads (the \texttt{procedureExit} and second \texttt{assign} predicate) of the \texttt{?name} variable which points to the address of the global \texttt{document.cookie} object. It is easy to see what the \texttt{assign} predicate does: In this case, it matches the left or right name of the assignment and looks it up. The \texttt{procedureExit} is an extra predicate which marks all returns of functions that return a value that again points to the address of the global \texttt{document.cookie} address.
+
+\subsubsection*{JS-QL policy}
+
+Writing an equivalent JS-QL policy proves to be more verbose. The reason for this is that we only work with our own embedded DSL to query the information in the JIPDA graph. While the \texttt{getField} and \texttt{setField} in \ref{lst:Policy8Conscript} handle the lookup of the address of \texttt{document.cookie}, we have to manually specify that we want to store the address in metavariable \texttt{?cookieAddr} and try to match it with the address of the \texttt{?name} metavariable, which we assign to the same metavariable \texttt{?cookieAddr} to filter out variables with a different address. The JS-QL policy in \ref{lst:Policy8JSQL} specifies that it only detect writes (the first \texttt{assign} predicate) and reads (the \texttt{procedureExit} and second \texttt{assign} predicate) of the \texttt{?name} variable which points to the address of the global \texttt{document.cookie} object. The \texttt{assign} predicate matches the left or right name of the assignment and performs a lookup. The \texttt{procedureExit} is an extra predicate which marks all returns of functions that return a value that again points to the address of the global \texttt{document.cookie} address.
 
 
 \begin{lstlisting}[label={lst:Policy8JSQL},language=JavaScript,caption=Policy 8 in JS-QL,mathescape=true]  % float=t?
@@ -494,9 +549,15 @@ G.skipZeroOrMore()
 .rBrace()
 \end{lstlisting}
 
-\subsection{Prevent resource abuse}
+\subsubsection*{Discussion}
+The JS-QL policy for detecting access to cookies is more verbose than the policy written in ConScript. This is because ConScript has access to the getter and setter methods of variables, whereas JS-QL can only reason about the information which is contained in the abstract state graph. JS-QL thus needs to manually look for access violations to \texttt{document.cookie}, instead of just checking if a getter or setter of that variable is called.
 
-Malicious scripts can prevent parts of a program to be accessible by users. Think of a website you want to access, but every time you scroll or click a mouse button, a popup appears. This is a form of resource abuse, namely the abuse of modal dialogs. This can be prevented by prohibiting calls to functions that create these resources. The ConScript policy is similar to the policy discussed in section \ref{subsec:HTTPOnly}. Calls to \texttt{prompt} and \texttt{alert} are wrapped in an advice which throws an error. Listing \ref{lst:Policy9Conscript} shows the source code of the policy.
+\subsection{Prevent resource abuse}
+Malicious scripts can prevent parts of a program to be accessible by users. A website or plugin can exploit resources by consecutively displaying popup windows. This is a form of resource abuse, namely the abuse of modal dialogs. This can be prevented by prohibiting calls to functions that create these resources. 
+
+\subsubsection*{ConScript policy}
+
+The ConScript policy is similar to the policy discussed in section \ref{subsec:HTTPOnly}. Calls to \texttt{prompt} and \texttt{alert} are wrapped in an advice which throws an error. Listing \ref{lst:Policy9Conscript} shows the source code of the policy.
 
 \begin{lstlisting}[label={lst:Policy9Conscript},language=JavaScript,caption=Policy 9 in ConScript,mathescape=true]  % float=t?
 
@@ -508,7 +569,10 @@ around(prompt, err);
 around(alert, err);
 \end{lstlisting}
 
-Wrapping an advice around a function to detect calls to that function is a way to prohibit the invocation of that function. To find function invocations in JS-QL, one just has to write a policy consisting of a \texttt{fCall} predicate. This predicate has to be configured to return all relevant information we need about the function call. In listing \ref{lst:Policy9JSQL} we can see that a function call (AST) node contains fields for its \texttt{procedure} and its \texttt{arguments}. We bind these to \texttt{?proc} and \texttt{?args} respectively. We then further define an extra metavariable \texttt{?name} in the \texttt{properties} clause of the predicate, which maps to the name of the earlier defined \texttt{?proc}. Once we have the information about the function that is invoked, we can look up its address and compare it to the address of the global \texttt{alert} (or \texttt{prompt}) function. When these are equal, the substitutions for the detected function call will be added to the results.
+
+\subsubsection*{JS-QL policy}
+
+Wrapping an advice around a function to detect calls to that function can be used to prevent the invocation of that function. To find function invocations in JS-QL, one just has to write a policy consisting of a \texttt{fCall} predicate. This predicate has to be configured to return all relevant information we need about the function call. In listing \ref{lst:Policy9JSQL} we can see that a function call (AST) node contains fields for its \texttt{procedure} and its \texttt{arguments}. We bind these to \texttt{?proc} and \texttt{?args} respectively. We then further define an extra metavariable \texttt{?name} in the \texttt{properties} clause of the predicate, which maps to the name of the earlier defined \texttt{?proc}. Once we have the information about the function that is invoked, we can look up its address and compare it to the address of the global \texttt{alert} (or \texttt{prompt}) function. When these are equal, the substitutions for the detected function call will be added to the results.
 
 \begin{lstlisting}[label={lst:Policy9JSQL},language=JavaScript,caption=Policy 9 in JS-QL,mathescape=true]  % float=t?
 
@@ -524,11 +588,14 @@ G.skipZeroOrMore()
 })
 \end{lstlisting}
 
+\subsubsection*{Discussion}
+We conclude that JS-QL is capable of expressing a policy for detecting resource abuse, and that the resulting queries are more about as verbose as their equivalent in ConScript. The result of the JS-QL query returns the exact positions in the program where a violation occurs, whereas ConScript only throws an error if an actual violation is encountered.
+
 \subsection{Conclusion}
 
-In this section we expressed 3 policies in the ConScript language and JS-QL. As ConScript is the only approach that checks for policy violations using dynamic analysis, we can't really compare approaches. We can however compare the expressiveness of the policies written in each language. Table \ref{tab:CSJSQL} shows that we were able to express all 3 ConScript policies in the JS-QL language as well. 
+In this section we expressed 3 policies in the ConScript language and JS-QL. It is not straigforward to compare both approaches, as ConScript checks for policy violations using dynamic analysis. We can however compare the expressiveness of the policies written in each language. Table \ref{tab:CSJSQL} shows that we are able to express all 3 ConScript policies in JS-QL.
 
-The ConScript language applies advices around function calls, changing the behavior of the program if the function call was prohibited. The aspect-oriented approach allows ConScript to specify what actions that need to be taken when a violation is detected. We can not express this in JS-QL, but this is also not necessary since we detect violations at compile-time, rather than at runtime. Field accesses can also be expressed as function calls (\texttt{getField} and \texttt{setField} in listing \ref{lst:Policy8Conscript}), so they can reason about getting and setting values as well. JS-QL can also reason about these things, but it has access to a lot more information thanks to the abstract state graph.
+The ConScript language applies advices around function calls, changing the behavior of the program if the function call was prohibited. The aspect-oriented approach allows ConScript to specify what actions that need to be taken when a violation is detected. We can not express this in JS-QL, but this is also not necessary since we detect violations at compile-time, rather than at runtime. Field accesses can also be expressed as function calls (\texttt{getField} and \texttt{setField} in listing \ref{lst:Policy8Conscript}), so ConScript can reason about getting and setting values as well. JS-QL can also reason about these things, but it has access to a lot more information thanks to the abstract state graph.
  
 \begin{table}[!htb]
   
@@ -545,9 +612,9 @@ The ConScript language applies advices around function calls, changing the behav
   \end{center}
 \end{table}
 
-The advice functions written in ConScript have full access to the JavaScript language, making them very flexible in behaviour. By using JavaScript instead of a DSL, the policies themselves are also quite verbose, since for each policy a JavaScript function has to be created. This does allow them to define properties and filters, as in JS-QL. However, their approach limits them to detect only function calls, which certainly is a limitation and thus reduces expressiveness. Querying for multiple sequential lines of code is also hard to do in ConScript. Where a JS-QL policy could easily be written to detect a function call to method \texttt{X} after reading variable \texttt{Y}, Conscript has to define variables that function as a "bit". The variable will be set to true when \texttt{Y} is read. The advice around \texttt{X} then has to check the value of \texttt{Y} before deciding what action to perform.
+The advice functions written in ConScript have full access to the JavaScript language, making them very flexible in behaviour. By using JavaScript instead of a DSL, the policies themselves are also quite verbose, since for each policy a JavaScript function has to be created. This does allow users of ConScript to define properties and filters, as in JS-QL. However, the advice approach limits ConScript to detect only function calls, which certainly is a limitation because it reduces expressiveness. Querying for multiple sequential lines of code is also hard to do in ConScript. Where a JS-QL policy could easily be written to detect a function call to method \texttt{X} after reading variable \texttt{Y}, Conscript has to define variables that function as a "boolean". The variable will be set to true when \texttt{Y} is read. The advice around \texttt{X} then has to check the value of \texttt{Y} before deciding what action to perform.
 
-We conclude that JS-QL queries are more expressive when it comes down to the detection of different kinds of program states. The language also proves flexible in terms of specifying properties and filters, but isn't as flexible as ConScript because the latter has full access to the JavaScript language once an advice is triggered. Both languages are quite verbose because of the expressiveness they provide.
+We argue that JS-QL queries are more expressive when it comes down to the detection of different kinds of program states. The language also proves flexible in terms of specifying properties and filters, but is not as flexible as ConScript because the latter has full access to the JavaScript language once an advice is triggered. Both languages are quite verbose because of the expressiveness they provide.
 
 
 \section{Evaluation}
@@ -559,31 +626,31 @@ We evaluated the JS-QL language by expressing 9 different policies originating f
 \subsection{Advantages}
 
 \subsubsection*{Granularity of queries and policies}
-A key advantage of the framework is the ability for programmers to define queries and policies as general or specific as they want. Starting from the \texttt{state} predicate, one can express complex patterns that fit their needs and wrap them in a self-named predicate. Flexibility is key in these predicates since the user himself can specify which properties he exposes through the predicate. These properties can then be queried by passing metavariables as arguments, which will later be bound when a match is found. Literals and metavariables that are already bound act as filters for the predicates, as in any declarative language.
+A key advantage of the JS-QL framework is the ability for programmers to define queries and policies as general or specific as they want. Starting from the \texttt{state} predicate, a user can express complex patterns that fit his needs and wrap them in a self-named predicate. Flexibility is key in these predicates since the user can specify which properties he exposes through the predicate. These properties can then be queried by passing metavariables as arguments, which will later be bound when a match is found. Literals and metavariables that are already bound act as filters for the predicates, as in any declarative language.
 
 \subsubsection*{Negation}
 Negation can be useful when expressing actions that should not happen at a certain moment in a query. This was illustrated in section \ref{subsec:CMSAdmin}, where a function call needed to be detected before the end of a conditional branch. JS-QL, in contrast to many other query languages, offers this expressiveness, albeit in a limited way. 
 
 \subsubsection*{Flexibility}
-The JIPDA graph contains states with information of arbitrary depth. Therefore, the framework had to provide access to these levels of information. This flexibility again opens up opportunities because we aren't bound to one particular graph type. Hypothetically, all types of graphs that contain information in its edges and nodes can be used in the framework with only little to no modification of the framework itself. Only a reification layer of the new graph should be provided, mapping the states of the graph to the format our framework uses.
+The JIPDA graph contains states with information of arbitrary depth. Therefore, the framework has to provide access to these levels of information. This flexibility again opens up opportunities because we are not bound to one particular graph type. Hypothetically, all types of graphs that contain information in its edges and nodes can be used in the framework with little to no modification of the framework itself. Only a reification layer of the new graph should be provided, mapping the states of the graph to the format our framework uses.
 
 \subsubsection*{Recursion}
-Another non-trivial feature of the framework is the possibility to recursively define queries. This type of queries can be of special use when one wants to follow a trace of information starting at a certain point for example. An interesting use for recursive queries is to trace all aliases of a certain variable. The result then shows all states in the graph where the original variable is aliased. Along with the marked nodes in the graph, a table containing all substituted metavariables is also displayed. We believe this representation of the results makes them well legible.
+Another non-trivial feature of the JS-QL framework is the possibility to recursively define queries. This type of queries are especially useful when one wants to follow a trace of information starting at a certain point. For example, an interesting use for recursive queries is to trace all aliases of a certain variable. The result then shows all states in the graph where the original variable is aliased. Along with the marked nodes in the graph, a table containing all substituted metavariables is also displayed. We believe this representation makes the results comprehensive for users.
 
 \subsection{Limitations}
 
-Other approaches might modify the graph by deleting states and edges to obtain a new graph. This new graph then only consists of information they want to reason about. Our framework currently does not provide this functionality. 
+Other approaches might modify the graph by deleting states and edges to obtain a new graph. This new graph then only consists of information needs to be reasoned about. Our framework currently does not provide this functionality. 
 
 Another feature that would amplify the expressive power of the framework would be some means to combine results of multiple queries, such as the use of logical arithmetics. Expressing the disjunction or conjunction of two queries would greatly improve the expressiveness of JS-QL. An example of this was given in subsections \ref{subsec:CMSAdmin} and \ref{subsec:DBOpen}. 
 
 
-Although negation is already supported, it only works for single \texttt{state}s. We would also add to the expressiveness of the language if we were unrestricted while expressing negation. This is a topic of intended future research.
+Although negation is already supported, it only works for single \texttt{state}s. We would also add to the expressiveness of the language if we were unrestricted while expressing negation. This is a topic for future research.
 
 
 \subsection{Conclusion}
 %OUTRO
 
-The combination of abstract state graphs and regular path expressions prove to be an effective means to obtain program information and define security policies. We validated our framework by expressing a range of different security policies in the JS-QL language. We discussed the differences in our language and the other three languages w.r.t. expressing security policies. By evaluating our framework, we observed some advantages and limitations of our approach. We discuss these briefly.
+The combination of abstract state graphs and regular path expressions prove to be an effective means to obtain program information and define security policies. We validated our framework by expressing a range of different security policies in the JS-QL language. We discussed the differences in our language and three other languages for expressing security policies. By evaluating our framework, we identified the advantages and limitations of our approach. We can conclude that the JS-QL framework can be used to express a wide variëty of security policies in a readable and flexible way, but that it is still limited in expressiveness for certain types of policies, such as policies for detecting dependencies between two states.
   
 
 %  \begin{table}\begin{center}

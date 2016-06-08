@@ -132,6 +132,7 @@ The parsed source code is a list of nodes contained in the body property of the 
 In JIPDA, variables point to addresses. The mapping of a variable to an address is called a \textit{binding}. These bindings reside in a \textit{binding environment} $\beta$. Each address maps to a value in the \textit{store} $\sigma$, which acts as a heap. Being able to capture addresses and values in metavariables enables us to express and inspect data flow properties of programs. The first step for looking up a variable $\nu$ is to locate its binding in $\beta$. Next, the value of the variable can be looked up in the store by composing these two functions. The value of $\nu$ is given by $\sigma(\beta(\nu))$. This way of mapping variables to values allows us to reason about individual addresses, which is necessary because during interpretation multiple bindings to the same variable can exist simultaneously. Example \ref{ex:benvStore} shows how a variable can be looked up.
 %TODO EXAMPLE
 \begin{exmp}
+\label{ex:benvStore}
 Listing \ref{lst:benvStoreExample} shows how a variable first gets a binding and is later looked up.
 \\
 \begin{lstlisting}[label={lst:benvStoreExample},language=JavaScript,caption=Example of the binding environment and store workings, mathescape=true]  % float=t?

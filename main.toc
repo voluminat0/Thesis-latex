@@ -46,11 +46,11 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.4.1}Internal DSL design constraints}{27}{subsection.3.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{JavaScript as a host language}{27}{section*.33}
+\contentsline {subsubsection}{JavaScript as a host language}{27}{section*.36}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Flow graphs representing programs}{28}{section*.34}
+\contentsline {subsubsection}{Flow graphs representing programs}{28}{section*.37}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{The query environment}{28}{section*.35}
+\contentsline {subsubsection}{The query environment}{28}{section*.38}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.4.2}DSL implementation techniques and patterns}{28}{subsection.3.4.2}
 \defcounter {refsection}{0}\relax 
@@ -104,80 +104,88 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {5.1}Architecture}{57}{section.5.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}The user interface}{59}{section.5.2}
+\contentsline {section}{\numberline {5.2}User interface}{59}{section.5.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}The query language}{60}{section.5.3}
+\contentsline {section}{\numberline {5.3}The query language}{61}{section.5.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.4}The matching engine}{63}{section.5.4}
+\contentsline {section}{\numberline {5.4}Matching engine}{64}{section.5.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.4.1}Inputs and output}{64}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.1}Inputs and output}{65}{subsection.5.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.4.2}Query algorithms}{65}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.2}Query algorithms}{66}{subsection.5.4.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.4.3}Matching states with a pattern}{67}{subsection.5.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{matchState}{68}{section*.92}
+\contentsline {subsubsection}{matchState}{68}{section*.95}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{matchRecursive}{68}{section*.93}
+\contentsline {subsubsection}{matchRecursive}{68}{section*.96}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{addExtraProperties}{69}{section*.94}
+\contentsline {subsubsection}{addExtraProperties}{69}{section*.97}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{verifyConditions}{69}{section*.95}
+\contentsline {subsubsection}{verifyConditions}{69}{section*.98}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{getAddresses}{69}{section*.96}
+\contentsline {subsubsection}{getAddresses}{69}{section*.99}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{processValue}{69}{section*.97}
+\contentsline {subsubsection}{processValue}{70}{section*.100}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.4.4}Merging substitution results}{70}{subsection.5.4.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.4.5}Processing subgraphs}{70}{subsection.5.4.5}
+\contentsline {subsection}{\numberline {5.4.5}Processing subgraphs}{71}{subsection.5.4.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Evaluation}{72}{chapter.6}
+\contentsline {section}{\numberline {5.5}Conclusion}{72}{section.5.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.1}The GateKeeper language}{72}{section.6.1}
+\contentsline {chapter}{\numberline {6}Evaluation}{73}{chapter.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.1}Writes to prototype objects}{72}{subsection.6.1.1}
+\contentsline {section}{\numberline {6.1}The GateKeeper language}{73}{section.6.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.2}Global namespace pollution}{74}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.1}Writes to prototype objects}{73}{subsection.6.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.3}Script inclusions}{75}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.2}Global namespace pollution}{76}{subsection.6.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.4}Conclusion}{77}{subsection.6.1.4}
+\contentsline {subsubsection}{Discussion}{77}{section*.108}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}The PidginQL language}{78}{section.6.2}
+\contentsline {subsection}{\numberline {6.1.3}Script inclusions}{77}{subsection.6.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.1}Only CMS administrators can send a message to all CMS users}{78}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.1.4}Conclusion}{79}{subsection.6.1.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.2}Public outputs do not depend on a user's password, unless it has been cryptographically hashed}{80}{subsection.6.2.2}
+\contentsline {section}{\numberline {6.2}The PidginQL language}{80}{section.6.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.3}A database is opened only after the master password is checked or when creating a new database}{82}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.1}Only CMS administrators can send a message to all CMS users}{81}{subsection.6.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.4}Conclusion}{84}{subsection.6.2.4}
+\contentsline {subsubsection}{JS-QL policy}{81}{section*.114}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.3}The ConScript language}{84}{section.6.3}
+\contentsline {subsection}{\numberline {6.2.2}Public outputs do not depend on a user's password, unless it has been cryptographically hashed}{82}{subsection.6.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.1}No string arguments to setInterval, setTimeout}{85}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.2.3}A database is opened only after the master password is checked or when creating a new database}{85}{subsection.6.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.2}HTTP-cookies only}{86}{subsection.6.3.2}
+\contentsline {subsection}{\numberline {6.2.4}Conclusion}{87}{subsection.6.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.3}Prevent resource abuse}{88}{subsection.6.3.3}
+\contentsline {section}{\numberline {6.3}The ConScript language}{88}{section.6.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.4}Conclusion}{89}{subsection.6.3.4}
+\contentsline {subsection}{\numberline {6.3.1}No string arguments to setInterval, setTimeout}{88}{subsection.6.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.4}Evaluation}{90}{section.6.4}
+\contentsline {subsection}{\numberline {6.3.2}HTTP-cookies only}{90}{subsection.6.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4.1}Advantages}{90}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.3.3}Prevent resource abuse}{92}{subsection.6.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4.2}Limitations}{91}{subsection.6.4.2}
+\contentsline {subsection}{\numberline {6.3.4}Conclusion}{93}{subsection.6.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4.3}Conclusion}{91}{subsection.6.4.3}
+\contentsline {section}{\numberline {6.4}Evaluation}{94}{section.6.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Conclusion and future work}{93}{chapter.7}
+\contentsline {subsection}{\numberline {6.4.1}Advantages}{94}{subsection.6.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.1}Technical limitations of the approach}{94}{section.7.1}
+\contentsline {subsection}{\numberline {6.4.2}Limitations}{95}{subsection.6.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.2}Future research}{95}{section.7.2}
+\contentsline {subsection}{\numberline {6.4.3}Conclusion}{96}{subsection.6.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Appendices}{96}{section*.112}
+\contentsline {chapter}{\numberline {7}Conclusion and future work}{97}{chapter.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}JS-QL policies and predicates}{97}{Appendix.a.A}
+\contentsline {section}{\numberline {7.1}Technical limitations of the approach}{98}{section.7.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.2}Future research}{99}{section.7.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.3}Concluding remarks}{99}{section.7.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Appendices}{101}{section*.142}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}JS-QL policies and predicates}{102}{Appendix.a.A}

@@ -195,17 +195,35 @@ van} %\\
 \chapter*{Abstract}
 
 %Why
-Program flaws and vulnerabilities tend to surface late in the development of programs, and they are hard to detect. Existing approaches often consist of a robust framework containing pre-encoded rules and queries to detect the most common programming pitfalls. Although these approaches are able to detect a decent amount of vulnerabilities and support a wide range of programs on-the-fly, they overlook certain program flaws that are related to the application domain of specific programs.
+Program defects tend to surface late in the development of programs, and they are hard to detect.
+%TODO: security vulnerabilities, such as ..
+The same goes for security vulnerabilities. This type of program defects is particularly important to detect as they might leak sensitive information or even compromise the system on which the program is executed.
+%TODO: Tools static, + benefit: goed omdat at compile time
+
+A popular approach for analyzing programs is static analysis. Static analysis of a program is performed at compile time, implying that the program can be analyzed without being executed.
+ Existing approaches using static analysis to detect security vulnerabilities in source code are often limited to a predetermined set of pre-encoded security vulnerabilities. Although these approaches are able to detect a decent amount of vulnerabilities and support a wide range of programs by default, they lack the means to be configured for vulnerabilities that are specific for the particular application domain of the analyzed program.
 
 %What in thesis onderzocht
 In this dissertation, we investigate how static analysis can aid in detecting application-specific security vulnerabilities. As these vulnerabilities are not general enough to be checked by tools that use a database of pre-encoded patterns, developers should be able to write rules that are specifically applicable to their program. 
 
 %Hoe
-We present the JS-QL framework, a tool for statically checking user-specified security vulnerabilities in JavaScript applications. The framework makes use of JS-QL, an embedded domain-specific query language built on top of JavaScript. JS-QL queries are based on regular path expressions, enabling users to express queries in an intuitive way. 
+We present JS-QL, a tool for statically checking user-specified security vulnerabilities in JavaScript applications. The tool makes use of an embedded domain-specific query language built on top of JavaScript. JS-QL queries are based on regular path expressions, enabling users to express queries in an intuitive way. These expressions are a way of declaratively expressing queries on graphs as regular-expression-like patterns. In the context of this dissertation, regular path expressions are used to match user-specified patterns on an abstract state graph, which is generated as the output of performing static analysis. 
 
 %Resultaten
-We evaluated our framework by comparing our language with other query languages in terms of expressiveness. We conclude that the combination of static analysis and regular path expressions is well-suited to specify security policies and detect program vulnerabilities.
+We evaluated our approach by comparing our language with other languages for expressing security vulnerabilities in terms of expressiveness. We conclude that the combination of static analysis and regular path expressions lends itself well to the detection of user-specified security vulnerabilities.
+
+\chapter*{Samenvatting}
+
+Tekortkomingen in programma's zijn moeilijk te detecteren en ze komen vaak pas laat aan de oppervlakte in het ontwikkelingsproces. Hetzelfde geldt voor beveiligingslekken. Dit soort van kwetsbaarheden is uitermate belangrijk om op te sporen, aangezien ze mogelijks geheime informatie lekken of er zelfs voor kunnen zorgen dat het systeem waarop het programma draait gecomprommiteerd wordt.
  
+Een populaire aanpak om programma's te analyseren is statische analyse. Statische analyse van een programma wordt uitgevoerd at compile time, wat betekent dat het programma kan geanalyseerd worden zonder het uit te voeren. Bestaande oplossingen die gebruik maken van statische analyse om beveiligingslekken op te sporen in broncode zijn vaak beperkt tot een voorafbepaalde set van voorgeprogrammeerde programmapatronen. Hoewel deze oplossingen een redelijk aantal kwetsbaarheden in programma's vinden, ontbreken ze een manier om geconfigureerd te worden om kwetsbaarheden te vinden binnen het domein van het geanalyseerde programma.
+
+In dit proefschrift onderzoeken we hoe statisch analyse kan helpen om programmaspecifieke beveiligingslekken te detecteren. Aangezien deze beveiligingslekken niet algemeen genoeg zijn om gevonden te worden door tools die een databank van voorgeprogrammeerde patronen gebruiken, zouden ontwikkelaars de mogelijkheid moeten hebben om zelf patronen te schrijven die toepasbaar zijn op hun specifieke programma's.
+
+We stellen JS-QL voor, een tool om op statische manier beveiligingslekken, gespecificeerd door de gebruiker, in JavaScript applicaties te detecteren. De tool gebruikt een embedded domein-specifieke querytaal die gebouwd is bovenop JavaScript. JS-QL queries zijn gebaseerd op regular path expressions die de gebruiker er toe in staat stellen queries uit te drukken op een intuitieve manier. Regular path expressions zijn een manier om declaratief queries op graphs uit te drukken, gelijkaardig aan de notatie van reguliere expressies. Binnen de context van dit proefschrift worden regular path expressions gebruikt om patronen, gespecificeerd door gebruikers, te matchen tegen een abstract state graph die gegenereerd wordt als output van statische analyse.
+
+We hebben onze aanpak geëvalueerd door onze taal op vlak van expressiviteit te vergelijken met andere talen waarin beveiligingslekken uitgedrukt kunnen worden. We besluiten dat de combinatie van statische analyse en regular path expressions zich goed leent tot het opsporen van beveiligingslekken die door de gebruiker gespecificeerd zijn.
+
 \chapter*{Acknowledgements}
  
 %ouders for opportunity
@@ -213,6 +231,8 @@ I am most thankful towards my promotor Coen De Roover and my supervisors Jens Ni
 
 \tableofcontents
 
+\listoffigures
+\listoftables
 
 
 \chapter{Introduction}
