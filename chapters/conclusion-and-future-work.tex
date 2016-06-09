@@ -1,16 +1,20 @@
 %\section{Summary}
-In this dissertation we explored an approach called JS-QL to detect specific characteristics and security vulnerabilities in JavaScript programs. Unlike previous approaches such as FindBugs\cite{Findbugs}, the focus of the thesis was to support this detection on a per-application basis. JS-QL enables users to write succinct and application-oriented queries, instead of limiting them to use pre-encoded patterns and analyses of a specific tool. This type of program analysis is important because the use of JavaScript as a language for all kinds of applications is increasing. This has as consequence that malicious users get more creative and passionate about finding security vulnerabilities in these applications and that more program vulnerabilities are discovered and exploited. 
+In this dissertation proposed a query-based technique for detecting security vulnerabilities in JavaScript programs. 
+Unlike most existing techniques, ours can be configured to detect vulnerabilities that are specific to a single application. To this extend we investigate JS-QL, an expressive specification language that enables users to write succinct and application-specific queries instead of using pre-encoded rules. Our language matches queries against the output graph of a statically analyzed program. More specifically, we use abstract interpretation as a static analysis technique to generate an abstract state graph representing a program.
 
-The JS-QL framework combines abstract interpretation with JS-QL, a novel program query language that enables developers to test their applications against these vulnerabilities. JS-QL is a domain-specific language embedded in JavaScript and is based on the concept of regular path expressions. These expressions are similar to traditional regular expressions, except that they can be applied to find certain paths in a graph instead of finding patterns in a string. Other approaches are described in related work (Sections \ref{sec:genericVulnerabilities} and \ref{sec:applicationSpecificVulnerabilities}), but none of them use abstract interpretation to model the flow of programs.
+%JS-QL enables users to write succinct and application-oriented queries, instead of limiting them to use pre-encoded patterns and analyses of a specific tool. This type of program analysis is important because the use of JavaScript as a language for all kinds of applications is increasing. This has as consequence that malicious users get more creative and passionate about finding security vulnerabilities in these applications and that more program vulnerabilities are discovered and exploited. 
 
- JS-QL queries provide sufficient expressiveness to detect security vulnerabilities in programs in a way that is especially readable. We also provide a tool together with a minimalistic user interface serving as a means to apply JS-QL queries to JavaScript programs, reporting all results of a query in both a visual (graph) representation and a textual representation. 
+The JS-QL tool combines abstract interpretation with JS-QL, a novel program specification language that enables developers to test their applications against these vulnerabilities. JS-QL is a domain-specific language embedded in JavaScript and is based on the concept of regular path expressions. These expressions are similar to traditional regular expressions, except that they can be applied to find certain paths in a graph instead of finding patterns in a string. Other approaches are described in related work (Sections \ref{sec:genericVulnerabilities} and \ref{sec:applicationSpecificVulnerabilities}), but none of them use abstract interpretation to model the flow of programs.
 
- We conclude from our experiments that our language is apt for writing several types of security policies. These policies are often more readable, concise and equally expressive compared to their notation in other languages. 
+ %JS-QL queries provide sufficient expressiveness to detect security vulnerabilities in programs in a way that is especially readable. 
+We evaluated our approach by comparing our language with other languages for expressing security vulnerabilities in terms of expressiveness. The results of the evaluation indicate that the static analysis of our technique is sufficiently powerful while its specification language is sufficiently expressive for application-specific vulnerabilities commonly found in related work. We also provide a tool together with a minimalistic user interface serving as a means to apply JS-QL queries to JavaScript programs, reporting all results of a query in both a visual (graph) representation and a textual representation. 
+
+ We conclude from our experiments that our language is apt for specifying several types of security vulnerabilities. These specifications are often more readable, concise and equally expressive compared to their notation in other languages. 
 
 %Nu bespreken we limitations
 \section{Technical limitations of the approach}
 
-This section discusses the limitations of the framework. We seek to find appropriate solutions for all of the following limitations of the framework in future work.
+This section discusses the limitations of the tool. We seek to find appropriate solutions for all of the following limitations of the tool in future work.
 
 \subsection*{Negation}
 
@@ -20,26 +24,25 @@ One could also argue that it would be useful to specify the negation of a single
 
 \subsection*{Performance}
 
-Our current implementation has some computational overhead as each state edge label $el$ and pattern label $tl$ can be matched multiple times in the algorithm. Each match is a computationally heavy operation, which means that we should try to avoid matching $el$ and $tl$ more than once. This could be done by memoizing the substitutions between all already matched pairs of state and pattern, decreasing the computational overhead drastically. This approach would make the framework scale in two ways: (i) The JavaScript programs to be queries can be of larger size because (ii) the algorithms used would saturize more quickly, resulting in faster query results. Currently, all programs and queries tested run within reasonable time ($<$ 3 seconds), but we expect that for larger programs and queries the run-time of the framework would increase significantly. However, the goal of this thesis was to investigate whether regular path queries can be used to effectively detect security vulnerabilities, rather than building a performant tool to process these queries.
+Our current implementation has some computational overhead as each state edge label $el$ and pattern label $tl$ can be matched multiple times in the algorithm. Each match is a computationally heavy operation, which means that we should try to avoid matching $el$ and $tl$ more than once. This could be done by memoizing the substitutions between all already matched pairs of state and pattern, decreasing the computational overhead drastically. This approach would make the tool scale in two ways: (i) The JavaScript programs to be queried can be of larger size because (ii) the algorithms used would saturize more quickly, resulting in faster query results. Currently, all programs and queries tested run within reasonable time ($<$ 3 seconds), but we expect that for larger programs and queries the run-time of the tool would increase significantly. However, the goal of this thesis was to investigate whether regular path queries can be used to effectively specify and detect security vulnerabilities, rather than to build a performant tool to process these queries.
 
 \section{Future research}
 
 This section discusses the subjects of interest for future research. We believe that research in these areas can be fruitful for both the JS-QL language as well as other approaches for detecting security vulnerabilities.
 
-\subsection*{Combinating results}
+\subsection*{A library of security vulnerabilities}
+Our experiments show how security vulnerabilities originating from related work can be expressed in JS-QL. Gathering more security vulnerabilities to express will grant us insight on several recurring patterns used to exploit application flaws. The exploration of vulnerabilities and vulnerability types can lead to the creation of more specific and precise constructs in JS-QL that are optimal for expressing these security vulnerabilities.
+
+\subsection*{Querying other program representations}
+JS-QL was designed to work on the JIPDA state graph. We would like to investigate how much work is needed to port JS-QL to support other graphs. Hypothetically, only the matching process has to be altered, as other graphs will contain information that is structured differently. %This investigation could even be extended if we consider other program representations, such as Datalog. We suspect that this would involve much more work. We can keep the JS-QL language as the language to express policies, but we would have to develop a whole new mechanism (i.e. a compiler) to translate JS-QL queries to Datalog-queries.
+
+\subsection*{Combining results}
 
 A gread addition to JS-QL would be the ability to combine results of queries. This would make it easier for the user to detect multiple vulnerabilities at the same time, and it would make the language more expressive. Combining results could be implemented as a simple conjunction operation, but could also be defined as a more complex operation between results, such as an exclusive disjunction for example. The usefulness of the latter has already been proven in our experiments (\ref{subsec:CMSAdmin}).
 
-\subsection*{Security policies}
-Our experiments show how security policies originating from related work can be expressed in JS-QL. Gathering more security policies to express will grant us insight on several recurring patterns used to exploit application flaws. The exploration of policies and policy types can lead to the creation of more specific and precise constructs in JS-QL that are optimal for expressing these security policies.
-
-\subsection*{JS-QL combined with other program representations}
-JS-QL is developed to work on the JIPDA state graph. We would like to investigate how much work is needed to port JS-QL to support other graphs. Hypothetically, only the matching process has to be altered, as other graphs will contain information that is structured differently. This investigation could even be extended if we consider other program representations, such as Datalog. We suspect that this would involve much more work. We can keep the JS-QL language as the language to express policies, but we would have to develop a whole new mechanism (i.e. a compiler) to translate JS-QL queries to Datalog-queries.
-
-
 \section{Concluding remarks}
 %TODO
-We started this dissertation by investigating which approach would fit best for detecting security vulnerabilities in JavaScript programs. We presented the JS-QL framework, a framework for expressing and checking security vulnerabilities against an abstract state graph. The framework uses the novel JS-QL language, which is based on regular path expressions. 
+We started this dissertation by investigating which approach would fit best for detecting security vulnerabilities in JavaScript programs. We presented the JS-QL tool, a tool for expressing and checking security vulnerabilities against an abstract state graph. The tool uses the novel JS-QL language, which is based on regular path expressions. 
 %This type of language for expressing queries is useful for specifying security policies (as shown in chapter \ref{ch:Evaluation}). 
 
-We believe that our framework represents a step in the right direction for allowing users to preventively detect security vulnerabilities in their JavaScript applications. By shifting the emphasis from general policies to application-specific policies, security vulnerabilities can be expressed in a more fine-grained way when using the JS-QL framework. 
+We believe that our tool represents a step in the right direction for allowing users to preventively detect security vulnerabilities in their JavaScript applications. By shifting the emphasis from general policies to application-specific policies, security vulnerabilities can be expressed in a more fine-grained way when using the JS-QL tool. 

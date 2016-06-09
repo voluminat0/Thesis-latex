@@ -1,40 +1,40 @@
-This chapter gives an overview of our approach for building the JS-QL framework. For this framework we used the JIPDA static analysis tool to generate an abstract state graph representing a JavaScript program. This graph contains control- and value-flow information, necessary to detect more complex security vulnerabilities. We have developed JS-QL, a querying language to effectively query for security vulnerabilties in JavaScript programs. The language is built as an internal domain-specific language on top of JavaScript. Our approach combines the JIPDA abstract state graph with JS-QL, resulting in a tool in which application-specific and user-defined security policies can be specified and checked.
+This chapter gives an overview of our approach for building the JS-QL tool. For this tool we used the JIPDA~\cite{functionPurity} static analysis tool to generate an abstract state graph representing a JavaScript program. This graph contains control- and value-flow information, necessary to detect more complex security vulnerabilities. We have developed JS-QL, a querying language to effectively query for security vulnerabilties in JavaScript programs. The language is built as an internal domain-specific language on top of JavaScript. Our approach combines the JIPDA abstract state graph with JS-QL, resulting in a tool in which application-specific and user-defined security vulnerabilities can be specified and checked.
 
 \section{Architecture}
 \label{sec:Architecture}
 
-The actual architecture of the JS-QL framework is depicted in figure \ref{fig:architecture}. The query engine takes as input (i) a flow graph and (ii) a query, written in the JS-QL language. The output will consist of tuples \texttt{<State, Substitutions>} for all paths on which a match for the query was found.
+The actual architecture of JS-QL is depicted in figure \ref{fig:architecture}. The query engine takes as input (i) a flow graph and (ii) a query, written in the JS-QL language. The output will consist of tuples \texttt{<State, Substitutions>} for all paths on which a match for the query was found.
 
 \begin{figure}
     \centering
       \includegraphics[width=0.9\textwidth]{images/Architecture} 
-      \caption{JS-QL framework architecture}
+      \caption{JS-QL architecture}
     \label{fig:architecture}
 \end{figure}
 
 %program representation
 \subsection*{Program representation}
 
-For our approach, we used static analysis to represent a JavaScript program as a graph. Abstract interpretation, a static analysis technique, produces an abstract state graph when given a program as input. The graph contains information about control- and data flow, providing a rich source of information that can be extracted through some query language and a querying mechanism. 
+For our approach, we used static analysis to represent a JavaScript program as a graph. Abstract interpretation, a static analysis technique, produces an abstract state graph when given a program as input. The graph contains information about control- and data flow, providing a rich source of information that can be extracted through some specification language and a querying mechanism. 
 
-There is an extensive body of related work on how logical programming can be used to represent and analyse programs\cite{Reps1995}\cite{DatalogDBQueries}. However, static analysis combined with a query language leans more closely towards the implementation of our system.  As discussed in section \ref{sec:staticAnalysis}, static analysis can be a means of representing implicit and explicit information about source code. 
+There is an extensive body of related work on how logical programming can be used to represent and analyse programs~\cite{Reps1995,DatalogDBQueries}. However, static analysis combined with a specification language leans more closely towards the implementation of our system.  As discussed in section \ref{sec:staticAnalysis}, static analysis can be a means of representing implicit and explicit information about source code. 
 
 \subsection*{Query mechanism}
 
-Program querying depends on the way a program is represented and how queries are transformed into query-engine-friendly data structures. Our approach represents programs as flow graphs, and queries against these graphs need to be resolved. A suitable algorithm for solving queries is presented in \cite{algoEngine}, which enables us to query flow graphs directly. The internals of this algorithm will be discussed in greater detail in section \ref{sec:matchingEngine}. An alternative approach would be to use existing techniques such as \textit{bddbddb}\cite{bddbddb}. This technique matches queries expressed in Datalog against a database of rules representing the relations of an entire program. The overhead for this approach would however be too large, as we would have to transform the abstract state graph to Datalog rules.
+Program querying depends on the way a program is represented and how queries are transformed into query-engine-friendly data structures. Our approach represents programs as flow graphs, and queries against these graphs need to be resolved. A suitable algorithm for solving queries is presented in~\cite{algoEngine}, which enables us to query flow graphs directly. The internals of this algorithm will be discussed in greater detail in section \ref{sec:matchingEngine}. An alternative approach would be to use existing techniques such as \textit{bddbddb}~\cite{bddbddb}. This technique matches queries expressed in Datalog against a database of rules representing the relations of an entire program. The overhead for this approach would however be too large, as we would have to transform the abstract state graph to Datalog rules.
 
 \subsection*{Query language}
 % DSL
-With the JS-QL language, we offer an internal domain-specific language specialized in expressing queries corresponding to sequences of states in the flow graph. The language makes use of \textit{regular path expressions}, which are expressions describing the path that needs to be traversed in a graph in a syntax similar to regular expressions.It is important that exploring and accessing information of a flow graph happens in a user-friendly way, as such graphs might be complex to understand. We believe that regular path expressions enable users to write clean and understandable queries. 
+With the JS-QL language, we offer an internal domain-specific language specialized in expressing queries corresponding to sequences of states in the flow graph. The language makes use of \textit{regular path expressions}, which are expressions describing the path that needs to be traversed in a graph in a syntax similar to regular expressions. It is important that exploring and accessing information of a flow graph happens in a user-friendly way, as such graphs might be complex to understand. We believe that regular path expressions enable users to write clean and understandable queries. 
 
 
 \section{Flow graphs for JavaScript programs}
 \label{sec:FlowGraphs}
-The need for detailed control- and data flow information in our program representation graph limits the types of graphs that can be used for our framework. The JIPDA\cite{functionPurity} abstract state graph, generated by statically analyzing source code through \textit{abstract interpretation}, contains all the information needed to precisely express patterns to be detected in a program. The JS-QL framework uses the JIPDA graph as its program representation. This section takes an in-depth look at the JIPDA abstract state graph and the information it holds in its states. Other flow graphs, such as program dependence graphs\cite{PDG}, can be useful to track the flow of information between certain points in a program, but often lack more general information about program states, making them less qualified to use as our main program representation.
+The need for detailed control- and data flow information in our program representation graph limits the types of graphs that can be used for our tool. The JIPDA abstract state graph, generated by statically analyzing source code through \textit{abstract interpretation}, contains all the information needed to precisely express patterns to be detected in a program. The JS-QL tool uses the JIPDA graph as its program representation. This section takes an in-depth look at the JIPDA abstract state graph and the information it holds in its states. Other flow graphs, such as program dependence graphs~\cite{PDG}, can be useful to track the flow of information between certain points in a program, but often lack more general information about program states, making them less qualified to use as our main program representation.
 
 \subsection{Information in an abstract state graph}
 
-Figure \ref{fig:JipdaGraph} shows part of a typical graph produced by JIPDA for a program containing a check for whether a number is equal to zero or not. As can be observed, the graph depicts all possible paths a program can traverse. Since the analysis in JIPDA is flow-sensitive, it is guaranteed that a state \texttt{a} on some path in the graph occurs before a state \texttt{b} on the same path if state \texttt{a} occurs before state \texttt{b} on the path. This makes reasoning about patterns in a program much easier, since no false positives will occur with regards to the order of execution of states. The graph produced by the JIPDA analysis is also a flow graph, and more precisely maintains information about two types of flows:
+Figure \ref{fig:JipdaGraph} shows part of a typical graph produced by JIPDA for a program containing a check for whether a number is equal to zero or not. As can be observed, the graph depicts all possible paths a program can traverse. Since the analysis in JIPDA is flow-sensitive, it is guaranteed that a state \texttt{a} on some path in the graph occurs before a state \texttt{b} on the same path if \texttt{a} occurs before state \texttt{b} in the program. This makes reasoning about patterns in a program much easier, since no false positives will occur with regards to the order of execution of states. The graph produced by the JIPDA analysis is also a flow graph, and more precisely maintains information about two types of flows:
 
 \begin{figure}[!ht]
     \centering
@@ -57,13 +57,13 @@ Consider the expression \texttt{f(x)}. Function \texttt{f} will be the function 
 
 \subsection{States of an abstract state graph}
 
-JIPDA uses Esprima\cite{Esprima} to parse JavaScript code and set up an abstract syntax tree (AST). This AST is the starting point for the analysis that JIPDA performs, hence information about the nodes from the AST is also contained in certain states in the resulting graph. The small-step semantics of a program are defined by an abstract machine that transitions between different states. The abstract machine is in eval-continuation style, indicating that a state is either an evaluation state or a continuation state. These states correspond to the states that can be seen in the abstract state graph. The states the machine can be in are described below:
+JIPDA uses Esprima~\cite{Esprima} to parse JavaScript code and set up an abstract syntax tree (AST). This AST is the starting point for the analysis that JIPDA performs, hence information about the nodes from the AST is also contained in certain states in the resulting graph. The small-step semantics of a program are defined by an abstract machine that transitions between different states. The abstract machine is in eval-continuation style, indicating that a state is either an evaluation state or a continuation state. These states correspond to the states that can be seen in the abstract state graph. The states the machine can be in are described below:
 
 \begin{enumerate}
-\item \textit{Evaluation state}: Represents the evaluation of an expression of the program in the binding environment $\beta$.
-\item \textit{Continuation state}: A state which indicates that the machine is ready to continue evaluation with the value it just calculated.
-\item \textit{Return state}: This is a special kind of continuation state, as it indicates the return of a function application. When the machine is in this state it is ready to continue evaluation with the value calculated for the return of the function application.
-\item \textit{Result state}: The final state of the graph, indicating the final computed value(s) of the program. This is also a special kind of continuation state. The machine and graph can have more than one result state, depending on the program's nature. 
+\item \textit{Evaluation state (red)}: Represents the evaluation of an expression of the program in the binding environment $\beta$.
+\item \textit{Continuation state (green)}: A state which indicates that the machine is ready to continue evaluation with the value it just calculated.
+\item \textit{Return state (blue)}: This is a special kind of continuation state, as it indicates the return of a function application. When the machine is in this state it is ready to continue evaluation with the value calculated for the return of the function application.
+\item \textit{Result state (yellow)}: The final state of the graph, indicating the final computed value(s) of the program. This is also a special kind of continuation state. The machine and graph can have more than one result state, depending on the program's nature. 
 \end{enumerate}
 
 
@@ -83,7 +83,7 @@ If we parse the following program \\\\
 \phantom{ }\phantom{ }\phantom{ }\phantom{ }\texttt{return 42;}\\
 \texttt{\}}\\
 \\
-we obtain its corresponding JSON representation, listed in \ref{lst:EsprimaTree}.
+we obtain its corresponding JSON representation, listed in listing \ref{lst:EsprimaTree}.
 \\
 \begin{lstlisting}[label={lst:EsprimaTree},language=JSON,caption=Parsed JavaScript program AST, mathescape=true]  % float=t?
 
@@ -123,7 +123,7 @@ we obtain its corresponding JSON representation, listed in \ref{lst:EsprimaTree}
 }
 \end{lstlisting}
 
-The parsed source code is a list of nodes contained in the body property of the "program" AST node. This is the root node of the AST. Each node has its own \textit{type} that distinguishes different kinds of expressions and statements. The example code in listing \ref{lst:EsprimaTree} shows that the parsed code is a "FunctionDeclaration" with its own id, parameters, defaults and body attributes. We observe that the attributes in turn can again be (a list of) nodes.
+The parsed source code is a list of nodes contained in the body property of the ``program'' AST node. This is the root node of the AST. Each node has its own \textit{type} that distinguishes different kinds of expressions and statements. The example code in listing \ref{lst:EsprimaTree} shows that the parsed code is a ``FunctionDeclaration'' with its own id, parameters, defaults and body attributes. We observe that the attributes in turn can again be (a list of) nodes.
 
 \end{exmp}
 
@@ -158,12 +158,12 @@ The lookup of a variable through an address in the store results in the (set of)
 
 The stack is a local continuation delimited by a meta-continuation. The \textit{local continuation} is a (possibly empty) list of frames which acts as a stack of frames, with normal push and pop functionality. A \textit{meta-continuation} is either empty or a stack address pointing to the underlying stacks in the stack store. Stack addresses are generated at call sites and thus represent application contexts. Useful information such as the call stack can be obtained by tracing out all reachable stack addresses in the stack store, starting from the context that is directly contained as meta-continuation in the current state. The traversal of the stack terminates when we encounter an empty meta-continuation, also called the \textit{root context}. A program starts and terminates evaluation in this root context, provided that evaluation happens without errors. The root context corresponds to the top-level part of a program, the global namespace in JavaScript.
 
-Although our framework does not provide stack traversal functionalities, basic properties of the stack (local continuation and meta-continuation) can be used and inspected to detect different kinds of states. For a function application, states corresponding with the start and end of the application will have the same local and meta-continuation. With this information, we can know the dynamic extend of function applications for example. This makes it possible to check for expressions and statements within this dynamic extend, such as a recursive function call.
+Although our tool does not provide stack traversal functionalities, basic properties of the stack (local continuation and meta-continuation) can be used and inspected to detect different kinds of states. For a function application, states corresponding with the start and end of the application will have the same local and meta-continuation. With this information, we can know the dynamic extend of function applications for example. This makes it possible to check for expressions and statements within this dynamic extend, such as a recursive function call.
 
 \section{DSLs for querying graphs}
 \label{sec:DSLForQueryingGraphs}
 
-Domain-specific languages are well-suited for querying graphs, as we can develop such a language to provide just the expressive power that is needed to match the states of a graph. For this dissertation we have developed JS-QL, an internal (or embedded~\cite{Hudak:1996})domain-specific query language for querying abstract state graphs. We define domain-specific languages as follows:
+Domain-specific languages are well-suited for querying graphs, as we can develop such a language to provide just the expressive power that is needed to match the states of a graph. For this dissertation we have developed JS-QL, an internal (or embedded~\cite{Hudak:1996}) domain-specific query language for querying abstract state graphs. We define domain-specific languages as follows:
 
 \begin{definition}
     \textit{A \textbf{domain-specific language} (DSL) is a programming language of executable specification language that offers, through approproate notations and abstractions, expressive power focused on, and usually restricted to, a particular problem domain.}
@@ -175,15 +175,15 @@ Domain-specific languages are well-suited for querying graphs, as we can develop
     \textit{An \textbf{external DSL} is a DSL which comes along with a compiler which translates DSL programs into applications. The implementation of the compiler can completely be tailored to the DSL, allowing the developer of the language to freely choose the language constructs.}
 \end{definition}
  
-\textit{Domain-specific language} is no new concept. Many programming languages that are now considered general purpose language started out as domain-specific languages. Cobol, Fortran and Lisp for example all came into existence as dedicated languages for solving problems in a certain area\cite{vanDeursen:2000}, but gradually evolved into the full fledged languages they are today. 
+\textit{Domain-specific language} is no new concept. Many programming languages that are now considered general purpose language started out as domain-specific languages. Cobol, Fortran and Lisp for example all came into existence as dedicated languages for solving problems in a certain area~\cite{vanDeursen:2000}, but gradually evolved into the full fledged languages they are today. 
 
 \subsection*{Benefits over global-purpose languages}
 
-The key focus for DSLs are its focussed expressive power. The expressiveness of DSLs comes from the fact that they were created to solve a small set of problems. They offer a high-level set of mechanisms for the programmer to express his ideas for a particular application domain. A DSLs aim is to have the language focus specifically on those aspects and concepts that are relevant to a particular problem domain, hiding all boilerplate code that comes along with general-purpose languages (GPLs). However relevant for a wider area of domains, GPLs are often too general and have a set of operational baggage associated with them, making them unsuitable and too complex to write simple application- and domain-specific programs\cite{FluentInterfacesJava}. Benefits of domain-specific languages include:
+The key focus for DSLs are its focused expressive power. The expressiveness of DSLs comes from the fact that they were created to solve a small set of problems. They offer a high-level set of mechanisms for the programmer to express his ideas for a particular application domain. A DSLs aim is to have the language focus specifically on those aspects and concepts that are relevant to a particular problem domain, hiding all boilerplate code that comes along with general-purpose languages (GPLs). However relevant for a wider area of domains, GPLs are often too general and have a set of operational baggage associated with them, making them unsuitable and too complex to write simple application- and domain-specific programs~\cite{FluentInterfacesJava}. Benefits of domain-specific languages include:
 
 \begin{itemize}
 \item DSLs are application-specific. This allows users to express their ideas at the level of abstraction of the problem domain.
-\item DSL programs are concise, self-documenting and highly reusable\cite{Bentley:1986}
+\item DSL programs are concise, self-documenting and highly reusable~\cite{Bentley:1986}.
 \item Increased productivity: Once the language design and implementation have finished, work becomes much more efficient as you don't have to write the boilerplate code of the GPL manually. In this way you can replace a lot of GPL code with a few lines of DSL code.
 \item Domain expert involvement: DSLs whose domain, abstractions and notations are closely aligned with how domain experts reason and express themselves, allow for a fluent integration between developers and domain experts. Domain experts can read, and possibly even write code in the language as they are not directly confronted with any implementation details.
 \item Programs are often expressed at a level of abstraction that is meaningful for the domain. This brings along that these programs contain domain knowledge and that they can be reused with few to no modifications.
@@ -195,16 +195,16 @@ The key focus for DSLs are its focussed expressive power. The expressiveness of 
 Some counterarguments for using a DSL are:
 
 \begin{itemize}
-\item The cost of designing, implementing and maintaining a DSL is high
-\item The cost of educating DSL users is non-negligible
-\item A DSL has limited applicability
-\item It is difficulty to find the correct scope for a DSL
+\item The cost of designing, implementing and maintaining a DSL is high.
+\item The cost of educating DSL users is non-negligible.
+\item A DSL has limited applicability.
+\item It is difficulty to find the correct scope for a DSL.
 \end{itemize}
 
-We argue that the costs for setting up a DSL do not weigh up against the benefits of a DSL. The high reusability alone makes up for the one-time investment of designing and implementing the language. When developing a language for a certain domain, naturally its applicability will be limited to that domain only, as this is the purpose of a domain-specific language. Finding the correct scope for a DSL might be cumbersome, but there is a large body of literature about specifying the domain of a problem\cite{Simos:1995} and the domain for DSLs\cite{karsai2014design}\cite{gunther2010agile}. 
+We argue that the costs for setting up a DSL do not weigh up against the benefits of a DSL. The high reusability alone makes up for the one-time investment of designing and implementing the language. When developing a language for a certain domain, naturally its applicability will be limited to that domain only, as this is the purpose of a domain-specific language. Finding the correct scope for a DSL might be cumbersome, but there is a large body of literature about specifying the domain of a problem~\cite{Simos:1995} and the domain for DSLs~\cite{karsai2014design, gunther2010agile}. 
 
 In contrast to the generic approach, the domain-specific approach to language design makes it possible to allow low-level system requirements to guide the design of the required high-level language features one wishes to incorporate into his language, instead of being required to use existing general-purpose designs.
-We therefore believe that a domain-specific language is the best pick for our query language.
+We therefore believe that a domain-specific language is the best pick for our specification language.
 
 \section{Design of an internal DSL for querying flow graphs}
 \label{sec:DesignInternalDSL}
@@ -214,7 +214,7 @@ Although internal DSLs are restricted by the syntax of their host language, they
 
 \subsection{Internal DSL design constraints}
 
-This section describe some factors that influenced the design of our query language.
+This section describe some factors that influenced the design of our specification language.
 
 \subsubsection{JavaScript as a host language}
 
@@ -229,7 +229,6 @@ JS-QL uses dictionaries in nearly all of its language constructs to map informat
 
 \subsubsection{The query environment}
 
-%GEEN REPL
 A final constraint was the need of an environment where queries can be expressed and evaluated against the flow graph. We opted to extend the existing environment of the JIPDA analysis with support for (i) writing queries and (ii) checking these queries against the flow graph, as this is more user-friendly than using the built-in browser console. It also would be tiresome to specify queries in one place and the input program elsewhere, as this would imply that every time a change to the program or the query has to be made, at least one separate file has to be modified. This is clearly not an optimal solution.
 
 
@@ -242,7 +241,7 @@ A final constraint was the need of an environment where queries can be expressed
     \label{fig:DSLTechniques}
 \end{figure}
 
-Figure \ref{fig:DSLTechniques} shows the different kinds of implementation techniques for internal DSLs, as specified by \cite{Ghosh:2010}. Our DSL doesn't generate any code, so we won't discuss generative internal DSLs. for the JS-QL language, we use a \textit{smart API} approach, as it is ideal for our domain. By chaining methods in our DSL we can specify which states we want to encounter along the graph in a clearly specified order. We can define smart API as follows:
+Figure \ref{fig:DSLTechniques} shows the different kinds of implementation techniques for internal DSLs, as specified by Ghosh et al.~\cite{Ghosh:2010}. Our DSL doesn't generate any code, so we won't discuss generative internal DSLs. for the JS-QL language, we use a \textit{smart API} approach, as it is ideal for our domain. By chaining methods in our DSL we can specify which states we want to encounter along the graph in a clearly specified order. We can define smart API as follows:
 
 \begin{definition}
     \textit{a \textbf{smart API} is an API that is readable, easy to use and does not need boiler plate to work properly.}
@@ -257,11 +256,11 @@ We can already rule out type embedding, as this is only used for statically type
 
 \subsection*{Used DSL design patterns}
 
-Combining a smart API with several carefully chosen DSL design patterns\cite{DSLFowler} result in the concise and easily readable language that JS-QL is today. The remainder of this section elaborates on the chosen design patterns.
+Combining a smart API with several carefully chosen DSL design patterns~\cite{DSLFowler} result in the concise and easily readable language that JS-QL is today. The remainder of this section elaborates on the chosen design patterns.
 
 \subsubsection*{Method chaining}
 
-Method chaining is a principle that allows methods to be specified one after another, and it is the bread and butter of our query language. This approach offers a fluent interface to the user with the aim to write readable queries and avoid coding mistakes. The ability to express a state one wishes to encounter as a chained method to states discovered earlier in the graph allows to build very readable queries.
+Method chaining is a principle that allows methods to be specified one after another, and it is the bread and butter of our specification language. This approach offers a fluent interface to the user with the aim to write readable queries and avoid coding mistakes. The ability to express a state one wishes to encounter as a chained method to states discovered earlier in the graph allows to build very readable queries.
 \begin{exmp}
 \label{ex:fluentInterface}
  Consider the query: \texttt{G.skipZeroOrMore().functionCall()}. It is obvious that this code is intuitive: \texttt{G} is the entry point of our language, which indicates the start of a query. We then search for a path in the graph that contains a function call somewhere down that path. This is expressed by \texttt{skip}ping zero or more states until a function call state is encountered.
@@ -284,7 +283,7 @@ Object scoping encapsulates the language in such a way that the effects of the l
 \subsubsection*{Deferred evaluation}
 %deferred evaluation
 %-> Used to specify extra properties (not available at compile-time) + filters on values that aren't available
-Deferred evaluation postpones evaluation of certain expressions, such as function calls. Some queries in JS-QL contain definitions for extra properties and filters. The information for these filters and properties is often not available at compile-time of our language. Deferred evaluation is used as a technique to delay the evaluation of those filters and properties until the matching process in the backend has collected enough information. Our framework handles this by creating thunks for filters and properties and unwrapping these thunks when the matching engine needs to evaluate them. By the time the evaluation happens, all variables should be bound in these thunks in previous matching steps.
+Deferred evaluation postpones evaluation of certain expressions, such as function calls. Some queries in JS-QL contain definitions for extra properties and filters. The information for these filters and properties is often not available at compile-time of our language. Deferred evaluation is used as a technique to delay the evaluation of those filters and properties until the matching process in the backend has collected enough information. Our tool handles this by creating thunks for filters and properties and unwrapping these thunks when the matching engine needs to evaluate them. By the time the evaluation happens, all variables should be bound in these thunks in previous matching steps.
 \begin{exmp}
 Consider a metavariable \texttt{?val} which captures a value of an assignment. If we only want to match assignment states with a value greater than 2, we have to create a thunk for the filter function \texttt{>} with arguments \texttt{?val} and 2. We can not discard states with \texttt{?val} greater than 2 immediately, as we don't know which value will be bound to \texttt{?val} at compile time.
 \end{exmp}
@@ -317,25 +316,25 @@ In this section, we describe some existing approaches for querying graphs. We de
 
 \subsection{External DSLs}
 
-Many DSLs come along with a compiler which translates DSL programs into applications. These kinds of DSLs are called \textit{external} DSLs. the compiler is also called an application generator\cite{Cleaveland:1988}, whereas the DSL is the application-specific language. The main advantage of external DSLs is that the implementation of the compiler can completely be tailored to the DSL. The DSL in turn is restricted in no way with regards to notation and primitives because its syntax is independent of any underlying host language. The remainder of this section discusses existing work about external DSLs used for graph traversal and graph querying.
+Many DSLs come along with a compiler which translates DSL programs into applications. These kinds of DSLs are called \textit{external} DSLs. the compiler is also called an application generator~\cite{Cleaveland:1988}, whereas the DSL is the application-specific language. The main advantage of external DSLs is that the implementation of the compiler can completely be tailored to the DSL. The DSL in turn is restricted in no way with regards to notation and primitives because its syntax is independent of any underlying host language. The remainder of this section discusses existing work about external DSLs used for graph traversal and graph querying.
 
 \subsubsection*{StruQL}
 
-StruQL is the query language behind the Strudel system\cite{Fernandez97aquery}. The language is built to support the retrieval and construction of data for web sites. This data is represented as \textit{data graphs} and originates from external sources, the integrated view and the web site itself. These data graphs depict web sites as graphs in which nodes represent web pages or atomic values and labelled edges which interconnecting nodes. These edges then represent the links or attribute values that connect two nodes. The language enables users to create and query data graphs, but the real power of StruQL lies in its ability to express regular path expressions. This allows for very flexible queries describing the paths about which information needs to be accessed in great detail.
+StruQL is the query language behind the Strudel system~\cite{Fernandez97aquery}. The language is built to support the retrieval and construction of data for web sites. This data is represented as \textit{data graphs} and originates from external sources, the integrated view and the web site itself. These data graphs depict web sites as graphs in which nodes represent web pages or atomic values and labelled edges which interconnecting nodes. These edges then represent the links or attribute values that connect two nodes. The language enables users to create and query data graphs, but the real power of StruQL lies in its ability to express regular path expressions. This allows for very flexible queries describing the paths about which information needs to be accessed in great detail.
 It also allows to compute the transitive closure of an \textit{arbitrary 2n-ary} relation, meaning that it can compute all reachable nodes from a certain node for any input graph. 
 
 \subsubsection*{GraphQL}
 %http://sites.fas.harvard.edu/~cs265/papers/he-2008.pdf -> GraphQL
 
-GraphQL\cite{He:2008} is a query language for querying graph databases. The language uses a graph pattern as a basic operational unit. These graph patterns consist of a graph structure and a predicate on attributes of the graph. GraphQL introduced the notion of formal languages for graphs. This is useful for composing and manipulating graph structures and is used as a basis of the graph query language.
+GraphQL~\cite{He:2008} is a query language for querying graph databases. The language uses a graph pattern as a basic operational unit. These graph patterns consist of a graph structure and a predicate on attributes of the graph. GraphQL introduced the notion of formal languages for graphs. This is useful for composing and manipulating graph structures and is used as a basis of the graph query language.
 The core of the language is a graph algebra in which the selection operator is generalized to graph pattern matching and a composition operator is introduced for rewriting matched graphs. In terms of expressive power, the language is contained in Datalog. This means that every query in GraphQL can be converted to a Datalog query. The language allows users to express concatenation, disjunction and recursion, allowing users to write dynamic queries. They address the NP-completeness of subgraph isomorphism by using neighborhood subgraphs and profiles, joint reduction of the search space, and optimization of the search order.
 
 \subsubsection*{ASTLOG}
 %http://www.cs.nyu.edu/~lharris/papers/crew.pdf
-ASTLOG\cite{Crew:1997} is a query language for syntax-level C/C++ program analysis and is well suited to construct anchored patterns to match tree-like structures. Syntax-wise, the language is built as a Prolog variant, but instead of transforming an entire program into a database of Prolog rules, it is able to match \textit{objects} to queries directly. These objects are being made available through a C/C++ compiler frontend which provides an interface to the syntactic/semantic data structures built during the parse of a program. Among the available objects are the AST nodes of a program. These nodes can then be examined and queried by user-defined predicates in a similar fashion as one would do in Prolog. This allows for application-specific composable predicates. 
+ASTLOG~\cite{Crew:1997} is a query language for syntax-level C/C++ program analysis and is well suited to construct anchored patterns to match tree-like structures. Syntax-wise, the language is built as a Prolog variant, but instead of transforming an entire program into a database of Prolog rules, it is able to match \textit{objects} to queries directly. These objects are being made available through a C/C++ compiler frontend which provides an interface to the syntactic/semantic data structures built during the parse of a program. Among the available objects are the AST nodes of a program. These nodes can then be examined and queried by user-defined predicates in a similar fashion as one would do in Prolog. This allows for application-specific composable predicates. 
 
 \subsubsection*{Lorel}
-The Lorel language\cite{abiteboul1997lorel} was designed to query semistructured data. This kind of data can be seen as a graph with complex values at internal nodes, labeled edges and atomic leaves. The language's syntax resembles that of OQL (\textit{Object Query Language}), but has two two additional features: (i) A coercion mechanism for value/object comparisons and (ii) powerful path expressions. Coercion is needed for semistructured data, as two objects may represent the same data in different ways. Lorel introduces \textit{general path expressions}, a way to define label completion and regular expressions in paths. Regular expressions are supported through \texttt{.},\texttt{+},\texttt{?},\texttt{*},\texttt{()} and \texttt{|}, label completion is done as in SQL, namely with the \texttt{\%} symbol.
+The Lorel language~\cite{abiteboul1997lorel} was designed to query semistructured data. This kind of data can be seen as a graph with complex values at internal nodes, labeled edges and atomic leaves. The language's syntax resembles that of OQL (\textit{Object Query Language}), but has two two additional features: (i) A coercion mechanism for value/object comparisons and (ii) powerful path expressions. Coercion is needed for semistructured data, as two objects may represent the same data in different ways. Lorel introduces \textit{general path expressions}, a way to define label completion and regular expressions in paths. Regular expressions are supported through \texttt{.},\texttt{+},\texttt{?},\texttt{*},\texttt{()} and \texttt{|}, label completion is done as in SQL, namely with the \texttt{\%} symbol.
 %http://infolab.stanford.edu/lore/pubs/lorel96.pdf -> Semistructured data
 
 %-----------------------------
@@ -363,9 +362,9 @@ Dagoba\footnote{http://aosabook.org/en/500L/dagoba-an-in-memory-graph-database.h
 
 \subsubsection*{A little language for surveys}
 
-A Little Language for Surveys \cite{RubyDSL} explores the use of the Ruby programming language to implement an internal domain-specific language. It checks how well the flexible and dynamic nature of the language accomodates for the implementation of a DSL for specifying and executing surveys. Two key features of the Ruby programming language are exploited because these features especially support defining internal DSLs: the flexibility of the syntax and the support for blocks. Function calls for example are easily readable, since the braces surrounding the arguments can be omitted and the argument list can consist of a variable number of arguments . They make extensive use of the fact that entire blocks can be attached to method calls. These blocks are passed unevaluated to the called method, enabling \textit{deferred evaluation}. In addition to these features, the meta-programming facilities of Ruby make it possible to read a DSL program and execute it in the contexts specified by that program. A two-pass architecture is used, splitting up the parsing and interpretation of the program. This is common practice for internal DSLs.
+A Little Language for Surveys~\cite{RubyDSL} explores the use of the Ruby programming language to implement an internal domain-specific language. It checks how well the flexible and dynamic nature of the language accomodates for the implementation of a DSL for specifying and executing surveys. Two key features of the Ruby programming language are exploited because these features especially support defining internal DSLs: the flexibility of the syntax and the support for blocks. Function calls for example are easily readable, since the braces surrounding the arguments can be omitted and the argument list can consist of a variable number of arguments . They make extensive use of the fact that entire blocks can be attached to method calls. These blocks are passed unevaluated to the called method, enabling \textit{deferred evaluation}. In addition to these features, the meta-programming facilities of Ruby make it possible to read a DSL program and execute it in the contexts specified by that program. A two-pass architecture is used, splitting up the parsing and interpretation of the program. This is common practice for internal DSLs.
 
 
 \section{Conclusion}
-In this chapter we discuss our approach for building the JS-QL framework. We described the architecture of the framework and discussed each component. As our approach uses the JIPDA abstract state graph as a program presentation, we described the information that can be found in this graph. JS-QL is an embedded domain-specific language. In this chapter we motivated the use of an embedded DSL, and we describe the design constraints and design patterns that influenced the language. Finally, we provided an overview of existing DSL approaches for querying graphs.
+In this chapter we discuss our approach for building the JS-QL tool. We described the architecture of the tool and discussed each component. As our approach uses the JIPDA abstract state graph as a program presentation, we described the information that can be found in this graph. JS-QL is an embedded domain-specific language. In this chapter we motivated the use of an embedded DSL, and we describe the design constraints and design patterns that influenced the language. Finally, we provided an overview of existing DSL approaches for querying graphs.
 

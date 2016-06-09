@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.26)  8 JUN 2016 21:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.26)  9 JUN 2016 19:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1189,7 +1189,7 @@ LaTeX Info: Redefining \nameref on input line 178.
 \openout5 = `main.out'.
 
 
-<images/VUB_logo.pdf, id=340, 758.835pt x 153.57375pt>
+<images/VUB_logo.pdf, id=336, 758.835pt x 153.57375pt>
 File: images/VUB_logo.pdf Graphic file (type pdf)
 
 <use images/VUB_logo.pdf>
@@ -1209,7 +1209,7 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 180.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<images/VUB_schild.pdf, id=341, 260.975pt x 259.97125pt>
+<images/VUB_schild.pdf, id=337, 260.975pt x 259.97125pt>
 File: images/VUB_schild.pdf Graphic file (type pdf)
 
 <use images/VUB_schild.pdf>
@@ -1264,12 +1264,6 @@ Overfull \hbox (7.21661pt too wide) in paragraph at lines 219--220
 atis-che anal-yse. Statis-
  []
 
-
-Overfull \hbox (26.62495pt too wide) in paragraph at lines 223--224
-\OT1/ptm/m/n/12 ge-bruikt een em-bed-ded domein-specifieke query-taal diege-bou
-wd is bovenop JavaScript.
- []
-
 [2
 
 ] [3] [4
@@ -1299,13 +1293,13 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 Chapter 1.
 (./chapters/introduction.tex
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 16.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 15.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.19 \item
-           We investigate which type of querying mechanism suits best for ex...
+l.18 \item
+           We investigate which type of specification language is best suite...
 [1
 
 ] [2]) [3]
@@ -1316,7 +1310,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
  [4
 
 ]
-<images/decider.pdf, id=572, 493.845pt x 82.3075pt>
+<images/decider.pdf, id=567, 493.845pt x 82.3075pt>
 File: images/decider.pdf Graphic file (type pdf)
  <use images/decider.pdf>
 Package pdftex.def Info: images/decider.pdf used on input line 27.
@@ -1343,19 +1337,19 @@ File: omspcr.fd
 LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 57.
 
-<images/abstractInterpretation.pdf, id=593, 705.63625pt x 122.4575pt>
+<images/abstractInterpretation.pdf, id=588, 594.22pt x 122.4575pt>
 File: images/abstractInterpretation.pdf Graphic file (type pdf)
 
 <use images/abstractInterpretation.pdf>
 Package pdftex.def Info: images/abstractInterpretation.pdf used on input line 6
 1.
-(pdftex.def)             Requested size: 390.0pt x 67.68068pt.
+(pdftex.def)             Requested size: 390.0pt x 80.3756pt.
  [7 <./images/abstractInterpretation.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 126--127
 
  []
 
-[8]
+
 Underfull \hbox (badness 10000) in paragraph at lines 137--140
 
  []
@@ -1380,50 +1374,50 @@ Underfull \hbox (badness 10000) in paragraph at lines 152--161
 
  []
 
-[9]
+[8]
 Overfull \hbox (1.01544pt too wide) in paragraph at lines 183--184
 \OT1/ptm/m/n/12 The re-main-der of this sec-tion dis-cusses the most pop-u-lar 
 static anal-y-sis ap-proaches
  []
 
-
+[9]
 Overfull \hbox (9.47527pt too wide) in paragraph at lines 185--187
 \OT1/ptm/m/n/12 anal-y-sis used is flow-sensitive, context-sensitive, object-se
 nsitive and lock-sensitive,
  []
 
-[10]
+
 Overfull \hbox (4.58037pt too wide) in paragraph at lines 190--191
 \OT1/ptm/m/n/12 pro-gram slic-ing. The SDG is an over-ap-prox-i-ma-tion of the 
 in-for-ma-tion flow through
  []
 
-[11] [12] [13] <images/PDG.png, id=678, 614.295pt x 390.45876pt>
+[10] [11] [12] <images/PDG.png, id=658, 614.295pt x 390.45876pt>
 File: images/PDG.png Graphic file (type png)
 
 <use images/PDG.png>
 Package pdftex.def Info: images/PDG.png used on input line 229.
 (pdftex.def)             Requested size: 272.99881pt x 173.52422pt.
- [14 <./images/PDG.png>]
+ [13 <./images/PDG.png>]
 LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <10> not available
 (Font)              Font shape `OT1/pcr/b/n' tried instead on input line 246.
- [15]
-<images/Metal.png, id=712, 349.305pt x 319.1925pt>
+ [14]
+<images/Metal.png, id=691, 349.305pt x 319.1925pt>
 File: images/Metal.png Graphic file (type png)
  <use images/Metal.png>
 Package pdftex.def Info: images/Metal.png used on input line 267.
 (pdftex.def)             Requested size: 155.99762pt x 142.54918pt.
 
-<images/JunGL.png, id=715, 348.30125pt x 208.78pt>
+[15 <./images/Metal.png>] <images/JunGL.png, id=700, 348.30125pt x 208.78pt>
 File: images/JunGL.png Graphic file (type png)
- <use images/JunGL.png>
+
+<use images/JunGL.png>
 Package pdftex.def Info: images/JunGL.png used on input line 284.
 (pdftex.def)             Requested size: 155.99762pt x 93.5073pt.
-
-[16 <./images/Metal.png>]) [17 <./images/JunGL.png>]
+ [16 <./images/JunGL.png>]) [17]
 Chapter 3.
 (./chapters/overview.tex
-<images/Architecture.pdf, id=729, 503.8825pt x 212.795pt>
+<images/Architecture.pdf, id=714, 503.8825pt x 212.795pt>
 File: images/Architecture.pdf Graphic file (type pdf)
 
 <use images/Architecture.pdf>
@@ -1432,7 +1426,7 @@ Package pdftex.def Info: images/Architecture.pdf used on input line 10.
  [18
 
 ] [19 <./images/Architecture.pdf>]
-<images/JipdaGraph.png, id=758, 273.02pt x 304.13625pt>
+<images/JipdaGraph.png, id=742, 273.02pt x 304.13625pt>
 File: images/JipdaGraph.png Graphic file (type png)
 
 <use images/JipdaGraph.png>
@@ -1472,20 +1466,20 @@ Overfull \hbox (18.94424pt too wide) in paragraph at lines 209--209
 []\OT1/ptm/b/n/17.28 Design of an in-ter-nal DSL for query-ing flow graphs 
  []
 
-[27] <images/DSLTechniques.pdf, id=885, 584.1825pt x 222.8325pt>
+[27] <images/DSLTechniques.pdf, id=870, 584.1825pt x 222.8325pt>
 File: images/DSLTechniques.pdf Graphic file (type pdf)
 
 <use images/DSLTechniques.pdf>
-Package pdftex.def Info: images/DSLTechniques.pdf used on input line 240.
+Package pdftex.def Info: images/DSLTechniques.pdf used on input line 239.
 (pdftex.def)             Requested size: 312.00119pt x 119.01529pt.
  [28 <./images/DSLTechniques.pdf>]
-Overfull \hbox (7.79066pt too wide) in paragraph at lines 267--268
+Overfull \hbox (7.79066pt too wide) in paragraph at lines 266--267
 [][]\OT1/ptm/b/n/12 Example 7. []\OT1/ptm/m/n/12 Con-sider the query: \OT1/pcr/
 m/n/12 G.skipZeroOrMore().functionCall()\OT1/ptm/m/n/12 .
  []
 
 [29]
-Overfull \hbox (9.61551pt too wide) in paragraph at lines 277--278
+Overfull \hbox (9.61551pt too wide) in paragraph at lines 276--277
 [][]\OT1/ptm/b/n/12 Example 8. []\OT1/pcr/m/n/12 functionCall(\OMS/cmsy/m/n/12 
 f\OT1/pcr/m/n/12 name: 'f', arguments: '?args'\OMS/cmsy/m/n/12 g\OT1/pcr/m/n/12
  )\OT1/ptm/m/n/12 .
@@ -1502,7 +1496,7 @@ te \OT1/ptm/m/n/12 con-struct. \OT1/pcr/m/n/12 evalState\OT1/ptm/m/n/12 , \OT1/
 pcr/m/n/12 kontState\OT1/ptm/m/n/12 ,
  []
 
-[37] [38] <images/Unification.pdf, id=1020, 695.59875pt x 262.9825pt>
+[37] [38] <images/Unification.pdf, id=1006, 695.59875pt x 262.9825pt>
 File: images/Unification.pdf Graphic file (type pdf)
 
 <use images/Unification.pdf>
@@ -1510,22 +1504,24 @@ Package pdftex.def Info: images/Unification.pdf used on input line 114.
 (pdftex.def)             Requested size: 390.0pt x 147.44574pt.
  [39 <./images/Unification.pdf>] [40] [41] [42]
 [43] [44] [45] [46]
-<images/assignmentLookup.pdf, id=1157, 402.50375pt x 353.32pt>
+<images/assignmentLookup.pdf, id=1143, 402.50375pt x 353.32pt>
 File: images/assignmentLookup.pdf Graphic file (type pdf)
 
 <use images/assignmentLookup.pdf>
 Package pdftex.def Info: images/assignmentLookup.pdf used on input line 311.
 (pdftex.def)             Requested size: 195.0pt x 171.1713pt.
  [47 <./images/assignmentLookup.pdf>] [48]
-Overfull \hbox (2.65636pt too wide) in paragraph at lines 346--347
-[][]\OT1/ptm/b/n/12 Definition 12. []\OT1/ptm/b/it/12 Ex-is-ten-tial queries\OT
-1/ptm/m/it/12 : Given an edge-labeled di-rected graph $\OML/cmm/m/it/12 G$ \OT1
-/ptm/m/it/12 where
- []
-
 LaTeX Font Info:    Font shape `OMS/ptm/m/it' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 349.
+
 [49] [50]
+Overfull \hbox (5.4329pt too wide) in paragraph at lines 400--403
+\OT1/ptm/m/n/12 Expressing vul-ner-a-bil-i-ties with only the \OT1/pcr/m/n/12 s
+tate \OT1/ptm/m/n/12 and \OT1/pcr/m/n/12 wildcard \OT1/ptm/m/n/12 con-structs q
+uickly
+ []
+
+
 Overfull \hbox (20.59904pt too wide) in paragraph at lines 403--404
 \OT1/ptm/m/n/12 one spe-cific state. For ex-am-ple, JS-QL has a built-in pred-i
 -cate \OT1/pcr/m/n/12 functionCall
@@ -1541,27 +1537,21 @@ h the \OT1/pcr/m/n/12 finalize \OT1/ptm/m/n/12 method.
 Chapter 5.
 (./chapters/implementation.tex [57
 
-]
-Overfull \hbox (0.51385pt too wide) in paragraph at lines 29--30
-\OT1/ptm/m/n/12 The \OT1/pcr/m/n/12 SecurityAnalysis \OT1/ptm/m/n/12 mod-ule gl
-ues to-gether ev-ery com-po-nent in the frame-
- []
-
-[58] <images/UI.png, id=1333, 881.2925pt x 600.2425pt>
+] [58]
+<images/UI.png, id=1319, 881.2925pt x 600.2425pt>
 File: images/UI.png Graphic file (type png)
  <use images/UI.png>
 Package pdftex.def Info: images/UI.png used on input line 36.
 (pdftex.def)             Requested size: 390.0pt x 265.6279pt.
-
-[59 <./images/UI.png>] [60]
-<images/QueryProcessing.pdf, id=1351, 674.52pt x 503.8825pt>
+ [59 <./images/UI.png>] [60]
+<images/QueryProcessing.pdf, id=1337, 674.52pt x 503.8825pt>
 File: images/QueryProcessing.pdf Graphic file (type pdf)
 
 <use images/QueryProcessing.pdf>
 Package pdftex.def Info: images/QueryProcessing.pdf used on input line 64.
 (pdftex.def)             Requested size: 390.0pt x 291.3448pt.
  [61 <./images/QueryProcessing.pdf>] [62]
-[63] <images/matchingEngine.pdf, id=1395, 754.82pt x 654.445pt>
+[63] <images/matchingEngine.pdf, id=1381, 754.82pt x 654.445pt>
 File: images/matchingEngine.pdf Graphic file (type pdf)
 
 <use images/matchingEngine.pdf>
@@ -1572,7 +1562,7 @@ Package pdftex.def Info: images/matchingEngine.pdf used on input line 125.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [64] [65 <./images/matchingEngine.pdf>] [66]
-<images/matchingPredicates.pdf, id=1422, 896.34875pt x 241.90375pt>
+<images/matchingPredicates.pdf, id=1408, 896.34875pt x 241.90375pt>
 File: images/matchingPredicates.pdf Graphic file (type pdf)
 
 <use images/matchingPredicates.pdf>
@@ -1588,7 +1578,7 @@ Overfull \hbox (21.46504pt too wide) in paragraph at lines 198--199
 -u-ated. The \OT1/pcr/m/n/12 processValue
  []
 
-[70] <images/subgraphExpansion.pdf, id=1461, 965.6075pt x 252.945pt>
+[70] <images/subgraphExpansion.pdf, id=1447, 965.6075pt x 252.945pt>
 File: images/subgraphExpansion.pdf Graphic file (type pdf)
 
 <use images/subgraphExpansion.pdf>
@@ -1627,14 +1617,14 @@ xt, the lo-ca-tion of the prop-erty \OT1/pcr/m/n/12 write/writeln
 [93] [94] [95]) [96]
 Chapter 7.
 (./chapters/conclusion-and-future-work.tex
-Overfull \hbox (0.78697pt too wide) in paragraph at lines 4--5
+Overfull \hbox (0.78697pt too wide) in paragraph at lines 7--8
 \OT1/ptm/m/n/12 these vul-ner-a-bil-i-ties. JS-QL is a domain-specific lan-guag
 e em-bed-ded in JavaScript
  []
 
 [97
 
-] [98] [99]) [100] [101
+] [98]) [99] [100] [101
 
 
 ]
@@ -1643,11 +1633,11 @@ Appendix A.
 
 ]
 
-Package Listings Warning: Text dropped after begin of listing on input line 343
+Package Listings Warning: Text dropped after begin of listing on input line 345
 .
 
 [103] [104] [105]
-Overfull \hbox (1.96597pt too wide) in paragraph at lines 412--412
+Overfull \hbox (1.96597pt too wide) in paragraph at lines 414--414
 \OT1/ptm/m/n/12 WWW '10. Raleigh, North Car-olina, USA: ACM, 2010, pp. 281{290.
  \OT1/ptm/m/sc/12 isbn\OT1/ptm/m/n/12 :
  []
@@ -1655,65 +1645,72 @@ Overfull \hbox (1.96597pt too wide) in paragraph at lines 412--412
 [106
 
 ]
-Overfull \hbox (23.90715pt too wide) in paragraph at lines 412--412
+Overfull \hbox (23.90715pt too wide) in paragraph at lines 414--414
 \OT1/ptm/m/it/12 Pro-ceed-ings of the 18th Con-fer-ence on USENIX Se-cu-rity Sy
 m-po-sium\OT1/ptm/m/n/12 . SSYM'09.
  []
 
 
-Overfull \hbox (3.53706pt too wide) in paragraph at lines 412--412
+Overfull \hbox (3.53706pt too wide) in paragraph at lines 414--414
 []\OT1/ptm/m/n/12 K. A. Haw-ick. \  Flu-ent In-ter-faces and Domain-Specific La
 n-guages for Graph
  []
 
 [107]
-Overfull \hbox (6.8318pt too wide) in paragraph at lines 412--412
+Overfull \hbox (6.8318pt too wide) in paragraph at lines 414--414
 \OT1/ptm/m/n/12 Pro-gram De-pen-dence Graphs". In: \OT1/ptm/m/it/12 SIG-PLAN No
 t. \OT1/ptm/m/n/12 50.6 (June 2015), pp. 291{
  []
 
 
-Overfull \hbox (24.4472pt too wide) in paragraph at lines 412--412
+Overfull \hbox (24.4472pt too wide) in paragraph at lines 414--414
 []\OT1/ptm/m/n/12 Addy Os-mani. \OT1/ptm/m/it/12 Es-sen-tial JavaScript Names-p
 ac-ing Pat-terns\OT1/ptm/m/n/12 . 2011. \OT1/ptm/m/sc/12 url\OT1/ptm/m/n/12 : [
 ][]$\OT1/pcr/m/n/12 https :
  []
 
 [108]
-Overfull \hbox (19.56245pt too wide) in paragraph at lines 412--412
+Overfull \hbox (19.56245pt too wide) in paragraph at lines 414--414
 []\OT1/ptm/m/n/12 Gregor Snelt-ing et al. \  Check-ing Prob-a-bilis-tic Non-in-
 ter-fer-ence Us-ing JOANA".
  []
 
 
-Overfull \hbox (0.50372pt too wide) in paragraph at lines 412--412
+Overfull \hbox (0.50372pt too wide) in paragraph at lines 414--414
 \OT1/ptm/m/n/12 Al-go-rithm". In: \OT1/ptm/m/it/12 Com-mun. ACM \OT1/ptm/m/n/12
  11.6 (June 1968), pp. 419{422. \OT1/ptm/m/sc/12 issn\OT1/ptm/m/n/12 : 0001-
  []
 
 
-Overfull \hbox (10.18898pt too wide) in paragraph at lines 412--412
+Overfull \hbox (10.18898pt too wide) in paragraph at lines 414--414
 []\OT1/ptm/m/n/12 Joost Visser et al. \OT1/ptm/m/it/12 Build-ing Main-tain-able
  Soft-ware, Java Edi-tion\OT1/ptm/m/n/12 . 1st. O'Reilly
  []
 
 [109]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 412.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 412.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 414.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 414.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 412.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 412.
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 398474F5FEB5741526B489467890584C;6050.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 414.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 414.
+
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: 1DD49B4B260F9C22543B3B359F759E6B;5973
+(rerunfilecheck)             After:  36A80D3D794DB53549B402C9532F917F;6038.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 27997 strings out of 493089
- 500598 string characters out of 6134842
- 1044624 words of memory out of 5000000
- 29867 multiletter control sequences out of 15000+600000
+ 27986 strings out of 493089
+ 500465 string characters out of 6134842
+ 1044523 words of memory out of 5000000
+ 29864 multiletter control sequences out of 15000+600000
  37093 words of font info for 84 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
  64i,16n,60p,1260b,2050s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1728,17 +1725,16 @@ e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/tex
 mf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2015
-/texmf-dist/fonts/type1/public/stmaryrd/stmary10.pfb></usr/local/texlive/2015/t
-exmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texlive/2015/texmf-dis
-t/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/
-type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/
-times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utm
-r8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb><
-/usr/local/texlive/2015/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on main.pdf (120 pages, 1832641 bytes).
+/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texlive/2015/texmf-d
+ist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf-dist/font
+s/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/ur
+w/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/u
+tmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb
+></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
+Output written on main.pdf (120 pages, 1835099 bytes).
 PDF statistics:
- 2434 PDF objects out of 2487 (max. 8388607)
- 2247 compressed objects within 23 object streams
- 1091 named destinations out of 1200 (max. 500000)
- 762 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2416 PDF objects out of 2487 (max. 8388607)
+ 2230 compressed objects within 23 object streams
+ 1083 named destinations out of 1200 (max. 500000)
+ 754 words of extra memory for PDF output out of 10000 (max. 10000000)
 

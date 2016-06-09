@@ -6,10 +6,10 @@ To check for these vulnerabilities we need a program representation containing s
 
 \begin{enumerate}
 \item \textit{Control flow}: A program can contain many branches, loops and other control structures. We need to know the exact order of execution along each path in the program before we can make assumptions about security vulnerabilities. Therefore information is needed about which functions can be applied at a call site.
-\item \textit{Value flow}: Variables in JavaScript are mutable, so their values can change at any moment in a program. Value flow information tells us exactly what values an expression may evaluate to. This is very important w.r.t. security, as a harmless variable may get assigned a harmful value somewhere in the program. From there on, that variable should be marked as a possible threat to the system.
+\item \textit{Value flow}: Variables in JavaScript are mutable, so their values can change at any moment in a program. Value flow information tells us exactly what values an expression may evaluate to. This is very important w.r.t. security, as a variable bound to a harmless value may get assigned a harmful value somewhere in the program. From there on, that variable should be marked as a possible threat to the system.
 \end{enumerate}
 
-A technique is needed to efficiently express security checks in the form of user-specified, application specific security policies. A naive way to examine programs would be to run them and keep track of any relevant information during execution. Not only would this be tiresome, we can also not guarantee that the program will ever terminate, that it terminates without errors, or that it will have the same outcome for different inputs. A better approach would be to to analyze the program \textit{without} having to run it. A technique called \textit{static analysis} accommodates for this.
+A technique is needed to efficiently express security checks in the form of user-specified, application specific security policies. A naive way to examine programs would be to run them and keep track of any relevant information during execution. Not only would this be tiresome, we can also not guarantee that the program will ever terminate, that it terminates without errors, or that it will have the same outcome for different inputs. A better approach would be to to analyze the program \textit{without} having to run it. A field of research called \textit{static analysis} accommodates for this.
 
 This chapter describes how static analysis can be used to examine programs and how this analysis can be addressed to obtain information about specific parts of a program. First, section \ref{sec:staticAnalysis} describes more precisely what static analysis is and why this technique is interesting in the context of this dissertation. Next, We discuss four approaches using static analysis to find generic vulnerabilities in programs in section \ref{sec:genericVulnerabilities}. Finally, four application-specific approaches for checking security vulnerabilities are discussed. For these approaches we take a deeper look on how they query the information. We end this chapter by giving a brief conclusion.
 
@@ -20,7 +20,7 @@ This chapter describes how static analysis can be used to examine programs and h
 \textit{\textbf{Static analysis} is a technique for analyzing computer programs without having to execute them and still obtain useful results.}
 \end{definition}
 
-Rice's theorem states that there is no general or effective method to prove non-trivial properties about a program. This theorem is similar to the halting problem, which is undecidable. As proving non-trivial properties about a program is undecidable, static analysis focusses on the instances of the problem about which it can tell whether the program satisfies a property or not, and leaves other instances unsolved. In this way we can avoid the possible problems we might encounter using a naive technique (e.g. manually tracking information flow during execution). The results of the analysis may indicate program defects or can be used to prove certain properties of the program.  The results of the static analysis will then be a useful set of approximate solutions. Figure \ref{fig:decider} shows the main difference between a regular decider, which will always provide an exact answser, and a static analyzer.
+Rice's theorem states that the ability to decide non-trivial program properties is equivalent to the ability to decide whether a program halts (halting problem), which implies that deciding non-trivial program properties is undecidable. As proving non-trivial program properties is undecidable, static analysis focuses on the instances of the problem about which it can tell whether the program satisfies a property or not, and leaves other instances unsolved. In this way we can avoid the possible problems we might encounter using a naive technique (e.g. manually tracking information flow during execution). The results of the analysis may indicate program defects or can be used to prove certain properties of the program.  The results of the static analysis will then be a useful set of approximate solutions. Figure \ref{fig:decider} shows the main difference between a regular decider, which will always provide an exact answser, and a static analyzer.
 
 \begin{figure}[!h]
     \centering
@@ -50,11 +50,11 @@ Abstract interpretation is a static analysis technique used to reason about a pr
 Abstract interpretation works in a similar way as normal program interpretation (i.e. \textit{concrete interpretation}). The concrete interpretation of a program can be described as follows: A program \textit{e} can be injected into an initial state \textit{$s_0$}, the entry point of the program. From this state other reachable states can be computed using a \textit{transition function}, until after several transitions a final state is reached. If no such state is ever reached, the execution will not terminate and hence will run indefinitely. The output of interpreting a program like this is a possibly infinite trace of execution states. The layout of this execution trace might depend on the input of the program or other changing values, making it unsuitable for static analysis. 
 
 \subsubsection*{Applying abstraction}
-Abstract interpretation solves the problem of the uncertainty introduced by concrete interpretation by applying abstraction in order to compute a finite trace. Sets of primitive values and addresses are \textit{abstracted} to be made finite, resulting in something which is computable in finite time but less precise. Abstract interpretation is similar to concrete interpretation: A program is again injected, but this time into an \textit{abstract state} $\hat{s_0}$. A transition from one state to another is done through an \textit{abstract transition function}. The difference between this and a regular transition function is that an abstract state can make multiple transitions to successor states. This is a consequence of the precision loss due to abstraction. Example \ref{ex:concAbstr} illustrates the difference between concrete and abstract interpretation.
+Abstract interpretation solves the problem of the uncertainty introduced by concrete interpretation by applying abstraction in order to compute a finite trace. Sets of primitive values and addresses are \textit{abstracted} to be made finite, resulting in something which is computable in finite time but less precise. Abstract interpretation is similar to concrete interpretation: A program is again injected, but this time into an \textit{abstract state} $\hat{s}_0$. A transition from one state to another is done through an \textit{abstract transition function}. The difference between this and a regular transition function is that an abstract state can make multiple transitions to successor states. This is a consequence of the precision loss due to abstraction. Example \ref{ex:concAbstr} illustrates the difference between concrete and abstract interpretation.
 
 \begin{exmp}
 \label{ex:concAbstr}
-Figure \ref{fig:abstractInterpretation} shows the concrete and abstract interpretation traces for \texttt{while(x < 5)\{ x--;\}}. We assume that for the concrete case \texttt{x} is smaller than 5 when it reaches the code. The program will then never terminate, leading to an infinite execution trace. For the abstract case, we assume that \texttt{x} is abstracted. We see that in abstract state $\hat{s_3}$ the program can go to either $\hat{s_4}$ or $\hat{s_4}'$, and that the (possibly infinite) \texttt{while} loop is represented as a loop in the abstract state graph. This finite representation of a program (which is actually an abstract state graph) proves to be useful to provide answers to non-trivial questions about the program.
+Figure \ref{fig:abstractInterpretation} shows the concrete and abstract interpretation traces for \texttt{while(x < 5)\{ x--;\}}. We assume that for the concrete case \texttt{x} is smaller than 5 when it reaches the code. The program will then never terminate, leading to an infinite execution trace. For the abstract case, we assume that \texttt{x} is abstracted. We see that in abstract state $\hat{s}_3$ the program can go to either $\hat{s}_4$ or $\hat{s}_{4}'$, and that the (possibly infinite) \texttt{while} loop is represented as a loop in the abstract state graph. This finite representation of a program (which is actually an abstract state graph) proves to be useful to provide answers to non-trivial questions about the program.
 
 \begin{figure}[!h]
     \centering
@@ -65,34 +65,34 @@ Figure \ref{fig:abstractInterpretation} shows the concrete and abstract interpre
 
 \end{exmp}
 
-\subsection{Mathematical background}
-\label{subsec:lattice}
+%\subsection{Mathematical background}
+%\label{subsec:lattice}
 
-In this, we look at the mathematical concepts that form the base of abstract interpretation. The concepts defined in this section will aid us in formally defining an \textit{abstraction}. This definition is needed to understand how precision loss is caused by abstracting values.
+%In this, we look at the mathematical concepts that form the base of abstract interpretation. The concepts defined in this section will aid us in formally defining an \textit{abstraction}. This definition is needed to understand how precision loss is caused by abstracting values.
 
-\begin{definition}
-\textit{A relation $\sqsubseteq: S \times S$ is a \textbf{partial order} if it has the following characteristics:}
-\begin{enumerate}
-\item Reflexivity: $\forall x \in S : x \sqsubseteq x$
-\item Transitivity:  $\forall x,y,z \in S : x \sqsubseteq y \wedge y \sqsubseteq z \Rightarrow x \sqsubseteq z$
-\item Anti-symmetry: $\forall x,y \in S : x \sqsubseteq y \wedge y \sqsubseteq x \Rightarrow x = y$
-\end{enumerate}
-\end{definition}
-\begin{definition}
-\textit{A \textbf{partially ordered set} ($S$,$\sqsubseteq$) is a set with a partial order}
-\end{definition}
-\begin{definition}
-\textit{For a subset $X \subseteq S$, $u$ is an \textbf{upper bound} of $X$ if $u\in S, \forall x \in X: x \sqsubseteq u$. $u$ is the \textbf{least upper bound} of $X$ ($\bigsqcup X$) if for every upper bound $x$, $u \sqsubseteq x$. Similarly, the \textbf{lower bound} of $X$ can be defined as: $l \in S,\forall x \in X: l \sqsubseteq x$. $l$ is the \textbf{greatest lower bound} of $X$ ($\bigsqcap X$) if for every lower bound $x, x \sqsubseteq l$. Two important operators on partial orders are \textbf{join} ($\sqcup$) and \textbf{meet} ($\sqcap$). $x \sqcup y$ denotes $\bigsqcup\{x,y\}$, the least upper bound of $x$ and $y$, $x \sqcap y$ denotes $\bigsqcap\{x,y\}$, the greatest lower bound of $x$ and $y$.}
+%\begin{definition}
+%\textit{A relation $\sqsubseteq: S \times S$ is a \textbf{partial order} if it has the following characteristics:}
+%\begin{enumerate}
+%\item Reflexivity: $\forall x \in S : x \sqsubseteq x$
+%\item Transitivity:  $\forall x,y,z \in S : x \sqsubseteq y \wedge y \sqsubseteq z \Rightarrow x \sqsubseteq z$
+%\item Anti-symmetry: $\forall x,y \in S : x \sqsubseteq y \wedge y \sqsubseteq x \Rightarrow x = y$
+%\end{enumerate}
+%\end{definition}
+%\begin{definition}
+%\textit{A \textbf{partially ordered set} ($S$,$\sqsubseteq$) is a set with a partial order}
+%\end{definition}
+%\begin{definition}
+%\textit{For a subset $X \subseteq S$, $u$ is an \textbf{upper bound} of $X$ if $u\in S, \forall x \in X: x \sqsubseteq u$. $u$ is the \textbf{least upper bound} of $X$ ($\bigsqcup X$) if for every upper bound $x$, $u \sqsubseteq x$. Similarly, the \textbf{lower bound} of $X$ can be defined as: $l \in S,\forall x \in X: l \sqsubseteq x$. $l$ is the \textbf{greatest lower bound} of $X$ ($\bigsqcap X$) if for every lower bound $x, x \sqsubseteq l$. Two important operators on partial orders are \textbf{join} ($\sqcup$) and \textbf{meet} ($\sqcap$). $x \sqcup y$ denotes $\bigsqcup\{x,y\}$, the least upper bound of $x$ and $y$, $x \sqcap y$ denotes $\bigsqcap\{x,y\}$, the greatest lower bound of $x$ and $y$.}
 %Least upper bound
-\end{definition}
+%\end{definition}
 
-\begin{definition}\label{def:lattice}
-\textit{A \textbf{lattice} $(L,\sqsubseteq)$ is a partially ordered set in which any two elements have a least upper bound and a greatest lower bound. A \textbf{complete lattice} $(C,\sqsubseteq)$ is a partially ordered set in which all subsets have a least upper bound and a greatest upper bound. A complete lattice includes two special elements: a \textbf{bottom} element $\bot = \bigsqcap C$ and a \textbf{top} element $\top = \bigsqcup C$.}
-\end{definition}
+%\begin{definition}\label{def:lattice}
+%\textit{A \textbf{lattice} $(L,\sqsubseteq)$ is a partially ordered set in which any two elements have a least upper bound and a greatest lower bound. A \textbf{complete lattice} $(C,\sqsubseteq)$ is a partially ordered set in which all subsets have a least upper bound and a greatest upper bound. A complete lattice includes two special elements: a \textbf{bottom} element $\bot = \bigsqcap C$ and a \textbf{top} element $\top = \bigsqcup C$.}
+%\end{definition}
 
-\begin{definition}
-\textit{A \textbf{Galois connection} is a particular correspondence between two partially ordered sets $(A\sqsubseteq_A)$ and $(B\sqsubseteq_B)$. More precisely this correspondence is a pair of functions: the \textbf{abstraction function} $\alpha : A \rightarrow B$ and the \textbf{concretization function} $\gamma : B \rightarrow A$, such that $\forall a \in A, b \in B: \alpha(a) \sqsubseteq_B b \Leftrightarrow a \sqsubseteq_A \gamma(b)$.}
-\end{definition}
+%\begin{definition}
+%\textit{A \textbf{Galois connection} is a particular correspondence between two partially ordered sets $(A\sqsubseteq_A)$ and $(B\sqsubseteq_B)$. More precisely this correspondence is a pair of functions: the \textbf{abstraction function} $\alpha : A \rightarrow B$ and the \textbf{concretization function} $\gamma : B \rightarrow A$, such that $\forall a \in A, b \in B: \alpha(a) \sqsubseteq_B b \Leftrightarrow a \sqsubseteq_A \gamma(b)$.}
+%\end{definition}
 
 %TODO: lattice voorbeeld
 \begin{figure}
@@ -165,7 +165,7 @@ $\mathbb{Z}^+$ is an overapproximation of $\{1\}$, conserving all properties tha
 \section{Support for generic vulnerabilities}
 \label{sec:genericVulnerabilities}
 
-Static analysis is often used by model checkers to verify if a program satisfies a set of properties (i.e. a specification of a program). These tools usually require additional information to be added to the program before being able to analyze it. The OWASP LAPSE+ plugin for Eclipse\cite{OWASP:LAPSE} for example requires the user to annotate all possible vulnerability sources and sinks in the source code. It then checks if there is information flow between a source and a sink. 
+Static analysis is often used by model checkers to verify if a program satisfies a set of properties (i.e. a specification of a program). These tools usually require additional information to be added to the program before being able to analyze it. The OWASP LAPSE+ plugin for Eclipse~\cite{OWASP:LAPSE} for example requires the user to annotate all possible vulnerability sources and sinks in the source code. It then checks if there is information flow between a source and a sink. 
 
 \subsection{Limitations}
 Although applicable to many programs, tools for finding general characteristics of programs is limited in several ways:
@@ -182,22 +182,22 @@ To remedy these problems, a more practical approach would be to develop a tool w
 
 The remainder of this section discusses the most popular static analysis approaches for model checking and finding generic code characteristics and vulnerabilities.
 \subsubsection*{JOANA}
-The Java Object-Sensitive Analysis project (JOANA\cite{JOANA}) is an Eclipse plugin which checks for security leaks in Java programs. The tool supports all Java language features (except for reflection) and scales well for larger programs. The analysis used is flow-sensitive, context-sensitive, object-sensitive and lock-sensitive, minimizing the amount of false positives drastically. The types of security flaws JOANA is able to detect are:
+The Java Object-Sensitive Analysis project (JOANA~\cite{JOANA}) is an Eclipse plugin which checks for security leaks in Java programs. The tool supports all Java language features (except for reflection) and scales well for larger programs. The analysis used is flow-sensitive, context-sensitive, object-sensitive and lock-sensitive, minimizing the amount of false positives drastically. The types of security flaws JOANA is able to detect are:
 \begin{enumerate}
 \item \textit{Confidentiality}: Information about sensitive values, like passwords or personal data, should in no case be conveyed to public outputs.
 \item \textit{Integrity}: The dual of confidentiality: In no way should unsafe program inputs alter secure data or influence sensitive computations of a program.
 \end{enumerate}
-These flaws are detected by creating a system dependence graph (SDG) of the program on which information flow between sources and sinks is checked through program slicing. The SDG is an overapproximation of the information flow through the program. A benefit of this kind of graph is that it is able to detect direct (data dependencies) as well as indirect (control dependencies) dependencies. In order for the analysis to run, the user has to specify which parts of a program should act as sources and which should acts as sinks. This is done by adding annotations to the source code. JOANA comes with a machine-checked soundness proof. Although JOANA is capable of finding dependencies between program points, it is limited in the amount of vulnerabilities it detects and there is no way to extend the tool to support more vulnerabilities.
+These flaws are detected by creating a system dependence graph (SDG) of the program on which information flow between sources and sinks is checked through program slicing. The SDG is an overapproximation of the information flow through the program. A benefit of this kind of graph is that it is able to detect direct (data) as well as indirect (control) dependencies. In order for the analysis to run, the user has to specify which parts of a program should act as sources and which should acts as sinks. This is done by adding annotations to the source code. JOANA comes with a machine-checked soundness proof. Although JOANA is capable of finding dependencies between program points, it is limited in the amount of vulnerabilities it detects and there is no way to extend the tool to support more vulnerabilities.
 
 \subsubsection*{Flawfinder}
 Flawfinder\footnote{http://www.dwheeler.com/flawfinder} is a tool for examining C/C++ source code and detecting security weaknesses. It comes with a database of well-known problems, such as buffer overflow risks and race conditions. The results of the performed analysis is a report of all found flaws with a corresponding security risk level. Although being useful to quickly check for security vulnerabilities, Flawfinder is not extensible and it is not aware of the semantics of the system under test. Control flow and data flow analysis are not supported by the tool, making it a naive approach.
 
 \subsubsection*{FindBugs}
 
-FindBugs\cite{Findbugs} is a static analysis tool for detecting bugs in Java programs. It detects many classes of bugs by checking structural bug patterns against a program's source code. These classes of bugs can be subdivided into three main classes: correctness bugs, dodgy confusing code, and bad practices. Recently, the Find Security Bugs plugin\footnote{http://find-sec-bugs.github.io} was developed on top of Findbugs. This plugin can detect 80 different (pre-encoded) vulnerability types, among which are the top 10 OWASP security vulnerabilities. An example security violation detected by the plugin is the parsing of an untrusted XML file. The contents of this file might be malicious and thus may pose as a risk for the application. As the plugin is able to detect a wide range of bugs, the tool is well-suited to check for the most common security vulnerabilities. Nevertheless, only those vulnerabilities can be detected, and when a new class of security violations arises, there is no way to add detection rules for these vulnerabilities as a regular user.
+FindBugs~\cite{Findbugs} is a static analysis tool for detecting bugs in Java programs. It detects many classes of bugs by checking structural bug patterns against a program's source code. These classes of bugs can be subdivided into three main classes: correctness bugs, dodgy confusing code, and bad practices. Recently, the Find Security Bugs plugin\footnote{http://find-sec-bugs.github.io} was developed on top of Findbugs. This plugin can detect 80 different (pre-encoded) vulnerability types, among which are the top 10 OWASP security vulnerabilities. An example security violation detected by the plugin is the parsing of an untrusted XML file. The contents of this file might be malicious and thus may pose as a risk for the application. As the plugin is able to detect a wide range of bugs, the tool is well-suited to check for the most common security vulnerabilities. Nevertheless, only those vulnerabilities can be detected, and when a new class of security violations arises, there is no way to add detection rules for these vulnerabilities as a regular user.
 
 \subsubsection*{CodeSonar}
-CodeSonar\cite{CodeSonar}, developed by GrammaTech, is a proprietary source code analysis tool that performs a unified data flow and symbolic execution analysis for C, C++ and Java programs. GrammaTech claims to detect more code flaws than the average static analysis tool because they do not rely on pattern matching or other similar approximations. The approach CodeSonar uses is to compile source code and generate several intermediate representations, such as control flow graphs, call graphs and AST's. The tool then traverses/queries these models to find particular properties or patterns that indicate defects. Next to performing general checks, CodeSonar provides an C API which gives developers access to its intermediate representations of the compiled program. A user can then define custom checks on these representations. We dit not verify the ease of use of these custom checks as we did not find any examples. The hybrid approach of CodeSonar (general checks \textit{and} application-specified checks) preludes the next section of this chapter, which discusses approaches that support detecting application-specific vulnerabilities through user-defined queries and rules.
+CodeSonar~\cite{CodeSonar}, developed by GrammaTech, is a proprietary source code analysis tool that performs a unified data flow and symbolic execution analysis for C, C++ and Java programs. GrammaTech claims to detect more code flaws than the average static analysis tool because they do not rely on pattern matching or other similar approximations. The approach CodeSonar uses is to compile source code and generate several intermediate representations, such as control flow graphs, call graphs and AST's. The tool then traverses/queries these models to find particular properties or patterns that indicate defects. Next to performing general checks, CodeSonar provides an C API which gives developers access to its intermediate representations of the compiled program. A user can then define custom checks on these representations. We dit not verify the ease of use of these custom checks as we did not find any examples. The hybrid approach of CodeSonar (general checks \textit{and} application-specified checks) preludes the next section of this chapter, which discusses approaches that support detecting application-specific vulnerabilities through user-defined queries and rules.
 
 
 \section{Support for application-specific vulnerabilities}
@@ -210,9 +210,9 @@ In this section we discuss how putting the detection of application-specific cha
 
 \subsubsection*{PQL}
 
-The purpose of the PQL language to check if a program conforms certain program design rules\cite{PQL}. More precisely, it can be used to check the presence of sequences of events associated with a set of related objects. The language allows programmers to query for these types of sequences in an application-specific way, rendering it useful to detect design defects on a per application basis.
+The purpose of the PQL language is to check if a program conforms to certain program design rules~\cite{PQL}. More precisely, it can be used to check the presence of sequences of events associated with a set of related objects. The language allows programmers to query for these types of sequences in an application-specific way, rendering it useful to detect design defects on a per application basis.
 
-Either dynamic or static analysis can be used to solve these PQL queries, but only the latter is of interest for this dissertation. The static analyser uses a context-sensitive, flow-insensitive, inclusion-based pointer analysis. As PQL attempts to optimize results of the static analysis to use them in the dynamic analysis, the used analysis must be sound. The points-to information, together with the program representation, is stored as a collection ofdatalog rules in a deductive database called \textit{bddbddb}. This is similar to the approach of GateKeeper\cite{GateKeeper}.
+Either dynamic or static analysis can be used to solve these PQL queries, but only the latter is of interest for this dissertation. The static analyser uses a context-sensitive, flow-insensitive, inclusion-based pointer analysis. As PQL attempts to optimize results of the static analysis to use them in the dynamic analysis, the used analysis must be sound. The points-to information, together with the program representation, is stored as a collection ofdatalog rules in a deductive database called \textit{bddbddb}. This is similar to the approach of GateKeeper~\cite{GateKeeper}.
 
 Two interesting features of the PQL language are the support for subqueries and the ability to react to a match. The latter is only useful in the case we use dynamic analysis. Subqueries however add significant power to a language. In the case of PQL, they allow users to specify recursive event sequences of recursive object relations.
 
@@ -222,7 +222,7 @@ A benefit of using Datalog is that it is very efficient and has way less overhea
 
 \subsubsection*{Pidgin}
 
-Pidgin\cite{PidginQL} is a program analysis and understanding tool which allows users to specify and enforce application-specific security guarantees. The approach generates a \textit{Program Dependence Graph} (PDG) of programs by using an interprocedural data flow analysis (object-sensitive pointer analysis). This graph contains all information about how data data flows through a program. More precisely, each pair of connected nodes indicates that the second node of the pair depends in some way on the first node. Figure \ref{fig:PDG} shows a PDG of a guessing game.
+Pidgin~\cite{PidginQL} is a program analysis and understanding tool which allows users to specify and enforce application-specific security guarantees. The approach generates a \textit{Program Dependence Graph} (PDG) of programs by using an interprocedural data flow analysis (object-sensitive pointer analysis). This graph contains all information about how data data flows through a program. More precisely, each pair of connected nodes indicates that the second node of the pair depends in some way on the first node. Figure \ref{fig:PDG} shows a PDG of a guessing game.
 
 \begin{figure}[!ht]
     \centering
@@ -234,7 +234,7 @@ Pidgin\cite{PidginQL} is a program analysis and understanding tool which allows 
 We can see that the value that flows to the output function indirectly depends on the value of the secret. This behaviour is usally undesirable, as information about the secret can be leaked to the output. This can be seen as a security violation and can be queried for in the Pigdin language. To this extent, the Pidgin Query Language (PidginQL) defines specialized constructs that allow the user to retrieve all relevant information from the PDG. As the program is represented as a graph, the approach specializes in detecting if there is information flow from one node to another. An example of a PidginQL query is seen in listing \ref{lst:PidginExample}. The usual approach to writing queries is as follows: 
 
 \begin{enumerate}
-\item Specify the nodes between which information flow (from \textit{source} to \textit{sink}) needs to be detected and store them in variables. This is done through the aforementioned constructs.
+\item Specify the nodes between which information flow (from \textit{source} to \textit{sink}) needs to be detected and store them in variables. A \textit{source} is a point in the program where sensitive information is available, whereas a \textit{sink} is a program point where information may exit the program. This is done through the aforementioned constructs.
 \item Specify \textit{declassifier nodes}. These nodes act as sanitizers in a way that when information flows between a source and a sink and this information also flows through a sanitizer, then the flow is allowed.
 \item Remove all declassifier nodes from the graph to make sure that the query won't detect false positives (i.e. no flows from source to sink through a declassifier node).
 \item Check if there is any flow left between the specified sources and sinks.
@@ -255,12 +255,12 @@ The PidginQL language is expressive and powerful for detecting information flows
 
 \subsubsection*{Metal}
 
-Metal\cite{Metal} is a general analysis tool of programs for which a user has to write application-specific extensions called checkers. These extentions are then executed as a traditional dataflow analysis, but can be augmented in ways which are usually not supported by other more traditional approaches. Metal extensions are applied depth-first to the control-flow graph of a function. This flow graph is computed from the AST of the program. By applying an extension depth-first, each program point down a single path in the graph is checked. This process is similar to pattern matching. Checkers in the Metal language consist of two parts: the actual code that describes the checker and a corresponding state machine. Metal distinguish two types of state machines: \textit{Global} state machines and \textit{variable-specific} state machines. The former is used for program-wide properties, whereas the latter detects object-specific properties. 
+Metal~\cite{Metal} is a general analysis tool of programs for which a user has to write application-specific extensions called checkers. These extentions are then executed as a traditional dataflow analysis, but can be augmented in ways which are usually not supported by other more traditional approaches. Metal extensions are applied depth-first to the control-flow graph of a function. This flow graph is computed from the AST of the program. By applying an extension depth-first, each program point down a single path in the graph is checked. This process is similar to pattern matching. Checkers in the Metal language consist of two parts: the actual code that describes the checker and a corresponding state machine. Metal distinguish two types of state machines: \textit{Global} state machines and \textit{variable-specific} state machines. The former is used for program-wide properties, whereas the latter detects object-specific properties. 
 
 Checkers are written by defining states between which the state machine can transition. When the current program point matches a pattern described in the current state of the checker, the state machine transitions to the next state and/or performs an action (usually printing a warning). When there is no match for the current program point, the state machine does not transition and the analysis continues with the next program point. Example \ref{ex:Metal} clarifies the approach. 
 \begin{exmp}
 \label{ex:Metal}
-Figure \ref{fig:Metal} shows an global extension which checks for the double enabling of disabling of interrupts (\texttt{sti()} and \texttt{cli()} respectively). When enabling interrupts, the state machine transitions to the 'enabled' state. When enabling interrupts a second time, an error showing "Double sti" is printed. The same happens for disabling interrupts: when a user attempts to disable interrupts twice, or when the end of a path is reached when interrupts are still disabled (and thus the state machine is still in the 'disabled' state), an error will be printed.
+Figure \ref{fig:Metal} shows an global extension which checks for the double enabling of disabling of interrupts (\texttt{sti()} and \texttt{cli()} respectively). When enabling interrupts, the state machine transitions to the 'enabled' state. When enabling interrupts a second time, an error showing ``Double sti'' is printed. The same happens for disabling interrupts: when a user attempts to disable interrupts twice, or when the end of a path is reached when interrupts are still disabled (and thus the state machine is still in the 'disabled' state), an error will be printed.
 
 \begin{figure}[h]
     \centering
@@ -275,7 +275,7 @@ The Metal language is an example of a readable query language. Describing the st
 
 \subsubsection*{JunGL}
 
-In contrast with other languages presented in this section, JunGL\cite{JunGL} is a scripting language to perform \textit{refactorings}, based on pattern matching. Interesting in their approach is the specification of those parts of the code that need refactoring. In order to refactor some source code, the program first has to be represented in some way which is easy to access programmatically. JunGL does this by parsing the code into a uniform graph, initially containing only the information of the parsed AST. Lazy edges containing control flow information can also be added to the graph, but only when the refactoring needs this information. JunGL makes use of \textit{path queries} to express a pattern to be matched. 
+In contrast with other languages presented in this section, JunGL~\cite{JunGL} is a scripting language to perform \textit{refactorings}, based on pattern matching. Interesting in their approach is the specification of those parts of the code that need refactoring. In order to refactor some source code, the program first has to be represented in some way which is easy to access programmatically. JunGL does this by parsing the code into a uniform graph, initially containing only the information of the parsed AST. Lazy edges containing control flow information can also be added to the graph, but only when the refactoring needs this information. JunGL makes use of \textit{path queries} to express a pattern to be matched. 
 
 For example, figure \ref{fig:JunGL} shows the path query to find the path from a variable occurence \texttt{var} to its declaration as a method parameter. This style of query denotation offers the exact amount of flexibility, readability and expressiveness needed to let developers express user-specified queries over a graph. An additional advantage of this type of queries is that no boilerplate code has to be written, as queries are self-contained.
 
